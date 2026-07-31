@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>8888 Media</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=JetBrains+Mono:wght@400;500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#0A0A0B;
+    --acid:#C8FF2E;
+    --bone:#F2F2F0;
+    --muted:#8A8A86;
+    --line:#232322;
+    --panel:#141414;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--ink);
+    color:var(--bone);
+    font-family:'Inter', sans-serif;
+    line-height:1.6;
+    overflow-x:hidden;
+  }
+  .mono{font-family:'JetBrains Mono', monospace;}
+  a{color:inherit; text-decoration:none;}
+  .wrap{max-width:1100px; margin:0 auto; padding:0 28px;}
+
+  /* WORDMARK — built from the brand kit's own CSS snippet */
+  .mark{display:flex; align-items:center; gap:14px;}
+  .mark .num{
+    font-family:'Archivo Black', sans-serif; letter-spacing:-0.065em; color:var(--acid); line-height:0.8;
+  }
+  .mark .rule{background:#3A3A3E; flex:none;}
+  .mark .word{
+    font-family:'Archivo Black', sans-serif; letter-spacing:0.28em; color:var(--bone); padding-left:0.14em;
+  }
+
+  /* NAV */
+  nav{position:sticky; top:0; z-index:50; background:rgba(10,10,11,0.9); backdrop-filter:blur(10px); border-bottom:1px solid var(--line);}
+  nav .wrap{display:flex; align-items:center; justify-content:space-between; height:76px;}
+  nav .mark .num{font-size:26px;}
+  nav .mark .rule{width:2px; height:18px;}
+  nav .mark .word{font-size:11px;}
+  .nav-links{display:flex; gap:36px; font-size:14px; color:var(--muted); font-weight:500;}
+  .nav-links a:hover{color:var(--bone);}
+  .nav-cta{
+    font-family:'JetBrains Mono', monospace; font-size:12px; letter-spacing:0.05em; font-weight:500;
+    padding:11px 20px; border-radius:7px; background:var(--acid); color:var(--ink); border:none; cursor:pointer;
+  }
+  @media (max-width:720px){ .nav-links{display:none;} }
+
+  /* HERO */
+  header{padding:150px 0 130px; text-align:center;}
+  .kicker{
+    display:inline-flex; align-items:center; gap:9px;
+    font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.2em; text-transform:uppercase;
+    color:var(--muted); border:1px solid var(--line); padding:7px 16px; border-radius:999px; margin-bottom:44px;
+  }
+  header .mark{justify-content:center; margin:0 auto;}
+  header .mark .num{font-size:clamp(64px, 13vw, 148px);}
+  header .mark .rule{width:4px; height:clamp(48px, 9vw, 100px);}
+  header .mark .word{font-size:clamp(20px, 3.4vw, 40px);}
+  .tagline{
+    max-width:600px; margin:44px auto 0; font-size:clamp(19px,2.2vw,23px); color:var(--bone); font-weight:500; line-height:1.5;
+  }
+  .subline{max-width:520px; margin:18px auto 0; font-size:15px; color:var(--muted);}
+
+  /* WHAT WE DO */
+  section{padding:90px 0; border-top:1px solid var(--line);}
+  .eyebrow{font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.2em; text-transform:uppercase; color:var(--acid); margin-bottom:18px;}
+  h2{font-size:clamp(28px,4vw,40px); font-weight:600; letter-spacing:-0.01em; line-height:1.2; margin-bottom:20px; max-width:640px;}
+  .body-text{color:var(--muted); font-size:16px; max-width:560px;}
+
+  .grid{display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--line); border:1px solid var(--line); border-radius:16px; overflow:hidden; margin-top:52px;}
+  @media (max-width:820px){ .grid{grid-template-columns:1fr;} }
+  .cell{background:var(--panel); padding:34px 30px;}
+  .cell .n{font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--muted); margin-bottom:20px;}
+  .cell h3{font-size:19px; font-weight:600; margin-bottom:10px;}
+  .cell p{font-size:14px; color:var(--muted);}
+
+  /* FOOTER */
+  footer{border-top:1px solid var(--line); padding:56px 0;}
+  .footer-row{display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:20px;}
+  footer .mark .num{font-size:22px;}
+  footer .mark .rule{width:2px; height:16px;}
+  footer .mark .word{font-size:10px;}
+  .footer-links{display:flex; gap:22px; font-size:13px; color:var(--muted);}
+  .footer-links a:hover{color:var(--bone);}
+  .copyright{font-size:12px; color:#5c5c58; margin-top:24px;}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <div class="mark">
+      <div class="num">8888</div>
+      <div class="rule"></div>
+      <div class="word">MEDIA</div>
+    </div>
+    <div class="nav-links">
+      <a href="#what">What we build</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <button class="nav-cta" onclick="window.location.href='mailto:mike@8888media.co'">GET IN TOUCH</button>
+  </div>
+</nav>
+
+<header>
+  <div class="wrap">
+    <div class="kicker">Digital products, built with intent</div>
+    <div class="mark">
+      <div class="num">8888</div>
+      <div class="rule"></div>
+      <div class="word">MEDIA</div>
+    </div>
+    <p class="tagline">We build focused apps and digital products — starting with our own.</p>
+    <p class="subline">8888 Media is the studio behind Degen Dashboard, with more in the pipeline.</p>
+  </div>
+</header>
+
+<section id="what">
+  <div class="wrap">
+    <div class="eyebrow">What we build</div>
+    <h2>Small team. Real products. Built to actually get used.</h2>
+    <p class="body-text">We're not chasing every idea — we're building a small number of things well, starting with tools that solve a problem we understand firsthand.</p>
+
+    <div class="grid">
+      <div class="cell">
+        <div class="n">01</div>
+        <h3>Degen Dashboard</h3>
+        <p>A casino session tracker built for real players — TITO scanning, W-2G logging, and tax-ready exports. Coming soon to iOS.</p>
+      </div>
+      <div class="cell">
+        <div class="n">02</div>
+        <h3>What's next</h3>
+        <p>More products are in early development. We'll share details when they're ready to show, not before.</p>
+      </div>
+      <div class="cell">
+        <div class="n">03</div>
+        <h3>Working with us</h3>
+        <p>Open to select consulting and partnership conversations. Reach out below.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer id="contact">
+  <div class="wrap">
+    <div class="footer-row">
+      <div class="mark">
+        <div class="num">8888</div>
+        <div class="rule"></div>
+        <div class="word">MEDIA</div>
+      </div>
+      <div class="footer-links">
+        <a href="mailto:mike@8888media.co">mike@8888media.co</a>
+        <a href="https://degendashboard.app" target="_blank" rel="noopener">Degen Dashboard</a>
+      </div>
+    </div>
+    <p class="copyright">© 2026 8888 Media LLC. All rights reserved.</p>
+  </div>
+</footer>
+
+</body>
+</html>
