@@ -69,6 +69,15 @@
   .group-degen::after{background:linear-gradient(90deg, rgba(45,232,176,0.34), transparent);}
   .group-degen .dg-pink{color:#FF5C93; text-shadow:0 0 5px rgba(255,92,147,0.6), 0 0 16px rgba(255,92,147,0.45);}
   .group-degen .dg-teal{color:#2DE8B0; text-shadow:0 0 5px rgba(45,232,176,0.6), 0 0 16px rgba(45,232,176,0.45);}
+  /* 8888 Media label — mini version of the top neon lockup */
+  .group-8888{gap:8px;}
+  .group-8888 .mini-8888{
+    font-family:'Archivo Black',sans-serif; font-size:22px; letter-spacing:-0.065em; line-height:0.8;
+    color:transparent; -webkit-text-fill-color:transparent; -webkit-text-stroke:1.5px #FF6FA0;
+    text-shadow:0 0 3px var(--pink), 0 0 11px rgba(255,46,109,0.6), 0 0 22px rgba(255,46,109,0.35);
+  }
+  .group-8888 .mini-bar{width:2px; height:16px; background:#3A3A3E; flex:none;}
+  .group-8888 .mini-media{font-family:'Archivo Black',sans-serif; font-size:10px; letter-spacing:0.24em; padding-left:0.1em; color:var(--text);}
   .group-links{
     display:flex; flex-direction:column; gap:11px;
     padding-left:16px; margin-left:5px;
@@ -125,7 +134,7 @@
 
     <!-- ================= 8888 MEDIA ================= -->
     <section class="group">
-      <div class="group-label">8888 Media</div>
+      <div class="group-label group-8888"><span class="mini-8888">8888</span><span class="mini-bar"></span><span class="mini-media">MEDIA</span></div>
       <div class="group-links">
 
         <a class="link" href="https://8888media.co" target="_blank" rel="noopener">
