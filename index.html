@@ -157,17 +157,17 @@
     0 0 8px rgba(255,46,109,0.35),
     0 0 18px rgba(255,46,109,0.18);               /* dim, tight glow */
 }
-/* each 8 ignites in sequence on load */
-.hero-logo-num span { display:inline-block; opacity:0; animation:digitOn .6s ease-out both; }
-.hero-logo-num span:nth-child(1){ animation-delay:.30s; }
-.hero-logo-num span:nth-child(2){ animation-delay:.78s; }
-.hero-logo-num span:nth-child(3){ animation-delay:1.26s; }
-.hero-logo-num span:nth-child(4){ animation-delay:1.74s; }
-@keyframes digitOn {
-  0%   { opacity:0; }
-  55%  { opacity:1; }
-  68%  { opacity:0.45; }   /* tiny ignition flicker */
-  80%  { opacity:1; }
+/* 8888 ignites left→right, then re-lights the same way every 5s */
+.hero-logo-num span { display:inline-block; opacity:0; animation:relight 5s ease-out infinite both; }
+.hero-logo-num span:nth-child(1){ animation-delay:0s; }
+.hero-logo-num span:nth-child(2){ animation-delay:.32s; }
+.hero-logo-num span:nth-child(3){ animation-delay:.64s; }
+.hero-logo-num span:nth-child(4){ animation-delay:.96s; }
+@keyframes relight {
+  0%   { opacity:0; }      /* strike off */
+  5%   { opacity:1; }      /* light up */
+  8%   { opacity:0.4; }    /* ignition flicker */
+  11%  { opacity:1; }      /* settle — then hold lit for the rest of the 5s */
   100% { opacity:1; }
 }
 @media (prefers-reduced-motion: reduce){
