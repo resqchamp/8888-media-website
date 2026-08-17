@@ -158,24 +158,20 @@
     0 0 22px #FF2E6D,
     0 0 46px rgba(255,46,109,0.72),
     0 0 88px rgba(255,46,109,0.42);               /* pink core -> pink halo */
-  animation: neonFlicker888 4.5s linear infinite;
+  animation: neonOn888 1.8s ease-out 1 both;   /* buzz to life on load, then hold steady */
 }
-@keyframes neonFlicker888 {
-  0%, 100% { opacity:1; }
-  10%      { opacity:0.6; }
-  11%      { opacity:1; }
-  32%      { opacity:0.45; }
-  33%      { opacity:0.9; }
-  34%      { opacity:0.5; }
-  35%      { opacity:1; }
-  55%      { opacity:0.7; }
-  56%      { opacity:1; }
-  72%      { opacity:0.35; }
-  73%      { opacity:0.85; }
-  74%      { opacity:0.5; }
-  75%      { opacity:1; }
-  88%      { opacity:0.6; }
-  89%      { opacity:1; }
+@keyframes neonOn888 {
+  0%   { opacity:0; }
+  8%   { opacity:0.85; }
+  10%  { opacity:0.2; }
+  14%  { opacity:1; }
+  18%  { opacity:0.35; }
+  22%  { opacity:1; }
+  28%  { opacity:0.6; }
+  32%  { opacity:1; }
+  46%  { opacity:0.9; }
+  50%  { opacity:1; }
+  100% { opacity:1; }
 }
 @media (prefers-reduced-motion: reduce){ .hero-logo-num { animation:none; } }
 </style>
