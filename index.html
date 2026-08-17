@@ -146,6 +146,21 @@
 .hero-stage { position:relative; }
 .hero-net { position:absolute; inset:0; width:100%; height:100%; z-index:0; pointer-events:none; display:block; }
 @media (max-width:760px){ .hero-net { display:none; } }
+
+/* hero "8888" — gradient fill + soft glow + slow sheen (less flat) */
+.hero-logo-num {
+  background:linear-gradient(105deg, #D8195A 0%, #FF2E6D 40%, #FFC2D9 50%, #FF2E6D 60%, #D8195A 100%);
+  background-size:250% 100%;
+  -webkit-background-clip:text; background-clip:text;
+  -webkit-text-fill-color:transparent;
+  filter:drop-shadow(0 4px 24px rgba(255,46,109,0.30));
+  animation:sheen8888 8s ease-in-out infinite;
+}
+@keyframes sheen8888 {
+  0%,100% { background-position:0% 50%; }
+  50%     { background-position:100% 50%; }
+}
+@media (prefers-reduced-motion: reduce){ .hero-logo-num { animation:none; } }
 </style>
 </head>
 <body>
