@@ -158,22 +158,23 @@
     0 0 22px #FF2E6D,
     0 0 46px rgba(255,46,109,0.72),
     0 0 88px rgba(255,46,109,0.42);               /* pink core -> pink halo */
-  animation: neonOn888 1.8s ease-out 1 both;   /* buzz to life on load, then hold steady */
 }
-@keyframes neonOn888 {
+/* each 8 ignites in sequence on load */
+.hero-logo-num span { display:inline-block; opacity:0; animation:digitOn .5s ease-out both; }
+.hero-logo-num span:nth-child(1){ animation-delay:.20s; }
+.hero-logo-num span:nth-child(2){ animation-delay:.48s; }
+.hero-logo-num span:nth-child(3){ animation-delay:.76s; }
+.hero-logo-num span:nth-child(4){ animation-delay:1.04s; }
+@keyframes digitOn {
   0%   { opacity:0; }
-  8%   { opacity:0.85; }
-  10%  { opacity:0.2; }
-  14%  { opacity:1; }
-  18%  { opacity:0.35; }
-  22%  { opacity:1; }
-  28%  { opacity:0.6; }
-  32%  { opacity:1; }
-  46%  { opacity:0.9; }
-  50%  { opacity:1; }
+  55%  { opacity:1; }
+  68%  { opacity:0.45; }   /* tiny ignition flicker */
+  80%  { opacity:1; }
   100% { opacity:1; }
 }
-@media (prefers-reduced-motion: reduce){ .hero-logo-num { animation:none; } }
+@media (prefers-reduced-motion: reduce){
+  .hero-logo-num span { animation:none; opacity:1; }
+}
 </style>
 </head>
 <body>
@@ -204,7 +205,7 @@
           <div style="display:flex;flex-direction:column;justify-content:center">
             <div style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.22em;text-transform:uppercase;color:#8A8A86;margin-bottom:36px">Studio № 8888 &nbsp;/&nbsp; Est. 2026</div>
             <div class="hero-logo-row" style="display:flex;align-items:center;gap:20px">
-              <div class="hero-logo-num" style="font-family:'Archivo Black',sans-serif;font-size:132px;letter-spacing:-0.065em;color:#FF2E6D;line-height:0.8">8888</div>
+              <div class="hero-logo-num" style="font-family:'Archivo Black',sans-serif;font-size:132px;letter-spacing:-0.065em;color:#FF2E6D;line-height:0.8"><span>8</span><span>8</span><span>8</span><span>8</span></div>
               <div class="hero-logo-bar" style="width:4px;height:90px;background:#3A3A3E;flex:none"></div>
               <div class="hero-logo-word" style="font-family:'Archivo Black',sans-serif;font-size:34px;letter-spacing:0.28em;color:#F2F2F0;padding-left:0.14em">MEDIA</div>
             </div>
