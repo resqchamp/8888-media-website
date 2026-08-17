@@ -141,6 +141,9 @@
   .hamburger { display:block; }
   .site-header > a { display:none !important; }  /* GET IN TOUCH lives in the menu on mobile */
 }
+
+/* animated hero network (canvas) */
+.hero-net { display:block; width:100%; height:190px; }
 </style>
 </head>
 <body>
@@ -183,22 +186,7 @@
           <div class="hero-divider" style="background:#232322"></div>
 
           <div class="hero-signal-col" style="display:flex;flex-direction:column;justify-content:flex-end;gap:26px;padding-bottom:6px">
-            <svg class="hero-signal" viewBox="0 0 180 130" width="150" height="108" style="align-self:flex-start;overflow:visible" aria-hidden="true">
-              <line x1="24" y1="18" x2="86" y2="52" stroke="#2EE6C8" stroke-width="1" opacity="0.35"></line>
-              <line x1="86" y1="52" x2="146" y2="24" stroke="#3A3A3E" stroke-width="1" opacity="0.6"></line>
-              <line x1="86" y1="52" x2="112" y2="96" stroke="#3A3A3E" stroke-width="1" opacity="0.6"></line>
-              <circle cx="14" cy="86" r="2.5" fill="#3A3A3E"></circle>
-              <circle cx="40" cy="104" r="2" fill="#3A3A3E"></circle>
-              <circle cx="60" cy="20" r="2" fill="#3A3A3E"></circle>
-              <circle cx="150" cy="70" r="2" fill="#3A3A3E"></circle>
-              <circle cx="168" cy="40" r="2.5" fill="#3A3A3E"></circle>
-              <circle cx="24" cy="18" r="3" fill="#2EE6C8" opacity="0.85"></circle>
-              <circle cx="146" cy="24" r="2.5" fill="#F2F2F0" opacity="0.9"></circle>
-              <circle cx="112" cy="96" r="2.5" fill="#F2F2F0" opacity="0.6"></circle>
-              <circle cx="86" cy="52" r="4.5" fill="none" stroke="#FF2E6D" stroke-width="1" opacity="0.5"></circle>
-              <circle cx="86" cy="52" r="8" fill="none" stroke="#FF2E6D" stroke-width="1" opacity="0.22"></circle>
-              <circle cx="86" cy="52" r="3.5" fill="#FF2E6D"></circle>
-            </svg>
+            <canvas class="hero-signal hero-net" aria-hidden="true"></canvas>
             <p style="font-size:16px;color:#F2F2F0;line-height:1.55">Digital products, built with intent — focused apps we design, build and ship ourselves.</p>
             <p style="font-size:15px;color:#8A8A86">The studio behind Degen Dashboard, with more in the pipeline.</p>
             <a href="https://degendashboard.app" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:10px;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:#F2F2F0;border-top:1px solid #232322;padding-top:20px" style-hover="color:#FF2E6D">See Degen Dashboard <span style="color:#F2F2F0">→</span></a>
@@ -354,6 +342,84 @@
   ham.addEventListener('click', function(){ setOpen(true); });
   menu.querySelectorAll('[data-close], .mm-close').forEach(function(el){ el.addEventListener('click', function(){ setOpen(false); }); });
   document.addEventListener('keydown', function(e){ if(e.key==='Escape') setOpen(false); });
+})();
+</script>
+<script>
+/* living hero network — drifting nodes, links between neighbors, a pink signal pulse */
+(function(){
+  var cv=document.querySelector('.hero-net');
+  if(!cv || !cv.getContext) return;
+  var ctx=cv.getContext('2d');
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var W=0,H=0,dpr=1, nodes=[], sig=null, MAXD=96;
+
+  function resize(){
+    dpr=Math.min(window.devicePixelRatio||1,2);
+    W=cv.clientWidth; H=cv.clientHeight;
+    if(!W||!H) return;
+    cv.width=W*dpr; cv.height=H*dpr; ctx.setTransform(dpr,0,0,dpr,0,0);
+  }
+  function build(){
+    resize();
+    var count=Math.max(12, Math.min(26, Math.round(W/24)));
+    nodes=[];
+    for(var i=0;i<count;i++){
+      var acc = Math.random()<0.18 ? (Math.random()<0.5?'#FF2E6D':'#2EE6C8') : null;
+      nodes.push({ x:Math.random()*W, y:Math.random()*H,
+        vx:(Math.random()-0.5)*0.22, vy:(Math.random()-0.5)*0.22,
+        r: acc?2.4:1.5, accent:acc });
+    }
+    sig=null;
+  }
+  function nearest(i, avoid){
+    var best=-1, bd=1e9;
+    for(var k=0;k<nodes.length;k++){ if(k===i||k===avoid) continue;
+      var dx=nodes[i].x-nodes[k].x, dy=nodes[i].y-nodes[k].y, d=dx*dx+dy*dy;
+      if(d<bd){ bd=d; best=k; } }
+    return best;
+  }
+  function newSig(){ if(nodes.length<2){ sig=null; return; }
+    var a=Math.floor(Math.random()*nodes.length);
+    sig={ from:a, to:nearest(a,-1), prev:-1, p:0, hops:0 };
+  }
+  function frame(){
+    if(!W||!H){ requestAnimationFrame(frame); return; }
+    ctx.clearRect(0,0,W,H);
+    var i,a,b;
+    for(i=0;i<nodes.length;i++){ var n=nodes[i];
+      if(!reduce){ n.x+=n.vx; n.y+=n.vy; }
+      if(n.x<2){n.x=2;n.vx*=-1;} else if(n.x>W-2){n.x=W-2;n.vx*=-1;}
+      if(n.y<2){n.y=2;n.vy*=-1;} else if(n.y>H-2){n.y=H-2;n.vy*=-1;}
+    }
+    for(a=0;a<nodes.length;a++){ for(b=a+1;b<nodes.length;b++){
+      var dx=nodes[a].x-nodes[b].x, dy=nodes[a].y-nodes[b].y, d=Math.sqrt(dx*dx+dy*dy);
+      if(d<MAXD){ ctx.strokeStyle='rgba(130,130,150,'+(1-d/MAXD)*0.32+')'; ctx.lineWidth=1;
+        ctx.beginPath(); ctx.moveTo(nodes[a].x,nodes[a].y); ctx.lineTo(nodes[b].x,nodes[b].y); ctx.stroke(); }
+    }}
+    for(i=0;i<nodes.length;i++){ var m=nodes[i];
+      ctx.beginPath(); ctx.arc(m.x,m.y,m.r,0,6.2832);
+      if(m.accent){ ctx.fillStyle=m.accent; ctx.shadowColor=m.accent; ctx.shadowBlur=9; }
+      else { ctx.fillStyle='rgba(150,150,170,0.55)'; ctx.shadowBlur=0; }
+      ctx.fill();
+    }
+    ctx.shadowBlur=0;
+    if(!reduce){
+      if(!sig || sig.to<0 || sig.from>=nodes.length || sig.to>=nodes.length) newSig();
+      if(sig && sig.to>=0){
+        var f=nodes[sig.from], t=nodes[sig.to];
+        var x=f.x+(t.x-f.x)*sig.p, y=f.y+(t.y-f.y)*sig.p;
+        ctx.beginPath(); ctx.arc(x,y,2.6,0,6.2832);
+        ctx.fillStyle='#FF2E6D'; ctx.shadowColor='#FF2E6D'; ctx.shadowBlur=14; ctx.fill(); ctx.shadowBlur=0;
+        sig.p+=0.02;
+        if(sig.p>=1){ sig.prev=sig.from; sig.from=sig.to; sig.to=nearest(sig.from,sig.prev); sig.p=0; sig.hops++;
+          if(sig.hops>5 || sig.to<0) newSig(); }
+      }
+    }
+    requestAnimationFrame(frame);
+  }
+  build(); frame();
+  window.addEventListener('load', build);   // re-measure once layout/fonts settle
+  var rt; window.addEventListener('resize', function(){ clearTimeout(rt); rt=setTimeout(build,200); });
 })();
 </script>
 </body>
