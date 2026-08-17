@@ -19,7 +19,7 @@
 <meta name="twitter:image" content="https://www.8888media.co/og-image.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Bebas+Neue&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
   :root{
     --bg:#070708; --panel:#121219; --panel-2:#16161f; --line:#232322;
@@ -64,6 +64,11 @@
     display:flex; align-items:center; gap:10px;
   }
   .group-label::after{content:""; flex:1; height:1px; background:linear-gradient(90deg, rgba(255,46,109,0.32), transparent);}
+  /* Degen Dashboard label — its own neon brand look (pink + teal, glowing) */
+  .group-degen{font-family:'Bebas Neue',sans-serif; font-size:23px; letter-spacing:0.04em; text-transform:none; margin-bottom:12px;}
+  .group-degen::after{background:linear-gradient(90deg, rgba(45,232,176,0.34), transparent);}
+  .group-degen .dg-pink{color:#FF5C93; text-shadow:0 0 5px rgba(255,92,147,0.6), 0 0 16px rgba(255,92,147,0.45);}
+  .group-degen .dg-teal{color:#2DE8B0; text-shadow:0 0 5px rgba(45,232,176,0.6), 0 0 16px rgba(45,232,176,0.45);}
   .group-links{
     display:flex; flex-direction:column; gap:11px;
     padding-left:16px; margin-left:5px;
@@ -140,7 +145,7 @@
 
     <!-- ================= DEGEN DASHBOARD ================= -->
     <section class="group">
-      <div class="group-label">Degen Dashboard</div>
+      <div class="group-label group-degen"><span class="dg-pink">Degen</span> <span class="dg-teal">Dashboard</span></div>
       <div class="group-links">
 
         <a class="link" href="https://degendashboard.app" target="_blank" rel="noopener">
