@@ -147,18 +147,21 @@
 .hero-net { position:absolute; inset:0; width:100%; height:100%; z-index:0; pointer-events:none; display:block; }
 @media (max-width:760px){ .hero-net { display:none; } }
 
-/* hero "8888" — gradient fill + soft glow + slow sheen (less flat) */
+/* hero "8888" — neon-tube treatment: hollow digits, bright edge + pink halo */
 .hero-logo-num {
-  background:linear-gradient(105deg, #D8195A 0%, #FF2E6D 40%, #FFC2D9 50%, #FF2E6D 60%, #D8195A 100%);
-  background-size:250% 100%;
-  -webkit-background-clip:text; background-clip:text;
-  -webkit-text-fill-color:transparent;
-  filter:drop-shadow(0 4px 24px rgba(255,46,109,0.30));
-  animation:sheen8888 8s ease-in-out infinite;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+  -webkit-text-stroke: 2px #FF8FB5;               /* bright tube edge (core) */
+  text-shadow:
+    0 0 7px #FF2E6D,
+    0 0 20px #FF2E6D,
+    0 0 44px rgba(255,46,109,0.70),
+    0 0 84px rgba(255,46,109,0.40);               /* layered pink halo */
+  animation: neonBreathe888 5s ease-in-out infinite;
 }
-@keyframes sheen8888 {
-  0%,100% { background-position:0% 50%; }
-  50%     { background-position:100% 50%; }
+@keyframes neonBreathe888 {
+  0%,100% { opacity:1; }
+  50%     { opacity:0.90; }
 }
 @media (prefers-reduced-motion: reduce){ .hero-logo-num { animation:none; } }
 </style>
