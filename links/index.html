@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>8888 Media — Links</title>
+<meta name="description" content="Everything 8888 Media — our products, socials, and how to reach us. Digital products, built with intent.">
+<link rel="canonical" href="https://www.8888media.co/links/">
+<link rel="icon" type="image/x-icon" href="https://www.8888media.co/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="https://www.8888media.co/favicon-32.png">
+<link rel="apple-touch-icon" href="https://www.8888media.co/apple-touch-icon.png">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://www.8888media.co/links/">
+<meta property="og:title" content="8888 Media — Links">
+<meta property="og:description" content="Everything 8888 Media — our products, socials, and how to reach us.">
+<meta property="og:image" content="https://www.8888media.co/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="8888 Media — Links">
+<meta name="twitter:image" content="https://www.8888media.co/og-image.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#070708; --panel:#121219; --panel-2:#16161f; --line:#232322;
+    --pink:#FF2E6D; --text:#F2F2F0; --muted:#8A8A86;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{-webkit-text-size-adjust:100%;}
+  body{
+    background:var(--bg); color:var(--text);
+    font-family:'Inter',sans-serif; line-height:1.5; min-height:100vh;
+    -webkit-font-smoothing:antialiased;
+    display:flex; flex-direction:column; align-items:center;
+    padding:56px 20px 40px;
+  }
+  /* ambient depth */
+  body::before{
+    content:""; position:fixed; inset:0; pointer-events:none; z-index:0;
+    background:
+      radial-gradient(600px 340px at 50% -8%, rgba(255,46,109,0.12), transparent 62%),
+      radial-gradient(700px 500px at 50% 120%, rgba(255,46,109,0.05), transparent 55%);
+  }
+  .wrap{position:relative; z-index:1; width:100%; max-width:460px; display:flex; flex-direction:column; align-items:center;}
+
+  /* header lockup */
+  .lockup{display:flex; align-items:center; gap:14px; margin-bottom:14px;}
+  .n8888{
+    font-family:'Archivo Black',sans-serif; font-size:56px; letter-spacing:-0.065em; line-height:0.8;
+    color:transparent; -webkit-text-fill-color:transparent;
+    -webkit-text-stroke:2px #FF6FA0;
+    text-shadow:0 0 3px var(--pink), 0 0 14px rgba(255,46,109,0.7), 0 0 30px rgba(255,46,109,0.4);
+  }
+  .bar{width:3px; height:40px; background:#3A3A3E; flex:none;}
+  .media{font-family:'Archivo Black',sans-serif; font-size:16px; letter-spacing:0.28em; padding-left:0.14em; color:var(--text);}
+  .tagline{font-size:14px; color:var(--muted); text-align:center; margin-bottom:34px; max-width:340px;}
+
+  /* link buttons */
+  .links{width:100%; display:flex; flex-direction:column; gap:13px;}
+  .link{
+    display:flex; align-items:center; gap:14px;
+    width:100%; padding:16px 18px; border-radius:14px;
+    background:var(--panel); border:1px solid var(--line); color:var(--text);
+    text-decoration:none; cursor:pointer;
+    transition:transform .18s cubic-bezier(.2,.7,.2,1), border-color .2s ease, box-shadow .25s ease, background .2s ease;
+  }
+  .link:hover{
+    transform:translateY(-2px); background:var(--panel-2); border-color:rgba(255,46,109,0.55);
+    box-shadow:0 0 0 1px rgba(255,46,109,0.25), 0 12px 30px rgba(0,0,0,0.45), 0 0 26px rgba(255,46,109,0.16);
+  }
+  .link:active{ transform:translateY(0) scale(.99); }
+  .link-ico{
+    flex:none; width:36px; height:36px; border-radius:9px;
+    display:flex; align-items:center; justify-content:center;
+    background:#0d0d12; border:1px solid var(--line); color:var(--text);
+  }
+  .link-ico svg{width:18px; height:18px;}
+  .link-ico .die{font-size:18px; line-height:1;}
+  .link-txt{flex:1; min-width:0; display:flex; flex-direction:column; gap:2px;}
+  .link-title{font-size:15px; font-weight:600; letter-spacing:-0.01em;}
+  .link-sub{font-size:12px; color:var(--muted);}
+  .link-arrow{flex:none; color:var(--muted); font-size:16px; transition:transform .2s ease, color .2s ease;}
+  .link:hover .link-arrow{transform:translateX(4px); color:var(--pink);}
+
+  /* footer */
+  .foot{margin-top:40px; text-align:center; font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.06em; color:#5c5c58;}
+  .foot a{color:#5c5c58; text-decoration:none;}
+  .foot a:hover{color:var(--muted);}
+
+  @media (max-width:420px){
+    .n8888{font-size:46px;} .bar{height:34px;} .media{font-size:14px;}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="lockup">
+    <div class="n8888">8888</div>
+    <div class="bar"></div>
+    <div class="media">MEDIA</div>
+  </div>
+  <p class="tagline">Digital products, built with intent — the studio behind Degen Dashboard.</p>
+
+  <nav class="links">
+
+    <!-- Degen Dashboard -->
+    <a class="link" href="https://degendashboard.app" target="_blank" rel="noopener">
+      <span class="link-ico"><span class="die">🎲</span></span>
+      <span class="link-txt">
+        <span class="link-title">Degen Dashboard</span>
+        <span class="link-sub">Casino session &amp; tax tracker · iOS</span>
+      </span>
+      <span class="link-arrow">→</span>
+    </a>
+
+    <!-- Instagram -->
+    <a class="link" href="https://instagram.com/degendashboardapp" target="_blank" rel="noopener">
+      <span class="link-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="1.1" fill="currentColor" stroke="none"/></svg></span>
+      <span class="link-txt">
+        <span class="link-title">Instagram</span>
+        <span class="link-sub">@degendashboardapp</span>
+      </span>
+      <span class="link-arrow">→</span>
+    </a>
+
+    <!-- TikTok -->
+    <a class="link" href="https://tiktok.com/@degendashboardapp" target="_blank" rel="noopener">
+      <span class="link-ico"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M16.5 3c.3 2.1 1.7 3.6 3.9 3.9v3.1c-1.4.1-2.7-.3-3.9-1.1v6.4c0 3.2-2.6 5.7-5.8 5.7-3.2 0-5.7-2.6-5.7-5.7 0-3.1 2.5-5.7 5.7-5.7.4 0 .7 0 1.1.1v3.2c-.3-.1-.7-.2-1.1-.2-1.4 0-2.5 1.1-2.5 2.5s1.1 2.5 2.5 2.5c1.4 0 2.6-1.1 2.6-2.5V3h3.2z"/></svg></span>
+      <span class="link-txt">
+        <span class="link-title">TikTok</span>
+        <span class="link-sub">@degendashboardapp</span>
+      </span>
+      <span class="link-arrow">→</span>
+    </a>
+
+    <!-- YouTube -->
+    <a class="link" href="https://youtube.com/@DegenDashboardApp" target="_blank" rel="noopener">
+      <span class="link-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="5" width="20" height="14" rx="4"/><path d="M10 9l5 3-5 3z" fill="currentColor" stroke="none"/></svg></span>
+      <span class="link-txt">
+        <span class="link-title">YouTube</span>
+        <span class="link-sub">@DegenDashboardApp</span>
+      </span>
+      <span class="link-arrow">→</span>
+    </a>
+
+    <!-- Website -->
+    <a class="link" href="https://8888media.co" target="_blank" rel="noopener">
+      <span class="link-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.5 3.5 6 3.5 9s-1 6.5-3.5 9c-2.5-2.5-3.5-6-3.5-9s1-6.5 3.5-9z"/></svg></span>
+      <span class="link-txt">
+        <span class="link-title">8888media.co</span>
+        <span class="link-sub">Studio site</span>
+      </span>
+      <span class="link-arrow">→</span>
+    </a>
+
+    <!-- Contact -->
+    <a class="link" href="mailto:mike@8888media.co">
+      <span class="link-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 6l-10 7L2 6"/></svg></span>
+      <span class="link-txt">
+        <span class="link-title">Get in touch</span>
+        <span class="link-sub">mike@8888media.co</span>
+      </span>
+      <span class="link-arrow">→</span>
+    </a>
+
+  </nav>
+
+  <div class="foot">© 2026 <a href="https://8888media.co" target="_blank" rel="noopener">8888 Media LLC</a></div>
+
+</div>
+</body>
+</html>
