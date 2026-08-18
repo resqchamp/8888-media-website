@@ -87,6 +87,10 @@
 .degen-card { box-shadow:0 0 0 1px rgba(255,46,109,.10), 0 18px 44px rgba(0,0,0,.42); }
 .degen-card:hover { transform:translateY(-4px); border-color:#3A3A3E !important;
   box-shadow:0 0 0 1px rgba(255,46,109,.28), 0 28px 66px rgba(0,0,0,.5), 0 12px 40px rgba(255,46,109,.14); }
+/* Official Apple "Download on the App Store" badge */
+.appbadge { display:inline-block; line-height:0; transition:transform .15s ease, filter .2s ease; }
+.appbadge img { display:block; height:50px; width:auto; }
+.appbadge:hover { transform:translateY(-2px); filter:brightness(1.08); }
 
 /* secondary + shot cards — gentle lift */
 .build-grid > div:nth-child(2) > div:hover, .shots-grid > div:hover {
@@ -260,18 +264,21 @@
                 <div style="display:flex;flex-direction:column;justify-content:space-between;gap:56px;flex:1;min-width:0">
                   <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:20px">
                     <span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#8A8A86">01</span>
-                                          <span style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:#F2F2F0;border:1px solid #3A3A3E;padding:5px 10px;border-radius:4px;white-space:nowrap">Coming soon</span>
+                                          <span style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:#2EE6C8;border:1px solid rgba(46,230,200,0.4);padding:5px 10px;border-radius:4px;white-space:nowrap">Now on iOS</span>
                   </div>
                   <div>
                     <p style="font-family:'JetBrains Mono',monospace;font-size:13px;letter-spacing:0.14em;text-transform:uppercase;color:#FF2E6D;margin-bottom:16px">Scan it. Send it. Book it.</p>
                     <h3 class="card-h3" style="font-size:34px;font-weight:600;letter-spacing:-0.025em;line-height:1.1">Degen Dashboard</h3>
-                    <p style="margin-top:14px;font-size:15px;color:#8A8A86">A casino session tracker built for real players — TITO scanning, W-2G logging, and tax-ready exports. Coming soon to iOS.</p>
+                    <p style="margin-top:14px;font-size:15px;color:#8A8A86">A casino session tracker built for real players — TITO scanning, W-2G logging, and tax-ready exports. Now on the App Store.</p>
                     <div style="margin-top:26px;display:flex;flex-wrap:wrap;gap:10px;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:#8A8A86">
                       <span style="border:1px solid #232322;border-radius:4px;padding:5px 9px;white-space:nowrap;flex:none">TITO scan</span>
                       <span style="border:1px solid #232322;border-radius:4px;padding:5px 9px;white-space:nowrap;flex:none">W-2G log</span>
                       <span style="border:1px solid #232322;border-radius:4px;padding:5px 9px;white-space:nowrap;flex:none">Tax export</span>
                     </div>
-                    <a href="https://www.degendashboard.app" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:9px;margin-top:26px;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:#F2F2F0" style-hover="color:#FF2E6D">Visit the site <span style="color:#F2F2F0">→</span></a>
+                    <div style="margin-top:26px;display:flex;flex-wrap:wrap;align-items:center;gap:20px">
+                      <a class="appbadge" href="https://apps.apple.com/app/id6801627093" target="_blank" rel="noopener" aria-label="Download Degen Dashboard on the App Store"><img src="appstore-badge.svg" alt="Download on the App Store" width="150" height="50"></a>
+                      <a href="https://www.degendashboard.app" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:9px;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:#F2F2F0" style-hover="color:#FF2E6D">Visit the site <span style="color:#F2F2F0">→</span></a>
+                    </div>
                   </div>
                 </div>
                 <div class="degen-card-shot" style="flex:none;width:170px;display:flex;align-items:center;justify-content:center">
