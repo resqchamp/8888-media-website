@@ -50,6 +50,13 @@
   .degen-card { flex-direction: column !important; }
   .degen-card-shot { width: 160px !important; margin: 8px auto 0 !important; }
   .shots-grid { grid-template-columns: 1fr !important; }
+  /* Mobile: group all Degen cards together, CompVault last (desktop order is a 2x2 magazine layout) */
+  .build-wrap { display: flex !important; flex-direction: column !important; gap: 20px !important; }
+  .build-grid, .shots-grid { display: contents !important; }
+  .build-grid > div:first-child { order: 1; }   /* Degen main */
+  .shots-grid > div:first-child { order: 2; }    /* Log a session */
+  .shots-grid > div:nth-child(2) { order: 3; }   /* Export for taxes */
+  .build-grid > div:nth-child(2) { order: 4; }   /* CompVault */
   .stats-row { grid-template-columns: 1fr !important; }
   .stats-row > div { border-right: none !important; border-bottom: 1px solid #232322; padding-left: 0 !important; }
   .stats-row > div:last-child { border-bottom: none !important; }
@@ -259,6 +266,7 @@
               <span style="flex:1;padding:16px 0 16px 24px;border-left:1px solid #232322">03 &nbsp;Select partnerships</span>
             </div>
 
+            <div class="build-wrap">
             <div class="build-grid" style="margin-top:28px;display:grid;grid-template-columns:1.35fr 1fr;gap:20px;align-items:stretch">
               <div class="degen-card" style="display:flex;gap:28px;background:#141414;border:1px solid #232322;border-radius:16px;padding:34px 32px;color:#F2F2F0;min-height:380px">
                 <div style="display:flex;flex-direction:column;justify-content:space-between;gap:56px;flex:1;min-width:0">
@@ -320,6 +328,7 @@
                   <p style="font-size:14px;color:#8A8A86;line-height:1.4">Session-method reports formatted for IRS filing.</p>
                 </div>
               </div>
+            </div>
             </div>
           </div>
         </div>
