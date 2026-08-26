@@ -187,6 +187,21 @@
   .hero-logo-num span { animation:none; opacity:1; }
 }
 </style>
+<style>
+/* ===== Web Design section ===== */
+.web-grid > div { transition: transform .28s cubic-bezier(.2,.7,.2,1), border-color .2s ease, box-shadow .32s ease; }
+.web-grid > div:hover { transform:translateY(-3px); border-color:#3A3A3E !important; }
+.web-cta { transition: background-color .22s ease, transform .28s cubic-bezier(.2,.7,.2,1), box-shadow .32s ease; }
+.web-cta:hover { background:#F2F2F0 !important; transform:translateY(-2px); box-shadow:0 14px 34px rgba(255,46,109,.28); }
+.web-steps span { flex:1; }
+@media (max-width:760px){
+  .web-grid { grid-template-columns:1fr !important; }
+  .web-steps { flex-direction:column !important; }
+  .web-steps span { padding:14px 0 !important; border-left:0 !important; border-bottom:1px solid #232322; }
+  .web-steps span:last-child { border-bottom:0; }
+  .web-cta { text-align:center; }
+}
+</style>
 </head>
 <body>
 <div style="background:#0A0A0B;color:#F2F2F0;min-height:100vh;position:relative">
@@ -201,6 +216,7 @@
             </div>
             <div class="nav-links" style="display:flex;gap:36px;font-size:14px;font-weight:500;color:#8A8A86">
               <a href="#what-1b" style="color:#8A8A86" style-hover="color:#F2F2F0">What We Build</a>
+              <a href="#web-design" style="color:#8A8A86" style-hover="color:#F2F2F0">Web Design</a>
               <a href="https://www.degendashboard.app" target="_blank" rel="noopener" style="color:#8A8A86" style-hover="color:#F2F2F0">Degen Dashboard</a>
               <a href="https://compvault.app" target="_blank" rel="noopener" style="color:#8A8A86" style-hover="color:#F2F2F0">CompVault</a>
               <a href="#contact-1b" style="color:#8A8A86" style-hover="color:#F2F2F0">Contact</a>
@@ -333,6 +349,56 @@
           </div>
         </div>
 
+        <!-- web design: services -->
+        <div id="web-design" style="border-top:1px solid #232322;background:#0D0D0E">
+          <div class="section-pad" style="max-width:1100px;margin:0 auto;padding:88px 40px 40px">
+            <div style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:#FF2E6D;margin-bottom:20px">Web Design</div>
+            <h2 class="section-h2" style="font-size:40px;font-weight:600;letter-spacing:-0.02em;line-height:1.15;max-width:640px">We build websites too — custom, fast, and yours.</h2>
+            <p style="margin-top:18px;font-size:15px;color:#8A8A86;max-width:560px">Not template soup. We design and build custom sites for small businesses — from a single sharp landing page to a full multi-page site with booking and contact forms. The same studio that ships its own apps builds yours: simple, modern, and made to load fast on every screen.</p>
+
+            <div class="web-steps" style="margin-top:44px;display:flex;gap:0;border-top:1px solid #232322;border-bottom:1px solid #232322;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:#8A8A86">
+              <span style="padding:16px 0">01 &nbsp;Mockup</span>
+              <span style="padding:16px 0 16px 24px;border-left:1px solid #232322">02 &nbsp;Build</span>
+              <span style="padding:16px 0 16px 24px;border-left:1px solid #232322">03 &nbsp;Launch</span>
+            </div>
+
+            <div class="web-grid" style="margin-top:28px;display:grid;grid-template-columns:repeat(3,1fr);gap:20px;align-items:stretch">
+              <div style="background:#141414;border:1px solid #232322;border-radius:16px;padding:28px 26px;color:#F2F2F0;display:flex;flex-direction:column;gap:13px;min-height:230px">
+                <span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#8A8A86">01</span>
+                <div style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:#FF2E6D">Mockup first</div>
+                <h3 style="font-size:21px;font-weight:600;letter-spacing:-0.02em;line-height:1.15">See it before we build it</h3>
+                <p style="font-size:14px;color:#8A8A86;line-height:1.5">We design the look and layout up front and walk you through it. You sign off on the direction before any production code — no surprises, no guesswork.</p>
+              </div>
+              <div style="background:#141414;border:1px solid #232322;border-radius:16px;padding:28px 26px;color:#F2F2F0;display:flex;flex-direction:column;gap:13px;min-height:230px">
+                <span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#8A8A86">02</span>
+                <div style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:#FF2E6D">Then we build</div>
+                <h3 style="font-size:21px;font-weight:600;letter-spacing:-0.02em;line-height:1.15">Hand-built, not templated</h3>
+                <p style="font-size:14px;color:#8A8A86;line-height:1.5">We build it for real — clean, modern and quick to load. No bloated page-builders, no stock-photo filler. Responsive on phones from the first pixel.</p>
+              </div>
+              <div style="background:#141414;border:1px solid #232322;border-radius:16px;padding:28px 26px;color:#F2F2F0;display:flex;flex-direction:column;gap:13px;min-height:230px">
+                <span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#8A8A86">03</span>
+                <div style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:#FF2E6D">Launch &amp; handoff</div>
+                <h3 style="font-size:21px;font-weight:600;letter-spacing:-0.02em;line-height:1.15">Live, and handled</h3>
+                <p style="font-size:14px;color:#8A8A86;line-height:1.5">We ship it on fast, reliable hosting with your forms wired up — contact, booking, whatever you need — and make sure it keeps running after launch.</p>
+              </div>
+            </div>
+
+            <div style="margin-top:28px;display:flex;flex-wrap:wrap;gap:10px;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:#8A8A86">
+              <span style="border:1px solid #232322;border-radius:4px;padding:6px 11px;white-space:nowrap">Custom design</span>
+              <span style="border:1px solid #232322;border-radius:4px;padding:6px 11px;white-space:nowrap">Mobile-responsive</span>
+              <span style="border:1px solid #232322;border-radius:4px;padding:6px 11px;white-space:nowrap">Contact forms</span>
+              <span style="border:1px solid #232322;border-radius:4px;padding:6px 11px;white-space:nowrap">Booking forms</span>
+              <span style="border:1px solid #232322;border-radius:4px;padding:6px 11px;white-space:nowrap">Fast hosting</span>
+              <span style="border:1px solid #232322;border-radius:4px;padding:6px 11px;white-space:nowrap">Landing &rarr; multi-page</span>
+            </div>
+
+            <div style="margin-top:34px;display:flex;align-items:center;gap:22px;flex-wrap:wrap">
+              <a class="web-cta" href="mailto:mike@8888media.co?subject=Website%20project" style="font-family:'JetBrains Mono',monospace;font-size:13px;font-weight:500;letter-spacing:0.06em;text-transform:uppercase;padding:15px 26px;border-radius:8px;background:#FF2E6D;color:#0A0A0B;white-space:nowrap">Start a website project</a>
+              <span style="font-size:13px;color:#8A8A86">or email <a href="mailto:mike@8888media.co" style="color:#F2F2F0" style-hover="color:#FF2E6D">mike@8888media.co</a></span>
+            </div>
+          </div>
+        </div>
+
         <div style="border-top:1px solid #232322;margin-top:56px;background:#0A0A0B">
           <div class="cta-section" style="max-width:1100px;margin:0 auto;padding:84px 40px;display:flex;align-items:flex-end;justify-content:space-between;gap:48px;flex-wrap:wrap">
             <div>
@@ -370,7 +436,7 @@
 (function(){
   var d=document, r=d.documentElement;
   r.classList.add('js-on');
-  var t=d.querySelectorAll('.stats-row, .build-grid, .shots-grid, .cta-section');
+  var t=d.querySelectorAll('.stats-row, .build-grid, .shots-grid, .web-grid, .cta-section');
   for(var i=0;i<t.length;i++){ t[i].classList.add('reveal'); }
   if(!('IntersectionObserver' in window)){ for(var j=0;j<t.length;j++){ t[j].classList.add('in'); } return; }
   var io=new IntersectionObserver(function(es){
@@ -382,6 +448,7 @@
 <div class="mobile-menu" id="mobileMenu">
   <button class="mm-close" aria-label="Close menu">&times;</button>
   <a href="#what-1b" data-close>What We Build</a>
+  <a href="#web-design" data-close>Web Design</a>
   <a href="https://www.degendashboard.app" target="_blank" rel="noopener" data-close>Degen Dashboard</a>
   <a href="https://compvault.app" target="_blank" rel="noopener" data-close>CompVault</a>
   <a href="#contact-1b" data-close>Contact</a>
