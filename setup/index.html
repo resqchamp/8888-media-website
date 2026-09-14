@@ -75,7 +75,7 @@
   h3{font-weight:700;font-size:1.2rem;line-height:1.3;}
   p{margin:0;}
   a{color:var(--accent);text-underline-offset:3px;text-decoration-thickness:1px;}
-  a:focus-visible,summary:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:2px;}
+  a:focus-visible,summary:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:2px;}
   b,strong{font-weight:600;}
   .wrap{max-width:42rem;margin:0 auto;padding-inline:clamp(16px,5vw,28px);}
 
@@ -111,6 +111,16 @@
   ol.clicks li::marker{color:var(--accent);font-weight:700;}
   .ui{font-weight:600;background:var(--surface-2);padding:1px 7px;border-radius:4px;white-space:nowrap;}
   .link-box{font-size:0.95rem;background:var(--surface);border:1px solid var(--rule);border-radius:6px;padding:12px 14px;overflow-wrap:anywhere;}
+
+  /* Step 2 asks one question, then shows only the steps that fit the answer. */
+  .choice{display:flex;flex-wrap:wrap;gap:10px;}
+  .choice-btn{flex:1 1 200px;min-height:50px;padding:10px 16px;border:2px solid var(--accent);border-radius:8px;background:var(--surface);color:var(--accent);font:inherit;font-weight:700;line-height:1.3;cursor:pointer;}
+  .choice-btn:hover{background:var(--accent-soft);}
+  .choice-btn[aria-pressed="true"]{background:var(--accent);color:#fff;}
+  .path{display:flex;flex-direction:column;gap:12px;border-top:1px solid var(--rule);padding-top:16px;}
+  .path-title{font-size:0.78rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--text-faint);}
+  .js .path{display:none;}
+  .js .path.show{display:flex;}
 
   .note,.warn{padding:14px 16px;border-radius:6px;display:flex;flex-direction:column;gap:6px;font-size:0.97rem;}
   .note{background:var(--accent-soft);border:1px solid var(--accent);}
@@ -151,6 +161,7 @@
     .step:not(:last-child)::before{left:17px;top:40px;}
   }
 </style>
+<script>document.documentElement.classList.add("js");</script>
 </head>
 <body>
 
@@ -172,16 +183,16 @@
 
   <section>
     <h2>How This Works</h2>
-    <p>Your website and your web address will both live in a free <b>Cloudflare</b> account, and that account is yours, in your name. Cloudflare is the company that will hold your address and run your site.</p>
-    <p>You create the account, buy your address, and add me as a helper. You stay in charge the whole time. I just do the building.</p>
+    <p>Your website will live in a free <b>Cloudflare</b> account, and that account is yours, in your name. Cloudflare is the company that will run your site and look after your web address.</p>
+    <p>You create the account, get your web address ready (buy a new one, or add the one you already have), and add me as a helper. You stay in charge the whole time. I just do the building.</p>
   </section>
 
   <section>
     <h2>Before You Start</h2>
     <ul class="checks">
       <li><span>Your <b>email inbox</b> open on the same device, since you'll get a verification email.</span></li>
-      <li><span>A <b>debit or credit card</b> for the web address (roughly $10&ndash;12 a year).</span></li>
-      <li><span><b>Two or three ideas</b> for your web address, in case your first choice is taken.</span></li>
+      <li><span><b>Buying a new web address?</b> A debit or credit card (roughly $10&ndash;12 a year) and two or three ideas for the name, in case your first choice is taken.</span></li>
+      <li><span><b>Already have one?</b> Just know which company you bought it from, like GoDaddy, Squarespace or Wix. You&rsquo;ll need that login for one short step later, not today.</span></li>
     </ul>
   </section>
 
@@ -196,28 +207,53 @@
           <p>Go to <a href="https://dash.cloudflare.com/sign-up">dash.cloudflare.com/sign-up</a> and sign up with your email and a password. The free plan is all you need, and it won&rsquo;t ask for a card at this point.</p>
           <div class="note">
             <p class="label">Don&rsquo;t Skip This</p>
-            <p>Cloudflare emails you a verification link. <b>Click it before you do anything else.</b> Until your email is verified, you can&rsquo;t buy an address or add me in the next steps, and the screen won&rsquo;t always tell you why.</p>
+            <p>Cloudflare emails you a verification link. <b>Click it before you do anything else.</b> Until your email is verified, you can&rsquo;t set up your address or add me in the next steps, and the screen won&rsquo;t always tell you why.</p>
           </div>
         </div>
       </li>
 
-      <li class="step">
+      <li class="step" id="address">
         <div class="num">2</div>
         <div class="step-body">
-          <div class="step-head"><h3>Buy Your Web Address</h3><span class="time">5 minutes</span></div>
-          <p>While you&rsquo;re signed in, open this link. It goes straight to the page for buying an address:</p>
-          <p class="link-box"><a href="https://dash.cloudflare.com/?to=/:account/registrar/register">dash.cloudflare.com &rarr; Register Domains</a></p>
-          <ol class="clicks">
-            <li>Type the name you want and select <span class="ui">Search</span>.</li>
-            <li>Next to the one you want, select <span class="ui">Purchase</span>.</li>
-            <li>Leave the length at <b>1 year</b>. It renews automatically, and you can change that later.</li>
-            <li>Fill in your contact details. This is what makes the address legally yours. Your personal details are kept off the public record wherever the rules allow it.</li>
-            <li>Add your card, read the agreements, and select <span class="ui">Complete Purchase</span>.</li>
-          </ol>
-          <p class="soft">Cloudflare charges exactly what the address costs, with no markup, so it&rsquo;s usually cheaper than the places you&rsquo;ve heard of. It&rsquo;s ready in under a minute.</p>
-          <div class="warn">
-            <p class="label">Check the Spelling Twice</p>
-            <p>Web address purchases can&rsquo;t be refunded. The money goes to the registry the moment you confirm, so a typo means paying again. Short, easy to say out loud, <b>.com</b>, and no hyphens is almost always the right choice.</p>
+          <div class="step-head"><h3>Get Your Web Address Ready</h3><span class="time">5 minutes</span></div>
+          <p>Do you already have a web address for your business?</p>
+          <div class="choice" role="group" aria-label="Do you already have a web address?">
+            <button type="button" class="choice-btn" data-path="new" aria-pressed="false" aria-controls="path-new">No, I Need One</button>
+            <button type="button" class="choice-btn" data-path="have" aria-pressed="false" aria-controls="path-have">Yes, I Already Have One</button>
+          </div>
+
+          <div class="path" id="path-new" data-for="new">
+            <p class="path-title">Buying a New Address</p>
+            <p>While you&rsquo;re signed in, open this link. It goes straight to the page for buying an address:</p>
+            <p class="link-box"><a href="https://dash.cloudflare.com/?to=/:account/registrar/register">dash.cloudflare.com &rarr; Register Domains</a></p>
+            <ol class="clicks">
+              <li>Type the name you want and select <span class="ui">Search</span>.</li>
+              <li>Next to the one you want, select <span class="ui">Purchase</span>.</li>
+              <li>Leave the length at <b>1 year</b>. It renews automatically, and you can change that later.</li>
+              <li>Fill in your contact details. This is what makes the address legally yours. Your personal details are kept off the public record wherever the rules allow it.</li>
+              <li>Add your card, read the agreements, and select <span class="ui">Complete Purchase</span>.</li>
+            </ol>
+            <p class="soft">Cloudflare charges exactly what the address costs, with no markup, so it&rsquo;s usually cheaper than the places you&rsquo;ve heard of. It&rsquo;s ready in under a minute.</p>
+            <div class="warn">
+              <p class="label">Check the Spelling Twice</p>
+              <p>Web address purchases can&rsquo;t be refunded. The money goes to the registry the moment you confirm, so a typo means paying again. Short, easy to say out loud, <b>.com</b>, and no hyphens is almost always the right choice.</p>
+            </div>
+          </div>
+
+          <div class="path" id="path-have" data-for="have">
+            <p class="path-title">Adding the Address You Already Have</p>
+            <p>You keep your address right where it is. This adds it to your new account so your site can use it. Your email and any website you have now keep working the whole time.</p>
+            <ol class="clicks">
+              <li>In your Cloudflare dashboard, open <span class="ui">Domains</span>, then select <span class="ui">Onboard a domain</span>. If your menu looks different, type &ldquo;Onboard a domain&rdquo; into the dashboard&rsquo;s search bar.</li>
+              <li>Type your address the short way, like <b>yourbusiness.com</b> with no &ldquo;www&rdquo;. Leave the other choices as they are and select <span class="ui">Continue</span>.</li>
+              <li>Choose the <b>Free</b> plan and continue.</li>
+              <li>Cloudflare copies your address&rsquo;s current settings and shows you a list. <b>Don&rsquo;t change anything</b>. Just continue.</li>
+              <li>Cloudflare then shows you <b>two nameservers</b> and asks you to change them where you bought your address. <b>Stop here.</b> That&rsquo;s this step done.</li>
+            </ol>
+            <div class="warn">
+              <p class="label">Stop Before the Nameservers</p>
+              <p>Don&rsquo;t change anything at GoDaddy, Squarespace or wherever you bought your address yet. I&rsquo;ll check your email and website settings first, then send you that last step with exact instructions. Doing it in that order keeps your email working.</p>
+            </div>
           </div>
         </div>
       </li>
@@ -251,7 +287,8 @@
         <div class="num">&#10003;</div>
         <div class="step-body">
           <div class="step-head"><h3>That&rsquo;s Your Part Done</h3></div>
-          <p>I&rsquo;ll build your site inside your account, connect your new address, and send you a preview link before anything goes live.</p>
+          <p>I&rsquo;ll build your site inside your account, connect your address, and send you a preview link before anything goes live.</p>
+          <p>If you already had an address, I&rsquo;ll also send you <b>one short last step</b> that points it at your new account. It takes about five minutes, and I&rsquo;ll walk you through it.</p>
           <p>Later on, you&rsquo;ll get <b>one more email from Cloudflare</b> asking you to verify your email address. That&rsquo;s how messages from your website&rsquo;s contact form, and your new <b>info@</b> address, reach your inbox. Click the link in it, and you&rsquo;re completely set.</p>
         </div>
       </li>
@@ -264,7 +301,7 @@
     <div class="tablewrap">
       <table>
         <tbody>
-          <tr><th scope="row">Your web address<span class="sub">Paid to Cloudflare, once a year</span></th><td>~$10&ndash;12 / yr</td></tr>
+          <tr><th scope="row">Your web address<span class="sub">A new one is paid to Cloudflare once a year. Already have one? You keep paying for it where you are now.</span></th><td>~$10&ndash;12 / yr</td></tr>
           <tr><th scope="row">Hosting<span class="sub">Included with the free account</span></th><td class="free">Free</td></tr>
           <tr><th scope="row">Security certificate<span class="sub">The padlock in the address bar</span></th><td class="free">Free</td></tr>
           <tr><th scope="row">Your website<span class="sub">Paid to 8888 Media, as we agreed</span></th><td>One time</td></tr>
@@ -277,6 +314,14 @@
   <section>
     <h2>Questions You Might Have</h2>
     <div>
+      <details>
+        <summary>I already have a web address. Do I need a new one?</summary>
+        <p class="answer">No, keep it. In step 2, choose <b>Yes, I Already Have One</b>. You&rsquo;ll keep paying for it wherever you bought it, and your email keeps working the whole time.</p>
+      </details>
+      <details>
+        <summary>What happens to the website I have now?</summary>
+        <p class="answer">It stays up while I build. When your new site is ready, your address switches over to it. Please don&rsquo;t cancel your old website plan until I tell you the new one is live, and never cancel the address itself or any email you get through that company.</p>
+      </details>
       <details>
         <summary>Can I remove your access later?</summary>
         <p class="answer">Yes, any time, on your own. Go to Members, open my name, and choose Revoke. Your site stays up and nothing breaks.</p>
@@ -291,11 +336,11 @@
       </details>
       <details>
         <summary>What happens if the address isn&rsquo;t renewed?</summary>
-        <p class="answer">It renews automatically every year unless you turn that off, and Cloudflare emails you before it does. If it ever lapsed, people couldn&rsquo;t reach your site at that address until it was renewed.</p>
+        <p class="answer">It renews automatically every year unless you turn that off, and you&rsquo;ll get an email before it does. If it ever lapsed, people couldn&rsquo;t reach your site at that address until it was renewed.</p>
       </details>
       <details>
         <summary>Can I get an email address with my business name?</summary>
-        <p class="answer">Yes. I&rsquo;ll set up an address like info@yourbusiness.com that forwards to the inbox you already use, free. If you later want a separate full mailbox, that&rsquo;s a paid service we can talk about.</p>
+        <p class="answer">Yes. I&rsquo;ll set up an address like info@yourbusiness.com that forwards to the inbox you already use, free. If you already have business email, it stays exactly as it is. If you later want a separate full mailbox, that&rsquo;s a paid service we can talk about.</p>
       </details>
       <details>
         <summary>Do I need to understand any of the technical side?</summary>
@@ -314,5 +359,22 @@
   </div>
 </footer>
 
+<script>
+(() => {
+  // Step 2 shows only the steps that match the answer. A link ending in #have or #new opens that one.
+  const buttons = [...document.querySelectorAll(".choice-btn")];
+  function choose(path, fromClick) {
+    for (const b of buttons) b.setAttribute("aria-pressed", String(b.dataset.path === path));
+    for (const p of document.querySelectorAll(".path")) p.classList.toggle("show", p.dataset.for === path);
+    if (fromClick) history.replaceState(null, "", "#" + path);
+  }
+  for (const b of buttons) b.addEventListener("click", () => choose(b.dataset.path, true));
+  const start = location.hash.replace("#", "");
+  if (start === "have" || start === "new") {
+    choose(start, false);
+    document.getElementById("address").scrollIntoView();
+  }
+})();
+</script>
 </body>
 </html>

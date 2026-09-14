@@ -295,7 +295,7 @@
         <p id="fixes-text"></p>
         <p>Just text me or email <a href="mailto:mike@8888media.co">mike@8888media.co</a>.</p>
         <h3>What You Own</h3>
-        <p>Everything. Your Cloudflare account, your web address and your site are all in your name. Your only ongoing cost is the web address renewal, about $10 to $12 a year, and it renews automatically.</p>
+        <p>Everything. Your Cloudflare account, your web address and your site are all in your name. Your only ongoing cost is the yearly renewal for your web address.</p>
       </div>
     </section>
 
@@ -402,9 +402,16 @@
         <p class="intro">Follow the <a href="/setup/" target="_blank" rel="noopener">setup guide</a> (about 15 minutes), then check these off. The account and your web address belong to you.</p>
         <div class="options">
           <label class="option"><input type="checkbox" id="acct_created" data-q="acct_created" data-label="I created my free Cloudflare account"><span>I created my free Cloudflare account</span></label>
-          <label class="option"><input type="checkbox" id="acct_domain" data-q="acct_domain" data-label="I bought my web address"><span>I bought my web address</span></label>
+          <label class="option"><input type="checkbox" id="acct_domain" data-q="acct_domain" data-label="I bought my web address, or added the one I already have"><span>I bought my web address, or added the one I already have</span></label>
           <label class="option"><input type="checkbox" id="acct_invite" data-q="acct_invite" data-label="I added mike@8888media.co as a helper"><span>I added mike@8888media.co as a helper</span></label>
         </div>
+        <fieldset>
+          <legend>Is it a new web address, or one you already had?</legend>
+          <div class="options row">
+            <label class="option"><input type="radio" name="q_domain_had" data-q="q_domain_had" value="I bought a new one"><span>I bought a new one</span></label>
+            <label class="option"><input type="radio" name="q_domain_had" data-q="q_domain_had" value="I already had one"><span>I already had one</span></label>
+          </div>
+        </fieldset>
         <div class="field">
           <label for="q_domain">What&rsquo;s your web address?</label>
           <input type="text" id="q_domain" data-q="q_domain" autocomplete="off" inputmode="url" placeholder="yourbusiness.com">

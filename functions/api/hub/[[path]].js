@@ -168,6 +168,7 @@ async function loadClient(env, slug) {
     if (launch && liveDays >= 30) needsYou.push("Live 30+ days: free fixes are over; close the link when ready");
     if (submittedAt && !latest && !launch) needsYou.push("Build the first preview");
     if (final && settled(final) && !launch) needsYou.push("Paid in full: launch the site");
+    if (given.q_domain_had === "I already had one" && given.acct_invite && !a.domainReady && !launch) needsYou.push("Existing web address: check its records, then send the last step");
   }
 
   // What the client still has to do, in the order their page lists it.
@@ -236,6 +237,7 @@ async function loadClient(env, slug) {
     money: { paid, clearing, due, toBill },
     agreement: !agreement ? null : accepted ? { acceptedBy: accepted.name, at: accepted.at } : { acceptedBy: null },
     answers: { state: answersState, submittedAt, updatedAt: (answers && answers.updatedAt) || null, files },
+    domain: { name: String(given.q_domain || "").replace(/^https?:\/\//i, "").replace(/\/+$/, ""), had: given.q_domain_had === "I already had one", ready: !!a.domainReady },
     preview: latest ? { round: latest.round, status: latest.status, url: latest.url, postedAt: latest.postedAt, note: latest.note || "", response: latest.response || null } : null,
     launch: launch ? { url: launch.url, launchedAt: launch.launchedAt, days: liveDays } : null,
     testimonial: testimonial ? { text: testimonial.text, name: testimonial.name || "", showOk: !!testimonial.showOk, at: testimonial.at } : null,

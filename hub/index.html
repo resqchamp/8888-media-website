@@ -539,6 +539,9 @@
     if (c.agreement) fact("Agreement", c.agreement.acceptedBy ? `Accepted by ${c.agreement.acceptedBy}, ${shortDate(c.agreement.at)}` : "Not accepted yet");
     const a = c.answers;
     fact("Answers", `${a.state}${a.files ? ` · ${a.files} file${a.files === 1 ? "" : "s"}` : ""}${a.updatedAt ? ` · last change ${ago(a.updatedAt)}` : ""}`);
+    if (c.domain && c.domain.name) {
+      fact("Web Address", `${c.domain.name}${c.domain.had ? (c.domain.ready ? " · already had it, switched over" : " · already had it, not switched yet") : ""}`);
+    }
     if (c.preview) {
       const p = c.preview;
       const words = { waiting: `waiting since ${shortDate(p.postedAt)}`, changes: `changes requested ${p.response ? ago(p.response.at) : ""}`, approved: `approved ${p.response ? shortDate(p.response.at) : ""}` }[p.status] || p.status;
