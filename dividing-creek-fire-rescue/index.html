@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Dividing Creek Fire &amp; Rescue | Volunteer Fire Company</title>
+<meta name="description" content="Dividing Creek Fire &amp; Rescue: the volunteer fire company serving Dividing Creek and Downe Township, New Jersey. Join, support, and find the station.">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;800;900&family=Public+Sans:wght@400;500;600;700&display=swap">
+<style>
+  /* Colors pulled from the station itself: the red brick, the white bay doors and lettering,
+     the dark roof, and the flag-and-sky blue. */
+  :root{
+    --brick:#9B3A2E;
+    --brick-deep:#7E2C22;
+    --door:#F8F6F1;
+    --door-line:#E4DFD6;
+    --roof:#27252A;
+    --sky:#2E5C96;
+    --ink:#1D1B1F;
+    --ink-soft:#524D55;
+    --paper:#FFFFFF;
+    --paper-2:#F3F0EA;
+    --rule:#E2DDD5;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--paper);color:var(--ink);font:400 17px/1.65 'Public Sans',system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;-webkit-font-smoothing:antialiased;}
+  h1,h2,h3{margin:0;text-wrap:balance;}
+  h2{font-family:'Big Shoulders Display','Arial Narrow',Impact,sans-serif;font-weight:800;font-size:clamp(2rem,5vw,2.8rem);line-height:1;text-transform:uppercase;letter-spacing:0.02em;}
+  h3{font-size:1.1rem;line-height:1.3;}
+  p{margin:0;}
+  a{color:var(--sky);text-underline-offset:3px;}
+  a:focus-visible,button:focus-visible{outline:3px solid var(--sky);outline-offset:3px;}
+  .wrap{max-width:1100px;margin:0 auto;padding-inline:clamp(16px,4vw,32px);}
+  .kicker{font-size:0.8rem;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:var(--brick);}
+
+  .sample-bar{background:var(--ink);color:#DAD5DC;font-size:0.84rem;line-height:1.45;padding-block:8px;}
+  .sample-bar .wrap{display:flex;flex-wrap:wrap;gap:4px 14px;justify-content:center;text-align:center;}
+  .sample-bar b,.sample-bar a{color:#fff;font-weight:600;}
+
+  /* header */
+  .top{background:var(--paper);border-bottom:1px solid var(--rule);}
+  .top .wrap{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px 24px;padding-block:14px;}
+  .wordmark{font-family:'Big Shoulders Display','Arial Narrow',Impact,sans-serif;font-weight:800;font-size:1.25rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--ink);text-decoration:none;line-height:1.1;}
+  .wordmark span{color:var(--brick);}
+  nav{display:flex;flex-wrap:wrap;align-items:center;gap:6px 20px;font-weight:600;font-size:0.95rem;}
+  nav a{color:var(--ink);text-decoration:none;}
+  nav a:hover{color:var(--brick);}
+  .emergency{background:var(--brick);color:#fff !important;padding:6px 12px;border-radius:4px;font-weight:700;}
+
+  /* the station front */
+  .facade{position:relative;background-color:var(--brick);background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='48' height='32'%3E%3Cpath d='M0 .5H48M0 16.5H48M.5 0V16M24.5 16V32' stroke='%23ffffff' stroke-opacity='0.09' fill='none'/%3E%3C/svg%3E");color:#fff;}
+  .roof{height:22px;background:var(--roof);clip-path:polygon(3% 0,97% 0,100% 100%,0 100%);}
+  .fascia{height:10px;background:var(--door);}
+  .facade .wrap{padding-block:clamp(40px,7vw,72px) 0;display:flex;flex-direction:column;align-items:center;text-align:center;gap:14px;}
+  .facade h1{font-family:'Big Shoulders Display','Arial Narrow',Impact,sans-serif;font-weight:900;font-size:clamp(2.4rem,8.5vw,5.6rem);line-height:0.95;letter-spacing:0.12em;text-transform:uppercase;}
+  .facade .sub{font-size:clamp(1.02rem,2.4vw,1.2rem);color:#F6E6E1;max-width:48ch;}
+
+  .bays{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(12px,3vw,34px);width:100%;margin-top:clamp(26px,5vw,44px);}
+  .bay{display:flex;flex-direction:column;justify-content:flex-end;gap:6px;min-height:clamp(170px,24vw,250px);padding:clamp(16px,3vw,26px);text-align:left;text-decoration:none;color:var(--ink);background:repeating-linear-gradient(to bottom,var(--door) 0 44px,var(--door-line) 44px 46px);border:4px solid var(--door);border-bottom:0;position:relative;transition:transform .2s ease;}
+  .bay::before{content:"";position:absolute;left:14%;right:14%;top:clamp(34px,5vw,52px);height:12px;background:repeating-linear-gradient(to right,var(--roof) 0 18%,transparent 18% 27.3%);border-radius:2px;}
+  .bay:hover{transform:translateY(-4px);}
+  .bay .label{font-size:0.78rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--brick);}
+  .bay .go{font-family:'Big Shoulders Display','Arial Narrow',Impact,sans-serif;font-weight:800;font-size:clamp(1.45rem,3vw,2rem);line-height:1;text-transform:uppercase;}
+  .apron{height:18px;background:#D9D5CF;}
+  @media (prefers-reduced-motion:reduce){.bay{transition:none;}.bay:hover{transform:none;}}
+  @media (max-width:640px){
+    .bays{grid-template-columns:minmax(0,1fr);}
+    .bay{min-height:120px;border-bottom:4px solid var(--door);}
+  }
+
+  main section{padding-block:clamp(56px,9vw,88px);}
+  .alt{background:var(--paper-2);}
+
+  /* by the numbers */
+  .numbers{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,200px),1fr));gap:1px;background:var(--rule);border:1px solid var(--rule);margin-top:26px;}
+  .numbers div{background:var(--paper);padding:20px 22px;display:flex;flex-direction:column;gap:2px;}
+  .numbers b{font-family:'Big Shoulders Display','Arial Narrow',Impact,sans-serif;font-size:2.8rem;line-height:1;color:var(--brick);font-variant-numeric:tabular-nums;}
+  .numbers span{color:var(--ink-soft);font-size:0.95rem;}
+  .lead{margin-top:14px;max-width:62ch;color:var(--ink-soft);font-size:1.08rem;}
+
+  .services{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));gap:22px;margin-top:30px;}
+  .service{border-top:4px solid var(--brick);padding-top:14px;display:flex;flex-direction:column;gap:6px;}
+  .service p{color:var(--ink-soft);font-size:0.97rem;}
+
+  /* join */
+  .join{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,0.9fr);gap:clamp(28px,5vw,60px);align-items:start;}
+  @media (max-width:820px){.join{grid-template-columns:minmax(0,1fr);}}
+  .roles{list-style:none;margin:22px 0 0;padding:0;display:flex;flex-direction:column;gap:14px;}
+  .roles li{display:grid;grid-template-columns:44px minmax(0,1fr);gap:14px;align-items:start;}
+  .roles svg{width:44px;height:44px;}
+  .roles p{color:var(--ink-soft);font-size:0.97rem;}
+  .card{background:var(--paper);border:1px solid var(--rule);padding:24px;display:flex;flex-direction:column;gap:14px;}
+  .card label{font-weight:600;font-size:0.95rem;display:flex;flex-direction:column;gap:6px;}
+  .card input,.card select{font:inherit;font-size:16px;padding:11px 12px;border:1px solid #9C96A0;border-radius:4px;background:#fff;color:var(--ink);width:100%;}
+  .btn{display:inline-flex;align-items:center;justify-content:center;min-height:50px;padding:0 24px;background:var(--brick);color:#fff;border:0;border-radius:4px;font:inherit;font-weight:700;cursor:pointer;text-decoration:none;}
+  .btn:hover{background:var(--brick-deep);}
+  .btn.ghost{background:transparent;color:var(--brick);border:2px solid var(--brick);}
+  .note{font-size:0.86rem;color:var(--ink-soft);}
+
+  /* events + support */
+  .two{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));gap:clamp(28px,5vw,56px);}
+  .event{display:grid;grid-template-columns:70px minmax(0,1fr);gap:16px;padding-block:16px;border-top:1px solid var(--rule);}
+  .event:first-of-type{border-top:0;}
+  .when{background:var(--brick);color:#fff;text-align:center;padding:8px 4px;font-family:'Big Shoulders Display','Arial Narrow',Impact,sans-serif;font-weight:800;text-transform:uppercase;line-height:1.05;font-size:1.05rem;}
+  .event p{color:var(--ink-soft);font-size:0.96rem;}
+  .give{background:var(--roof);color:#EDE9EE;padding:clamp(24px,4vw,36px);display:flex;flex-direction:column;gap:14px;}
+  .give h2{color:#fff;}
+  .give .btn{align-self:flex-start;}
+  .give .mail{font-size:0.95rem;color:#CFC9D2;}
+  .give .mail b{color:#fff;}
+
+  /* station */
+  .station{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));gap:22px;margin-top:26px;}
+  .station div{display:flex;flex-direction:column;gap:4px;}
+  .station .kicker{color:var(--ink-soft);}
+  .station .big{font-weight:700;font-size:1.12rem;}
+  .call911{margin-top:28px;background:var(--brick);color:#fff;padding:18px 22px;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px 20px;}
+  .call911 b{font-family:'Big Shoulders Display','Arial Narrow',Impact,sans-serif;font-size:1.8rem;text-transform:uppercase;letter-spacing:0.04em;}
+
+  footer{background:var(--ink);color:#BDB7C0;padding-block:30px;font-size:0.92rem;}
+  footer .wrap{display:flex;flex-direction:column;gap:6px;}
+  footer .wordmark{color:#fff;font-size:1.1rem;}
+  footer a{color:#fff;}
+</style>
+</head>
+<body>
+
+<div class="sample-bar" role="note">
+  <div class="wrap">
+    <span><b>A free website mockup for Dividing Creek Fire &amp; Rescue,</b> made by 8888 Media. Nothing here is live yet.</span>
+    <a href="https://www.8888media.co/#web-design">About 8888 Media &rarr;</a>
+  </div>
+</div>
+
+<header class="top">
+  <div class="wrap">
+    <a class="wordmark" href="#">Dividing Creek <span>Fire Co</span></a>
+    <nav aria-label="Main">
+      <a href="#join">Join</a>
+      <a href="#events">Events</a>
+      <a href="#support">Support</a>
+      <a href="#station">Station</a>
+      <a class="emergency" href="tel:911">Emergency: 911</a>
+    </nav>
+  </div>
+</header>
+
+<section class="facade" aria-labelledby="name">
+  <div class="roof" aria-hidden="true"></div>
+  <div class="fascia" aria-hidden="true"></div>
+  <div class="wrap">
+    <p class="kicker" style="color:#F6D9D2">Volunteer Fire &amp; Rescue &middot; Downe Township, NJ</p>
+    <h1 id="name">Dividing Creek Fire Co</h1>
+    <p class="sub">Your neighbors, on call around the clock for fire, rescue and medical emergencies in Dividing Creek and the towns around it.</p>
+    <div class="bays">
+      <a class="bay" href="#join"><span class="label">Bay 1</span><span class="go">Join the Company</span></a>
+      <a class="bay" href="#support"><span class="label">Bay 2</span><span class="go">Support Us</span></a>
+      <a class="bay" href="#station"><span class="label">Bay 3</span><span class="go">Find the Station</span></a>
+    </div>
+  </div>
+  <div class="apron" aria-hidden="true"></div>
+</section>
+
+<main>
+
+  <section aria-labelledby="work-h">
+    <div class="wrap">
+      <p class="kicker">What We Do</p>
+      <h2 id="work-h">Answering the Call in 2024</h2>
+      <p class="lead">Every member of Dividing Creek Fire &amp; Rescue is a volunteer. When the tones drop, they leave dinner, work and bed to help the people they live next to.</p>
+      <div class="numbers">
+        <div><b>141</b><span>calls answered in 2024</span></div>
+        <div><b>26</b><span>volunteer members</span></div>
+        <div><b>9:24</b><span>average minutes to arrive</span></div>
+        <div><b>77</b><span>times we backed up neighboring companies</span></div>
+      </div>
+      <div class="services">
+        <div class="service"><h3>Fire</h3><p>Structure, brush and vehicle fires across Dividing Creek and Downe Township.</p></div>
+        <div class="service"><h3>Rescue</h3><p>Crashes, entrapments and people who need help getting out of harm&rsquo;s way.</p></div>
+        <div class="service"><h3>Medical Assists</h3><p>Most of our calls: arriving fast to give basic life support until the ambulance crew takes over.</p></div>
+        <div class="service"><h3>Mutual Aid</h3><p>When a neighboring company needs more hands, our trucks roll to help them too.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="join" class="alt" aria-labelledby="join-h">
+    <div class="wrap join">
+      <div>
+        <p class="kicker">Volunteer</p>
+        <h2 id="join-h">Join the Company</h2>
+        <p class="lead">You don&rsquo;t need experience, just the willingness to learn and show up. We&rsquo;ll get you the training for the role you choose.</p>
+        <ul class="roles">
+          <li>
+            <svg viewBox="0 0 44 44" aria-hidden="true"><rect width="44" height="44" rx="4" fill="#9B3A2E"/><path d="M22 9l3.5 7.5L33 13l-3.5 7.5L37 24l-7.5 3.5L33 35l-7.5-3.5L22 39l-3.5-7.5L11 35l3.5-7.5L7 24l7.5-3.5L11 13l7.5 3.5z" fill="none" stroke="#fff" stroke-width="2" stroke-linejoin="round"/></svg>
+            <div><h3>Firefighter</h3><p>Train on the trucks and gear, then respond to fires and rescues with the crew.</p></div>
+          </li>
+          <li>
+            <svg viewBox="0 0 44 44" aria-hidden="true"><rect width="44" height="44" rx="4" fill="#2E5C96"/><path d="M18 10h8v8h8v8h-8v8h-8v-8h-8v-8h8z" fill="none" stroke="#fff" stroke-width="2" stroke-linejoin="round"/></svg>
+            <div><h3>Rescue and Medical</h3><p>Help on the calls we run most: medical assists alongside the ambulance crews.</p></div>
+          </li>
+          <li>
+            <svg viewBox="0 0 44 44" aria-hidden="true"><rect width="44" height="44" rx="4" fill="#27252A"/><path d="M12 30h20M14 30V18l8-6 8 6v12M19 30v-6h6v6" fill="none" stroke="#fff" stroke-width="2" stroke-linejoin="round"/></svg>
+            <div><h3>Support Member</h3><p>Not riding the trucks? Fundraisers, events and keeping the station running need people too.</p></div>
+          </li>
+        </ul>
+      </div>
+      <form class="card" onsubmit="event.preventDefault()" aria-labelledby="interest-h">
+        <h3 id="interest-h">I&rsquo;m Interested</h3>
+        <label for="j-name">Your name<input id="j-name" type="text" autocomplete="name"></label>
+        <label for="j-phone">Phone or email<input id="j-phone" type="text" autocomplete="email"></label>
+        <label for="j-role">I&rsquo;d like to help as a
+          <select id="j-role"><option>Firefighter</option><option>Rescue and Medical</option><option>Support Member</option><option>Not sure yet</option></select>
+        </label>
+        <button class="btn" type="submit">Send It to the Company</button>
+        <p class="note">Mockup: this form doesn&rsquo;t send yet. On the real site, it goes straight to the company&rsquo;s email.</p>
+      </form>
+    </div>
+  </section>
+
+  <section id="events" aria-labelledby="events-h">
+    <div class="wrap two">
+      <div>
+        <p class="kicker">Around Town</p>
+        <h2 id="events-h">Where You&rsquo;ll Find Us</h2>
+        <div class="event" style="margin-top:18px">
+          <div class="when">Home<br>Day</div>
+          <div><h3>Downe Home Day &amp; Car Show</h3><p>Downe Township School, Newport. We&rsquo;ll be there with the fire trucks, plus prizes and T-shirts.</p></div>
+        </div>
+        <div class="event">
+          <div class="when">Next</div>
+          <div><h3>Fundraisers and Open Houses</h3><p>Every event gets posted here and shared to our Facebook page, so the whole township knows where to find us.</p></div>
+        </div>
+      </div>
+      <div id="support" class="give" aria-labelledby="support-h">
+        <p class="kicker" style="color:#E7A89C">Keep Us Rolling</p>
+        <h2 id="support-h">Support Us</h2>
+        <p>Donations help keep the trucks, gear and training ready for the next call. Every gift makes a difference for a small volunteer company.</p>
+        <a class="btn" href="#support">Donate Online</a>
+        <p class="mail">Prefer to mail a check? Send it to <b>Dividing Creek Fire Co, PO Box 93, Dividing Creek, NJ 08315</b>.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="station" class="alt" aria-labelledby="station-h">
+    <div class="wrap">
+      <p class="kicker">The Firehouse</p>
+      <h2 id="station-h">Find the Station</h2>
+      <div class="station">
+        <div><span class="kicker">Station</span><span class="big">529 Church Street</span><span>Dividing Creek, NJ 08315</span><a href="https://www.google.com/maps/search/?api=1&amp;query=529+Church+Street+Dividing+Creek+NJ+08315">Get directions</a></div>
+        <div><span class="kicker">Mail</span><span class="big">PO Box 93</span><span>Dividing Creek, NJ 08315</span></div>
+        <div><span class="kicker">Follow Along</span><span class="big">Facebook</span><a href="https://www.facebook.com/p/Dividing-Creek-Fire-Rescue-100068391182319/">Dividing Creek Fire &amp; Rescue</a></div>
+      </div>
+      <div class="call911"><b>Emergency? Call 911.</b><span>Don&rsquo;t call or message the station. 911 sends help fastest.</span></div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <span class="wordmark">Dividing Creek Fire Co</span>
+    <p>A volunteer fire company serving Dividing Creek and Downe Township, Cumberland County, New Jersey.</p>
+    <p>Website mockup by <a href="https://www.8888media.co/#web-design">8888 Media</a>.</p>
+  </div>
+</footer>
+
+</body>
+</html>
