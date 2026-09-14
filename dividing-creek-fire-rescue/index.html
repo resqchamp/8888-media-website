@@ -11,8 +11,8 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;800;900&family=Public+Sans:wght@400;500;600;700&display=swap">
 <style>
-  /* Colors pulled from the station itself: the red brick, the white bay doors and lettering,
-     the dark roof, and the flag-and-sky blue. */
+  /* Colors pulled from the station and the truck: the red brick, the white bay doors and
+     lettering, the dark roof, the flag-and-sky blue, and Tender 1811's lime-yellow. */
   :root{
     --brick:#9B3A2E;
     --brick-deep:#7E2C22;
@@ -25,6 +25,7 @@
     --paper:#FFFFFF;
     --paper-2:#F3F0EA;
     --rule:#E2DDD5;
+    --lime:#D9E54A;
   }
   *{box-sizing:border-box;}
   body{margin:0;background:var(--paper);color:var(--ink);font:400 17px/1.65 'Public Sans',system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;-webkit-font-smoothing:antialiased;}
@@ -65,7 +66,7 @@
   .bay:hover{transform:translateY(-4px);}
   .bay .label{font-size:0.78rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--brick);}
   .bay .go{font-family:'Big Shoulders Display','Arial Narrow',Impact,sans-serif;font-weight:800;font-size:clamp(1.45rem,3vw,2rem);line-height:1;text-transform:uppercase;}
-  .apron{height:18px;background:#D9D5CF;}
+  .apron{height:18px;background:#D9D5CF;border-bottom:8px solid var(--lime);}
   @media (prefers-reduced-motion:reduce){.bay{transition:none;}.bay:hover{transform:none;}}
   @media (max-width:640px){
     .bays{grid-template-columns:minmax(0,1fr);}
@@ -73,6 +74,17 @@
   }
 
   main section{padding-block:clamp(56px,9vw,88px);}
+
+  .photo{margin:30px 0 0;display:flex;flex-direction:column;gap:8px;}
+  .photo img{display:block;width:100%;max-width:100%;height:auto;aspect-ratio:16/8;object-fit:cover;object-position:50% 48%;}
+  .photo figcaption{font-size:0.88rem;color:var(--ink-soft);}
+
+  .rig{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,0.85fr);gap:clamp(24px,5vw,56px);align-items:center;}
+  @media (max-width:820px){.rig{grid-template-columns:minmax(0,1fr);}}
+  .rig img{display:block;width:100%;max-width:100%;height:auto;border-bottom:8px solid var(--lime);}
+  .rig .facts{list-style:none;margin:18px 0 0;padding:0;display:flex;flex-direction:column;gap:10px;}
+  .rig .facts li{display:grid;grid-template-columns:110px minmax(0,1fr);gap:12px;border-top:1px solid var(--rule);padding-top:10px;}
+  .rig .facts b{font-size:0.78rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--brick);padding-top:3px;}
   .alt{background:var(--paper-2);}
 
   /* by the numbers */
@@ -178,11 +190,31 @@
         <div><b>9:24</b><span>average minutes to arrive</span></div>
         <div><b>77</b><span>times we backed up neighboring companies</span></div>
       </div>
+      <figure class="photo">
+        <img src="tender-1811-night.jpg" width="960" height="960" alt="Dividing Creek's Tender 1811 on a dark road with its red and blue emergency lights on." loading="lazy">
+        <figcaption>Tender 1811, lights on and ready to roll.</figcaption>
+      </figure>
       <div class="services">
         <div class="service"><h3>Fire</h3><p>Structure, brush and vehicle fires across Dividing Creek and Downe Township.</p></div>
         <div class="service"><h3>Rescue</h3><p>Crashes, entrapments and people who need help getting out of harm&rsquo;s way.</p></div>
         <div class="service"><h3>Medical Assists</h3><p>Most of our calls: arriving fast to give basic life support until the ambulance crew takes over.</p></div>
         <div class="service"><h3>Mutual Aid</h3><p>When a neighboring company needs more hands, our trucks roll to help them too.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section aria-labelledby="rig-h">
+    <div class="wrap rig">
+      <img src="tender-1811-day.jpg" width="960" height="642" alt="Tender 1811, a lime-yellow and white Dividing Creek Fire Co tanker, parked in front of a firehouse on a sunny day." loading="lazy">
+      <div>
+        <p class="kicker">The Truck You&rsquo;ve Seen Around Town</p>
+        <h2 id="rig-h">Meet Tender 1811</h2>
+        <p class="lead">That lime-yellow tanker is ours. A tender carries its own water to the fire, so crews have water even where there&rsquo;s no hydrant.</p>
+        <ul class="facts">
+          <li><b>Type</b><span>Tanker, also called a tender</span></li>
+          <li><b>Colors</b><span>Lime-yellow and white, with the Dividing Creek Fire Co emblem on the doors</span></li>
+          <li><b>Find it</b><span>On calls across the township, and at Downe Home Day on October 17</span></li>
+        </ul>
       </div>
     </div>
   </section>
