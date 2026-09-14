@@ -101,6 +101,7 @@
   .eyebrow{font-size:12px;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:#FF4F84;}
   .masthead h1{font-size:clamp(2rem,7vw,3rem);line-height:1.05;}
   .masthead .lede{font-size:clamp(1.02rem,2.6vw,1.15rem);color:var(--band-soft);max-width:40ch;line-height:1.5;}
+  .masthead .lede-more{font-size:1rem;max-width:54ch;}
   .chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:4px;}
   .chip{font-size:0.82rem;font-weight:600;padding:6px 11px;border:1px solid rgba(255,255,255,0.18);border-radius:999px;}
 
@@ -208,7 +209,8 @@
   <div class="wrap">
     <p class="eyebrow">8888 Media &middot; Your Website Project</p>
     <h1>Let&rsquo;s Build Your Website</h1>
-    <p class="lede" id="lede">Everything I need from you is on this page. It saves as you go, so you can stop anytime and pick up right where you left off.</p>
+    <p class="lede" id="lede">Everything I need to build your website is on this page.</p>
+    <p class="lede lede-more">Share as much or as little as you like. A few words per answer is plenty, and anything you skip, I&rsquo;ll take care of or ask you about later. The more you tell me, the more the site will feel like yours. It saves as you go, so you can stop anytime and come back.</p>
     <div class="chips">
       <span class="chip">About 15 minutes</span>
       <span class="chip">Saves as you go</span>
@@ -505,7 +507,7 @@
     const first = (project.owner || "").trim();
     const biz = (project.business || "").trim();
     if (biz) {
-      $("#lede").textContent = `${first ? `Hi ${first}! ` : ""}Everything I need to build the ${biz} website is on this page. It saves as you go, so you can stop anytime and pick up right where you left off.`;
+      $("#lede").textContent = `${first ? `Hi ${first}! ` : ""}Everything I need to build the ${biz} website is on this page.`;
       document.title = `${biz} Website Project | 8888 Media`;
     }
     $("#pages-field").hidden = project.package !== "business";
