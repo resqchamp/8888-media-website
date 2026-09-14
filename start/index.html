@@ -695,9 +695,11 @@
   function fields() {
     // Skip questions inside a hidden block (like the Business Site pages question), but not
     // when the whole form is folded away after launch.
+    // Only a hidden block inside the form counts. The page wrapper is still hidden while saved
+    // answers load, and skipping on that would load nothing and let autosave blank them.
     return [...form.querySelectorAll("[data-q]")].filter((el) => {
       const hiddenBlock = el.closest("[hidden]");
-      return !hiddenBlock || hiddenBlock === form;
+      return !hiddenBlock || hiddenBlock === form || !form.contains(hiddenBlock);
     });
   }
 

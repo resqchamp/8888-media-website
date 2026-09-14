@@ -451,7 +451,7 @@
       stat("Collected", money(m.collectedThisMonth), `In ${monthName} · ${money(m.collectedAllTime)} all time`, m.collectedThisMonth ? "good" : ""),
       stat("Owed Now", money(m.owed), m.clearing ? `${money(m.clearing)} more clearing` : "Payments on client pages", m.owed ? "hot" : ""),
       stat("Still to Bill", money(m.toBill), "Final payments not sent yet"),
-      stat("Projects", String(c.active), `${c.live} live site${c.live === 1 ? "" : "s"}`),
+      stat("Active Projects", String(c.active), `${c.live} live site${c.live === 1 ? "" : "s"}`),
       stat("Care Plans", String(m.carePlans), m.carePlans ? `${money(m.careMonthly)}/mo` : "None yet"),
     );
   }
