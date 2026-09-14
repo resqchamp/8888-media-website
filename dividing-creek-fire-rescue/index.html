@@ -65,13 +65,22 @@
   .facade .plaque .st{color:var(--lime);}
 
   .bays{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(12px,3vw,34px);width:100%;margin-top:clamp(26px,5vw,44px);}
-  .bay{display:flex;flex-direction:column;justify-content:flex-end;gap:6px;min-height:clamp(170px,24vw,250px);padding:clamp(16px,3vw,26px);text-align:left;text-decoration:none;color:var(--ink);background:repeating-linear-gradient(to bottom,var(--door) 0 44px,var(--door-line) 44px 46px);border:4px solid var(--door);border-bottom:0;position:relative;transition:transform .2s ease;}
-  .bay::before{content:"";position:absolute;left:14%;right:14%;top:clamp(34px,5vw,52px);height:12px;background:repeating-linear-gradient(to right,var(--roof) 0 18%,transparent 18% 27.3%);border-radius:2px;}
-  .bay:hover{transform:translateY(-4px);}
+  /* Each bay is a dark garage interior with a sectional door in front. On hover (or keyboard
+     focus) the door rolls up into the header, like the real ones, and the way in shows. */
+  .bay{display:block;position:relative;overflow:hidden;min-height:clamp(170px,24vw,250px);text-decoration:none;border:4px solid var(--door);border-bottom:0;background:linear-gradient(to bottom,#141316 0%,#232127 62%,#35323B 100%);}
+  .bay .inside,.bay .door{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:flex-end;gap:6px;padding:clamp(16px,3vw,26px);text-align:left;}
+  .bay .inside{color:#FFFFFF;}
+  .bay .inside .label{color:var(--lime);}
+  .bay .door{color:var(--ink);background:repeating-linear-gradient(to bottom,var(--door) 0 44px,var(--door-line) 44px 46px);transition:transform .75s cubic-bezier(.3,.1,.15,1);box-shadow:0 6px 10px rgba(0,0,0,0.25);}
+  .bay .door::before{content:"";position:absolute;left:14%;right:14%;top:clamp(34px,5vw,52px);height:12px;background:repeating-linear-gradient(to right,var(--roof) 0 18%,transparent 18% 27.3%);border-radius:2px;}
+  .bay .door span{transition:opacity .2s ease;}
+  @media (hover:hover){.bay:hover .door{transform:translateY(-86%);} .bay:hover .door span{opacity:0;}}
+  .bay:focus-visible .door{transform:translateY(-86%);}
+  .bay:focus-visible .door span{opacity:0;}
   .bay .label{font-size:0.78rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--brick);}
   .bay .go{font-family:'Big Shoulders Display','Arial Narrow',Impact,sans-serif;font-weight:800;font-size:clamp(1.45rem,3vw,2rem);line-height:1;text-transform:uppercase;}
   .apron{height:18px;background:#D9D5CF;border-bottom:8px solid var(--lime);}
-  @media (prefers-reduced-motion:reduce){.bay{transition:none;}.bay:hover{transform:none;}}
+  @media (prefers-reduced-motion:reduce){.bay .door,.bay .door span{transition:none;}}
   @media (max-width:640px){
     .bays{grid-template-columns:minmax(0,1fr);}
     .bay{min-height:120px;border-bottom:4px solid var(--door);}
@@ -175,9 +184,9 @@
   <div class="wrap">
     <p class="kicker plaque"><span class="st">Station 18</span> &middot; Volunteer Fire Company &middot; Downe Township, NJ</p>
     <h1 id="name">Dividing Creek<br>Fire &amp; Rescue</h1>    <div class="bays">
-      <a class="bay" href="#join"><span class="label">Bay 1</span><span class="go">Join the Company</span></a>
-      <a class="bay" href="#support"><span class="label">Bay 2</span><span class="go">Support Us</span></a>
-      <a class="bay" href="#station"><span class="label">Bay 3</span><span class="go">Find the Station</span></a>
+      <a class="bay" href="#join"><span class="inside"><span class="label">Bay 1</span><span class="go">Join the Company &rarr;</span></span><span class="door" aria-hidden="true"><span class="label">Bay 1</span><span class="go">Join the Company</span></span></a>
+      <a class="bay" href="#support"><span class="inside"><span class="label">Bay 2</span><span class="go">Support Us &rarr;</span></span><span class="door" aria-hidden="true"><span class="label">Bay 2</span><span class="go">Support Us</span></span></a>
+      <a class="bay" href="#station"><span class="inside"><span class="label">Bay 3</span><span class="go">Find the Station &rarr;</span></span><span class="door" aria-hidden="true"><span class="label">Bay 3</span><span class="go">Find the Station</span></span></a>
     </div>
   </div>
   <div class="apron" aria-hidden="true"></div>
