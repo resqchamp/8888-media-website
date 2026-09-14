@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Get a Free Website Mockup | 8888 Media</title>
+<meta name="description" content="Tell me a little about your business and I'll build a free mockup of what your website could look like, using your own photos and services. No cost, no obligation.">
+<link rel="canonical" href="https://www.8888media.co/mockup/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Get a Free Website Mockup | 8888 Media">
+<meta property="og:description" content="A free mockup of what your business's website could look like, built from your own photos and services.">
+<meta property="og:url" content="https://www.8888media.co/mockup/">
+<meta property="og:image" content="https://www.8888media.co/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:wght@400;500;600;700&display=swap">
+<style>
+  /* Same system as /setup/ and /start/: light-first, since most visitors arrive on a phone. */
+  :root{
+    --ground:#FBFAF8;
+    --surface:#FFFFFF;
+    --surface-2:#F4F1EC;
+    --text:#18161B;
+    --text-soft:#4E4A55;
+    --text-faint:#6F6A77;
+    --rule:#E4E0E8;
+    --field-rule:#8D8795;
+    --accent:#CF1656;
+    --accent-soft:#FCEAF0;
+    --on-accent:#FFFFFF;
+    --band:#0A0A0C;
+    --band-text:#F4F2F6;
+    --band-soft:#B4AFBA;
+    --ok:#0A7A55;
+    --ok-soft:#E4F4EC;
+    --warn-bg:#FFF4E5;
+    --warn-rule:#B8660B;
+    --warn-text:#5E3A08;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --ground:#0E0E11;
+      --surface:#16161B;
+      --surface-2:#1D1D23;
+      --text:#EEECF1;
+      --text-soft:#B3AEBA;
+      --text-faint:#8F8A96;
+      --rule:#2A2930;
+      --field-rule:#6E6977;
+      --accent:#FF4F84;
+      --accent-soft:#2A1520;
+      --on-accent:#1A0710;
+      --band:#050506;
+      --band-text:#F4F2F6;
+      --band-soft:#A8A3AE;
+      --ok:#4FD1A0;
+      --ok-soft:#10261D;
+      --warn-bg:#2A1F10;
+      --warn-rule:#E09A45;
+      --warn-text:#F3D9B5;
+    }
+  }
+  :root[data-theme="dark"]{
+    --ground:#0E0E11;
+    --surface:#16161B;
+    --surface-2:#1D1D23;
+    --text:#EEECF1;
+    --text-soft:#B3AEBA;
+    --text-faint:#8F8A96;
+    --rule:#2A2930;
+    --field-rule:#6E6977;
+    --accent:#FF4F84;
+    --accent-soft:#2A1520;
+    --on-accent:#1A0710;
+    --band:#050506;
+    --band-text:#F4F2F6;
+    --band-soft:#A8A3AE;
+    --ok:#4FD1A0;
+    --ok-soft:#10261D;
+    --warn-bg:#2A1F10;
+    --warn-rule:#E09A45;
+    --warn-text:#F3D9B5;
+  }
+
+  *{box-sizing:border-box;}
+  [hidden]{display:none !important;}
+  body{margin:0;background:var(--ground);color:var(--text);font:400 17px/1.6 'Inter',system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;-webkit-font-smoothing:antialiased;}
+  h1,h2,h3{margin:0;text-wrap:balance;}
+  h1,h2{font-family:'Archivo Black','Arial Black',Impact,sans-serif;font-weight:400;letter-spacing:-0.01em;}
+  h3{font-weight:700;font-size:1.08rem;line-height:1.3;}
+  p{margin:0;}
+  a{color:var(--accent);text-underline-offset:3px;text-decoration-thickness:1px;}
+  :focus-visible{outline:2px solid var(--accent);outline-offset:3px;}
+  b,strong{font-weight:600;}
+  .wrap{max-width:40rem;margin:0 auto;padding-inline:clamp(16px,5vw,28px);}
+  .soft{color:var(--text-soft);}
+  .small{font-size:0.92rem;}
+
+  .masthead{background:var(--band);color:var(--band-text);padding-block:clamp(36px,8vw,64px) clamp(28px,6vw,44px);}
+  .masthead .wrap{display:flex;flex-direction:column;gap:14px;}
+  .eyebrow{font-size:12px;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:#FF4F84;}
+  .masthead h1{font-size:clamp(2rem,7vw,3rem);line-height:1.05;}
+  .masthead .lede{font-size:clamp(1.02rem,2.6vw,1.15rem);color:var(--band-soft);max-width:40ch;line-height:1.5;}
+  .chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:4px;}
+  .chip{font-size:0.82rem;font-weight:600;padding:6px 11px;border:1px solid rgba(255,255,255,0.18);border-radius:999px;}
+
+  main{padding-block:clamp(28px,7vw,48px) 24px;display:flex;flex-direction:column;gap:clamp(36px,8vw,52px);}
+  main section{display:flex;flex-direction:column;gap:16px;}
+  main h2{font-size:clamp(1.35rem,4vw,1.7rem);line-height:1.15;}
+
+  /* how it works: numbered because it's the actual order */
+  ol.how{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:14px;}
+  ol.how li{display:grid;grid-template-columns:32px minmax(0,1fr);gap:12px;align-items:start;}
+  .n{width:32px;height:32px;border-radius:50%;display:grid;place-items:center;background:var(--accent);color:var(--on-accent);font-family:'Archivo Black','Arial Black',sans-serif;font-size:0.9rem;}
+  ol.how p{color:var(--text-soft);}
+  .sample{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;background:var(--surface);border:1px solid var(--rule);border-radius:8px;padding:14px 16px;}
+
+  /* form */
+  form{display:flex;flex-direction:column;gap:18px;}
+  .field{display:flex;flex-direction:column;gap:8px;min-width:0;}
+  .field > label{font-weight:600;line-height:1.4;}
+  .req{color:var(--accent);font-weight:700;}
+  .hint{font-size:0.92rem;color:var(--text-soft);margin-top:-4px;}
+  input[type=text],input[type=email],textarea{width:100%;font:inherit;font-size:16px;color:var(--text);background:var(--surface);border:1px solid var(--field-rule);border-radius:6px;padding:12px 14px;min-height:48px;}
+  textarea{min-height:96px;resize:vertical;line-height:1.5;}
+  input::placeholder,textarea::placeholder{color:var(--text-faint);}
+  input:focus-visible,textarea:focus-visible{outline:2px solid var(--accent);outline-offset:0;border-color:var(--accent);}
+  fieldset{border:0;margin:0;padding:0;min-width:0;}
+  legend{font-weight:600;line-height:1.4;padding:0;margin-bottom:8px;}
+  .options{display:flex;flex-wrap:wrap;gap:8px;}
+  .option{flex:1 1 110px;display:flex;align-items:center;gap:10px;padding:12px 14px;border:1px solid var(--field-rule);border-radius:6px;background:var(--surface);cursor:pointer;}
+  .option input{width:20px;height:20px;margin:0;accent-color:var(--accent);flex:none;}
+  .option:has(input:checked){border-color:var(--accent);background:var(--accent-soft);}
+  .trap{position:absolute;left:-10000px;width:1px;height:1px;overflow:hidden;}
+  .btn{display:inline-flex;align-items:center;justify-content:center;align-self:flex-start;min-height:52px;padding:0 26px;border-radius:8px;border:2px solid var(--accent);background:var(--accent);color:var(--on-accent);font:inherit;font-weight:700;cursor:pointer;}
+  .btn:disabled{opacity:0.6;cursor:default;}
+  .warn{padding:14px 16px;border-radius:6px;background:var(--warn-bg);border:1px solid var(--warn-rule);color:var(--warn-text);}
+  .done{background:var(--ok-soft);border:1px solid var(--ok);border-radius:8px;padding:18px 20px;display:flex;flex-direction:column;gap:8px;}
+  .done h3{color:var(--ok);font-size:1.15rem;}
+  .privacy{font-size:0.9rem;color:var(--text-faint);}
+
+  footer{background:var(--band);color:var(--band-soft);margin-top:48px;padding-block:28px;font-size:0.95rem;}
+  footer .wrap{display:flex;flex-direction:column;gap:4px;}
+  footer .sig{font-family:'Archivo Black','Arial Black',sans-serif;color:var(--band-text);font-size:1.05rem;}
+  footer a{color:#FF4F84;}
+</style>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="wrap">
+    <p class="eyebrow">8888 Media &middot; Web Design</p>
+    <h1>Get a Free Website Mockup</h1>
+    <p class="lede">Tell me a little about your business, and I&rsquo;ll build a free mockup of what your website could look like, using your own photos and services.</p>
+    <div class="chips">
+      <span class="chip">Free</span>
+      <span class="chip">No obligation</span>
+      <span class="chip">About a minute</span>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+  <section aria-labelledby="how-h">
+    <h2 id="how-h">How It Works</h2>
+    <ol class="how">
+      <li><span class="n">1</span><div><h3>Tell me about your business</h3><p>The short form below. A few words is plenty.</p></div></li>
+      <li><span class="n">2</span><div><h3>I build your mockup</h3><p>Usually within a few days, from your own photos and posts, and I send you the link.</p></div></li>
+      <li><span class="n">3</span><div><h3>If you love it, we make it real</h3><p>On your own web address, in an account that belongs to you. If not, no hard feelings.</p></div></li>
+    </ol>
+    <div class="sample">
+      <span class="soft small">Want to see my work first?</span>
+      <a href="https://delsea.8888media.workers.dev" target="_blank" rel="noopener">See a sample site I built &rarr;</a>
+    </div>
+  </section>
+
+  <section aria-labelledby="form-h">
+    <h2 id="form-h">Tell Me About Your Business</h2>
+    <form id="mockup-form" novalidate>
+      <div class="field">
+        <label for="name">Your name <span class="req" aria-hidden="true">*</span></label>
+        <input type="text" id="name" name="name" autocomplete="name" required>
+      </div>
+      <div class="field">
+        <label for="business">Business name <span class="req" aria-hidden="true">*</span></label>
+        <input type="text" id="business" name="business" autocomplete="organization" required>
+      </div>
+      <div class="field">
+        <label for="link">Where can I see your business online?</label>
+        <p class="hint">Your Facebook, Instagram, Google listing or current website. I build the mockup from your photos and posts.</p>
+        <input type="text" id="link" name="link" inputmode="url" autocomplete="url" placeholder="facebook.com/yourbusiness">
+      </div>
+      <div class="field">
+        <label for="contact">Phone or email <span class="req" aria-hidden="true">*</span></label>
+        <input type="text" id="contact" name="contact" autocomplete="email" required>
+      </div>
+      <fieldset>
+        <legend>How should I reach you?</legend>
+        <div class="options">
+          <label class="option"><input type="radio" name="reach" id="reach-text" value="Text"><span>Text</span></label>
+          <label class="option"><input type="radio" name="reach" id="reach-call" value="Call"><span>Call</span></label>
+          <label class="option"><input type="radio" name="reach" id="reach-email" value="Email"><span>Email</span></label>
+        </div>
+      </fieldset>
+      <div class="field">
+        <label for="notes">Anything you&rsquo;d want on your site?</label>
+        <textarea id="notes" name="notes" rows="3" placeholder="Optional: a menu, prices, booking, photos of your work&hellip;"></textarea>
+      </div>
+      <div class="trap" aria-hidden="true">
+        <label for="website_url">Leave this empty</label>
+        <input type="text" id="website_url" name="website_url" tabindex="-1" autocomplete="off">
+      </div>
+      <p id="form-error" class="warn" role="alert" hidden></p>
+      <button type="submit" class="btn" id="submit-btn">Request My Free Mockup</button>
+      <p class="privacy">I&rsquo;ll only use this to contact you about your mockup. No mailing lists, ever.</p>
+    </form>
+
+    <div id="done" class="done" role="status" hidden>
+      <h3>Got it, thank you!</h3>
+      <p id="done-text">I&rsquo;ll reach out within a day or two to get started on your mockup.</p>
+      <p class="small">In the meantime, <a href="https://delsea.8888media.workers.dev" target="_blank" rel="noopener">take a look at a sample site I built</a>.</p>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <p class="sig">8888 Media</p>
+    <p>Questions? Email <a href="mailto:mike@8888media.co">mike@8888media.co</a>.</p>
+  </div>
+</footer>
+
+<script>
+(() => {
+  "use strict";
+  const startedAt = Date.now();
+  const $ = (sel) => document.querySelector(sel);
+  const form = $("#mockup-form");
+
+  function showError(text, focusId) {
+    const box = $("#form-error");
+    box.textContent = text;
+    box.hidden = false;
+    if (focusId) $("#" + focusId).focus();
+  }
+
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    $("#form-error").hidden = true;
+    const data = {
+      name: $("#name").value.trim(),
+      business: $("#business").value.trim(),
+      link: $("#link").value.trim(),
+      contact: $("#contact").value.trim(),
+      reach: (form.querySelector('input[name="reach"]:checked') || {}).value || "",
+      notes: $("#notes").value.trim(),
+      website_url: $("#website_url").value,
+      startedAt,
+      from: document.referrer ? new URL(document.referrer).hostname : "",
+    };
+    if (data.name.length < 2) return showError("Add your name.", "name");
+    if (data.business.length < 2) return showError("Add your business name.", "business");
+    const isEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.contact);
+    if (!isEmail && data.contact.replace(/\D/g, "").length < 10) return showError("Add a phone number or email so I can reach you.", "contact");
+
+    const btn = $("#submit-btn");
+    btn.disabled = true;
+    btn.textContent = "Sending…";
+    try {
+      const res = await fetch("/api/mockup-request", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(data) });
+      const out = await res.json().catch(() => ({}));
+      if (!res.ok) throw new Error(out.error || "That didn’t go through. Try again in a minute.");
+      const how = { Text: "text you", Call: "call you", Email: "email you" }[data.reach] || "reach out";
+      $("#done-text").textContent = `Thanks, ${data.name.split(" ")[0]}! I’ll ${how} within a day or two to get started on the ${data.business} mockup.`;
+      form.hidden = true;
+      $("#done").hidden = false;
+      $("#done").scrollIntoView({ behavior: "smooth", block: "center" });
+    } catch (err) {
+      showError(/fetch|network/i.test(err.message) ? "Couldn’t reach the server. Check your connection and try again." : err.message);
+    } finally {
+      btn.disabled = false;
+      btn.textContent = "Request My Free Mockup";
+    }
+  });
+})();
+</script>
+</body>
+</html>
