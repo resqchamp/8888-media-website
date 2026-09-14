@@ -143,6 +143,7 @@
   .qr img{width:168px;height:168px;border-radius:6px;background:#fff;flex:none;}
   @media (min-width:760px){.qr.has-qr{display:flex;}}
   .small{font-size:0.92rem;}
+  .card-alt{display:flex;flex-direction:column;align-items:flex-start;gap:10px;border-top:1px solid var(--rule);padding-top:14px;}
 
   /* fields */
   .field{display:flex;flex-direction:column;gap:8px;min-width:0;}
@@ -837,6 +838,11 @@
         done.className = "paid";
         done.textContent = "Received. Thank you!";
         card.append(done);
+      } else if (p.status === "processing") {
+        const wait = document.createElement("p");
+        wait.className = "soft";
+        wait.textContent = "Your bank payment is on its way. It usually clears in a few business days, and this switches to Received when it does.";
+        card.append(wait);
       } else {
         const memo = `${project.business || "Your business"} ${String(p.label || "payment").toLowerCase()}`;
         const steps = document.createElement("ol");
@@ -862,6 +868,24 @@
           t.textContent = "On a computer? Scan this with your bank’s app instead of typing the tag.";
           qr.append(img, t);
           card.append(qr);
+        }
+        if (p.cardUrl) {
+          const alt = document.createElement("div");
+          alt.className = "card-alt";
+          const q = document.createElement("p");
+          q.className = "q";
+          q.textContent = "No Zelle? Pay by card instead.";
+          const pay = document.createElement("a");
+          pay.className = "btn ghost";
+          pay.href = p.cardUrl;
+          pay.target = "_blank";
+          pay.rel = "noopener";
+          pay.textContent = "Pay by Card";
+          const fine = document.createElement("p");
+          fine.className = "soft small";
+          fine.textContent = "Secure checkout through Stripe. You can also pay straight from your bank account there. This page updates by itself once it goes through.";
+          alt.append(q, pay, fine);
+          card.append(alt);
         }
       }
       box.append(card);
@@ -924,12 +948,12 @@
     const pays = (project.payments || []).filter((p) => p && p.amount);
     const deposit = pays.find((p) => p.id === "deposit");
     const items = [];
-    if (deposit) items.push(["Pay the deposit", "#pay", deposit.status === "paid"]);
+    if (deposit) items.push(["Pay the deposit", "#pay", ["paid", "processing"].includes(deposit.status)]);
     items.push(["Set up your website account", "#account", !!(answers.acct_created && answers.acct_domain && answers.acct_invite)]);
     items.push(["Answer the questions and add photos", "#about", !!project.submittedAt]);
     for (const p of pays) {
       if (p === deposit) continue;
-      items.push([p.id === "final" ? "Make the final payment" : `Pay the ${String(p.label || "payment").toLowerCase()}`, "#pay", p.status === "paid"]);
+      items.push([p.id === "final" ? "Make the final payment" : `Pay the ${String(p.label || "payment").toLowerCase()}`, "#pay", ["paid", "processing"].includes(p.status)]);
     }
     const list = $("#todo");
     list.textContent = "";
