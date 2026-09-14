@@ -121,6 +121,9 @@
   .todo li + li{border-top:1px solid var(--rule);}
   .todo a{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:14px 16px;color:var(--text);text-decoration:none;font-weight:600;}
   .todo a:hover{background:var(--surface-2);}
+  .todo .item{display:flex;align-items:center;gap:12px;min-width:0;}
+  .step-num{width:28px;height:28px;border-radius:50%;display:grid;place-items:center;flex:none;background:var(--accent);color:var(--on-accent);font-family:'Archivo Black','Arial Black',sans-serif;font-size:0.85rem;}
+  .todo li.done .step-num{background:var(--ok);}
   .pill{font-size:0.75rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;padding:4px 9px;border-radius:999px;white-space:nowrap;}
   .pill.todo-pill{color:var(--accent);background:var(--accent-soft);}
   .pill.done-pill{color:var(--ok);background:var(--ok-soft);}
@@ -225,7 +228,7 @@
   <div id="app" class="stack" hidden>
     <section aria-labelledby="todo-h">
       <h2 id="todo-h">What I Need From You</h2>
-      <ul class="todo" id="todo"></ul>
+      <ol class="todo" id="todo"></ol>
     </section>
 
     <section id="pay" aria-labelledby="pay-h" hidden>
@@ -915,27 +918,39 @@
       : "";
     if (pending) $("#photo-count").textContent = `Uploading ${pending} more…`;
 
+    // Numbered in the order clients should do them; a final payment, once added, comes last.
+    const pays = (project.payments || []).filter((p) => p && p.amount);
+    const deposit = pays.find((p) => p.id === "deposit");
     const items = [];
-    for (const p of project.payments || []) {
-      if (p && p.amount) items.push([`Pay the ${String(p.label || "payment").toLowerCase()}`, "#pay", p.status === "paid"]);
-    }
+    if (deposit) items.push(["Pay the deposit", "#pay", deposit.status === "paid"]);
     items.push(["Set up your website account", "#account", !!(answers.acct_created && answers.acct_domain && answers.acct_invite)]);
     items.push(["Answer the questions and add photos", "#about", !!project.submittedAt]);
+    for (const p of pays) {
+      if (p === deposit) continue;
+      items.push([p.id === "final" ? "Make the final payment" : `Pay the ${String(p.label || "payment").toLowerCase()}`, "#pay", p.status === "paid"]);
+    }
     const list = $("#todo");
     list.textContent = "";
-    for (const [text, href, done] of items) {
+    items.forEach(([text, href, done], i) => {
       const li = document.createElement("li");
+      if (done) li.className = "done";
       const a = document.createElement("a");
       a.href = href;
+      const item = document.createElement("span");
+      item.className = "item";
+      const num = document.createElement("span");
+      num.className = "step-num";
+      num.textContent = String(i + 1);
       const t = document.createElement("span");
       t.textContent = text;
+      item.append(num, t);
       const pill = document.createElement("span");
       pill.className = "pill " + (done ? "done-pill" : "todo-pill");
       pill.textContent = done ? "Done" : "To Do";
-      a.append(t, pill);
+      a.append(item, pill);
       li.append(a);
       list.append(li);
-    }
+    });
     // Logos count toward "has artwork" for the send check.
     project.hasArt = photos + logos > 0;
   }
