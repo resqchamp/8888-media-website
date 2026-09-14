@@ -12,6 +12,7 @@ const MAX_FILE_BYTES = 25 * 1024 * 1024;
 const MAX_FILES = 80;
 const MAX_ANSWERS_BYTES = 96 * 1024;
 const MAX_SMALL_BODY = 16 * 1024;
+const MAX_TESTIMONIAL = 2000;
 const EMAIL_FALLBACK = "mike@8888media.co";
 const JSON_TYPE = { httpMetadata: { contentType: "application/json" } };
 
@@ -28,6 +29,7 @@ export async function onRequest({ request, env, params }) {
     if (route.startsWith("files/") && method === "DELETE") return await removeFile(env, client, route.slice(6));
     if (route === "agreement/accept" && method === "POST") return await acceptAgreement(request, env, client);
     if (route === "previews/respond" && method === "POST") return await respondToPreview(request, env, client);
+    if (route === "testimonial" && method === "POST") return await saveTestimonial(request, env, client);
   } catch (err) {
     console.error("intake error", route, err && err.message);
     return json({ error: "Something went wrong on our end. Try again in a minute." }, 500);
@@ -60,11 +62,13 @@ async function getJson(env, key) {
 }
 
 async function state(env, { base, access }) {
-  const [saved, files, agreement, previews] = await Promise.all([
+  const [saved, files, agreement, previews, launch, testimonial] = await Promise.all([
     getJson(env, `${base}/answers.json`),
     listFiles(env, base),
     getJson(env, `${base}/agreement.json`),
     getJson(env, `${base}/previews.json`),
+    getJson(env, `${base}/launch.json`),
+    getJson(env, `${base}/testimonial.json`),
   ]);
   return json({
     business: access.business || "",
@@ -77,6 +81,8 @@ async function state(env, { base, access }) {
     files,
     agreement: agreement ? { text: agreement.text, accepted: publicAcceptance(agreement.accepted) } : null,
     previews: previews && Array.isArray(previews.items) ? previews.items.map(publicPreview) : [],
+    launch: launch ? { url: launch.url, launchedAt: launch.launchedAt, testimonialFrom: launch.testimonialFrom || null, note: launch.note || "" } : null,
+    testimonial: testimonial ? publicTestimonial(testimonial) : null,
   });
 }
 
@@ -86,6 +92,9 @@ function publicAcceptance(a) {
 }
 function publicPreview(p) {
   return { id: p.id, round: p.round, url: p.url, note: p.note || "", postedAt: p.postedAt, status: p.status, response: p.response || null };
+}
+function publicTestimonial(t) {
+  return { text: t.text, name: t.name || "", showOk: !!t.showOk, at: t.at };
 }
 
 // Files live at clients/<slug>/files/<logo|photos>/<id>, so the id carries its field.
@@ -240,6 +249,27 @@ async function respondToPreview(request, env, { base }) {
   }
   await env.INTAKE.put(key, JSON.stringify(doc, null, 2), JSON_TYPE);
   return json({ ok: true, preview: publicPreview(latest) });
+}
+
+// Opens once the site is live. Clients can edit theirs; the first submission time is kept.
+async function saveTestimonial(request, env, { base }) {
+  const body = await readSmallJson(request);
+  if (!body) return json({ error: "Couldn't read that. Try again." }, 400);
+  if (!(await env.INTAKE.head(`${base}/launch.json`))) return json({ error: "The testimonial opens once your site is live." }, 409);
+  const text = String(body.text || "").trim().slice(0, MAX_TESTIMONIAL);
+  if (text.length < 10) return json({ error: "Write a sentence or two first." }, 400);
+  const key = `${base}/testimonial.json`;
+  const prev = await getJson(env, key);
+  const now = new Date().toISOString();
+  const doc = {
+    text,
+    name: String(body.name || "").trim().replace(/\s+/g, " ").slice(0, 120),
+    showOk: body.showOk === true,
+    at: now,
+    firstAt: (prev && prev.firstAt) || now,
+  };
+  await env.INTAKE.put(key, JSON.stringify(doc, null, 2), JSON_TYPE);
+  return json({ ok: true, testimonial: publicTestimonial(doc) });
 }
 
 function json(data, status = 200) {

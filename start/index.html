@@ -211,6 +211,16 @@
   .stamp blockquote{margin:4px 0 0;padding:10px 12px;background:var(--surface);border-radius:6px;white-space:pre-wrap;font-size:0.95rem;}
   .history{list-style:none;margin:6px 0 0;padding:0;display:flex;flex-direction:column;gap:4px;font-size:0.95rem;}
 
+  /* launch and testimonial */
+  .live-card{display:flex;flex-direction:column;align-items:flex-start;gap:10px;}
+  .live-url{overflow-wrap:anywhere;font-weight:600;}
+  .info-card{display:flex;flex-direction:column;gap:10px;}
+  .info-card h3 + *{margin-top:-4px;}
+  .info-card > h3:not(:first-child){margin-top:8px;}
+  ul.plain{margin:0;padding-left:1.2em;display:flex;flex-direction:column;gap:6px;}
+  ul.plain li::marker{color:var(--accent);}
+  .refer{display:flex;flex-direction:column;gap:10px;}
+
   /* printing a copy of the agreement shows only the agreement */
   @media print{
     .print-agreement .masthead,.print-agreement footer,.print-agreement .savebar,.print-agreement #app > :not(#agreement),.print-agreement #agreement .no-print,.print-agreement #agreement-sign,.print-agreement #agreement-intro{display:none !important;}
@@ -259,6 +269,62 @@
     <section aria-labelledby="todo-h">
       <h2 id="todo-h">What I Need From You</h2>
       <ol class="todo" id="todo"></ol>
+    </section>
+
+    <section id="launch" aria-labelledby="launch-h" hidden>
+      <h2 id="launch-h">Your Site Is Live</h2>
+      <div class="sent live-card">
+        <h3 id="launch-title">Your website is live!</h3>
+        <p class="live-url" id="live-url"></p>
+        <a id="live-link" class="btn" href="#" target="_blank" rel="noopener">Visit Your Website</a>
+      </div>
+      <p id="launch-note" class="preview-note" hidden></p>
+      <div class="panel info-card">
+        <h3>One Thing for You</h3>
+        <p>If you have a Google Business Profile, the listing that shows up on Google Maps, add your new site to it. It takes about a minute, and it&rsquo;s how most local customers will find you.</p>
+        <ol class="pay-steps">
+          <li>Search your business name on Google while you&rsquo;re signed in.</li>
+          <li>Choose <b>Edit profile</b>.</li>
+          <li>Paste your web address into the <b>Website</b> field: <span id="gbp-url"></span></li>
+        </ol>
+      </div>
+      <div class="panel info-card">
+        <h3>What&rsquo;s Set Up</h3>
+        <ul class="plain" id="setup-list"></ul>
+        <h3>Need a Change?</h3>
+        <p id="fixes-text"></p>
+        <p>Just text me or email <a href="mailto:mike@8888media.co">mike@8888media.co</a>.</p>
+        <h3>What You Own</h3>
+        <p>Everything. Your Cloudflare account, your web address and your site are all in your name. Your only ongoing cost is the web address renewal, about $10 to $12 a year, and it renews automatically.</p>
+      </div>
+    </section>
+
+    <section id="testimonial" aria-labelledby="testimonial-h" hidden>
+      <h2 id="testimonial-h">A Quick Favor</h2>
+      <p class="intro">Would you write two or three sentences about working together? I&rsquo;ll put it on the 8888 Media site with a link to yours, which sends a little traffic your way too.</p>
+      <div id="testimonial-form" class="panel sign-panel">
+        <p class="soft small">A few prompts, in case they help: What made you decide to get a website? What was the process like? How&rsquo;s it going so far?</p>
+        <div class="field">
+          <label for="t-text">Your testimonial</label>
+          <textarea id="t-text" rows="5"></textarea>
+        </div>
+        <div class="field">
+          <label for="t-name">How should I credit you?</label>
+          <input type="text" id="t-name" autocomplete="off" placeholder="Dana R., Sunrise Bakery">
+        </div>
+        <label class="option"><input type="checkbox" id="t-ok"><span>It&rsquo;s OK to show this on the 8888 Media website, with a link to my site.</span></label>
+        <button type="button" class="btn" id="t-submit">Submit Testimonial</button>
+        <p id="t-error" class="warn" hidden></p>
+      </div>
+      <div id="testimonial-done" class="sent" hidden>
+        <h3>Thank you!</h3>
+        <p id="t-done-text"></p>
+        <div class="send-row"><button type="button" class="btn ghost" id="t-edit">Edit It</button></div>
+      </div>
+      <div class="panel refer">
+        <p><b>Know another business owner who could use a website?</b> Send them here for a free mockup:</p>
+        <div id="refer-link"></div>
+      </div>
     </section>
 
     <section id="preview" aria-labelledby="preview-h" hidden>
@@ -325,6 +391,10 @@
       <h2 id="pay-h">Payment</h2>
       <div id="pay-list" class="stack" style="gap:16px"></div>
     </section>
+
+    <div id="answers-toggle-wrap" hidden>
+      <button type="button" class="btn ghost" id="answers-toggle">Show My Setup Answers</button>
+    </div>
 
     <form id="intake" class="stack" novalidate>
       <section id="account" data-section="Your Website Account" aria-labelledby="account-h">
@@ -605,16 +675,23 @@
     renderAgreement();
     renderPayments();
     renderPreview();
+    renderLaunch();
+    renderTestimonial();
     if (project.submittedAt) showSent(false);
     $("#loading").hidden = true;
     $("#app").hidden = false;
-    $("#savebar").hidden = false;
+    $("#savebar").hidden = !!project.launch;
     refresh();
   }
 
   // ---------- answers ----------
   function fields() {
-    return [...form.querySelectorAll("[data-q]")].filter((el) => !el.closest("[hidden]"));
+    // Skip questions inside a hidden block (like the Business Site pages question), but not
+    // when the whole form is folded away after launch.
+    return [...form.querySelectorAll("[data-q]")].filter((el) => {
+      const hiddenBlock = el.closest("[hidden]");
+      return !hiddenBlock || hiddenBlock === form;
+    });
   }
 
   function collect() {
@@ -1054,6 +1131,7 @@
       if (p === deposit) continue;
       items.push([p.id === "final" ? "Make the final payment" : `Pay the ${String(p.label || "payment").toLowerCase()}`, "#pay", ["paid", "processing"].includes(p.status)]);
     }
+    if (project.launch && testimonialDue()) items.push(["Leave a short testimonial", "#testimonial", !!project.testimonial]);
     const list = $("#todo");
     list.textContent = "";
     items.forEach(([text, href, done], i) => {
@@ -1279,6 +1357,126 @@
       return;
     }
     respond("changes", text);
+  });
+
+  // ---------- launch and testimonial ----------
+  let answersOpen = false;
+  let editingTestimonial = false;
+
+  function addDaysIso(iso, n) {
+    return new Date(new Date(iso).getTime() + n * 864e5).toISOString();
+  }
+
+  function testimonialDue() {
+    const l = project.launch;
+    if (!l) return false;
+    if (project.testimonial) return true;
+    return Date.now() >= new Date(l.testimonialFrom || addDaysIso(l.launchedAt, 7)).getTime();
+  }
+
+  function renderLaunch() {
+    const l = project.launch;
+    $("#launch").hidden = !l;
+    if (!l) return;
+    $("#launch-title").textContent = `${project.business || "Your website"} is live!`;
+    $("#live-link").href = l.url;
+    $("#live-url").textContent = l.url.replace(/^https?:\/\//, "").replace(/\/$/, "");
+    const gbp = $("#gbp-url");
+    gbp.textContent = "";
+    gbp.append(copyable(l.url));
+    const a = project.answers || {};
+    const host = new URL(l.url).hostname.replace(/^www\./, "");
+    const setup = [
+      a.q_form_email ? `Messages from your contact form go straight to ${a.q_form_email}.` : "Messages from your contact form go straight to your inbox.",
+      a.q_forward === "Yes, please" ? `info@${host} forwards to that same inbox.` : "",
+      "It works on phones, tablets and computers.",
+      "Google has your site map. It can take a few days to a few weeks before you show up in search results.",
+    ].filter(Boolean);
+    const list = $("#setup-list");
+    list.textContent = "";
+    for (const t of setup) {
+      const li = document.createElement("li");
+      li.textContent = t;
+      list.append(li);
+    }
+    let fixes = `Until ${longDate(addDaysIso(l.launchedAt, 30))}, I\u2019ll fix anything that isn\u2019t working right, free. After that, one-off changes are $50 an hour.`;
+    if (project.package === "business") fixes += " Or the care plan, $100 a month, puts your changes at the front of the line, done within 2 business days, and covers up to 2 hours of changes a month, plus a monthly check that everything\u2019s working. Cancel anytime.";
+    $("#fixes-text").textContent = fixes;
+    $("#launch-note").hidden = !l.note;
+    $("#launch-note").textContent = l.note || "";
+    // With the site live, the setup questions fold away. They can still open them.
+    $("#intake").hidden = !answersOpen;
+    $("#answers-toggle-wrap").hidden = false;
+  }
+
+  $("#answers-toggle").addEventListener("click", () => {
+    answersOpen = !answersOpen;
+    $("#intake").hidden = !answersOpen;
+    $("#savebar").hidden = !answersOpen;
+    $("#answers-toggle").textContent = answersOpen ? "Hide My Setup Answers" : "Show My Setup Answers";
+  });
+
+  function renderTestimonial() {
+    const due = testimonialDue();
+    $("#testimonial").hidden = !due;
+    if (!due) return;
+    const t = project.testimonial;
+    $("#testimonial-form").hidden = !!t && !editingTestimonial;
+    $("#testimonial-done").hidden = !t || editingTestimonial;
+    if (t) {
+      $("#t-done-text").textContent = t.showOk
+        ? "I\u2019ll add it to the 8888 Media site with a link to yours."
+        : "I\u2019ll keep it just between us, since you\u2019d rather it not be shown. You can change that anytime.";
+      if (!editingTestimonial) {
+        $("#t-text").value = t.text;
+        $("#t-name").value = t.name;
+        $("#t-ok").checked = t.showOk;
+      }
+    } else if (!$("#t-name").value) {
+      $("#t-name").value = [project.owner, project.business].filter(Boolean).join(", ");
+    }
+    const ref = $("#refer-link");
+    ref.textContent = "";
+    ref.append(copyable("www.8888media.co/mockup"));
+  }
+
+  $("#t-edit").addEventListener("click", () => {
+    editingTestimonial = true;
+    renderTestimonial();
+    $("#t-text").focus();
+  });
+
+  $("#t-submit").addEventListener("click", async () => {
+    const err = $("#t-error");
+    err.hidden = true;
+    const text = $("#t-text").value.trim();
+    if (text.length < 10) {
+      err.textContent = "Write a sentence or two first.";
+      err.hidden = false;
+      return;
+    }
+    const btn = $("#t-submit");
+    btn.disabled = true;
+    btn.textContent = "Submitting\u2026";
+    try {
+      const res = await api("testimonial", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ text, name: $("#t-name").value.trim(), showOk: $("#t-ok").checked }),
+      });
+      const out = await res.json().catch(() => ({}));
+      if (!res.ok) throw new Error(out.error || "That didn\u2019t go through. Try again.");
+      project.testimonial = out.testimonial;
+      editingTestimonial = false;
+      renderTestimonial();
+      refresh();
+    } catch (e) {
+      err.textContent = /fetch|network/i.test(e.message) ? "Couldn\u2019t reach the server. Check your connection and try again." : e.message;
+      err.hidden = false;
+    } finally {
+      btn.disabled = false;
+      btn.textContent = "Submit Testimonial";
+    }
   });
 
   // ---------- send ----------
