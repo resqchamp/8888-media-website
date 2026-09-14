@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Website Setup Guide | 8888 Media</title>
+<meta name="description" content="Three short steps to set up the free account your new website will live in. About 15 minutes, done once.">
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:wght@400;500;600;700&display=swap">
+<style>
+  /* Light-first: this page is read by clients, often on a phone, often for the first time. */
+  :root{
+    --ground:#FBFAF8;
+    --surface:#FFFFFF;
+    --surface-2:#F4F1EC;
+    --text:#18161B;
+    --text-soft:#4E4A55;
+    --text-faint:#7B7682;
+    --rule:#E4E0E8;
+    --accent:#CF1656;
+    --accent-soft:#FCEAF0;
+    --band:#0A0A0C;
+    --band-text:#F4F2F6;
+    --band-soft:#B4AFBA;
+    --warn-bg:#FFF4E5;
+    --warn-rule:#B8660B;
+    --warn-text:#5E3A08;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --ground:#0E0E11;
+      --surface:#16161B;
+      --surface-2:#1D1D23;
+      --text:#EEECF1;
+      --text-soft:#B3AEBA;
+      --text-faint:#827D89;
+      --rule:#2A2930;
+      --accent:#FF4F84;
+      --accent-soft:#2A1520;
+      --band:#050506;
+      --band-text:#F4F2F6;
+      --band-soft:#A8A3AE;
+      --warn-bg:#2A1F10;
+      --warn-rule:#E09A45;
+      --warn-text:#F3D9B5;
+    }
+  }
+  :root[data-theme="dark"]{
+    --ground:#0E0E11;
+    --surface:#16161B;
+    --surface-2:#1D1D23;
+    --text:#EEECF1;
+    --text-soft:#B3AEBA;
+    --text-faint:#827D89;
+    --rule:#2A2930;
+    --accent:#FF4F84;
+    --accent-soft:#2A1520;
+    --band:#050506;
+    --band-text:#F4F2F6;
+    --band-soft:#A8A3AE;
+    --warn-bg:#2A1F10;
+    --warn-rule:#E09A45;
+    --warn-text:#F3D9B5;
+  }
+
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--ground);color:var(--text);font:400 17px/1.65 'Inter',system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;-webkit-font-smoothing:antialiased;}
+  h1,h2,h3{margin:0;text-wrap:balance;}
+  h1,h2{font-family:'Archivo Black','Arial Black',Impact,sans-serif;font-weight:400;letter-spacing:-0.01em;}
+  h3{font-weight:700;font-size:1.2rem;line-height:1.3;}
+  p{margin:0;}
+  a{color:var(--accent);text-underline-offset:3px;text-decoration-thickness:1px;}
+  a:focus-visible,summary:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:2px;}
+  b,strong{font-weight:600;}
+  .wrap{max-width:42rem;margin:0 auto;padding-inline:clamp(16px,5vw,28px);}
+
+  .masthead{background:var(--band);color:var(--band-text);padding-block:clamp(40px,9vw,72px) clamp(32px,7vw,52px);}
+  .masthead .wrap{display:flex;flex-direction:column;gap:16px;}
+  .eyebrow{font-size:12px;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:#FF4F84;}
+  .masthead h1{font-size:clamp(2.1rem,7vw,3.2rem);line-height:1.05;}
+  .masthead .lede{font-size:clamp(1.05rem,2.6vw,1.2rem);color:var(--band-soft);max-width:36ch;line-height:1.5;}
+  .chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:6px;}
+  .chip{font-size:0.82rem;font-weight:600;padding:6px 11px;border:1px solid rgba(255,255,255,0.18);border-radius:999px;color:var(--band-text);}
+
+  main{padding-block:clamp(36px,8vw,60px) 24px;}
+  main section{display:flex;flex-direction:column;gap:14px;}
+  main section + section{margin-top:clamp(44px,9vw,64px);}
+  main h2{font-size:clamp(1.4rem,4vw,1.75rem);line-height:1.15;}
+  .soft{color:var(--text-soft);}
+
+  ul.checks{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px;}
+  ul.checks li{display:grid;grid-template-columns:22px minmax(0,1fr);gap:10px;align-items:start;}
+  ul.checks li::before{content:"";width:12px;height:12px;margin-top:7px;border:2px solid var(--accent);border-radius:3px;}
+
+  /* Numbered because these must happen in this order. */
+  ol.steps{list-style:none;margin:0;padding:0;}
+  .step{display:grid;grid-template-columns:44px minmax(0,1fr);gap:0 18px;padding-bottom:36px;position:relative;}
+  .step:not(:last-child)::before{content:"";position:absolute;left:21px;top:48px;bottom:8px;width:2px;background:var(--rule);}
+  .num{width:44px;height:44px;border-radius:50%;display:grid;place-items:center;background:var(--accent);color:#fff;font-family:'Archivo Black','Arial Black',sans-serif;font-size:1.1rem;position:relative;z-index:1;}
+  .step.done .num{background:var(--band);color:#FF4F84;border:2px solid #FF4F84;}
+  .step-body{display:flex;flex-direction:column;gap:12px;min-width:0;padding-top:6px;}
+  .step-head{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 12px;}
+  .time{font-size:0.8rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--text-faint);}
+
+  ol.clicks{margin:0;padding-left:1.3em;display:flex;flex-direction:column;gap:6px;}
+  ol.clicks li::marker{color:var(--accent);font-weight:700;}
+  .ui{font-weight:600;background:var(--surface-2);padding:1px 7px;border-radius:4px;white-space:nowrap;}
+  .link-box{font-size:0.95rem;background:var(--surface);border:1px solid var(--rule);border-radius:6px;padding:12px 14px;overflow-wrap:anywhere;}
+
+  .note,.warn{padding:14px 16px;border-radius:6px;display:flex;flex-direction:column;gap:6px;font-size:0.97rem;}
+  .note{background:var(--accent-soft);border:1px solid var(--accent);}
+  .warn{background:var(--warn-bg);border:1px solid var(--warn-rule);color:var(--warn-text);}
+  .note .label,.warn .label{font-size:0.78rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;}
+  .note .label{color:var(--accent);}
+  .warn .label{color:var(--warn-rule);}
+
+  .access{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;}
+  .access div{background:var(--surface);border:1px solid var(--rule);border-radius:6px;padding:14px 16px;display:flex;flex-direction:column;gap:6px;}
+  .access .label{font-size:0.78rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--text-faint);}
+  .access ul{margin:0;padding-left:1.1em;color:var(--text-soft);font-size:0.96rem;}
+
+  .tablewrap{overflow-x:auto;border:1px solid var(--rule);border-radius:6px;background:var(--surface);}
+  table{border-collapse:collapse;width:100%;min-width:320px;font-variant-numeric:tabular-nums;}
+  th,td{padding:12px 14px;text-align:left;border-bottom:1px solid var(--rule);vertical-align:top;}
+  tr:last-child th,tr:last-child td{border-bottom:none;}
+  th{font-weight:600;}
+  th .sub{display:block;font-weight:400;font-size:0.85rem;color:var(--text-faint);}
+  td{text-align:right;white-space:nowrap;font-weight:600;}
+  td.free{color:var(--accent);}
+
+  details{border-bottom:1px solid var(--rule);}
+  details summary{cursor:pointer;list-style:none;padding:14px 32px 14px 0;font-weight:600;position:relative;}
+  details summary::-webkit-details-marker{display:none;}
+  details summary::after{content:"+";position:absolute;right:4px;top:12px;color:var(--accent);font-size:1.3rem;line-height:1;}
+  details[open] summary::after{content:"\2212";}
+  details .answer{padding:0 0 16px;color:var(--text-soft);}
+
+  footer{background:var(--band);color:var(--band-soft);margin-top:56px;padding-block:32px;font-size:0.95rem;}
+  footer .wrap{display:flex;flex-direction:column;gap:6px;}
+  footer .sig{font-family:'Archivo Black','Arial Black',sans-serif;color:var(--band-text);font-size:1.1rem;}
+  footer a{color:#FF4F84;}
+
+  @media (max-width:420px){
+    .step{grid-template-columns:36px minmax(0,1fr);gap:0 14px;}
+    .num{width:36px;height:36px;font-size:0.95rem;}
+    .step:not(:last-child)::before{left:17px;top:40px;}
+  }
+</style>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="wrap">
+    <p class="eyebrow">8888 Media &middot; Client Setup</p>
+    <h1>Set Up Your Website Account</h1>
+    <p class="lede">Three short steps in an account that belongs to you. Then I build and publish your site.</p>
+    <div class="chips">
+      <span class="chip">About 15 minutes</span>
+      <span class="chip">Done once</span>
+      <span class="chip">You own everything</span>
+      <span class="chip">Nothing to install</span>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <section>
+    <h2>How This Works</h2>
+    <p>Your website and your web address will both live in a free <b>Cloudflare</b> account, and that account is yours, in your name. Cloudflare is the company that will hold your address and run your site.</p>
+    <p>You create the account, buy your address, and add me as a helper. You stay in charge the whole time. I just do the building.</p>
+  </section>
+
+  <section>
+    <h2>Before You Start</h2>
+    <ul class="checks">
+      <li><span>Your <b>email inbox</b> open on the same device, since you'll get a verification email.</span></li>
+      <li><span>A <b>debit or credit card</b> for the web address (roughly $10&ndash;12 a year).</span></li>
+      <li><span><b>Two or three ideas</b> for your web address, in case your first choice is taken.</span></li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Your Three Steps</h2>
+    <ol class="steps">
+
+      <li class="step">
+        <div class="num">1</div>
+        <div class="step-body">
+          <div class="step-head"><h3>Create Your Free Account</h3><span class="time">2 minutes</span></div>
+          <p>Go to <a href="https://dash.cloudflare.com/sign-up">dash.cloudflare.com/sign-up</a> and sign up with your email and a password. The free plan is all you need, and it won&rsquo;t ask for a card at this point.</p>
+          <div class="note">
+            <p class="label">Don&rsquo;t Skip This</p>
+            <p>Cloudflare emails you a verification link. <b>Click it before you do anything else.</b> Until your email is verified, you can&rsquo;t buy an address or add me in the next steps, and the screen won&rsquo;t always tell you why.</p>
+          </div>
+        </div>
+      </li>
+
+      <li class="step">
+        <div class="num">2</div>
+        <div class="step-body">
+          <div class="step-head"><h3>Buy Your Web Address</h3><span class="time">5 minutes</span></div>
+          <p>While you&rsquo;re signed in, open this link. It goes straight to the page for buying an address:</p>
+          <p class="link-box"><a href="https://dash.cloudflare.com/?to=/:account/registrar/register">dash.cloudflare.com &rarr; Register Domains</a></p>
+          <ol class="clicks">
+            <li>Type the name you want and select <span class="ui">Search</span>.</li>
+            <li>Next to the one you want, select <span class="ui">Purchase</span>.</li>
+            <li>Leave the length at <b>1 year</b>. It renews automatically, and you can change that later.</li>
+            <li>Fill in your contact details. This is what makes the address legally yours. Your personal details are kept off the public record wherever the rules allow it.</li>
+            <li>Add your card, read the agreements, and select <span class="ui">Complete Purchase</span>.</li>
+          </ol>
+          <p class="soft">Cloudflare charges exactly what the address costs, with no markup, so it&rsquo;s usually cheaper than the places you&rsquo;ve heard of. It&rsquo;s ready in under a minute.</p>
+          <div class="warn">
+            <p class="label">Check the Spelling Twice</p>
+            <p>Web address purchases can&rsquo;t be refunded. The money goes to the registry the moment you confirm, so a typo means paying again. Short, easy to say out loud, <b>.com</b>, and no hyphens is almost always the right choice.</p>
+          </div>
+        </div>
+      </li>
+
+      <li class="step">
+        <div class="num">3</div>
+        <div class="step-body">
+          <div class="step-head"><h3>Add Me as a Helper</h3><span class="time">2 minutes</span></div>
+          <ol class="clicks">
+            <li>In your Cloudflare dashboard, open <span class="ui">Manage Account</span>, then <span class="ui">Members</span>. If your menu looks different, type &ldquo;Members&rdquo; into the dashboard&rsquo;s search bar.</li>
+            <li>Select <span class="ui">Invite</span>.</li>
+            <li>Enter <b>mike@8888media.co</b>.</li>
+            <li>Give access to your <b>whole account</b>, not just one address, and choose the <b>Administrator</b> role.</li>
+            <li>Select <span class="ui">Continue to Summary</span>, then <span class="ui">Invite</span>.</li>
+          </ol>
+          <p>Then send me a quick text or email so I know to accept it.</p>
+          <div class="access">
+            <div>
+              <p class="label">What This Lets Me Do</p>
+              <ul><li>Build your website</li><li>Publish it to your address</li><li>Manage the site&rsquo;s settings</li></ul>
+            </div>
+            <div>
+              <p class="label">What It Doesn&rsquo;t</p>
+              <ul><li>See or change your billing</li><li>Add or remove anyone</li><li>Take the account from you</li></ul>
+            </div>
+          </div>
+        </div>
+      </li>
+
+      <li class="step done">
+        <div class="num">&#10003;</div>
+        <div class="step-body">
+          <div class="step-head"><h3>That&rsquo;s Your Part Done</h3></div>
+          <p>I&rsquo;ll build your site inside your account, connect your new address, and send you a preview link before anything goes live.</p>
+          <p>Later on, you&rsquo;ll get <b>one more email from Cloudflare</b> asking you to verify your email address. That&rsquo;s how messages from your website&rsquo;s contact form, and your new <b>info@</b> address, reach your inbox. Click the link in it, and you&rsquo;re completely set.</p>
+        </div>
+      </li>
+
+    </ol>
+  </section>
+
+  <section>
+    <h2>What It Costs</h2>
+    <div class="tablewrap">
+      <table>
+        <tbody>
+          <tr><th scope="row">Your web address<span class="sub">Paid to Cloudflare, once a year</span></th><td>~$10&ndash;12 / yr</td></tr>
+          <tr><th scope="row">Hosting<span class="sub">Included with the free account</span></th><td class="free">Free</td></tr>
+          <tr><th scope="row">Security certificate<span class="sub">The padlock in the address bar</span></th><td class="free">Free</td></tr>
+          <tr><th scope="row">Your website<span class="sub">Paid to 8888 Media, as we agreed</span></th><td>One time</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="soft">There&rsquo;s no monthly hosting bill, from Cloudflare or from me. After the build, the yearly web address is the only cost that comes back.</p>
+  </section>
+
+  <section>
+    <h2>Questions You Might Have</h2>
+    <div>
+      <details>
+        <summary>Can I remove your access later?</summary>
+        <p class="answer">Yes, any time, on your own. Go to Members, open my name, and choose Revoke. Your site stays up and nothing breaks.</p>
+      </details>
+      <details>
+        <summary>What if I want someone else to work on my site one day?</summary>
+        <p class="answer">Everything is in your account, in your name. You&rsquo;d invite them the same way you invited me. You&rsquo;re never tied to me.</p>
+      </details>
+      <details>
+        <summary>Will you be able to see my card?</summary>
+        <p class="answer">No. The Administrator role can&rsquo;t see or change billing. That stays with you.</p>
+      </details>
+      <details>
+        <summary>What happens if the address isn&rsquo;t renewed?</summary>
+        <p class="answer">It renews automatically every year unless you turn that off, and Cloudflare emails you before it does. If it ever lapsed, people couldn&rsquo;t reach your site at that address until it was renewed.</p>
+      </details>
+      <details>
+        <summary>Can I get an email address with my business name?</summary>
+        <p class="answer">Yes. I&rsquo;ll set up an address like info@yourbusiness.com that forwards to the inbox you already use, free. If you later want a separate full mailbox, that&rsquo;s a paid service we can talk about.</p>
+      </details>
+      <details>
+        <summary>Do I need to understand any of the technical side?</summary>
+        <p class="answer">No. Once step 3 is done, you&rsquo;re finished. If anything on your screen doesn&rsquo;t match this page, stop and message me rather than guessing. It&rsquo;s faster for both of us.</p>
+      </details>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <p class="sig">Mike &middot; 8888 Media</p>
+    <p>Stuck on a step? Message me and I&rsquo;ll walk you through it.</p>
+    <p><a href="mailto:mike@8888media.co">mike@8888media.co</a> &middot; <a href="https://www.8888media.co">8888media.co</a></p>
+  </div>
+</footer>
+
+</body>
+</html>
