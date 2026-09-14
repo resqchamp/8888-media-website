@@ -1,0 +1,10 @@
+# Cloudflare Pages settings for www.8888media.co. Once this file exists it is the source of
+# truth: bindings and variables are changed here, not in the Cloudflare dashboard.
+name = "8888-media-website"
+pages_build_output_dir = "."
+compatibility_date = "2026-07-31"
+
+# Private storage for client intake answers and uploads (www.8888media.co/start/).
+[[r2_buckets]]
+binding = "INTAKE"
+bucket_name = "8888-client-intake"

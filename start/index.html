@@ -1,0 +1,999 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<meta name="referrer" content="no-referrer">
+<title>Your Website Project | 8888 Media</title>
+<meta name="description" content="Your private 8888 Media project page: payment, account setup, and everything I need to build your website.">
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:wght@400;500;600;700&display=swap">
+<style>
+  /* Same system as /setup/: light-first, because clients fill this in on a phone. */
+  :root{
+    --ground:#FBFAF8;
+    --surface:#FFFFFF;
+    --surface-2:#F4F1EC;
+    --text:#18161B;
+    --text-soft:#4E4A55;
+    --text-faint:#6F6A77;
+    --rule:#E4E0E8;
+    --field-rule:#8D8795;
+    --accent:#CF1656;
+    --accent-soft:#FCEAF0;
+    --on-accent:#FFFFFF;
+    --band:#0A0A0C;
+    --band-text:#F4F2F6;
+    --band-soft:#B4AFBA;
+    --ok:#0A7A55;
+    --ok-soft:#E4F4EC;
+    --warn-bg:#FFF4E5;
+    --warn-rule:#B8660B;
+    --warn-text:#5E3A08;
+    --bar:#FFFFFF;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --ground:#0E0E11;
+      --surface:#16161B;
+      --surface-2:#1D1D23;
+      --text:#EEECF1;
+      --text-soft:#B3AEBA;
+      --text-faint:#8F8A96;
+      --rule:#2A2930;
+      --field-rule:#6E6977;
+      --accent:#FF4F84;
+      --accent-soft:#2A1520;
+      --on-accent:#1A0710;
+      --band:#050506;
+      --band-text:#F4F2F6;
+      --band-soft:#A8A3AE;
+      --ok:#4FD1A0;
+      --ok-soft:#10261D;
+      --warn-bg:#2A1F10;
+      --warn-rule:#E09A45;
+      --warn-text:#F3D9B5;
+      --bar:#16161B;
+    }
+  }
+  :root[data-theme="dark"]{
+    --ground:#0E0E11;
+    --surface:#16161B;
+    --surface-2:#1D1D23;
+    --text:#EEECF1;
+    --text-soft:#B3AEBA;
+    --text-faint:#8F8A96;
+    --rule:#2A2930;
+    --field-rule:#6E6977;
+    --accent:#FF4F84;
+    --accent-soft:#2A1520;
+    --on-accent:#1A0710;
+    --band:#050506;
+    --band-text:#F4F2F6;
+    --band-soft:#A8A3AE;
+    --ok:#4FD1A0;
+    --ok-soft:#10261D;
+    --warn-bg:#2A1F10;
+    --warn-rule:#E09A45;
+    --warn-text:#F3D9B5;
+    --bar:#16161B;
+  }
+
+  *{box-sizing:border-box;}
+  [hidden]{display:none !important;}
+  body{margin:0;background:var(--ground);color:var(--text);font:400 17px/1.6 'Inter',system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;-webkit-font-smoothing:antialiased;padding-bottom:64px;}
+  h1,h2,h3{margin:0;text-wrap:balance;}
+  h1,h2{font-family:'Archivo Black','Arial Black',Impact,sans-serif;font-weight:400;letter-spacing:-0.01em;}
+  p{margin:0;}
+  a{color:var(--accent);text-underline-offset:3px;text-decoration-thickness:1px;}
+  :focus-visible{outline:2px solid var(--accent);outline-offset:3px;}
+  b,strong{font-weight:600;}
+  .wrap{max-width:42rem;margin:0 auto;padding-inline:clamp(16px,5vw,28px);}
+  .soft{color:var(--text-soft);}
+
+  .masthead{background:var(--band);color:var(--band-text);padding-block:clamp(36px,8vw,64px) clamp(28px,6vw,44px);}
+  .masthead .wrap{display:flex;flex-direction:column;gap:14px;}
+  .eyebrow{font-size:12px;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:#FF4F84;}
+  .masthead h1{font-size:clamp(2rem,7vw,3rem);line-height:1.05;}
+  .masthead .lede{font-size:clamp(1.02rem,2.6vw,1.15rem);color:var(--band-soft);max-width:40ch;line-height:1.5;}
+  .chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:4px;}
+  .chip{font-size:0.82rem;font-weight:600;padding:6px 11px;border:1px solid rgba(255,255,255,0.18);border-radius:999px;}
+
+  main{padding-block:clamp(28px,7vw,48px) 24px;}
+  .stack{display:flex;flex-direction:column;gap:clamp(40px,9vw,60px);}
+  main section{display:flex;flex-direction:column;gap:16px;scroll-margin-top:16px;}
+  main h2{font-size:clamp(1.35rem,4vw,1.7rem);line-height:1.15;}
+  .intro{color:var(--text-soft);margin-top:-6px;}
+
+  .panel{background:var(--surface);border:1px solid var(--rule);border-radius:8px;padding:18px 20px;}
+  .note,.warn{padding:14px 16px;border-radius:6px;display:flex;flex-direction:column;gap:6px;font-size:0.97rem;}
+  .note{background:var(--accent-soft);border:1px solid var(--accent);}
+  .warn{background:var(--warn-bg);border:1px solid var(--warn-rule);color:var(--warn-text);}
+  .note ul,.warn ul{margin:0;padding-left:1.2em;}
+
+  /* what's left to do */
+  .todo{list-style:none;margin:0;padding:0;border:1px solid var(--rule);border-radius:8px;background:var(--surface);}
+  .todo li + li{border-top:1px solid var(--rule);}
+  .todo a{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:14px 16px;color:var(--text);text-decoration:none;font-weight:600;}
+  .todo a:hover{background:var(--surface-2);}
+  .pill{font-size:0.75rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;padding:4px 9px;border-radius:999px;white-space:nowrap;}
+  .pill.todo-pill{color:var(--accent);background:var(--accent-soft);}
+  .pill.done-pill{color:var(--ok);background:var(--ok-soft);}
+
+  /* payment */
+  .pay-card{display:flex;flex-direction:column;gap:14px;}
+  .pay-head{display:flex;align-items:baseline;justify-content:space-between;gap:12px;flex-wrap:wrap;}
+  .pay-head h3{font-size:1.1rem;}
+  .amount{font-family:'Archivo Black','Arial Black',sans-serif;font-size:1.6rem;font-variant-numeric:tabular-nums;}
+  .pay-steps{margin:0;padding-left:1.3em;display:flex;flex-direction:column;gap:10px;}
+  .pay-steps li::marker{color:var(--accent);font-weight:700;}
+  .copy-row{display:inline-flex;align-items:center;gap:8px;flex-wrap:wrap;}
+  .code{font-weight:700;background:var(--surface-2);padding:2px 8px;border-radius:4px;overflow-wrap:anywhere;}
+  .paid{display:flex;align-items:center;gap:10px;color:var(--ok);font-weight:600;}
+  .qr{display:none;gap:16px;align-items:center;border-top:1px solid var(--rule);padding-top:14px;}
+  .qr img{width:132px;height:132px;border-radius:6px;background:#fff;padding:6px;}
+  @media (min-width:760px){.qr.has-qr{display:flex;}}
+  .small{font-size:0.92rem;}
+
+  /* fields */
+  .field{display:flex;flex-direction:column;gap:8px;min-width:0;}
+  .field > label,.q{font-weight:600;line-height:1.4;}
+  .hint{font-size:0.92rem;color:var(--text-soft);margin-top:-4px;}
+  input[type=text],input[type=email],input[type=url],input[type=tel],textarea{width:100%;font:inherit;font-size:16px;color:var(--text);background:var(--surface);border:1px solid var(--field-rule);border-radius:6px;padding:12px 14px;min-height:48px;}
+  textarea{min-height:104px;resize:vertical;line-height:1.5;}
+  input::placeholder,textarea::placeholder{color:var(--text-faint);}
+  input:focus-visible,textarea:focus-visible{outline:2px solid var(--accent);outline-offset:0;border-color:var(--accent);}
+  fieldset{border:0;margin:0;padding:0;min-width:0;display:flex;flex-direction:column;gap:8px;}
+  legend{font-weight:600;line-height:1.4;padding:0;margin-bottom:8px;}
+  .options{display:flex;flex-direction:column;gap:8px;}
+  .options.row{flex-direction:row;flex-wrap:wrap;}
+  .options.row .option{flex:1 1 150px;}
+  .option{display:flex;align-items:flex-start;gap:12px;padding:12px 14px;border:1px solid var(--field-rule);border-radius:6px;background:var(--surface);cursor:pointer;line-height:1.4;}
+  .option input{width:20px;height:20px;margin:1px 0 0;accent-color:var(--accent);flex:none;}
+  .option:has(input:checked){border-color:var(--accent);background:var(--accent-soft);}
+
+  /* uploads */
+  .file-input{position:absolute;width:1px;height:1px;opacity:0;overflow:hidden;}
+  .upload-btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;align-self:flex-start;min-height:48px;padding:0 20px;border:2px dashed var(--accent);border-radius:8px;color:var(--accent);font-weight:700;cursor:pointer;background:var(--surface);}
+  .upload-btn:hover{background:var(--accent-soft);}
+  .file-input:focus-visible + .upload-btn{outline:2px solid var(--accent);outline-offset:3px;}
+  .files{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px;}
+  .files:empty{display:none;}
+  .file{display:grid;grid-template-columns:52px minmax(0,1fr) auto;gap:12px;align-items:center;padding:8px;border:1px solid var(--rule);border-radius:8px;background:var(--surface);}
+  .thumb{width:52px;height:52px;border-radius:5px;background:var(--surface-2);display:grid;place-items:center;overflow:hidden;font-size:0.7rem;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:var(--text-faint);}
+  .thumb img{width:100%;height:100%;object-fit:cover;}
+  .fname{display:flex;flex-direction:column;min-width:0;font-weight:600;font-size:0.95rem;}
+  .fname > span:first-child{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+  .fname small{font-weight:400;color:var(--text-soft);font-size:0.85rem;}
+  .file.ok .fname small{color:var(--ok);}
+  .file.bad .fname small{color:var(--warn-rule);}
+  .file-actions{display:flex;gap:4px;}
+  .link-btn{background:none;border:0;color:var(--accent);font:inherit;font-size:0.9rem;font-weight:600;padding:10px 8px;cursor:pointer;border-radius:4px;}
+  .link-btn:disabled{color:var(--text-faint);cursor:default;}
+  .count{font-size:0.92rem;color:var(--text-soft);}
+
+  /* buttons */
+  .btn{display:inline-flex;align-items:center;justify-content:center;min-height:50px;padding:0 24px;border-radius:8px;border:2px solid var(--accent);background:var(--accent);color:var(--on-accent);font:inherit;font-weight:700;cursor:pointer;}
+  .btn.ghost{background:transparent;color:var(--accent);}
+  .btn:disabled{opacity:0.55;cursor:default;}
+  .mini{border:1px solid var(--field-rule);background:var(--surface);color:var(--text);font:inherit;font-size:0.85rem;font-weight:600;padding:5px 12px;border-radius:999px;cursor:pointer;}
+  .send-row{display:flex;flex-wrap:wrap;gap:10px;}
+  .sent{background:var(--ok-soft);border:1px solid var(--ok);border-radius:8px;padding:16px 18px;display:flex;flex-direction:column;gap:6px;}
+  .sent h3{color:var(--ok);font-size:1.1rem;}
+  .privacy{font-size:0.9rem;color:var(--text-faint);}
+
+  /* save status */
+  .savebar{position:fixed;left:0;right:0;bottom:0;background:var(--bar);border-top:1px solid var(--rule);z-index:5;}
+  .savebar .wrap{display:flex;justify-content:space-between;gap:12px;padding-block:12px;font-size:0.9rem;font-weight:600;}
+  #save-status.bad{color:var(--warn-rule);}
+  #progress{color:var(--text-soft);font-variant-numeric:tabular-nums;}
+
+  footer{background:var(--band);color:var(--band-soft);margin-top:48px;padding-block:28px;font-size:0.95rem;}
+  footer .wrap{display:flex;flex-direction:column;gap:4px;}
+  footer .sig{font-family:'Archivo Black','Arial Black',sans-serif;color:var(--band-text);font-size:1.05rem;}
+  footer a{color:#FF4F84;}
+</style>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="wrap">
+    <p class="eyebrow">8888 Media &middot; Your Website Project</p>
+    <h1>Let&rsquo;s Build Your Website</h1>
+    <p class="lede" id="lede">Everything I need from you is on this page. It saves as you go, so you can stop anytime and pick up right where you left off.</p>
+    <div class="chips">
+      <span class="chip">About 15 minutes</span>
+      <span class="chip">Saves as you go</span>
+      <span class="chip">Phone photos are fine</span>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+  <p id="loading" class="soft">Loading your project&hellip;</p>
+
+  <div id="bad-link" class="warn" hidden>
+    <b>This link isn&rsquo;t working.</b>
+    <p id="bad-link-text">Make sure you opened the whole link from Mike&rsquo;s email or message. If it still doesn&rsquo;t work, email <a href="mailto:mike@8888media.co">mike@8888media.co</a> for a new one.</p>
+  </div>
+
+  <div id="app" class="stack" hidden>
+    <section aria-labelledby="todo-h">
+      <h2 id="todo-h">What I Need From You</h2>
+      <ul class="todo" id="todo"></ul>
+    </section>
+
+    <section id="pay" aria-labelledby="pay-h" hidden>
+      <h2 id="pay-h">Payment</h2>
+      <div id="pay-list" class="stack" style="gap:16px"></div>
+    </section>
+
+    <form id="intake" class="stack" novalidate>
+      <section id="account" data-section="Your Website Account" aria-labelledby="account-h">
+        <h2 id="account-h">Your Website Account</h2>
+        <p class="intro">Follow the <a href="/setup/" target="_blank" rel="noopener">setup guide</a> (about 15 minutes), then check these off. The account and your web address belong to you.</p>
+        <div class="options">
+          <label class="option"><input type="checkbox" id="acct_created" data-q="acct_created" data-label="I created my free Cloudflare account"><span>I created my free Cloudflare account</span></label>
+          <label class="option"><input type="checkbox" id="acct_domain" data-q="acct_domain" data-label="I bought my web address"><span>I bought my web address</span></label>
+          <label class="option"><input type="checkbox" id="acct_invite" data-q="acct_invite" data-label="I added mike@8888media.co as a helper"><span>I added mike@8888media.co as a helper</span></label>
+        </div>
+        <div class="field">
+          <label for="q_domain">What&rsquo;s your web address, or the one you&rsquo;d like?</label>
+          <input type="text" id="q_domain" data-q="q_domain" autocomplete="off" inputmode="url" placeholder="yourbusiness.com">
+        </div>
+      </section>
+
+      <section id="about" data-section="About Your Business" aria-labelledby="about-h">
+        <h2 id="about-h">About Your Business</h2>
+        <div class="field">
+          <label for="q_name">What&rsquo;s the exact business name, the way you want it on the site?</label>
+          <input type="text" id="q_name" data-q="q_name" autocomplete="organization">
+        </div>
+        <div class="field">
+          <label for="q_what">In a sentence or two, what do you do, and for whom?</label>
+          <textarea id="q_what" data-q="q_what" rows="3"></textarea>
+        </div>
+        <div class="field">
+          <label for="q_area">What area do you serve?</label>
+          <input type="text" id="q_area" data-q="q_area" placeholder="Towns, a county, or &ldquo;within 20 miles of&hellip;&rdquo;">
+        </div>
+        <div class="field">
+          <label for="q_hours">What are your hours?</label>
+          <textarea id="q_hours" data-q="q_hours" rows="3" placeholder="Include seasonal or holiday hours if they change"></textarea>
+        </div>
+        <div class="field">
+          <label for="q_contact">What phone number, email and address should customers see?</label>
+          <p class="hint">Leave out anything you&rsquo;d rather keep private, like a home address.</p>
+          <textarea id="q_contact" data-q="q_contact" rows="3"></textarea>
+        </div>
+        <div class="field">
+          <label for="q_links">Where can people find you online now?</label>
+          <p class="hint">Paste links to your Facebook, Instagram, Google listing, Yelp, or a website you have now.</p>
+          <textarea id="q_links" data-q="q_links" rows="3"></textarea>
+        </div>
+      </section>
+
+      <section id="services" data-section="Your Services" aria-labelledby="services-h">
+        <h2 id="services-h">Your Services</h2>
+        <div class="field">
+          <label for="q_services">What services or products should the site list?</label>
+          <p class="hint">Include prices or &ldquo;starting at&rdquo; prices if you&rsquo;re happy to show them.</p>
+          <textarea id="q_services" data-q="q_services" rows="5"></textarea>
+        </div>
+        <div class="field">
+          <label for="q_main">Which one do you most want people to book or buy?</label>
+          <input type="text" id="q_main" data-q="q_main">
+        </div>
+        <div class="field">
+          <label for="q_booking">Do customers book appointments? If so, which app do you use now?</label>
+          <p class="hint">For example Square, Booksy, Vagaro or Calendly. Say &ldquo;none&rdquo; if they just call or message you.</p>
+          <input type="text" id="q_booking" data-q="q_booking">
+        </div>
+        <div class="field" id="pages-field" hidden>
+          <label for="q_pages">Which pages do you want? Up to five.</label>
+          <p class="hint">For example Home, Services, About, Gallery and Contact.</p>
+          <textarea id="q_pages" data-q="q_pages" rows="3"></textarea>
+        </div>
+      </section>
+
+      <section id="customers" data-section="Your Customers" aria-labelledby="customers-h">
+        <h2 id="customers-h">Your Customers</h2>
+        <div class="field">
+          <label for="q_who">Who usually hires you?</label>
+          <textarea id="q_who" data-q="q_who" rows="3"></textarea>
+        </div>
+        <div class="field">
+          <label for="q_love">What do customers say they love about you?</label>
+          <p class="hint">Pasting a review or two is perfect.</p>
+          <textarea id="q_love" data-q="q_love" rows="4"></textarea>
+        </div>
+        <fieldset>
+          <legend>Can I quote your online reviews on the site?</legend>
+          <div class="options row">
+            <label class="option"><input type="radio" name="q_reviews" data-q="q_reviews" value="Yes, quote them"><span>Yes, quote them</span></label>
+            <label class="option"><input type="radio" name="q_reviews" data-q="q_reviews" value="Ask me first"><span>Ask me first</span></label>
+          </div>
+        </fieldset>
+      </section>
+
+      <section id="look" data-section="Look and Feel" aria-labelledby="look-h">
+        <h2 id="look-h">Look and Feel</h2>
+        <div class="field">
+          <label for="q_colors">Do you have brand colors, or should I pull them from your logo and posts?</label>
+          <input type="text" id="q_colors" data-q="q_colors">
+        </div>
+        <div class="field">
+          <label for="q_words">What three words should people feel when they see your site?</label>
+          <input type="text" id="q_words" data-q="q_words" placeholder="Friendly, reliable, local">
+        </div>
+        <div class="field">
+          <label for="q_sites">Any websites you love, or really don&rsquo;t like?</label>
+          <p class="hint">Links are great. A sentence on why is even better.</p>
+          <textarea id="q_sites" data-q="q_sites" rows="3"></textarea>
+        </div>
+      </section>
+
+      <section id="photos" data-section="Logo and Photos" aria-labelledby="photos-h">
+        <h2 id="photos-h">Logo and Photos</h2>
+        <div class="field">
+          <p class="q">Your logo</p>
+          <p class="hint">Any version works: a photo of your sign, a PDF, or the original file from your designer.</p>
+          <input type="file" id="logo-input" class="file-input" accept="image/*,.pdf,.svg,.ai,.eps,.psd">
+          <label for="logo-input" class="upload-btn">Add Your Logo</label>
+          <ul class="files" id="logo-files" aria-live="polite"></ul>
+          <label class="option"><input type="checkbox" id="no_logo" data-q="no_logo" data-label="I don't have a logo; make a simple one from my business name"><span>I don&rsquo;t have a logo. Make a simple one from my business name.</span></label>
+        </div>
+        <div class="field">
+          <p class="q">Your favorite photos</p>
+          <p class="hint">10 to 20 is perfect: your work, your space, your team, happy customers. Phone photos are fine.</p>
+          <input type="file" id="photo-input" class="file-input" accept="image/*" multiple>
+          <label for="photo-input" class="upload-btn">Add Photos</label>
+          <p class="count" id="photo-count"></p>
+          <ul class="files" id="photo-files" aria-live="polite"></ul>
+        </div>
+        <fieldset>
+          <legend>Are these photos yours to use, and is everyone in them OK being on the site?</legend>
+          <div class="options">
+            <label class="option"><input type="radio" name="q_rights" data-q="q_rights" value="Yes to both"><span>Yes to both</span></label>
+            <label class="option"><input type="radio" name="q_rights" data-q="q_rights" value="Not sure about some of them"><span>Not sure about some of them</span></label>
+          </div>
+        </fieldset>
+        <div class="field">
+          <label for="q_rights_note">Anything I should know about the photos?</label>
+          <input type="text" id="q_rights_note" data-q="q_rights_note" placeholder="Optional">
+        </div>
+        <p class="hint">A file won&rsquo;t upload? Email it to <a href="mailto:mike@8888media.co">mike@8888media.co</a> instead.</p>
+      </section>
+
+      <section id="messages" data-section="Messages and Email" aria-labelledby="messages-h">
+        <h2 id="messages-h">Messages and Email</h2>
+        <div class="field">
+          <label for="q_form_email">Which email should messages from your website&rsquo;s contact form go to?</label>
+          <input type="email" id="q_form_email" data-q="q_form_email" autocomplete="email">
+        </div>
+        <fieldset>
+          <legend>Want a free email like info@yourbusiness.com that forwards to that inbox?</legend>
+          <div class="options row">
+            <label class="option"><input type="radio" name="q_forward" data-q="q_forward" value="Yes, please"><span>Yes, please</span></label>
+            <label class="option"><input type="radio" name="q_forward" data-q="q_forward" value="No, thanks"><span>No, thanks</span></label>
+          </div>
+        </fieldset>
+        <fieldset>
+          <legend>What&rsquo;s the best way to reach you about previews?</legend>
+          <div class="options row">
+            <label class="option"><input type="radio" name="q_reach" data-q="q_reach" value="Text"><span>Text</span></label>
+            <label class="option"><input type="radio" name="q_reach" data-q="q_reach" value="Call"><span>Call</span></label>
+            <label class="option"><input type="radio" name="q_reach" data-q="q_reach" value="Email"><span>Email</span></label>
+          </div>
+        </fieldset>
+      </section>
+
+      <section id="timing" data-section="Timing and Anything Else" aria-labelledby="timing-h">
+        <h2 id="timing-h">Timing and Anything Else</h2>
+        <div class="field">
+          <label for="q_date">Is there a date you need the site by?</label>
+          <p class="hint">A grand opening, a busy season, an event. Leave it blank if not.</p>
+          <input type="text" id="q_date" data-q="q_date">
+        </div>
+        <div class="field">
+          <label for="q_else">Is there anything you&rsquo;d want on the site that we haven&rsquo;t covered?</label>
+          <textarea id="q_else" data-q="q_else" rows="4"></textarea>
+        </div>
+      </section>
+
+      <section id="send" aria-labelledby="send-h">
+        <h2 id="send-h">Send It to Mike</h2>
+        <p class="intro">When you&rsquo;re done, send it over. You can still come back to this link afterward to add photos or change an answer.</p>
+        <div id="send-note" class="note" hidden></div>
+        <div class="send-row">
+          <button type="submit" class="btn" id="send-btn">Send It to Mike</button>
+          <button type="button" class="btn ghost" id="send-anyway" hidden>Send Anyway</button>
+        </div>
+        <div id="sent" class="sent" hidden>
+          <h3>Sent. Thank you!</h3>
+          <p id="sent-text">I&rsquo;ll look it all over and get back to you within a couple of days. If you think of something later, come back to this link, change it, and send it again.</p>
+        </div>
+        <p class="privacy">Your answers and photos go only to 8888 Media and are used only to build your website.</p>
+      </section>
+    </form>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <p class="sig">8888 Media</p>
+    <p>Questions? Email <a href="mailto:mike@8888media.co">mike@8888media.co</a>.</p>
+  </div>
+</footer>
+
+<div class="savebar" id="savebar" hidden>
+  <div class="wrap">
+    <span id="save-status" role="status" aria-live="polite">All changes saved</span>
+    <span id="progress"></span>
+  </div>
+</div>
+
+<script>
+(() => {
+  "use strict";
+
+  const ZELLE_TAG = "8888media";
+  const ZELLE_QR = ""; // Set to "/start/zelle-qr.png" once Mike saves his Zelle QR code there.
+  const CONTACT = "mike@8888media.co";
+  const MAX_BYTES = 25 * 1024 * 1024;
+  const SHRINK_OVER = 2.5 * 1024 * 1024; // photos bigger than this are resized before upload
+  const MAX_EDGE = 2400;
+  const REQUIRED = [
+    ["q_name", "The business name"],
+    ["q_what", "What you do"],
+    ["q_services", "Your services"],
+    ["q_form_email", "Where contact-form messages should go"],
+  ];
+
+  const $ = (sel, root = document) => root.querySelector(sel);
+  const form = $("#intake");
+  const hash = new URLSearchParams(location.hash.slice(1));
+  const client = hash.get("c") || "";
+  const key = hash.get("k") || "";
+
+  let project = null;
+  let dirty = false;
+  let saveTimer = 0;
+  let chain = Promise.resolve();
+  const queue = [];
+  let running = 0;
+
+  // ---------- server ----------
+  function api(path, opts = {}) {
+    return fetch("/api/intake/" + path, {
+      ...opts,
+      headers: { "X-Intake-Client": client, "X-Intake-Key": key, ...(opts.headers || {}) },
+    });
+  }
+  async function errorFrom(res) {
+    try { return (await res.json()).error || ""; } catch { return ""; }
+  }
+
+  // ---------- boot ----------
+  (async () => {
+    if (!client || !key) return badLink();
+    let res;
+    try { res = await api("state"); }
+    catch { return badLink("Couldn’t reach the server. Check your connection, then reload this page."); }
+    if (res.status === 403) return badLink();
+    if (!res.ok) return badLink("Something went wrong loading your project. Reload this page to try again.");
+    project = await res.json();
+    project.files = Array.isArray(project.files) ? project.files : [];
+    start();
+  })();
+
+  function badLink(text) {
+    $("#loading").hidden = true;
+    if (text) $("#bad-link-text").textContent = text;
+    $("#bad-link").hidden = false;
+  }
+
+  function start() {
+    const first = (project.owner || "").trim();
+    const biz = (project.business || "").trim();
+    if (biz) {
+      $("#lede").textContent = `${first ? `Hi ${first}! ` : ""}Everything I need to build the ${biz} website is on this page. It saves as you go, so you can stop anytime and pick up right where you left off.`;
+      document.title = `${biz} Website Project | 8888 Media`;
+    }
+    $("#pages-field").hidden = project.package !== "business";
+    applyAnswers(project.answers || {});
+    if (!$("#q_name").value && biz) $("#q_name").value = biz;
+    for (const f of project.files) fileRow({ ...f, done: true });
+    renderPayments();
+    if (project.submittedAt) showSent(false);
+    $("#loading").hidden = true;
+    $("#app").hidden = false;
+    $("#savebar").hidden = false;
+    refresh();
+  }
+
+  // ---------- answers ----------
+  function fields() {
+    return [...form.querySelectorAll("[data-q]")].filter((el) => !el.closest("[hidden]"));
+  }
+
+  function collect() {
+    const answers = {};
+    const questions = [];
+    const seen = new Set();
+    for (const el of fields()) {
+      const id = el.dataset.q;
+      if (seen.has(id)) {
+        if (el.type === "radio" && el.checked) answers[id] = el.value;
+        continue;
+      }
+      seen.add(id);
+      let label;
+      if (el.type === "radio") {
+        label = el.closest("fieldset").querySelector("legend").textContent.trim();
+        answers[id] = el.checked ? el.value : "";
+      } else if (el.type === "checkbox") {
+        label = el.dataset.label;
+        answers[id] = el.checked;
+      } else {
+        label = form.querySelector(`label[for="${id}"]`).textContent.trim();
+        answers[id] = el.value.trim();
+      }
+      questions.push({ id, section: el.closest("section").dataset.section || "", label });
+    }
+    return { answers, questions };
+  }
+
+  function applyAnswers(answers) {
+    for (const el of fields()) {
+      const v = answers[el.dataset.q];
+      if (v === undefined) continue;
+      if (el.type === "radio") el.checked = el.value === v;
+      else if (el.type === "checkbox") el.checked = v === true;
+      else el.value = typeof v === "string" ? v : "";
+    }
+  }
+
+  function onEdit(e) {
+    if (!e.target.dataset || !e.target.dataset.q) return;
+    dirty = true;
+    setStatus("Saving…");
+    clearTimeout(saveTimer);
+    saveTimer = setTimeout(() => save(false), 1000);
+    refresh();
+  }
+  form.addEventListener("input", onEdit);
+  form.addEventListener("change", onEdit);
+
+  // Saves run one at a time, in order, so a slow save never overwrites a newer one.
+  function save(submit) {
+    clearTimeout(saveTimer);
+    const run = chain.then(() => doSave(submit));
+    chain = run.catch(() => {});
+    return run;
+  }
+
+  async function doSave(submit) {
+    const body = JSON.stringify({ ...collect(), submit });
+    dirty = false;
+    setStatus("Saving…");
+    let res;
+    try {
+      res = await api("answers", { method: "PUT", headers: { "Content-Type": "application/json" }, body });
+    } catch {
+      dirty = true;
+      setStatus("Not saved yet. Check your connection.", true);
+      retryLater();
+      throw new Error("Couldn’t reach the server. Check your connection and try again.");
+    }
+    if (!res.ok) {
+      dirty = true;
+      const msg = (await errorFrom(res)) || "Not saved yet. Try again in a moment.";
+      setStatus(msg, true);
+      throw new Error(msg);
+    }
+    const out = await res.json();
+    if (out.submittedAt) project.submittedAt = out.submittedAt;
+    setStatus(dirty ? "Saving…" : "All changes saved");
+    return out;
+  }
+
+  function retryLater() {
+    clearTimeout(saveTimer);
+    saveTimer = setTimeout(() => { if (dirty) save(false).catch(() => {}); }, 8000);
+  }
+
+  // Leaving the page or switching apps: send whatever hasn't been saved yet.
+  document.addEventListener("visibilitychange", () => {
+    if (document.visibilityState !== "hidden" || !dirty || !project) return;
+    clearTimeout(saveTimer);
+    dirty = false;
+    api("answers", {
+      method: "PUT",
+      keepalive: true,
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ ...collect(), submit: false }),
+    }).catch(() => { dirty = true; });
+  });
+
+  function setStatus(text, bad) {
+    const s = $("#save-status");
+    s.textContent = text;
+    s.classList.toggle("bad", !!bad);
+  }
+
+  // ---------- uploads ----------
+  $("#logo-input").addEventListener("change", (e) => { addFiles(e.target.files, "logo"); e.target.value = ""; });
+  $("#photo-input").addEventListener("change", (e) => { addFiles(e.target.files, "photos"); e.target.value = ""; });
+
+  function addFiles(list, field) {
+    for (const file of list) {
+      const row = fileRow({ name: file.name, size: file.size, field, local: file });
+      queue.push({ file, field, row });
+    }
+    pump();
+    refresh();
+  }
+
+  function pump() {
+    while (running < 2 && queue.length) {
+      const job = queue.shift();
+      running++;
+      uploadOne(job).finally(() => { running--; pump(); refresh(); });
+    }
+  }
+
+  async function uploadOne(job) {
+    const { file, field, row } = job;
+    row.remove.disabled = true;
+    setRow(row, "Getting ready…");
+    let blob = file;
+    let name = file.name;
+    if (field === "photos") {
+      const smaller = await shrink(file);
+      if (smaller) { blob = smaller; name = name.replace(/\.[^.]+$/, "") + ".jpg"; }
+    }
+    if (blob.size > MAX_BYTES) return failRow(row, `Over 25 MB. Email it to ${CONTACT} instead.`, null);
+
+    return new Promise((resolve) => {
+      const xhr = new XMLHttpRequest();
+      xhr.open("POST", "/api/intake/files");
+      xhr.setRequestHeader("X-Intake-Client", client);
+      xhr.setRequestHeader("X-Intake-Key", key);
+      xhr.setRequestHeader("X-File-Name", encodeURIComponent(name));
+      xhr.setRequestHeader("X-File-Field", field);
+      xhr.setRequestHeader("Content-Type", blob.type || "application/octet-stream");
+      xhr.upload.onprogress = (e) => {
+        if (e.lengthComputable) setRow(row, `Uploading ${Math.round((e.loaded / e.total) * 100)}%`);
+      };
+      xhr.onload = () => {
+        let data = {};
+        try { data = JSON.parse(xhr.responseText); } catch { data = {}; }
+        if (xhr.status === 201 && data.id) {
+          row.li.dataset.id = data.id;
+          project.files.push(data);
+          setRow(row, `${size(blob.size)} · Uploaded`, "ok");
+          row.remove.disabled = false;
+        } else {
+          failRow(row, data.error || "That didn’t upload.", job);
+        }
+        resolve();
+      };
+      xhr.onerror = () => { failRow(row, "That didn’t upload. Check your connection.", job); resolve(); };
+      xhr.send(blob);
+    });
+  }
+
+  // Big phone photos are resized to 2,400 pixels on the long side: plenty for a website,
+  // and far faster to upload over a phone connection. Logos are never touched.
+  async function shrink(file) {
+    if (file.size <= SHRINK_OVER || !/^image\/(jpeg|png|webp|heic|heif)$/i.test(file.type)) return null;
+    try {
+      const bmp = await createImageBitmap(file);
+      const scale = Math.min(1, MAX_EDGE / Math.max(bmp.width, bmp.height));
+      const w = Math.round(bmp.width * scale);
+      const h = Math.round(bmp.height * scale);
+      const canvas = document.createElement("canvas");
+      canvas.width = w;
+      canvas.height = h;
+      const ctx = canvas.getContext("2d");
+      ctx.fillStyle = "#fff";
+      ctx.fillRect(0, 0, w, h);
+      ctx.drawImage(bmp, 0, 0, w, h);
+      if (bmp.close) bmp.close();
+      const out = await new Promise((r) => canvas.toBlob(r, "image/jpeg", 0.86));
+      return out && out.size < file.size ? out : null;
+    } catch {
+      return null;
+    }
+  }
+
+  function fileRow(f) {
+    const li = document.createElement("li");
+    li.className = "file";
+    if (f.id) li.dataset.id = f.id;
+
+    const thumb = document.createElement("span");
+    thumb.className = "thumb";
+    if (f.local && /^image\/(jpeg|png|webp|gif)$/i.test(f.local.type)) {
+      const img = document.createElement("img");
+      img.alt = "";
+      img.src = URL.createObjectURL(f.local);
+      img.onload = () => URL.revokeObjectURL(img.src);
+      thumb.append(img);
+    } else {
+      thumb.textContent = (f.name.split(".").pop() || "file").slice(0, 4);
+    }
+
+    const meta = document.createElement("span");
+    meta.className = "fname";
+    const nameEl = document.createElement("span");
+    nameEl.textContent = f.name;
+    const status = document.createElement("small");
+    meta.append(nameEl, status);
+
+    const actions = document.createElement("span");
+    actions.className = "file-actions";
+    const remove = document.createElement("button");
+    remove.type = "button";
+    remove.className = "link-btn";
+    remove.textContent = "Remove";
+    actions.append(remove);
+
+    li.append(thumb, meta, actions);
+    $(f.field === "logo" ? "#logo-files" : "#photo-files").append(li);
+
+    const row = { li, status, remove, actions, field: f.field };
+    remove.addEventListener("click", () => removeRow(row));
+    if (f.done) setRow(row, `${size(f.size)} · Uploaded`, "ok");
+    return row;
+  }
+
+  function setRow(row, text, tone) {
+    row.status.textContent = text;
+    row.li.classList.toggle("ok", tone === "ok");
+    row.li.classList.toggle("bad", tone === "bad");
+  }
+
+  function failRow(row, text, job) {
+    setRow(row, text, "bad");
+    row.remove.disabled = false;
+    if (job && !row.retry) {
+      const retry = document.createElement("button");
+      retry.type = "button";
+      retry.className = "link-btn";
+      retry.textContent = "Try Again";
+      retry.addEventListener("click", () => {
+        retry.remove();
+        row.retry = null;
+        queue.push(job);
+        pump();
+      });
+      row.retry = retry;
+      row.actions.prepend(retry);
+    }
+  }
+
+  async function removeRow(row) {
+    const id = row.li.dataset.id;
+    if (!id) { row.li.remove(); refresh(); return; }
+    if (row.remove.dataset.armed !== "1") {
+      row.remove.dataset.armed = "1";
+      row.remove.textContent = "Tap to Remove";
+      setTimeout(() => { row.remove.dataset.armed = ""; row.remove.textContent = "Remove"; }, 3500);
+      return;
+    }
+    row.remove.disabled = true;
+    const res = await api("files/" + id, { method: "DELETE" }).catch(() => null);
+    if (res && res.ok) {
+      project.files = project.files.filter((f) => f.id !== id);
+      row.li.remove();
+      refresh();
+    } else {
+      row.remove.disabled = false;
+      row.remove.dataset.armed = "";
+      row.remove.textContent = "Remove";
+      setRow(row, "Couldn’t remove it. Try again.", "bad");
+    }
+  }
+
+  function size(bytes) {
+    return bytes >= 1024 * 1024 ? `${(bytes / 1024 / 1024).toFixed(1)} MB` : `${Math.max(1, Math.round(bytes / 1024))} KB`;
+  }
+
+  // ---------- payments ----------
+  function money(n) { return "$" + Number(n).toLocaleString("en-US"); }
+
+  function renderPayments() {
+    const pays = (project.payments || []).filter((p) => p && p.amount);
+    $("#pay").hidden = !pays.length;
+    const box = $("#pay-list");
+    box.textContent = "";
+    for (const p of pays) {
+      const card = document.createElement("div");
+      card.className = "panel pay-card";
+      const head = document.createElement("div");
+      head.className = "pay-head";
+      const h = document.createElement("h3");
+      h.textContent = p.label || "Payment";
+      const amt = document.createElement("span");
+      amt.className = "amount";
+      amt.textContent = money(p.amount);
+      head.append(h, amt);
+      card.append(head);
+
+      if (p.status === "paid") {
+        const done = document.createElement("p");
+        done.className = "paid";
+        done.textContent = "Received. Thank you!";
+        card.append(done);
+      } else {
+        const memo = `${project.business || "Your business"} ${String(p.label || "payment").toLowerCase()}`;
+        const steps = document.createElement("ol");
+        steps.className = "pay-steps";
+        steps.append(
+          step("Open your bank’s app and choose ", bold("Zelle"), "."),
+          step("Send to the Zelle tag ", copyable(ZELLE_TAG), ". Before you confirm, Zelle shows the name ", bold("8888 MEDIA LLC"), "."),
+          step("Enter ", bold(money(p.amount)), " and put this in the memo: ", copyable(memo)),
+        );
+        card.append(steps);
+        const after = document.createElement("p");
+        after.className = "soft small";
+        after.textContent = `I’ll mark it received here once it arrives. Rather pay by check? Email ${CONTACT}.`;
+        card.append(after);
+        if (ZELLE_QR) {
+          const qr = document.createElement("div");
+          qr.className = "qr has-qr";
+          const img = document.createElement("img");
+          img.src = ZELLE_QR;
+          img.alt = "Zelle QR code for 8888 MEDIA LLC";
+          const t = document.createElement("p");
+          t.className = "soft small";
+          t.textContent = "On a computer? Scan this with your bank’s app instead of typing the tag.";
+          qr.append(img, t);
+          card.append(qr);
+        }
+      }
+      box.append(card);
+    }
+  }
+
+  function step(...parts) {
+    const li = document.createElement("li");
+    for (const p of parts) li.append(p);
+    return li;
+  }
+  function bold(text) { const b = document.createElement("b"); b.textContent = text; return b; }
+  function copyable(text) {
+    const wrap = document.createElement("span");
+    wrap.className = "copy-row";
+    const code = document.createElement("span");
+    code.className = "code";
+    code.textContent = text;
+    const btn = document.createElement("button");
+    btn.type = "button";
+    btn.className = "mini";
+    btn.textContent = "Copy";
+    btn.addEventListener("click", () => copy(text, btn));
+    wrap.append(code, btn);
+    return wrap;
+  }
+  async function copy(text, btn) {
+    try {
+      await navigator.clipboard.writeText(text);
+    } catch {
+      const t = document.createElement("textarea");
+      t.value = text;
+      t.setAttribute("readonly", "");
+      t.style.position = "fixed";
+      t.style.opacity = "0";
+      document.body.append(t);
+      t.select();
+      try { document.execCommand("copy"); } catch { /* the text is still selected for a manual copy */ }
+      t.remove();
+    }
+    btn.textContent = "Copied";
+    setTimeout(() => { btn.textContent = "Copy"; }, 1600);
+  }
+
+  // ---------- progress and the to-do list ----------
+  function refresh() {
+    const { answers, questions } = collect();
+    const answered = questions.filter((q) => answers[q.id] === true || (typeof answers[q.id] === "string" && answers[q.id])).length;
+    $("#progress").textContent = `${answered} of ${questions.length} answered`;
+
+    const photos = project.files.filter((f) => f.field === "photos").length;
+    const logos = project.files.filter((f) => f.field === "logo").length;
+    const pending = running + queue.length;
+    $("#photo-count").textContent = photos
+      ? `${photos} photo${photos === 1 ? "" : "s"} uploaded${photos < 10 ? ". Add a few more if you have them." : ". Nice!"}`
+      : "";
+    if (pending) $("#photo-count").textContent = `Uploading ${pending} more…`;
+
+    const items = [];
+    for (const p of project.payments || []) {
+      if (p && p.amount) items.push([`Pay the ${String(p.label || "payment").toLowerCase()}`, "#pay", p.status === "paid"]);
+    }
+    items.push(["Set up your website account", "#account", !!(answers.acct_created && answers.acct_domain && answers.acct_invite)]);
+    items.push(["Answer the questions and add photos", "#about", !!project.submittedAt]);
+    const list = $("#todo");
+    list.textContent = "";
+    for (const [text, href, done] of items) {
+      const li = document.createElement("li");
+      const a = document.createElement("a");
+      a.href = href;
+      const t = document.createElement("span");
+      t.textContent = text;
+      const pill = document.createElement("span");
+      pill.className = "pill " + (done ? "done-pill" : "todo-pill");
+      pill.textContent = done ? "Done" : "To Do";
+      a.append(t, pill);
+      li.append(a);
+      list.append(li);
+    }
+    // Logos count toward "has artwork" for the send check.
+    project.hasArt = photos + logos > 0;
+  }
+
+  // ---------- send ----------
+  form.addEventListener("submit", (e) => { e.preventDefault(); send(false); });
+  $("#send-anyway").addEventListener("click", () => send(true));
+
+  async function send(force) {
+    const note = $("#send-note");
+    if (running || queue.length) {
+      note.textContent = "Hang on, your photos are still uploading. Send it once they finish.";
+      note.hidden = false;
+      return;
+    }
+    const { answers } = collect();
+    const blanks = REQUIRED.filter(([id]) => !answers[id]).map(([, label]) => label);
+    if (!project.hasArt && !answers.no_logo) blanks.push("Your logo or photos");
+    if (blanks.length && !force) {
+      note.textContent = "";
+      const p = document.createElement("p");
+      p.textContent = "A few things are still blank. Fill them in if you can, or send it anyway and we’ll sort them out together:";
+      const ul = document.createElement("ul");
+      for (const b of blanks) { const li = document.createElement("li"); li.textContent = b; ul.append(li); }
+      note.append(p, ul);
+      note.hidden = false;
+      $("#send-anyway").hidden = false;
+      return;
+    }
+    note.hidden = true;
+    $("#send-anyway").hidden = true;
+    const btn = $("#send-btn");
+    btn.disabled = true;
+    btn.textContent = "Sending…";
+    try {
+      await save(true);
+      showSent(true);
+    } catch (err) {
+      note.textContent = err.message || "That didn’t send. Check your connection and try again.";
+      note.hidden = false;
+    } finally {
+      btn.disabled = false;
+      btn.textContent = project.submittedAt ? "Send Updates to Mike" : "Send It to Mike";
+      refresh();
+    }
+  }
+
+  function showSent(justNow) {
+    $("#sent").hidden = false;
+    $("#send-btn").textContent = "Send Updates to Mike";
+    if (!justNow) {
+      const when = new Date(project.submittedAt).toLocaleDateString("en-US", { month: "long", day: "numeric" });
+      $("#sent-text").textContent = `You sent this on ${when}. If you change something or add photos, send it again so I know.`;
+    } else {
+      $("#sent").scrollIntoView({ behavior: "smooth", block: "center" });
+    }
+  }
+})();
+</script>
+</body>
+</html>
