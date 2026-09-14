@@ -407,16 +407,16 @@
       </section>
 
       <section id="send" aria-labelledby="send-h">
-        <h2 id="send-h">Send It to Mike</h2>
-        <p class="intro">When you&rsquo;re done, send it over. You can still come back to this link afterward to add photos or change an answer.</p>
+        <h2 id="send-h">Submit Your Answers</h2>
+        <p class="intro">When you&rsquo;re done, submit your answers. You can still come back to this link afterward to add photos or change an answer.</p>
         <div id="send-note" class="note" hidden></div>
         <div class="send-row">
-          <button type="submit" class="btn" id="send-btn">Send It to Mike</button>
-          <button type="button" class="btn ghost" id="send-anyway" hidden>Send Anyway</button>
+          <button type="submit" class="btn" id="send-btn">Submit</button>
+          <button type="button" class="btn ghost" id="send-anyway" hidden>Submit Anyway</button>
         </div>
         <div id="sent" class="sent" hidden>
-          <h3>Sent. Thank you!</h3>
-          <p id="sent-text">I&rsquo;ll look it all over and get back to you within a couple of days. If you think of something later, come back to this link, change it, and send it again.</p>
+          <h3>Submitted. Thank you!</h3>
+          <p id="sent-text">I&rsquo;ll look it all over and get back to you within a couple of days. If you think of something later, come back to this link, change it, and submit again.</p>
         </div>
         <p class="privacy">Your answers and photos go only to 8888 Media and are used only to build your website.</p>
       </section>
@@ -947,7 +947,7 @@
   async function send(force) {
     const note = $("#send-note");
     if (running || queue.length) {
-      note.textContent = "Hang on, your photos are still uploading. Send it once they finish.";
+      note.textContent = "Hang on, your photos are still uploading. Submit once they finish.";
       note.hidden = false;
       return;
     }
@@ -957,7 +957,7 @@
     if (blanks.length && !force) {
       note.textContent = "";
       const p = document.createElement("p");
-      p.textContent = "A few things are still blank. Fill them in if you can, or send it anyway and we’ll sort them out together:";
+      p.textContent = "A few things are still blank. Fill them in if you can, or submit anyway and we’ll sort them out together:";
       const ul = document.createElement("ul");
       for (const b of blanks) { const li = document.createElement("li"); li.textContent = b; ul.append(li); }
       note.append(p, ul);
@@ -969,26 +969,26 @@
     $("#send-anyway").hidden = true;
     const btn = $("#send-btn");
     btn.disabled = true;
-    btn.textContent = "Sending…";
+    btn.textContent = "Submitting…";
     try {
       await save(true);
       showSent(true);
     } catch (err) {
-      note.textContent = err.message || "That didn’t send. Check your connection and try again.";
+      note.textContent = err.message || "That didn’t go through. Check your connection and try again.";
       note.hidden = false;
     } finally {
       btn.disabled = false;
-      btn.textContent = project.submittedAt ? "Send Updates to Mike" : "Send It to Mike";
+      btn.textContent = project.submittedAt ? "Submit Updates" : "Submit";
       refresh();
     }
   }
 
   function showSent(justNow) {
     $("#sent").hidden = false;
-    $("#send-btn").textContent = "Send Updates to Mike";
+    $("#send-btn").textContent = "Submit Updates";
     if (!justNow) {
       const when = new Date(project.submittedAt).toLocaleDateString("en-US", { month: "long", day: "numeric" });
-      $("#sent-text").textContent = `You sent this on ${when}. If you change something or add photos, send it again so I know.`;
+      $("#sent-text").textContent = `You submitted this on ${when}. If you change something or add photos, submit again so I know.`;
     } else {
       $("#sent").scrollIntoView({ behavior: "smooth", block: "center" });
     }
