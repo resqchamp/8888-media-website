@@ -122,6 +122,10 @@
   .event:first-of-type{border-top:0;}
   .when{background:var(--brick);color:#fff;text-align:center;padding:8px 4px;font-family:'Big Shoulders Display','Arial Narrow',Impact,sans-serif;font-weight:800;text-transform:uppercase;line-height:1.05;font-size:1.05rem;}
   .event p{color:var(--ink-soft);font-size:0.96rem;}
+  .cal-note{margin-top:18px;background:var(--paper-2);border-left:6px solid var(--lime);padding:14px 16px;display:grid;grid-template-columns:34px minmax(0,1fr);gap:12px;align-items:start;}
+  .cal-note svg{width:34px;height:34px;}
+  .cal-note p{font-size:0.95rem;color:var(--ink-soft);}
+  .cal-note b{color:var(--ink);}
   .give{background:var(--roof);color:#EDE9EE;padding:clamp(24px,4vw,36px);display:flex;flex-direction:column;gap:14px;}
   .give h2{color:#fff;}
   .give .btn{align-self:flex-start;}
@@ -267,7 +271,11 @@
         </div>
         <div class="event">
           <div class="when">Next</div>
-          <div><h3>Fundraisers and Open Houses</h3><p>Every event gets posted here and shared to our Facebook page, so the whole township knows where to find us.</p></div>
+          <div><h3>Fundraisers and Open Houses</h3><p>Every fundraiser, open house and community event shows up right here, so the whole township knows where to find us.</p></div>
+        </div>
+        <div class="cal-note">
+          <svg viewBox="0 0 34 34" aria-hidden="true"><rect x="3" y="6" width="28" height="25" rx="3" fill="#FFFFFF" stroke="#1D1B1F" stroke-width="2"/><path d="M3 13h28" stroke="#1D1B1F" stroke-width="2"/><path d="M10 3v6M24 3v6" stroke="#1D1B1F" stroke-width="2" stroke-linecap="round"/><rect x="9" y="18" width="6" height="5" fill="#9B3A2E"/></svg>
+          <p><b>Events update automatically from the company calendar.</b> Any officer adds an event to the company&rsquo;s Google Calendar on their phone, and it shows up here within minutes. No logins, and no website skills needed.</p>
         </div>
       </div>
       <div id="support" class="give" aria-labelledby="support-h">
