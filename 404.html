@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Page Not Found | 8888 Media</title>
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500&display=swap">
+<style>
+  /* Matches the homepage: one committed dark look, colors painted explicitly. */
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html,body{height:100%;}
+  body{
+    background:#070708;
+    color:#EDEBF0;
+    font-family:'Inter',system-ui,-apple-system,"Segoe UI",sans-serif;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+    display:grid;
+    place-items:center;
+    padding:32px clamp(16px,6vw,48px);
+  }
+  main{max-width:34rem;display:flex;flex-direction:column;gap:18px;}
+  .eyebrow{font-family:'JetBrains Mono',ui-monospace,Consolas,monospace;font-size:12px;letter-spacing:0.18em;text-transform:uppercase;color:#FF2E6D;}
+  .code{font-family:'Archivo Black','Arial Black',Impact,sans-serif;font-size:clamp(5rem,22vw,9rem);line-height:0.85;color:#FF2E6D;letter-spacing:-0.02em;}
+  h1{font-family:'Archivo Black','Arial Black',Impact,sans-serif;font-weight:400;font-size:clamp(1.6rem,5vw,2.2rem);line-height:1.1;}
+  p{color:#ADA8B4;font-size:1.05rem;}
+  .actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:8px;}
+  .actions a{display:inline-block;padding:12px 20px;border-radius:4px;font-weight:600;text-decoration:none;}
+  .primary{background:#FF2E6D;color:#070708;}
+  .primary:hover{background:#FF5C8C;}
+  .ghost{color:#EDEBF0;box-shadow:inset 0 0 0 1px #3A3842;}
+  .ghost:hover{box-shadow:inset 0 0 0 1px #FF2E6D;color:#FF2E6D;}
+  a:focus-visible{outline:2px solid #FF2E6D;outline-offset:3px;}
+</style>
+</head>
+<body>
+<main>
+  <p class="eyebrow">8888 Media</p>
+  <p class="code" aria-hidden="true">404</p>
+  <h1>This Page Doesn&rsquo;t Exist</h1>
+  <p>It may have moved, or the link had a typo. Everything else is right where you left it.</p>
+  <div class="actions">
+    <a class="primary" href="/">Go to the Homepage</a>
+    <a class="ghost" href="/links/">See All Links</a>
+  </div>
+</main>
+</body>
+</html>
