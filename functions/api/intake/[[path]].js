@@ -74,6 +74,7 @@ async function state(env, { base, access }) {
     business: access.business || "",
     owner: access.owner || "",
     package: access.package || "",
+    total: Number(access.total) || 0,
     payments: Array.isArray(access.payments) ? access.payments : [],
     answers: (saved && saved.answers) || {},
     updatedAt: (saved && saved.updatedAt) || null,

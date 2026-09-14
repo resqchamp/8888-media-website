@@ -1016,8 +1016,17 @@
       if (p.status === "paid") {
         const done = document.createElement("p");
         done.className = "paid";
-        done.textContent = "Received. Thank you!";
+        done.textContent = p.paidAt ? `Received ${longDate(p.paidAt)}. Thank you!` : "Received. Thank you!";
         card.append(done);
+        if (p.paidAt) {
+          const r = document.createElement("button");
+          r.type = "button";
+          r.className = "btn ghost";
+          r.style.alignSelf = "flex-start";
+          r.textContent = "View Receipt";
+          r.addEventListener("click", () => openReceipt(p));
+          card.append(r);
+        }
       } else if (p.status === "processing") {
         const wait = document.createElement("p");
         wait.className = "soft";
@@ -1078,6 +1087,86 @@
     return li;
   }
   function bold(text) { const b = document.createElement("b"); b.textContent = text; return b; }
+
+  // A printable receipt for a received payment, opened in its own tab so it prints (or saves as a
+  // PDF) cleanly. Card payers also get Stripe's email receipt; this covers Zelle and checks too.
+  const PACKAGE_NAMES = { launch: "Launch Page", business: "Business Site" };
+  const PAID_VIA = { stripe: "Card or bank account (Stripe)", zelle: "Zelle", check: "Check", "zelle or check": "Zelle or check" };
+
+  function receiptHtml(p) {
+    const esc = (s) => String(s).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+    const paid = (project.payments || []).filter((x) => x && x.status === "paid" && x.amount);
+    const paidToDate = paid.filter((x) => x === p || (x.paidAt && x.paidAt <= p.paidAt)).reduce((n, x) => n + Number(x.amount), 0);
+    const total = Number(project.total) || 0;
+    const balance = Math.max(0, total - paidToDate);
+    const d = new Date(p.paidAt);
+    const ymd = `${d.getFullYear()}${String(d.getMonth() + 1).padStart(2, "0")}${String(d.getDate()).padStart(2, "0")}`;
+    const number = `${ymd}-${client.replace(/[^a-z0-9]/gi, "").slice(0, 6).toUpperCase()}-${p.id === "final" ? "F" : "D"}`;
+    const item = `${PACKAGE_NAMES[project.package] || "Website"} for ${project.business || "your business"}: ${p.label || "Payment"}`;
+    const from = [project.owner, project.business].filter(Boolean).join(", ");
+    const summary = !total ? "" : balance
+      ? `Project total ${money(total)} · Paid to date ${money(paidToDate)} · Balance due ${money(balance)}`
+      : `Project total ${money(total)} · Paid in full`;
+    return `<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Receipt ${esc(number)} | 8888 Media</title>
+<style>
+  body{margin:0;background:#F4F1EC;color:#18161B;font:15px/1.55 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;padding-inline:16px;}
+  .sheet{max-width:640px;margin:24px auto;background:#fff;border:1px solid #E4E0E8;border-radius:10px;padding:32px clamp(18px,5vw,40px);}
+  .top{display:flex;flex-wrap:wrap;justify-content:space-between;gap:20px;border-bottom:2px solid #18161B;padding-bottom:18px;}
+  .brand{font-weight:800;font-size:1.25rem;margin:0 0 4px;}
+  p{margin:0;}
+  .muted{color:#4E4A55;}
+  h1{font-size:1.5rem;margin:0 0 6px;letter-spacing:0.06em;text-transform:uppercase;}
+  .right{text-align:right;}
+  dl{display:grid;grid-template-columns:max-content minmax(0,1fr);gap:6px 16px;margin:20px 0;}
+  dt{color:#4E4A55;}
+  dd{margin:0;font-weight:600;overflow-wrap:anywhere;}
+  table{width:100%;border-collapse:collapse;}
+  th,td{padding:10px 0;text-align:left;border-bottom:1px solid #E4E0E8;vertical-align:top;}
+  th:last-child,td:last-child{text-align:right;white-space:nowrap;padding-left:16px;}
+  thead th{font-size:0.8rem;letter-spacing:0.08em;text-transform:uppercase;color:#4E4A55;}
+  tfoot th,tfoot td{border-bottom:0;font-size:1.1rem;font-weight:800;}
+  .summary{margin-top:14px;color:#4E4A55;}
+  .thanks{margin-top:24px;font-weight:600;}
+  .actions{max-width:640px;margin:0 auto 32px;display:flex;flex-wrap:wrap;gap:10px;justify-content:center;}
+  button{font:inherit;font-weight:700;padding:12px 20px;border-radius:8px;border:2px solid #CF1656;background:#CF1656;color:#fff;cursor:pointer;}
+  button.ghost{background:#fff;color:#CF1656;}
+  @media (max-width:520px){.right{text-align:left;}}
+  @media print{body{background:#fff;padding:0;}.sheet{border:0;margin:0;max-width:none;padding:0;}.actions{display:none;}}
+</style></head><body>
+<div class="sheet">
+  <div class="top">
+    <div><p class="brand">8888 Media LLC</p><p class="muted">155 Willowbrook Blvd, Ste 110 #8733<br>Wayne, NJ 07470</p><p class="muted">mike@8888media.co · 8888media.co</p></div>
+    <div class="right"><h1>Receipt</h1><p class="muted">No. ${esc(number)}</p><p class="muted">${esc(longDate(p.paidAt))}</p></div>
+  </div>
+  <dl>
+    <dt>Received from</dt><dd>${esc(from || "Client")}</dd>
+    <dt>Payment method</dt><dd>${esc(PAID_VIA[p.paidVia] || "Other")}</dd>
+    <dt>Status</dt><dd>Paid</dd>
+  </dl>
+  <table>
+    <thead><tr><th>Description</th><th>Amount</th></tr></thead>
+    <tbody><tr><td>${esc(item)}</td><td>${esc(money(p.amount))}</td></tr></tbody>
+    <tfoot><tr><th>Amount paid</th><td>${esc(money(p.amount))}</td></tr></tfoot>
+  </table>
+  ${summary ? `<p class="summary">${esc(summary)}</p>` : ""}
+  <p class="thanks">Thank you for your business!</p>
+</div>
+<div class="actions"><button type="button" onclick="print()">Print or Save as PDF</button><button type="button" class="ghost" onclick="close()">Close</button></div>
+</body></html>`;
+  }
+
+  function openReceipt(p) {
+    const w = window.open("", "_blank");
+    if (!w) {
+      alert("Your browser blocked the receipt from opening. Allow pop-ups for this page, then tap View Receipt again.");
+      return;
+    }
+    w.document.open();
+    w.document.write(receiptHtml(p));
+    w.document.close();
+  }
   function copyable(text) {
     const wrap = document.createElement("span");
     wrap.className = "copy-row";
