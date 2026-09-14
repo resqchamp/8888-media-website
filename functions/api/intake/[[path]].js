@@ -11,7 +11,9 @@ const ALLOWED_NAME = /\.(jpe?g|png|webp|gif|heic|heif|svg|pdf|ai|eps|psd)$/i;
 const MAX_FILE_BYTES = 25 * 1024 * 1024;
 const MAX_FILES = 80;
 const MAX_ANSWERS_BYTES = 96 * 1024;
+const MAX_SMALL_BODY = 16 * 1024;
 const EMAIL_FALLBACK = "mike@8888media.co";
+const JSON_TYPE = { httpMetadata: { contentType: "application/json" } };
 
 export async function onRequest({ request, env, params }) {
   const client = await authorize(request, env);
@@ -24,6 +26,8 @@ export async function onRequest({ request, env, params }) {
     if (route === "answers" && (method === "PUT" || method === "POST")) return await saveAnswers(request, env, client);
     if (route === "files" && method === "POST") return await upload(request, env, client);
     if (route.startsWith("files/") && method === "DELETE") return await removeFile(env, client, route.slice(6));
+    if (route === "agreement/accept" && method === "POST") return await acceptAgreement(request, env, client);
+    if (route === "previews/respond" && method === "POST") return await respondToPreview(request, env, client);
   } catch (err) {
     console.error("intake error", route, err && err.message);
     return json({ error: "Something went wrong on our end. Try again in a minute." }, 500);
@@ -50,19 +54,38 @@ function sameString(a, b) {
   return diff === 0;
 }
 
+async function getJson(env, key) {
+  const obj = await env.INTAKE.get(key);
+  return obj ? obj.json() : null;
+}
+
 async function state(env, { base, access }) {
-  const [answersObj, files] = await Promise.all([env.INTAKE.get(`${base}/answers.json`), listFiles(env, base)]);
-  const saved = answersObj ? await answersObj.json() : {};
+  const [saved, files, agreement, previews] = await Promise.all([
+    getJson(env, `${base}/answers.json`),
+    listFiles(env, base),
+    getJson(env, `${base}/agreement.json`),
+    getJson(env, `${base}/previews.json`),
+  ]);
   return json({
     business: access.business || "",
     owner: access.owner || "",
     package: access.package || "",
     payments: Array.isArray(access.payments) ? access.payments : [],
-    answers: saved.answers || {},
-    updatedAt: saved.updatedAt || null,
-    submittedAt: saved.submittedAt || null,
+    answers: (saved && saved.answers) || {},
+    updatedAt: (saved && saved.updatedAt) || null,
+    submittedAt: (saved && saved.submittedAt) || null,
     files,
+    agreement: agreement ? { text: agreement.text, accepted: publicAcceptance(agreement.accepted) } : null,
+    previews: previews && Array.isArray(previews.items) ? previews.items.map(publicPreview) : [],
   });
+}
+
+// What the client's page sees. The signing IP and device stay in the stored record only.
+function publicAcceptance(a) {
+  return a ? { name: a.name, at: a.at } : null;
+}
+function publicPreview(p) {
+  return { id: p.id, round: p.round, url: p.url, note: p.note || "", postedAt: p.postedAt, status: p.status, response: p.response || null };
 }
 
 // Files live at clients/<slug>/files/<logo|photos>/<id>, so the id carries its field.
@@ -81,6 +104,12 @@ async function listFiles(env, base) {
   return files;
 }
 
+async function readSmallJson(request) {
+  const text = await request.text();
+  if (text.length > MAX_SMALL_BODY) return null;
+  try { return JSON.parse(text); } catch { return null; }
+}
+
 async function saveAnswers(request, env, { base, access }) {
   const text = await request.text();
   if (text.length > MAX_ANSWERS_BYTES) {
@@ -91,8 +120,7 @@ async function saveAnswers(request, env, { base, access }) {
   const answers = cleanAnswers(body.answers);
   if (!answers) return json({ error: "Couldn't read those answers. Try again." }, 400);
 
-  const prevObj = await env.INTAKE.get(`${base}/answers.json`);
-  const prev = prevObj ? await prevObj.json() : {};
+  const prev = (await getJson(env, `${base}/answers.json`)) || {};
   const now = new Date().toISOString();
   const doc = {
     business: access.business || "",
@@ -102,7 +130,7 @@ async function saveAnswers(request, env, { base, access }) {
     submittedAt: body.submit ? now : prev.submittedAt || null,
     submitCount: (prev.submitCount || 0) + (body.submit ? 1 : 0),
   };
-  await env.INTAKE.put(`${base}/answers.json`, JSON.stringify(doc, null, 2), { httpMetadata: { contentType: "application/json" } });
+  await env.INTAKE.put(`${base}/answers.json`, JSON.stringify(doc, null, 2), JSON_TYPE);
   return json({ ok: true, updatedAt: now, submittedAt: doc.submittedAt });
 }
 
@@ -158,6 +186,60 @@ async function removeFile(env, { base }, id) {
   if (!FILE_ID.test(id)) return json({ error: "Couldn't find that file." }, 404);
   await env.INTAKE.delete(`${base}/files/${id}`);
   return json({ ok: true });
+}
+
+// Accepting is one-way: once a name is on it, the record never changes. The stored record keeps
+// the typed name, time, IP, device and a SHA-256 of the exact text they saw.
+async function acceptAgreement(request, env, { base }) {
+  const body = await readSmallJson(request);
+  if (!body) return json({ error: "Couldn't read that. Try again." }, 400);
+  const name = String(body.name || "").trim().replace(/\s+/g, " ");
+  if (name.length < 2 || name.length > 120) return json({ error: "Type your full name to sign." }, 400);
+  if (body.agree !== true) return json({ error: "Check the box to agree first." }, 400);
+
+  const key = `${base}/agreement.json`;
+  const agreement = await getJson(env, key);
+  if (!agreement) return json({ error: "There's no agreement to accept yet." }, 404);
+  if (agreement.accepted) return json({ ok: true, accepted: publicAcceptance(agreement.accepted) });
+
+  const digest = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(agreement.text));
+  agreement.accepted = {
+    name,
+    at: new Date().toISOString(),
+    ip: request.headers.get("CF-Connecting-IP") || "",
+    userAgent: (request.headers.get("User-Agent") || "").slice(0, 300),
+    textSha256: [...new Uint8Array(digest)].map((b) => b.toString(16).padStart(2, "0")).join(""),
+  };
+  await env.INTAKE.put(key, JSON.stringify(agreement, null, 2), JSON_TYPE);
+  return json({ ok: true, accepted: publicAcceptance(agreement.accepted) });
+}
+
+// Clients can answer only the newest preview, and only once. Mike posts the next round.
+async function respondToPreview(request, env, { base }) {
+  const body = await readSmallJson(request);
+  if (!body) return json({ error: "Couldn't read that. Try again." }, 400);
+  const key = `${base}/previews.json`;
+  const doc = await getJson(env, key);
+  const items = (doc && doc.items) || [];
+  const latest = items[items.length - 1];
+  if (!latest) return json({ error: "There's no preview yet." }, 404);
+  if (latest.id !== body.id) return json({ error: "There's a newer preview. Reload the page to see it." }, 409);
+  if (latest.status !== "waiting") return json({ error: "You've already answered this preview." }, 409);
+
+  const at = new Date().toISOString();
+  if (body.action === "approve") {
+    latest.status = "approved";
+    latest.response = { at };
+  } else if (body.action === "changes") {
+    const text = String(body.text || "").trim();
+    if (!text) return json({ error: "Write the changes you'd like first." }, 400);
+    latest.status = "changes";
+    latest.response = { at, text: text.slice(0, 8000) };
+  } else {
+    return json({ error: "Couldn't tell what you meant to do. Try again." }, 400);
+  }
+  await env.INTAKE.put(key, JSON.stringify(doc, null, 2), JSON_TYPE);
+  return json({ ok: true, preview: publicPreview(latest) });
 }
 
 function json(data, status = 200) {

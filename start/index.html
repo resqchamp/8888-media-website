@@ -192,6 +192,33 @@
   .sent h3{color:var(--ok);font-size:1.1rem;}
   .privacy{font-size:0.9rem;color:var(--text-faint);}
 
+  /* agreement */
+  .agreement-text{background:var(--surface);border:1px solid var(--rule);border-radius:8px;padding:18px 20px;max-height:440px;overflow-y:auto;display:flex;flex-direction:column;gap:12px;font-size:0.95rem;line-height:1.6;}
+  .agreement-text strong{font-weight:700;}
+  .sign-panel{display:flex;flex-direction:column;gap:14px;}
+  .sign-panel .btn{align-self:flex-start;}
+  .sent .send-row{margin-top:6px;}
+
+  /* previews */
+  .preview-card{display:flex;flex-direction:column;align-items:flex-start;gap:14px;}
+  .preview-card > *{max-width:100%;}
+  .preview-note{background:var(--surface-2);border-radius:6px;padding:10px 12px;white-space:pre-wrap;}
+  #preview-actions{display:flex;flex-direction:column;gap:12px;width:100%;}
+  .confirm{display:flex;flex-direction:column;gap:10px;background:var(--accent-soft);border:1px solid var(--accent);border-radius:8px;padding:14px 16px;}
+  .stamp{width:100%;border-radius:8px;padding:14px 16px;display:flex;flex-direction:column;gap:6px;background:var(--surface-2);}
+  .stamp.ok{background:var(--ok-soft);border:1px solid var(--ok);}
+  .stamp.ok strong{color:var(--ok);}
+  .stamp blockquote{margin:4px 0 0;padding:10px 12px;background:var(--surface);border-radius:6px;white-space:pre-wrap;font-size:0.95rem;}
+  .history{list-style:none;margin:6px 0 0;padding:0;display:flex;flex-direction:column;gap:4px;font-size:0.95rem;}
+
+  /* printing a copy of the agreement shows only the agreement */
+  @media print{
+    .print-agreement .masthead,.print-agreement footer,.print-agreement .savebar,.print-agreement #app > :not(#agreement),.print-agreement #agreement .no-print,.print-agreement #agreement-sign,.print-agreement #agreement-intro{display:none !important;}
+    .print-agreement body{background:#fff;color:#000;padding:0;}
+    .print-agreement .agreement-text{max-height:none;overflow:visible;border:0;padding:0;background:none;}
+    .print-agreement #agreement-done{background:none;border:0;padding:0;}
+  }
+
   /* save status */
   .savebar{position:fixed;left:0;right:0;bottom:0;background:var(--bar);border-top:1px solid var(--rule);z-index:5;}
   .savebar .wrap{display:flex;justify-content:space-between;gap:12px;padding-block:12px;font-size:0.9rem;font-weight:600;}
@@ -232,6 +259,66 @@
     <section aria-labelledby="todo-h">
       <h2 id="todo-h">What I Need From You</h2>
       <ol class="todo" id="todo"></ol>
+    </section>
+
+    <section id="preview" aria-labelledby="preview-h" hidden>
+      <h2 id="preview-h">Your Preview</h2>
+      <div class="panel preview-card">
+        <div class="pay-head" style="width:100%"><h3 id="preview-label">Preview</h3><span class="soft small" id="preview-date"></span></div>
+        <p id="preview-note" class="preview-note" hidden></p>
+        <a id="preview-open" class="btn" href="#" target="_blank" rel="noopener">Open Preview</a>
+        <p class="soft small">It&rsquo;s private, so only people with the link can see it. Check it on your phone too.</p>
+        <div id="preview-status" style="width:100%"></div>
+        <div id="preview-actions" hidden>
+          <p class="soft small" id="preview-rounds"></p>
+          <div class="send-row">
+            <button type="button" class="btn" id="approve-btn">Approve This Version</button>
+            <button type="button" class="btn ghost" id="changes-btn">Request Changes</button>
+          </div>
+          <div id="approve-confirm" class="confirm" hidden>
+            <p><b>Approve this version and get it ready to go live?</b></p>
+            <div class="send-row">
+              <button type="button" class="btn" id="approve-yes">Yes, Approve</button>
+              <button type="button" class="btn ghost" id="approve-cancel">Cancel</button>
+            </div>
+          </div>
+          <div id="changes-form" class="field" hidden>
+            <label for="changes-text">What would you like changed? A quick list is perfect.</label>
+            <textarea id="changes-text" rows="5" placeholder="Wording, photos, colors, order, anything missing"></textarea>
+            <div class="send-row">
+              <button type="button" class="btn" id="changes-submit">Submit Changes</button>
+              <button type="button" class="btn ghost" id="changes-cancel">Cancel</button>
+            </div>
+          </div>
+          <p id="preview-error" class="warn" hidden></p>
+        </div>
+        <div id="preview-history-wrap" hidden>
+          <p class="q">Earlier previews</p>
+          <ul class="history" id="preview-history"></ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="agreement" aria-labelledby="agreement-h" hidden>
+      <h2 id="agreement-h">Your Agreement</h2>
+      <p class="intro" id="agreement-intro">It&rsquo;s plain English and fits on one page. Read it through, then type your name to accept.</p>
+      <div id="agreement-done" class="sent" hidden>
+        <h3 id="agreement-stamp">Accepted.</h3>
+        <div class="send-row no-print">
+          <button type="button" class="btn ghost" id="view-agreement">View Agreement</button>
+          <button type="button" class="btn ghost" id="print-agreement">Print a Copy</button>
+        </div>
+      </div>
+      <div class="agreement-text" id="agreement-text"></div>
+      <div id="agreement-sign" class="panel sign-panel">
+        <div class="field">
+          <label for="agree-name">Type your full name to sign</label>
+          <input type="text" id="agree-name" autocomplete="name">
+        </div>
+        <label class="option"><input type="checkbox" id="agree-check"><span>I agree to this agreement, and I&rsquo;m signing it electronically, the same as signing it on paper.</span></label>
+        <button type="button" class="btn" id="accept-btn" disabled>Accept Agreement</button>
+        <p id="agreement-error" class="warn" hidden></p>
+      </div>
     </section>
 
     <section id="pay" aria-labelledby="pay-h" hidden>
@@ -515,7 +602,9 @@
     applyAnswers(project.answers || {});
     if (!$("#q_name").value && biz) $("#q_name").value = biz;
     for (const f of project.files) fileRow({ ...f, done: true });
+    renderAgreement();
     renderPayments();
+    renderPreview();
     if (project.submittedAt) showSent(false);
     $("#loading").hidden = true;
     $("#app").hidden = false;
@@ -820,6 +909,13 @@
     $("#pay").hidden = !pays.length;
     const box = $("#pay-list");
     box.textContent = "";
+    if (project.agreement && !project.agreement.accepted) {
+      const wait = document.createElement("p");
+      wait.className = "soft";
+      wait.textContent = "Accept your agreement above first. Your payment details show up here right after.";
+      box.append(wait);
+      return;
+    }
     for (const p of pays) {
       const card = document.createElement("div");
       card.className = "panel pay-card";
@@ -948,9 +1044,12 @@
     const pays = (project.payments || []).filter((p) => p && p.amount);
     const deposit = pays.find((p) => p.id === "deposit");
     const items = [];
+    if (project.agreement) items.push(["Accept your agreement", "#agreement", !!project.agreement.accepted]);
     if (deposit) items.push(["Pay the deposit", "#pay", ["paid", "processing"].includes(deposit.status)]);
     items.push(["Set up your website account", "#account", !!(answers.acct_created && answers.acct_domain && answers.acct_invite)]);
     items.push(["Answer the questions and add photos", "#about", !!project.submittedAt]);
+    const lastPreview = (project.previews || []).slice(-1)[0];
+    if (lastPreview) items.push([lastPreview.status === "approved" ? "Approve your preview" : "Review your preview", "#preview", lastPreview.status !== "waiting"]);
     for (const p of pays) {
       if (p === deposit) continue;
       items.push([p.id === "final" ? "Make the final payment" : `Pay the ${String(p.label || "payment").toLowerCase()}`, "#pay", ["paid", "processing"].includes(p.status)]);
@@ -980,6 +1079,207 @@
     // Logos count toward "has artwork" for the send check.
     project.hasArt = photos + logos > 0;
   }
+
+  // ---------- agreement ----------
+  let agreementOpen = false;
+
+  function longDate(iso) {
+    return new Date(iso).toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" });
+  }
+
+  // The agreement is plain text with **bold** headings; build it as DOM nodes, never as HTML.
+  function appendRich(el, text) {
+    text.split(/(\*\*[^*]+\*\*)/).forEach((part) => {
+      if (!part) return;
+      if (part.startsWith("**") && part.endsWith("**")) {
+        const b = document.createElement("strong");
+        b.textContent = part.slice(2, -2);
+        el.append(b);
+        return;
+      }
+      part.split("\n").forEach((line, i) => {
+        if (i) el.append(document.createElement("br"));
+        el.append(line);
+      });
+    });
+  }
+
+  function renderAgreement() {
+    const ag = project.agreement;
+    $("#agreement").hidden = !ag;
+    if (!ag) return;
+    const box = $("#agreement-text");
+    box.textContent = "";
+    for (const para of ag.text.split(/\n\s*\n/)) {
+      const p = document.createElement("p");
+      appendRich(p, para.trim());
+      box.append(p);
+    }
+    const done = !!ag.accepted;
+    $("#agreement-sign").hidden = done;
+    $("#agreement-intro").hidden = done;
+    $("#agreement-done").hidden = !done;
+    box.hidden = done && !agreementOpen;
+    if (done) $("#agreement-stamp").textContent = `Accepted by ${ag.accepted.name} on ${longDate(ag.accepted.at)}.`;
+  }
+
+  function syncAccept() {
+    $("#accept-btn").disabled = !($("#agree-name").value.trim().length >= 2 && $("#agree-check").checked);
+  }
+  $("#agree-name").addEventListener("input", syncAccept);
+  $("#agree-check").addEventListener("change", syncAccept);
+
+  $("#accept-btn").addEventListener("click", async () => {
+    const btn = $("#accept-btn");
+    const err = $("#agreement-error");
+    err.hidden = true;
+    btn.disabled = true;
+    btn.textContent = "Accepting\u2026";
+    try {
+      const res = await api("agreement/accept", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name: $("#agree-name").value.trim(), agree: $("#agree-check").checked }),
+      });
+      const out = await res.json().catch(() => ({}));
+      if (!res.ok) throw new Error(out.error || "That didn\u2019t go through. Try again.");
+      project.agreement.accepted = out.accepted;
+      renderAgreement();
+      renderPayments();
+      refresh();
+    } catch (e) {
+      err.textContent = /fetch|network/i.test(e.message) ? "Couldn\u2019t reach the server. Check your connection and try again." : e.message;
+      err.hidden = false;
+    } finally {
+      btn.textContent = "Accept Agreement";
+      syncAccept();
+    }
+  });
+
+  $("#view-agreement").addEventListener("click", () => {
+    agreementOpen = !agreementOpen;
+    $("#agreement-text").hidden = !agreementOpen;
+    $("#view-agreement").textContent = agreementOpen ? "Hide Agreement" : "View Agreement";
+  });
+  $("#print-agreement").addEventListener("click", () => {
+    document.documentElement.classList.add("print-agreement");
+    $("#agreement-text").hidden = false;
+    window.print();
+  });
+  window.addEventListener("afterprint", () => {
+    document.documentElement.classList.remove("print-agreement");
+    if (project) renderAgreement();
+  });
+
+  // ---------- previews ----------
+  function latestPreview() {
+    const items = project.previews || [];
+    return items[items.length - 1] || null;
+  }
+
+  function roundsText(round) {
+    return round <= 2
+      ? `Your package includes 2 rounds of changes. Changes on this preview would use round ${round}.`
+      : "Your 2 included rounds of changes are used, so more changes are $50 an hour. I\u2019ll always check with you before starting billable work.";
+  }
+
+  function stamp(tone, title, sub, quote) {
+    const box = document.createElement("div");
+    box.className = "stamp" + (tone ? " " + tone : "");
+    const t = document.createElement("strong");
+    t.textContent = title;
+    box.append(t);
+    if (sub) {
+      const p = document.createElement("p");
+      p.textContent = sub;
+      box.append(p);
+    }
+    if (quote) {
+      const q = document.createElement("blockquote");
+      q.textContent = quote;
+      box.append(q);
+    }
+    return box;
+  }
+
+  function renderPreview() {
+    const items = project.previews || [];
+    $("#preview").hidden = !items.length;
+    if (!items.length) return;
+    const latest = items[items.length - 1];
+    $("#preview-label").textContent = `Preview ${latest.round}`;
+    $("#preview-date").textContent = `Posted ${longDate(latest.postedAt)}`;
+    $("#preview-note").hidden = !latest.note;
+    $("#preview-note").textContent = latest.note || "";
+    $("#preview-open").href = latest.url;
+    $("#preview-actions").hidden = latest.status !== "waiting";
+    $("#approve-confirm").hidden = true;
+    $("#changes-form").hidden = true;
+    $("#preview-error").hidden = true;
+    $("#preview-rounds").textContent = roundsText(latest.round);
+    const status = $("#preview-status");
+    status.textContent = "";
+    if (latest.status === "approved") {
+      status.append(stamp("ok", `You approved this version on ${longDate(latest.response.at)}.`, "Next is the final payment, then your site goes live."));
+    } else if (latest.status === "changes") {
+      status.append(stamp("", `You sent changes on ${longDate(latest.response.at)}.`, "I\u2019m working on them. Your next preview will show up right here.", latest.response.text));
+    }
+    const older = items.slice(0, -1).reverse();
+    $("#preview-history-wrap").hidden = !older.length;
+    const list = $("#preview-history");
+    list.textContent = "";
+    for (const it of older) {
+      const li = document.createElement("li");
+      const a = document.createElement("a");
+      a.href = it.url;
+      a.target = "_blank";
+      a.rel = "noopener";
+      a.textContent = `Preview ${it.round}`;
+      const what = it.status === "changes" ? `changes sent ${longDate(it.response.at)}` : it.status === "approved" ? "approved" : "replaced by a newer version";
+      li.append(a, ` \u00b7 ${what}`);
+      list.append(li);
+    }
+  }
+
+  async function respond(action, text) {
+    const latest = latestPreview();
+    const err = $("#preview-error");
+    err.hidden = true;
+    const buttons = ["#approve-yes", "#changes-submit"].map((s) => $(s));
+    buttons.forEach((b) => { b.disabled = true; });
+    try {
+      const res = await api("previews/respond", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ id: latest.id, action, text }),
+      });
+      const out = await res.json().catch(() => ({}));
+      if (!res.ok) throw new Error(out.error || "That didn\u2019t go through. Try again.");
+      Object.assign(latest, out.preview);
+      renderPreview();
+      refresh();
+    } catch (e) {
+      err.textContent = /fetch|network/i.test(e.message) ? "Couldn\u2019t reach the server. Check your connection and try again." : e.message;
+      err.hidden = false;
+    } finally {
+      buttons.forEach((b) => { b.disabled = false; });
+    }
+  }
+
+  $("#approve-btn").addEventListener("click", () => { $("#changes-form").hidden = true; $("#approve-confirm").hidden = false; });
+  $("#approve-cancel").addEventListener("click", () => { $("#approve-confirm").hidden = true; });
+  $("#approve-yes").addEventListener("click", () => respond("approve"));
+  $("#changes-btn").addEventListener("click", () => { $("#approve-confirm").hidden = true; $("#changes-form").hidden = false; $("#changes-text").focus(); });
+  $("#changes-cancel").addEventListener("click", () => { $("#changes-form").hidden = true; });
+  $("#changes-submit").addEventListener("click", () => {
+    const text = $("#changes-text").value.trim();
+    if (!text) {
+      $("#preview-error").textContent = "Write the changes you\u2019d like first.";
+      $("#preview-error").hidden = false;
+      return;
+    }
+    respond("changes", text);
+  });
 
   // ---------- send ----------
   form.addEventListener("submit", (e) => { e.preventDefault(); send(false); });
