@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<meta name="referrer" content="no-referrer">
+<title>Client Hub | 8888 Media</title>
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:wght@400;500;600;700&display=swap">
+<style>
+  /* Same system as /start/, widened for a desk monitor and still one column on a phone. */
+  :root{
+    --ground:#FBFAF8;
+    --surface:#FFFFFF;
+    --surface-2:#F4F1EC;
+    --text:#18161B;
+    --text-soft:#4E4A55;
+    --text-faint:#6F6A77;
+    --rule:#E4E0E8;
+    --field-rule:#8D8795;
+    --accent:#CF1656;
+    --accent-soft:#FCEAF0;
+    --on-accent:#FFFFFF;
+    --band:#0A0A0C;
+    --band-text:#F4F2F6;
+    --band-soft:#B4AFBA;
+    --ok:#0A7A55;
+    --ok-soft:#E4F4EC;
+    --warn-bg:#FFF4E5;
+    --warn-rule:#B8660B;
+    --warn-text:#5E3A08;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --ground:#0E0E11;
+      --surface:#16161B;
+      --surface-2:#1D1D23;
+      --text:#EEECF1;
+      --text-soft:#B3AEBA;
+      --text-faint:#8F8A96;
+      --rule:#2A2930;
+      --field-rule:#6E6977;
+      --accent:#FF4F84;
+      --accent-soft:#2A1520;
+      --on-accent:#1A0710;
+      --band:#050506;
+      --band-text:#F4F2F6;
+      --band-soft:#A8A3AE;
+      --ok:#4FD1A0;
+      --ok-soft:#10261D;
+      --warn-bg:#2A1F10;
+      --warn-rule:#E09A45;
+      --warn-text:#F3D9B5;
+    }
+  }
+  :root[data-theme="dark"]{
+    --ground:#0E0E11;
+    --surface:#16161B;
+    --surface-2:#1D1D23;
+    --text:#EEECF1;
+    --text-soft:#B3AEBA;
+    --text-faint:#8F8A96;
+    --rule:#2A2930;
+    --field-rule:#6E6977;
+    --accent:#FF4F84;
+    --accent-soft:#2A1520;
+    --on-accent:#1A0710;
+    --band:#050506;
+    --band-text:#F4F2F6;
+    --band-soft:#A8A3AE;
+    --ok:#4FD1A0;
+    --ok-soft:#10261D;
+    --warn-bg:#2A1F10;
+    --warn-rule:#E09A45;
+    --warn-text:#F3D9B5;
+  }
+
+  *{box-sizing:border-box;}
+  [hidden]{display:none !important;}
+  body{margin:0;background:var(--ground);color:var(--text);font:400 16px/1.55 'Inter',system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;-webkit-font-smoothing:antialiased;}
+  h1,h2,h3{margin:0;text-wrap:balance;}
+  h1,h2{font-family:'Archivo Black','Arial Black',Impact,sans-serif;font-weight:400;letter-spacing:-0.01em;}
+  p{margin:0;}
+  a{color:var(--accent);text-underline-offset:3px;text-decoration-thickness:1px;}
+  :focus-visible{outline:2px solid var(--accent);outline-offset:3px;}
+  b,strong{font-weight:600;}
+  .wrap{max-width:76rem;margin:0 auto;padding-inline:clamp(16px,4vw,32px);}
+  .soft{color:var(--text-soft);}
+  .faint{color:var(--text-faint);}
+  .num{font-variant-numeric:tabular-nums;}
+  .sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;}
+
+  /* buttons */
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:44px;padding:0 18px;border-radius:8px;border:2px solid var(--accent);background:var(--accent);color:var(--on-accent);font:inherit;font-weight:700;cursor:pointer;text-decoration:none;white-space:nowrap;}
+  .btn.ghost{background:transparent;color:var(--accent);}
+  .btn.small{min-height:38px;padding:0 14px;font-size:0.9rem;border-width:1px;}
+  .btn:disabled{opacity:0.55;cursor:default;}
+  .band-btn{display:inline-flex;align-items:center;min-height:40px;padding:0 14px;border:1px solid rgba(255,255,255,0.22);border-radius:999px;color:var(--band-text);background:transparent;font:inherit;font-size:0.9rem;font-weight:600;text-decoration:none;cursor:pointer;}
+  .band-btn:hover{border-color:#FF4F84;}
+
+  /* sign in */
+  .login{min-height:100vh;display:grid;place-items:center;padding:24px 16px;background:var(--band);}
+  .login form{width:100%;max-width:24rem;background:var(--surface);border-radius:12px;padding:28px 24px;display:flex;flex-direction:column;gap:14px;}
+  .login h1{font-size:1.8rem;}
+  .login label{font-weight:600;}
+  .login input[type=password]{width:100%;font:inherit;font-size:17px;color:var(--text);background:var(--surface);border:1px solid var(--field-rule);border-radius:6px;padding:12px 14px;min-height:48px;letter-spacing:0.04em;}
+  .login input:focus-visible{outline:2px solid var(--accent);outline-offset:0;border-color:var(--accent);}
+  .error{color:var(--warn-rule);font-weight:600;font-size:0.95rem;}
+
+  /* masthead */
+  .masthead{background:var(--band);color:var(--band-text);padding-block:clamp(26px,5vw,40px) clamp(22px,4vw,32px);}
+  .masthead .wrap{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:16px;}
+  .eyebrow{font-size:12px;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:#FF4F84;}
+  .masthead h1{font-size:clamp(1.9rem,6vw,2.6rem);line-height:1.05;margin-top:8px;}
+  .masthead .updated{color:var(--band-soft);font-size:0.92rem;margin-top:6px;}
+  .masthead nav{display:flex;flex-wrap:wrap;gap:8px;}
+
+  main{padding-block:clamp(22px,5vw,36px) 48px;display:flex;flex-direction:column;gap:clamp(30px,6vw,44px);}
+  main > section{display:flex;flex-direction:column;gap:14px;scroll-margin-top:12px;}
+  main h2{font-size:clamp(1.25rem,3.4vw,1.55rem);line-height:1.15;}
+  .section-head{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:10px;}
+
+  .banner{padding:12px 14px;border-radius:6px;background:var(--warn-bg);border:1px solid var(--warn-rule);color:var(--warn-text);font-weight:600;font-size:0.95rem;}
+
+  /* money */
+  .stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,170px),1fr));gap:10px;}
+  .stat{background:var(--surface);border:1px solid var(--rule);border-radius:8px;padding:14px 16px;display:flex;flex-direction:column;gap:2px;min-width:0;}
+  .stat .label{font-size:0.78rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--text-soft);}
+  .stat .value{font-family:'Archivo Black','Arial Black',sans-serif;font-size:1.65rem;line-height:1.2;font-variant-numeric:tabular-nums;}
+  .stat .sub{font-size:0.85rem;color:var(--text-faint);}
+  .stat.hot .value{color:var(--accent);}
+  .stat.good .value{color:var(--ok);}
+
+  /* needs you */
+  .needs-list{list-style:none;margin:0;padding:0;border:1px solid var(--accent);border-radius:8px;background:var(--surface);overflow:hidden;}
+  .needs-list li + li{border-top:1px solid var(--rule);}
+  .needs-list a{display:flex;flex-wrap:wrap;gap:4px 10px;align-items:baseline;padding:13px 16px;color:var(--text);text-decoration:none;}
+  .needs-list a:hover{background:var(--accent-soft);}
+  .needs-list .who{font-weight:700;}
+  .needs-list .what{color:var(--text-soft);}
+  .all-clear{background:var(--ok-soft);border:1px solid var(--ok);border-radius:8px;padding:14px 16px;color:var(--text);font-weight:600;}
+
+  /* cards */
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,400px),1fr));gap:14px;align-items:start;}
+  .card{background:var(--surface);border:1px solid var(--rule);border-radius:10px;padding:18px;display:flex;flex-direction:column;gap:14px;min-width:0;scroll-margin-top:12px;}
+  .card:target{border-color:var(--accent);box-shadow:0 0 0 2px var(--accent-soft);}
+  .card-head{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;}
+  .card-head > div{min-width:0;}
+  .card h3{font-size:1.15rem;line-height:1.3;overflow-wrap:anywhere;}
+  .meta{font-size:0.9rem;color:var(--text-soft);margin-top:2px;}
+  .badge{flex:none;font-size:0.72rem;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;padding:5px 9px;border-radius:999px;max-width:48%;text-align:right;line-height:1.3;}
+  .badge.you{background:var(--accent);color:var(--on-accent);}
+  .badge.them{background:var(--surface-2);color:var(--text-soft);}
+  .badge.done{background:var(--ok-soft);color:var(--ok);}
+
+  .steps{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(0,1fr));gap:4px;}
+  .steps li{display:flex;flex-direction:column;gap:5px;font-size:0.7rem;font-weight:600;color:var(--text-faint);text-align:center;min-width:0;}
+  .steps li::before{content:"";height:6px;border-radius:3px;background:var(--rule);}
+  .steps li.done{color:var(--ok);}
+  .steps li.done::before{background:var(--ok);}
+  .steps li.current{color:var(--accent);}
+  .steps li.current::before{background:var(--accent);}
+  .steps span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+  .step-caption{display:none;font-size:0.85rem;font-weight:600;color:var(--text-soft);margin-top:-6px;}
+  /* Seven labels don't fit across a phone, so it shows the bars plus one line instead. */
+  @media (max-width:520px){
+    .steps li > span:first-child{display:none;}
+    .step-caption{display:block;}
+  }
+
+  .needs-box{background:var(--accent-soft);border:1px solid var(--accent);border-radius:8px;padding:10px 14px;display:flex;flex-direction:column;gap:4px;font-size:0.95rem;}
+  .needs-box ul,.plain{margin:0;padding-left:1.15em;}
+  .needs-box li::marker{color:var(--accent);}
+  .waiting{font-size:0.95rem;}
+  .quote{margin:0;padding:10px 12px;background:var(--surface-2);border-radius:6px;white-space:pre-wrap;font-size:0.93rem;overflow-wrap:anywhere;}
+
+  .facts{margin:0;display:grid;grid-template-columns:max-content minmax(0,1fr);gap:7px 14px;font-size:0.93rem;}
+  .facts dt{color:var(--text-soft);font-weight:600;}
+  .facts dd{margin:0;min-width:0;overflow-wrap:anywhere;}
+  .pay-row{display:flex;flex-wrap:wrap;gap:0 8px;}
+  .pay-row + .pay-row{margin-top:3px;}
+  .st-paid{color:var(--ok);font-weight:600;}
+  .st-due{color:var(--accent);font-weight:600;}
+  .st-clearing{color:var(--warn-rule);font-weight:600;}
+
+  .actions{display:flex;flex-wrap:wrap;gap:8px;}
+  details.history summary{cursor:pointer;font-size:0.9rem;font-weight:600;color:var(--text-soft);padding:4px 0;}
+  details.history ul{list-style:none;margin:6px 0 0;padding:0;display:flex;flex-direction:column;gap:4px;font-size:0.9rem;}
+  .when{color:var(--text-faint);font-variant-numeric:tabular-nums;margin-right:6px;}
+
+  /* tabs */
+  .tabs{display:flex;flex-wrap:wrap;gap:6px;}
+  .tab{border:1px solid var(--field-rule);background:var(--surface);color:var(--text);font:inherit;font-size:0.9rem;font-weight:600;padding:7px 14px;border-radius:999px;cursor:pointer;}
+  .tab[aria-selected="true"]{background:var(--text);border-color:var(--text);color:var(--ground);}
+  .empty{padding:18px;border:1px dashed var(--field-rule);border-radius:8px;color:var(--text-soft);}
+
+  /* recent */
+  .recent{list-style:none;margin:0;padding:0;border:1px solid var(--rule);border-radius:8px;background:var(--surface);}
+  .recent li{display:flex;gap:10px;padding:10px 16px;font-size:0.93rem;}
+  .recent li + li{border-top:1px solid var(--rule);}
+  .recent .when{flex:none;width:6.5em;}
+
+  footer{border-top:1px solid var(--rule);padding-block:20px 40px;}
+  footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;align-items:center;font-size:0.9rem;color:var(--text-faint);}
+  .link-btn{background:none;border:0;color:var(--accent);font:inherit;font-weight:600;padding:8px 0;cursor:pointer;}
+</style>
+</head>
+<body>
+
+<div class="login" id="login" hidden>
+  <form id="login-form" autocomplete="on">
+    <p class="eyebrow">8888 Media</p>
+    <h1>Client Hub</h1>
+    <p class="soft">Enter your passcode. This device will remember it.</p>
+    <input class="sr-only" type="text" name="username" value="8888 Media Client Hub" autocomplete="username" readonly tabindex="-1" aria-hidden="true">
+    <label for="passcode">Passcode</label>
+    <input type="password" id="passcode" name="password" autocomplete="current-password" autocapitalize="none" spellcheck="false" required>
+    <p class="error" id="login-error" role="alert" hidden></p>
+    <button class="btn" type="submit" id="unlock">Unlock</button>
+  </form>
+</div>
+
+<div id="app" hidden>
+  <header class="masthead">
+    <div class="wrap">
+      <div>
+        <p class="eyebrow">8888 Media</p>
+        <h1>Client Hub</h1>
+        <p class="updated" id="updated" aria-live="polite"></p>
+      </div>
+      <nav aria-label="Hub links">
+        <button type="button" class="band-btn" id="refresh">Refresh</button>
+        <a class="band-btn" id="lead-tracker" target="_blank" rel="noopener" hidden>Lead Tracker</a>
+        <a class="band-btn" id="quick-messages" target="_blank" rel="noopener" hidden>Quick Messages</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <p class="banner" id="banner" role="status" hidden></p>
+
+    <section aria-labelledby="money-h">
+      <h2 id="money-h" class="sr-only">Money</h2>
+      <div class="stats" id="stats"></div>
+    </section>
+
+    <section aria-labelledby="needs-h">
+      <h2 id="needs-h">Needs You</h2>
+      <div id="needs"></div>
+    </section>
+
+    <section id="requests" aria-labelledby="requests-h" hidden>
+      <div class="section-head">
+        <h2 id="requests-h">New Mockup Requests</h2>
+        <p class="soft">Your morning brief adds these to the Lead Tracker.</p>
+      </div>
+      <div class="grid" id="request-list"></div>
+    </section>
+
+    <section aria-labelledby="clients-h">
+      <div class="section-head">
+        <h2 id="clients-h">Clients</h2>
+        <div class="tabs" role="tablist" id="tabs"></div>
+      </div>
+      <div class="grid" id="client-list"></div>
+    </section>
+
+    <section id="recent-section" aria-labelledby="recent-h" hidden>
+      <h2 id="recent-h">Recent Activity</h2>
+      <ul class="recent" id="recent"></ul>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <span>Read-only for now. Changes still go through Claude.</span>
+      <button type="button" class="link-btn" id="sign-out">Sign Out on This Device</button>
+    </div>
+  </footer>
+</div>
+
+<script>
+(() => {
+  const STORE = "8888-hub-key";
+  const TAB_STORE = "8888-hub-tab";
+  const REFRESH_MS = 60 * 1000;
+  const $ = (s) => document.querySelector(s);
+
+  const store = {
+    get(k) { try { return localStorage.getItem(k); } catch { return null; } },
+    set(k, v) { try { localStorage.setItem(k, v); } catch {} },
+    drop(k) { try { localStorage.removeItem(k); } catch {} },
+  };
+
+  // A setup link (/hub/#k=...) saves the passcode on this device, then drops it from the address bar.
+  let key = null;
+  const fromLink = location.hash.match(/[#&]k=([^&]+)/);
+  if (fromLink) {
+    try { key = decodeURIComponent(fromLink[1]); } catch { key = null; }
+    if (key) store.set(STORE, key);
+    history.replaceState(null, "", location.pathname);
+  } else {
+    key = store.get(STORE);
+  }
+
+  let data = null;
+  let tab = store.get(TAB_STORE);
+  let loading = false;
+
+  // ---------- helpers ----------
+  function el(tag, attrs, ...kids) {
+    const node = document.createElement(tag);
+    for (const [k, v] of Object.entries(attrs || {})) {
+      if (v == null || v === false) continue;
+      if (k === "class") node.className = v;
+      else if (k === "text") node.textContent = v;
+      else if (k.startsWith("on")) node.addEventListener(k.slice(2), v);
+      else node.setAttribute(k, v === true ? "" : v);
+    }
+    for (const kid of kids.flat()) if (kid != null && kid !== false) node.append(kid);
+    return node;
+  }
+  const money = (n) => "$" + Math.round(Number(n) || 0).toLocaleString("en-US");
+  const shortDate = (d) => new Date(d).toLocaleDateString("en-US", { month: "short", day: "numeric" });
+  function ago(d) {
+    const then = new Date(d);
+    const mins = Math.round((Date.now() - then) / 60000);
+    if (mins < 1) return "just now";
+    if (mins < 60) return `${mins} min ago`;
+    const hours = Math.round(mins / 60);
+    if (hours < 24) return `${hours} hr ago`;
+    const days = Math.floor((startOfDay(new Date()) - startOfDay(then)) / 864e5);
+    if (days <= 1) return "yesterday";
+    if (days < 7) return `${days} days ago`;
+    return shortDate(d);
+  }
+  const startOfDay = (d) => new Date(d.getFullYear(), d.getMonth(), d.getDate()).getTime();
+  const when = (d) => {
+    const days = Math.floor((startOfDay(new Date()) - startOfDay(new Date(d))) / 864e5);
+    return days === 0 ? new Date(d).toLocaleTimeString("en-US", { hour: "numeric", minute: "2-digit" }) : days === 1 ? "Yesterday" : shortDate(d);
+  };
+  // Only real web links become links. Bare domains like facebook.com/x get https:// added.
+  function webUrl(u) {
+    const s = String(u || "").trim();
+    if (/^https?:\/\/[^\s]+$/i.test(s)) return s;
+    if (/^[a-z0-9.-]+\.[a-z]{2,}(\/\S*)?$/i.test(s)) return "https://" + s;
+    return null;
+  }
+  const isEmail = (s) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(s || "");
+
+  async function copy(text, button) {
+    let ok = false;
+    try { await navigator.clipboard.writeText(text); ok = true; } catch {
+      const t = el("textarea", { class: "sr-only" });
+      t.value = text;
+      document.body.append(t);
+      t.select();
+      try { ok = document.execCommand("copy"); } catch {}
+      t.remove();
+    }
+    const old = button.textContent;
+    button.textContent = ok ? "Copied" : "Couldn't Copy";
+    setTimeout(() => (button.textContent = old), 1800);
+  }
+
+  // ---------- loading ----------
+  function showLogin(message) {
+    $("#app").hidden = true;
+    $("#login").hidden = false;
+    $("#login-error").hidden = !message;
+    $("#login-error").textContent = message || "";
+    $("#passcode").focus();
+  }
+
+  async function load(opts = {}) {
+    if (!key || loading) return;
+    loading = true;
+    $("#refresh").disabled = true;
+    try {
+      const res = await fetch("/api/hub/overview", { headers: { "X-Hub-Key": key }, cache: "no-store" });
+      const body = await res.json().catch(() => ({}));
+      if (res.status === 401 || res.status === 429 || res.status === 503) {
+        if (res.status === 401) { store.drop(STORE); key = null; }
+        showLogin(body.error || "That passcode didn't work.");
+        return;
+      }
+      if (!res.ok) throw new Error(body.error || `HTTP ${res.status}`);
+      if (opts.remember) store.set(STORE, key);
+      data = body;
+      $("#banner").hidden = true;
+      $("#login").hidden = true;
+      $("#app").hidden = false;
+      render();
+    } catch (err) {
+      if (!data) showLogin("Couldn't reach the hub. Check your connection and try again.");
+      else {
+        $("#banner").textContent = "Couldn't refresh just now. Showing what was loaded before.";
+        $("#banner").hidden = false;
+      }
+    } finally {
+      loading = false;
+      $("#refresh").disabled = false;
+    }
+  }
+
+  $("#login-form").addEventListener("submit", (e) => {
+    e.preventDefault();
+    const typed = $("#passcode").value.trim();
+    if (!typed) return;
+    key = typed;
+    $("#unlock").disabled = true;
+    load({ remember: true }).finally(() => ($("#unlock").disabled = false));
+  });
+  $("#refresh").addEventListener("click", () => load());
+  $("#sign-out").addEventListener("click", () => {
+    store.drop(STORE);
+    key = null;
+    data = null;
+    $("#passcode").value = "";
+    showLogin("Signed out on this device.");
+  });
+  setInterval(() => { if (document.visibilityState === "visible") load(); }, REFRESH_MS);
+  document.addEventListener("visibilitychange", () => { if (document.visibilityState === "visible") load(); });
+
+  // ---------- rendering ----------
+  function render() {
+    $("#updated").textContent = `Updated ${new Date(data.now).toLocaleTimeString("en-US", { hour: "numeric", minute: "2-digit" })}`;
+    for (const [id, url] of [["#lead-tracker", data.links && data.links.leadTracker], ["#quick-messages", data.links && data.links.quickMessages]]) {
+      $(id).hidden = !url;
+      if (url) $(id).href = url;
+    }
+    renderStats();
+    renderNeeds();
+    renderRequests();
+    renderTabs();
+    renderClients();
+    renderRecent();
+  }
+
+  function renderStats() {
+    const m = data.money;
+    const c = data.counts;
+    const stat = (label, value, sub, cls) => el("div", { class: "stat" + (cls ? " " + cls : "") }, el("span", { class: "label", text: label }), el("span", { class: "value", text: value }), sub ? el("span", { class: "sub", text: sub }) : null);
+    const monthName = new Date(data.now).toLocaleDateString("en-US", { month: "long" });
+    $("#stats").replaceChildren(
+      stat("Collected", money(m.collectedThisMonth), `In ${monthName} · ${money(m.collectedAllTime)} all time`, m.collectedThisMonth ? "good" : ""),
+      stat("Owed Now", money(m.owed), m.clearing ? `${money(m.clearing)} more clearing` : "Payments on client pages", m.owed ? "hot" : ""),
+      stat("Still to Bill", money(m.toBill), "Final payments not sent yet"),
+      stat("Projects", String(c.active), `${c.live} live site${c.live === 1 ? "" : "s"}`),
+      stat("Care Plans", String(m.carePlans), m.carePlans ? `${money(m.careMonthly)}/mo` : "None yet"),
+    );
+  }
+
+  function renderNeeds() {
+    const rows = [];
+    const inq = data.inquiries.length;
+    if (inq) rows.push({ who: `${inq} new mockup request${inq === 1 ? "" : "s"}`, what: "Reach out while it's fresh", href: "#requests" });
+    for (const c of data.clients) for (const text of c.needsYou) rows.push({ who: c.business, what: text, href: `#client-${c.slug}`, group: c.group });
+    if (!rows.length) {
+      $("#needs").replaceChildren(el("p", { class: "all-clear", text: "All clear. Nothing needs you right now." }));
+      return;
+    }
+    $("#needs").replaceChildren(el("ul", { class: "needs-list" }, rows.map((r) =>
+      el("li", {}, el("a", { href: r.href, onclick: () => { if (r.group && r.group !== tab) { tab = r.group; renderTabs(); renderClients(); } } },
+        el("span", { class: "who", text: r.who }), el("span", { class: "what", text: r.what }))))));
+  }
+
+  function renderRequests() {
+    const list = data.inquiries;
+    $("#requests").hidden = !list.length;
+    $("#request-list").replaceChildren(...list.map((r) => {
+      const contact = r.contact || "";
+      const digits = contact.replace(/[^\d+]/g, "");
+      const buttons = [];
+      if (isEmail(contact)) buttons.push(el("a", { class: "btn small", href: `mailto:${contact}`, text: "Email" }));
+      else if (digits.replace(/\D/g, "").length >= 10) {
+        buttons.push(el("a", { class: "btn small" + (r.reach === "Call" ? "" : " ghost"), href: `tel:${digits}`, text: "Call" }));
+        buttons.push(el("a", { class: "btn small" + (r.reach === "Call" ? " ghost" : ""), href: `sms:${digits}`, text: "Text" }));
+      }
+      const online = webUrl(r.link);
+      return el("article", { class: "card" },
+        el("div", { class: "card-head" },
+          el("div", {}, el("h3", { text: r.business }), el("p", { class: "meta", text: `${r.name} · asked ${ago(r.at)}` })),
+          el("span", { class: "badge you", text: "New" })),
+        r.notes ? el("p", { class: "quote", text: r.notes }) : null,
+        el("dl", { class: "facts" },
+          el("dt", { text: "Contact" }), el("dd", { text: contact }),
+          el("dt", { text: "Prefers" }), el("dd", { text: r.reach || "No preference" }),
+          r.link ? [el("dt", { text: "Online" }), el("dd", {}, online ? el("a", { href: online, target: "_blank", rel: "noopener noreferrer", text: r.link }) : r.link)] : null),
+        buttons.length ? el("div", { class: "actions" }, buttons) : null);
+    }));
+  }
+
+  function renderTabs() {
+    const c = data.counts;
+    const groups = [["active", "Active", c.active], ["live", "Live", c.live], ["closed", "Closed", c.closed]];
+    if (!groups.some(([g]) => g === tab)) tab = c.active || !c.live ? "active" : "live";
+    $("#tabs").replaceChildren(...groups.filter(([g, , n]) => n || g !== "closed").map(([g, label, n]) =>
+      el("button", { type: "button", class: "tab", role: "tab", "aria-selected": String(g === tab), onclick: () => { tab = g; store.set(TAB_STORE, g); renderTabs(); renderClients(); }, text: `${label} (${n})` })));
+  }
+
+  function renderClients() {
+    const list = data.clients.filter((c) => c.group === tab);
+    if (!list.length) {
+      const msg = !data.clients.length
+        ? "No clients yet. When you sign one, Claude creates their project page and they show up here."
+        : tab === "active" ? "No projects in progress right now." : tab === "live" ? "No live sites yet." : "Nothing closed yet.";
+      $("#client-list").replaceChildren(el("p", { class: "empty", text: msg }));
+      return;
+    }
+    $("#client-list").replaceChildren(...list.map(clientCard));
+    if (location.hash.startsWith("#client-")) {
+      const target = document.getElementById(location.hash.slice(1));
+      if (target) target.scrollIntoView({ block: "start" });
+    }
+  }
+
+  function clientCard(c) {
+    const current = c.steps.findIndex((s) => !s.done);
+    const metaBits = [c.owner, c.package, c.rate === "new" ? "New-client rate" : c.rate === "standard" ? "Standard rate" : "", money(c.total)].filter(Boolean);
+
+    const payRows = c.payments.map((p) => {
+      let status;
+      if (p.status === "paid") status = el("span", { class: "st-paid", text: `Received${p.paidAt ? " " + shortDate(p.paidAt) : ""}${p.paidVia === "stripe" ? " (Stripe)" : ""}` });
+      else if (p.status === "processing") status = el("span", { class: "st-clearing", text: "Bank payment clearing" });
+      else status = el("span", { class: "st-due", text: `Due${p.card ? (p.cardTest ? ", card link (sandbox)" : ", card link on") : ""}` });
+      return el("div", { class: "pay-row" }, el("span", { class: "num", text: `${p.label} ${money(p.amount)}` }), status);
+    });
+    if (c.money.toBill && !c.closed) payRows.push(el("div", { class: "pay-row faint" }, el("span", { class: "num", text: `${money(c.money.toBill)} still to bill` })));
+
+    const facts = [];
+    const fact = (label, ...value) => facts.push(el("dt", { text: label }), el("dd", {}, ...value));
+    if (payRows.length) fact("Payments", ...payRows);
+    if (c.agreement) fact("Agreement", c.agreement.acceptedBy ? `Accepted by ${c.agreement.acceptedBy}, ${shortDate(c.agreement.at)}` : "Not accepted yet");
+    const a = c.answers;
+    fact("Answers", `${a.state}${a.files ? ` · ${a.files} file${a.files === 1 ? "" : "s"}` : ""}${a.updatedAt ? ` · last change ${ago(a.updatedAt)}` : ""}`);
+    if (c.preview) {
+      const p = c.preview;
+      const words = { waiting: `waiting since ${shortDate(p.postedAt)}`, changes: `changes requested ${p.response ? ago(p.response.at) : ""}`, approved: `approved ${p.response ? shortDate(p.response.at) : ""}` }[p.status] || p.status;
+      const url = webUrl(p.url);
+      fact("Preview", `Round ${p.round}: ${words} `, url ? el("a", { href: url, target: "_blank", rel: "noopener noreferrer", text: "Open" }) : null);
+    }
+    if (c.launch) {
+      const url = webUrl(c.launch.url);
+      fact("Live", url ? el("a", { href: url, target: "_blank", rel: "noopener noreferrer", text: c.launch.url.replace(/^https?:\/\//, "") }) : c.launch.url, ` · ${c.launch.days} day${c.launch.days === 1 ? "" : "s"}`);
+    }
+    if (c.isBusinessSite && (c.launch || c.care)) {
+      fact("Care Plan", c.care ? `${c.care.plan === "yearly" ? "$1,000/yr" : "$100/mo"}${c.care.since ? ` since ${shortDate(c.care.since)}` : ""}` : "Not signed up");
+    }
+    if (c.testimonial) fact("Testimonial", `${c.testimonial.showOk ? "OK to show" : "Private"} · ${shortDate(c.testimonial.at)}`);
+
+    const actions = [];
+    if (c.link && !c.closed) {
+      actions.push(el("a", { class: "btn small", href: c.link, target: "_blank", rel: "noopener noreferrer", text: "Open Their Page" }));
+      const b = el("button", { type: "button", class: "btn small ghost", text: "Copy Their Link" });
+      b.addEventListener("click", () => copy(c.link, b));
+      actions.push(b);
+    }
+
+    return el("article", { class: "card", id: `client-${c.slug}` },
+      el("div", { class: "card-head" },
+        el("div", {}, el("h3", { text: c.business }), el("p", { class: "meta", text: metaBits.join(" · ") })),
+        el("span", { class: `badge ${c.stage.whose}`, text: c.stage.label })),
+      c.closed ? null : el("ol", { class: "steps", "aria-label": "Progress" }, c.steps.map((s, i) =>
+        el("li", { class: s.done ? "done" : i === current ? "current" : "" }, el("span", { text: s.label }), el("span", { class: "sr-only", text: s.done ? " (done)" : i === current ? " (current)" : "" })))),
+      c.closed ? null : el("p", { class: "step-caption", "aria-hidden": "true", text: current < 0 ? "All steps done" : `Step ${current + 1} of ${c.steps.length}: ${c.steps[current].label}` }),
+      c.needsYou.length ? el("div", { class: "needs-box" }, el("strong", { text: "Needs You" }), el("ul", {}, c.needsYou.map((t) => el("li", { text: t })))) : null,
+      c.preview && c.preview.status === "changes" && c.preview.response && c.preview.response.text ? el("p", { class: "quote", text: c.preview.response.text }) : null,
+      c.testimonial && c.needsYou.some((t) => t.startsWith("New testimonial")) ? el("p", { class: "quote", text: `“${c.testimonial.text}”${c.testimonial.name ? ` ${c.testimonial.name}` : ""}` }) : null,
+      c.waitingOn.length ? el("p", { class: "waiting" }, el("strong", { text: "Waiting on them: " }), c.waitingOn.join(", ").toLowerCase().replace(/^./, (ch) => ch.toUpperCase())) : null,
+      el("dl", { class: "facts" }, facts),
+      actions.length ? el("div", { class: "actions" }, actions) : null,
+      c.events.length ? el("details", { class: "history" }, el("summary", { text: "History" }),
+        el("ul", {}, c.events.map((e) => el("li", {}, el("span", { class: "when", text: when(e.at) }), e.text)))) : null);
+  }
+
+  function renderRecent() {
+    const list = data.recent || [];
+    $("#recent-section").hidden = !list.length;
+    $("#recent").replaceChildren(...list.map((e) =>
+      el("li", {}, el("span", { class: "when", text: when(e.at) }), el("span", {}, el("strong", { text: e.business }), `: ${e.text}`))));
+  }
+
+  // ---------- start ----------
+  if (key) load();
+  else showLogin();
+})();
+</script>
+</body>
+</html>
