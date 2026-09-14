@@ -136,7 +136,7 @@
   .code{font-weight:700;background:var(--surface-2);padding:2px 8px;border-radius:4px;overflow-wrap:anywhere;}
   .paid{display:flex;align-items:center;gap:10px;color:var(--ok);font-weight:600;}
   .qr{display:none;gap:16px;align-items:center;border-top:1px solid var(--rule);padding-top:14px;}
-  .qr img{width:132px;height:132px;border-radius:6px;background:#fff;padding:6px;}
+  .qr img{width:168px;height:168px;border-radius:6px;background:#fff;flex:none;}
   @media (min-width:760px){.qr.has-qr{display:flex;}}
   .small{font-size:0.92rem;}
 
@@ -443,7 +443,7 @@
   "use strict";
 
   const ZELLE_TAG = "8888media";
-  const ZELLE_QR = ""; // Set to "/start/zelle-qr.png" once Mike saves his Zelle QR code there.
+  const ZELLE_QR = "/start/zelle-qr.png"; // Mike's Zelle QR (8888 MEDIA LLC), shown to people on a computer.
   const CONTACT = "mike@8888media.co";
   const MAX_BYTES = 25 * 1024 * 1024;
   const SHRINK_OVER = 2.5 * 1024 * 1024; // photos bigger than this are resized before upload
