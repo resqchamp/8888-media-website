@@ -153,7 +153,20 @@
   @media (max-width:860px){.sched{grid-template-columns:minmax(0,1fr);}}
 
   /* menu */
-  .menu{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:18px;margin-top:30px;}
+  .menu{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px;margin-top:30px;}
+  @media (max-width:980px){.menu{grid-template-columns:repeat(2,minmax(0,1fr));}}
+  @media (max-width:600px){.menu{grid-template-columns:minmax(0,1fr);}}
+  /* The best seller runs the full width with their own photo; the other four sit in a row below.
+     The photo is positioned inside its box so the text, not the tall photo, sets the height. */
+  .dish.feature{grid-column:1/-1;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);padding:0;gap:0;overflow:hidden;}
+  .dish.feature .ph{position:relative;min-height:320px;}
+  .dish.feature .ph img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 40%;}
+  .dish.feature .body{padding:clamp(22px,4vw,40px);display:flex;flex-direction:column;justify-content:center;align-items:flex-start;gap:12px;}
+  .dish.feature h3{font-size:clamp(1.8rem,3.4vw,2.4rem);}
+  .dish.feature p{font-size:1.02rem;max-width:40ch;}
+  .choices{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:8px;}
+  .choices li{border:1px solid var(--line);background:#25201D;border-radius:999px;padding:4px 14px;font-size:0.9rem;font-weight:600;}
+  @media (max-width:600px){.dish.feature{grid-template-columns:minmax(0,1fr);} .dish.feature .ph{min-height:0;aspect-ratio:4/3;}}
   .dish{background:var(--coal-2);border:1px solid var(--line);border-radius:8px;padding:20px;display:flex;flex-direction:column;gap:8px;}
   .dish-top{display:flex;align-items:center;gap:12px;}
   .num{flex:none;width:30px;height:30px;border-radius:50%;background:var(--red-btn);color:#fff;font-weight:800;font-size:0.9rem;display:grid;place-items:center;}
@@ -170,6 +183,11 @@
 
   /* dirty sodas */
   .tag{font-size:clamp(1.3rem,3vw,1.7rem);margin-top:8px;}
+  .soda-head{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,0.9fr);gap:clamp(24px,4vw,48px);align-items:center;}
+  .soda-pics{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;}
+  .soda-pics img{display:block;width:100%;max-width:100%;height:auto;border-radius:8px;border:3px solid var(--coal-2);box-shadow:0 12px 26px rgba(0,0,0,0.5);}
+  .soda-pics img:nth-child(2){margin-top:34px;}
+  @media (max-width:760px){.soda-head{grid-template-columns:minmax(0,1fr);}}
   .soda{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:clamp(24px,4vw,40px);margin-top:30px;align-items:start;}
   .ribbon{font-size:0.9rem;font-weight:800;letter-spacing:0.16em;text-transform:uppercase;color:var(--gold);border-bottom:2px solid var(--red-btn);padding-bottom:8px;}
   .drinks{list-style:none;margin:14px 0 0;padding:0;display:flex;flex-direction:column;gap:12px;}
@@ -321,10 +339,14 @@
       <h2 id="menu-h">The Menu</h2>
       <p class="lead">Hibachi with a Latin twist, cooked to order. Good food takes a minute, and your patience is greatly appreciated. Prices are on the board at the window.</p>
       <div class="menu">
-        <article class="dish">
-          <div class="dish-top"><span class="num" aria-hidden="true">1</span><h3>Hibachi Rice</h3></div>
-          <p>Jasmine fried rice with chicken, steak or shrimp, in a small or large.</p>
-          <span class="best">Best Seller</span>
+        <article class="dish feature">
+          <div class="ph"><img src="hibachi-shrimp.jpg" width="900" height="1200" alt="Shrimp hibachi fried rice with red peppers, onions, egg and parsley in a Latin Infusions takeout tray." loading="lazy"></div>
+          <div class="body">
+            <span class="best">Best Seller</span>
+            <div class="dish-top"><span class="num" aria-hidden="true">1</span><h3>Hibachi Rice</h3></div>
+            <p>Jasmine fried rice with your choice of protein, in a small or large. Pictured: the shrimp.</p>
+            <ul class="choices" aria-label="Choice of protein"><li>Chicken</li><li>Steak</li><li>Shrimp</li></ul>
+          </div>
         </article>
         <article class="dish">
           <div class="dish-top"><span class="num" aria-hidden="true">2</span><h3>Empanadas</h3></div>
@@ -359,9 +381,18 @@
 
   <section id="sodas" aria-labelledby="sodas-h">
     <div class="wrap">
-      <p class="kicker">Classic Soda, Bold Flavor</p>
-      <h2 id="sodas-h">Dirty Sodas</h2>
-      <p class="script tag">Your Soda. Your Way. Your Vibe.</p>
+      <div class="soda-head">
+        <div>
+          <p class="kicker">Classic Soda, Bold Flavor</p>
+          <h2 id="sodas-h">Dirty Sodas</h2>
+          <p class="script tag">Your Soda. Your Way. Your Vibe.</p>
+          <p class="lead">Soda mixed with flavored syrups and cream. Some come piled high with whipped cream, gummies and cotton candy. Pick a favorite or build your own.</p>
+        </div>
+        <div class="soda-pics">
+          <img src="soda-blue.jpg" width="720" height="960" alt="A bright blue dirty soda in a Latin Infusions cup, topped with whipped cream, green cotton candy and gummy candy." loading="lazy">
+          <img src="soda-green.jpg" width="720" height="960" alt="A green dirty soda at the truck window, topped with whipped cream, gummies and pink cotton candy." loading="lazy">
+        </div>
+      </div>
       <div class="soda">
         <div>
           <h3 class="ribbon">Specialty Mixes</h3>
