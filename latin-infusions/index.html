@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Latin Infusions Food Truck | Hibachi With Latin Flavor in Vineland</title>
+<meta name="description" content="Latin Infusions is a Vineland, NJ food truck serving hibachi fried rice, handmade empanadas and dirty sodas. See where the truck is this week and book it for your event.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="8888 Media">
+<meta property="og:title" content="Latin Infusions Food Truck">
+<meta property="og:description" content="A free website mockup for Latin Infusions, made by 8888 Media.">
+<meta property="og:url" content="https://www.8888media.co/latin-infusions/">
+<meta property="og:image" content="https://www.8888media.co/latin-infusions/og-image.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="The Latin Infusions food truck, a glossy black trailer with a flame logo.">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;900&family=Figtree:wght@400;500;600;700;800&family=Kaushan+Script&display=swap">
+<style>
+  /* Colors pulled from the truck and its menus: the glossy black trailer, the logo's red lines and flame,
+     the gold script on the menu boards, the stainless serving window, and the red and blue string lights. */
+  :root{
+    --night:#0B0A0A;
+    --coal:#151312;
+    --coal-2:#1D1A18;
+    --line:#2E2926;
+    --cream:#F6F0E8;
+    --soft:#BDB3AA;
+    --red:#EF4B3A;
+    --red-btn:#C8231F;
+    --red-deep:#A11B17;
+    --gold:#F5B83D;
+    --flame:#F7892B;
+    --steel:#C9CED3;
+  }
+  *{box-sizing:border-box;}
+  @media (prefers-reduced-motion:no-preference){html{scroll-behavior:smooth;}}
+  body{margin:0;background:var(--night);color:var(--cream);font:400 17px/1.65 'Figtree',system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;-webkit-font-smoothing:antialiased;}
+  h1,h2,h3{margin:0;text-wrap:balance;}
+  h2{font-family:'Cinzel',Georgia,'Times New Roman',serif;font-weight:900;font-size:clamp(1.9rem,4.6vw,2.7rem);line-height:1.08;letter-spacing:0.02em;}
+  h3{font-size:1.12rem;line-height:1.3;font-weight:700;}
+  p{margin:0;}
+  a{color:var(--gold);text-underline-offset:3px;}
+  a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:3px solid var(--gold);outline-offset:3px;}
+  .wrap{max-width:1120px;margin:0 auto;padding-inline:clamp(16px,4vw,32px);}
+  .kicker{font-size:0.78rem;font-weight:800;letter-spacing:0.18em;text-transform:uppercase;color:var(--red);}
+  .script{font-family:'Kaushan Script','Brush Script MT',cursive;font-weight:400;color:var(--gold);}
+  .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;}
+  .lead{margin-top:14px;max-width:60ch;color:var(--soft);font-size:1.07rem;}
+  .note{font-size:0.86rem;color:var(--soft);}
+
+  .sample-bar{background:var(--cream);color:#2A2522;font-size:0.84rem;line-height:1.45;padding-block:8px;}
+  .sample-bar .wrap{display:flex;flex-wrap:wrap;gap:4px 14px;justify-content:center;text-align:center;}
+  .sample-bar b,.sample-bar a{color:#0B0A0A;font-weight:700;}
+
+  /* header */
+  .top{background:var(--night);border-bottom:1px solid var(--line);}
+  .top .wrap{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px 24px;padding-block:12px;}
+  .brand{display:flex;align-items:center;gap:10px;color:var(--cream);text-decoration:none;}
+  .brand img{width:44px;height:44px;border-radius:50%;border:2px solid var(--red-btn);}
+  .brand span{font-family:'Cinzel',Georgia,serif;font-weight:700;font-size:1.05rem;letter-spacing:0.06em;line-height:1.1;}
+  .brand small{display:block;font-family:'Figtree',system-ui,sans-serif;font-size:0.62rem;font-weight:700;letter-spacing:0.32em;text-transform:uppercase;color:var(--soft);margin-top:3px;}
+  nav{display:flex;flex-wrap:wrap;align-items:center;gap:6px 20px;font-weight:600;font-size:0.95rem;}
+  nav a{color:var(--cream);text-decoration:none;}
+  nav a:hover{color:var(--gold);}
+  nav .pill{background:var(--red-btn);color:#fff;padding:7px 14px;border-radius:999px;font-weight:700;}
+  nav .pill:hover{background:var(--red-deep);color:#fff;}
+
+  /* the trailer */
+  .scene{background:radial-gradient(ellipse 70% 90% at 50% 0%,#2B1510 0%,var(--night) 70%);padding-block:clamp(26px,5vw,48px) 0;}
+  /* Glossy black panels with faint seams, like the real trailer's side. */
+  .trailer{position:relative;border:1px solid #2B2B2E;border-bottom:0;border-radius:10px 10px 0 0;padding:clamp(38px,5vw,56px) clamp(18px,4vw,44px) clamp(26px,4vw,40px);
+    background:
+      repeating-linear-gradient(to right,transparent 0 calc(25% - 1px),rgba(255,255,255,0.05) calc(25% - 1px) 25%),
+      linear-gradient(112deg,#040404 0%,#1C1C1F 34%,#0A0A0B 48%,#232326 66%,#070707 100%);
+    box-shadow:inset 0 1px 0 rgba(255,255,255,0.08);}
+  /* The red and blue string lights along the roof, from their night photos. */
+  .lights{position:absolute;left:16px;right:16px;top:10px;display:flex;justify-content:space-between;pointer-events:none;}
+  .lights::before{content:"";position:absolute;left:0;right:0;top:4px;height:1px;background:#3A3A3D;}
+  .lights i{position:relative;width:9px;height:9px;border-radius:50%;background:var(--bulb);box-shadow:0 0 6px 1px var(--bulb),0 8px 22px 3px var(--glow);animation:twinkle 3.4s ease-in-out infinite;}
+  .lights i:nth-child(odd){--bulb:#FF4436;--glow:rgba(255,68,54,0.28);}
+  .lights i:nth-child(even){--bulb:#4A84FF;--glow:rgba(74,132,255,0.28);}
+  .lights i:nth-child(3n){animation-delay:-1.1s;}
+  .lights i:nth-child(3n+1){animation-delay:-2.3s;}
+  @keyframes twinkle{0%,100%{opacity:1;}50%{opacity:0.5;}}
+
+  .trailer-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);gap:clamp(26px,4vw,48px);align-items:center;}
+  .intro{display:flex;flex-direction:column;align-items:flex-start;gap:14px;}
+  .intro .logo{width:clamp(140px,19vw,200px);height:auto;border-radius:50%;box-shadow:0 0 0 3px #1B1B1D,0 0 0 5px var(--red-btn),0 0 44px rgba(247,137,43,0.28);}
+  .intro h1{font-family:'Cinzel',Georgia,'Times New Roman',serif;font-weight:900;font-size:clamp(2.2rem,5.4vw,3.5rem);line-height:1.02;letter-spacing:0.01em;}
+  .intro h1 .script{display:block;font-size:0.6em;line-height:1.2;margin-top:8px;letter-spacing:0;}
+  .intro > p:not(.kicker){color:var(--soft);max-width:44ch;font-size:1.05rem;}
+
+  /* The serving window. Each pane has a shutter that props open like the truck's awning on hover
+     (or keyboard focus), showing the warm-lit kitchen and the way in. */
+  .window{background:#0A0A0B;border:6px solid var(--steel);border-radius:4px;padding:10px;box-shadow:0 12px 30px rgba(0,0,0,0.55);}
+  .panes{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;}
+  .pane{position:relative;display:block;min-height:clamp(150px,17vw,200px);perspective:700px;text-decoration:none;border:3px solid #D9DDE1;
+    background:radial-gradient(ellipse at 50% -10%,#FFD89A 0%,#F5A04A 24%,#B5471A 58%,#3A160A 100%);}
+  .pane .inside,.pane .shutter{position:absolute;inset:0;display:flex;flex-direction:column;gap:4px;padding:14px;}
+  .pane .inside{justify-content:flex-end;color:#fff;background:linear-gradient(to top,rgba(12,7,4,0.94) 0%,rgba(12,7,4,0.72) 42%,rgba(12,7,4,0) 78%);}
+  .pane .shutter{inset:-3px;justify-content:center;align-items:center;text-align:center;color:var(--cream);border:3px solid #D9DDE1;
+    background:repeating-linear-gradient(to bottom,#222225 0 12px,#18181A 12px 13px);
+    transform-origin:top center;transition:transform .7s cubic-bezier(.3,.1,.15,1);box-shadow:0 8px 14px rgba(0,0,0,0.4);}
+  .pane .shutter::after{content:"";position:absolute;left:32%;right:32%;bottom:10px;height:4px;border-radius:2px;background:#8F959B;}
+  .pane .shutter span{transition:opacity .2s ease;}
+  @media (hover:hover){.pane:hover .shutter{transform:rotateX(74deg);} .pane:hover .shutter span{opacity:0;}}
+  .pane:focus-visible .shutter{transform:rotateX(74deg);}
+  .pane:focus-visible .shutter span{opacity:0;}
+  .pane .label{font-size:0.72rem;font-weight:800;letter-spacing:0.16em;text-transform:uppercase;color:var(--gold);}
+  .pane .shutter .label{color:#AEB4BA;}
+  .pane .go{font-family:'Cinzel',Georgia,serif;font-weight:700;font-size:clamp(1.05rem,1.8vw,1.3rem);line-height:1.15;}
+  @media (prefers-reduced-motion:reduce){.pane .shutter,.pane .shutter span{transition:none;} .lights i{animation:none;}}
+  .shelf{height:12px;margin-top:10px;background:linear-gradient(#EEF0F2,#9AA1A8);border-radius:2px;box-shadow:0 8px 12px rgba(0,0,0,0.5);}
+  .order{font-family:'Kaushan Script','Brush Script MT',cursive;color:var(--gold);text-align:center;margin-top:10px;font-size:1.25rem;}
+  /* Diamond-plate trim along the bottom, like the trailer's tongue box. */
+  .kick{height:24px;border-top:1px solid #9AA1A8;background-color:#767C83;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20'%3E%3Cpath d='M3 7l5-4 1.5 1.5-5 4z' fill='%23B9BFC5'/%3E%3Cpath d='M13 17l5-4 1.5 1.5-5 4z' fill='%23B9BFC5'/%3E%3Cpath d='M11 3l4 5-1.5 1.2-4-5z' fill='%23A7ADB3'/%3E%3Cpath d='M1 13l4 5-1.5 1.2-4-5z' fill='%23A7ADB3'/%3E%3C/svg%3E");}
+  @media (max-width:860px){.trailer-grid{grid-template-columns:minmax(0,1fr);}}
+  @media (max-width:560px){
+    .panes{grid-template-columns:minmax(0,1fr);}
+    .pane{min-height:92px;}
+    .lights i:nth-child(n+11){display:none;}
+  }
+
+  .next{background:var(--red-btn);color:#fff;}
+  .next .wrap{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:6px 14px;padding-block:14px;text-align:center;}
+  .next .dot{width:10px;height:10px;border-radius:50%;background:#fff;box-shadow:0 0 0 4px rgba(255,255,255,0.3);}
+  .next b{font-size:0.8rem;font-weight:800;letter-spacing:0.14em;text-transform:uppercase;}
+  .next a{color:#fff;font-weight:700;}
+
+  main section{padding-block:clamp(56px,9vw,90px);}
+  .alt{background:var(--coal);}
+
+  /* this week */
+  .sched{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,0.9fr);gap:clamp(28px,5vw,56px);align-items:start;}
+  .stops{list-style:none;margin:24px 0 0;padding:0;}
+  .stop{display:grid;grid-template-columns:70px minmax(0,1fr);gap:16px;padding-block:16px;border-top:1px solid var(--line);}
+  .stop:first-child{border-top:0;}
+  .day{background:var(--coal-2);border:1px solid var(--line);border-top:4px solid var(--red-btn);text-align:center;padding:10px 4px;font-family:'Cinzel',Georgia,serif;font-weight:900;font-size:1.15rem;line-height:1;align-self:start;}
+  .stop p{color:var(--soft);font-size:0.96rem;}
+  .stop .dir{display:inline-block;margin-top:4px;font-weight:700;font-size:0.92rem;}
+  .cal-note{margin-top:18px;background:var(--coal-2);border-left:6px solid var(--gold);padding:14px 16px;display:grid;grid-template-columns:34px minmax(0,1fr);gap:12px;align-items:start;}
+  .cal-note svg{width:34px;height:34px;}
+  .cal-note p{font-size:0.95rem;color:var(--soft);}
+  .cal-note b{color:var(--cream);}
+  .shot{margin:0;display:flex;flex-direction:column;gap:8px;}
+  .shot img{display:block;width:100%;max-width:100%;height:auto;border-radius:6px;border-bottom:6px solid var(--red-btn);}
+  .shot figcaption{font-size:0.9rem;color:var(--soft);}
+  @media (max-width:860px){.sched{grid-template-columns:minmax(0,1fr);}}
+
+  /* menu */
+  .menu{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:18px;margin-top:30px;}
+  .dish{background:var(--coal-2);border:1px solid var(--line);border-radius:8px;padding:20px;display:flex;flex-direction:column;gap:8px;}
+  .dish-top{display:flex;align-items:center;gap:12px;}
+  .num{flex:none;width:30px;height:30px;border-radius:50%;background:var(--red-btn);color:#fff;font-weight:800;font-size:0.9rem;display:grid;place-items:center;}
+  .dish h3{flex:1;font-family:'Kaushan Script','Brush Script MT',cursive;font-weight:400;font-size:1.5rem;line-height:1.2;}
+  .price{font-weight:800;font-size:1.3rem;color:var(--gold);font-variant-numeric:tabular-nums;white-space:nowrap;}
+  .dish p{color:var(--soft);font-size:0.96rem;}
+  .best{align-self:flex-start;background:var(--gold);color:#1A1206;font-weight:800;font-size:0.72rem;letter-spacing:0.14em;text-transform:uppercase;padding:3px 9px;border-radius:3px;}
+  .special{margin-top:22px;border-radius:8px;padding:clamp(20px,3vw,28px);background:linear-gradient(120deg,var(--red-btn),#8E1512);color:#fff;display:grid;grid-template-columns:minmax(0,0.8fr) minmax(0,1.2fr);gap:14px 32px;align-items:center;}
+  .special .kicker{color:#FFE7C2;}
+  .special h3{font-family:'Cinzel',Georgia,serif;font-weight:900;font-size:clamp(1.4rem,3vw,1.8rem);line-height:1.1;margin-top:4px;}
+  .special ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px;}
+  .special li{display:flex;justify-content:space-between;gap:16px;border-bottom:1px dashed rgba(255,255,255,0.35);padding-bottom:8px;}
+  .special li:last-child{border-bottom:0;padding-bottom:0;}
+  .special li b{font-size:1.15rem;font-variant-numeric:tabular-nums;}
+  @media (max-width:700px){.special{grid-template-columns:minmax(0,1fr);}}
+
+  /* dirty sodas */
+  .tag{font-size:clamp(1.3rem,3vw,1.7rem);margin-top:8px;}
+  .soda{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:clamp(24px,4vw,40px);margin-top:30px;align-items:start;}
+  .ribbon{font-size:0.9rem;font-weight:800;letter-spacing:0.16em;text-transform:uppercase;color:var(--gold);border-bottom:2px solid var(--red-btn);padding-bottom:8px;}
+  .drinks{list-style:none;margin:14px 0 0;padding:0;display:flex;flex-direction:column;gap:12px;}
+  .drinks li{display:flex;flex-direction:column;border-bottom:1px dashed var(--line);padding-bottom:10px;}
+  .drinks b{font-weight:700;}
+  .drinks span{color:var(--soft);font-size:0.93rem;}
+  .make{background:var(--coal-2);border:1px solid var(--line);border-radius:8px;padding:22px;}
+  .steps{list-style:none;margin:14px 0 0;padding:0;display:flex;flex-direction:column;gap:10px;counter-reset:step;}
+  .steps li{display:grid;grid-template-columns:28px minmax(0,1fr);gap:10px;align-items:center;counter-increment:step;}
+  .steps li::before{content:counter(step);width:28px;height:28px;border-radius:50%;background:var(--red-btn);color:#fff;font-weight:800;font-size:0.85rem;display:grid;place-items:center;}
+  .make .kicker{margin-top:20px;color:var(--gold);}
+  .syrups{list-style:none;margin:10px 0 0;padding:0;display:flex;flex-wrap:wrap;gap:8px;}
+  .syrups li{display:flex;align-items:center;gap:7px;background:#25201D;border:1px solid var(--line);border-radius:999px;padding:5px 12px 5px 7px;font-size:0.88rem;font-weight:600;}
+  .syrups i{width:14px;height:14px;border-radius:50%;background:var(--c);box-shadow:inset 0 0 0 1px rgba(255,255,255,0.25);}
+
+  /* book the truck */
+  .book{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(28px,5vw,56px);align-items:start;}
+  .book .shot{margin-top:26px;}
+  @media (max-width:860px){.book{grid-template-columns:minmax(0,1fr);}}
+  .card{background:var(--coal-2);border:1px solid var(--line);border-radius:8px;padding:24px;display:flex;flex-direction:column;gap:14px;}
+  .card h3{font-family:'Cinzel',Georgia,serif;font-weight:900;font-size:1.4rem;}
+  .card label{font-weight:600;font-size:0.95rem;display:flex;flex-direction:column;gap:6px;}
+  .card input,.card select,.card textarea{font:inherit;font-size:16px;padding:11px 12px;border:1px solid #6E655E;border-radius:6px;background:#0F0D0C;color:var(--cream);width:100%;}
+  .card input[type=date]{color-scheme:dark;}
+  .card .row{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:12px;}
+  @media (max-width:480px){.card .row{grid-template-columns:minmax(0,1fr);}}
+  .btn{display:inline-flex;align-items:center;justify-content:center;min-height:50px;padding:0 24px;background:var(--red-btn);color:#fff;border:0;border-radius:6px;font:inherit;font-weight:800;cursor:pointer;text-decoration:none;}
+  .btn:hover{background:var(--red-deep);}
+
+  /* thanks */
+  .thanks{display:flex;flex-direction:column;align-items:center;text-align:center;gap:14px;}
+  .thanks h2.script{font-family:'Kaushan Script','Brush Script MT',cursive;font-weight:400;font-size:clamp(2.2rem,6vw,3.4rem);letter-spacing:0;}
+  .thanks > p{color:var(--soft);font-size:1.07rem;}
+  .social{display:flex;flex-wrap:wrap;justify-content:center;gap:12px;margin-top:6px;}
+  .social a{display:inline-flex;align-items:center;gap:10px;min-height:48px;border:2px solid var(--line);border-radius:999px;padding:0 20px;color:var(--cream);text-decoration:none;font-weight:700;}
+  .social a:hover{border-color:var(--red-btn);}
+  .social svg{width:20px;height:20px;}
+  .thanks .made{font-family:'Kaushan Script','Brush Script MT',cursive;color:var(--red);font-size:1.2rem;margin-top:6px;}
+
+  footer{background:#050404;border-top:1px solid var(--line);color:var(--soft);padding-block:30px;font-size:0.92rem;}
+  footer .wrap{display:flex;flex-direction:column;gap:6px;}
+  footer .fname{font-family:'Cinzel',Georgia,serif;font-weight:700;color:var(--cream);font-size:1.1rem;letter-spacing:0.04em;}
+</style>
+</head>
+<body>
+
+<div class="sample-bar" role="note">
+  <div class="wrap">
+    <span><b>A free website mockup for Latin Infusions,</b> made by 8888 Media. Nothing here is live yet.</span>
+    <a href="https://www.8888media.co/#web-design">About 8888 Media &rarr;</a>
+  </div>
+</div>
+
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="#"><img src="logo.jpg" width="500" height="500" alt=""><span>Latin Infusions<small>Food Truck</small></span></a>
+    <nav aria-label="Main">
+      <a href="#schedule">This Week</a>
+      <a href="#menu">Menu</a>
+      <a href="#sodas">Dirty Sodas</a>
+      <a class="pill" href="#book">Book the Truck</a>
+    </nav>
+  </div>
+</header>
+
+<section class="scene" aria-labelledby="hero-h">
+  <div class="wrap">
+    <div class="trailer">
+      <div class="lights" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+      <div class="trailer-grid">
+        <div class="intro">
+          <img class="logo" src="logo.jpg" width="500" height="500" alt="The Latin Infusions Food Truck logo: a flame over a crossed spatula and fork, established 2025.">
+          <p class="kicker">Food Truck &middot; Vineland, NJ &middot; Est. 2025</p>
+          <h1 id="hero-h"><span class="sr-only">Latin Infusions: </span>Hibachi Style<span class="script">With a Little Latin Flavor</span></h1>
+          <p>Not your average food truck. Jasmine fried rice, handmade empanadas and dirty sodas, all made fresh at the window.</p>
+        </div>
+        <div>
+          <div class="window">
+            <div class="panes">
+              <a class="pane" href="#schedule"><span class="inside"><span class="label">Find Us</span><span class="go">Where We&rsquo;ll Be &rarr;</span></span><span class="shutter" aria-hidden="true"><span class="label">Find Us</span><span class="go">Where We&rsquo;ll Be</span></span></a>
+              <a class="pane" href="#menu"><span class="inside"><span class="label">Eat</span><span class="go">See the Menu &rarr;</span></span><span class="shutter" aria-hidden="true"><span class="label">Eat</span><span class="go">See the Menu</span></span></a>
+              <a class="pane" href="#book"><span class="inside"><span class="label">Events</span><span class="go">Book the Truck &rarr;</span></span><span class="shutter" aria-hidden="true"><span class="label">Events</span><span class="go">Book the Truck</span></span></a>
+            </div>
+          </div>
+          <div class="shelf" aria-hidden="true"></div>
+          <p class="order" aria-hidden="true">Order Here</p>
+        </div>
+      </div>
+    </div>
+    <div class="kick" aria-hidden="true"></div>
+  </div>
+</section>
+
+<div class="next">
+  <div class="wrap">
+    <span class="dot" aria-hidden="true"></span>
+    <b>Next Stop</b>
+    <span>Wednesday lunch in Vineland, 11 AM to 2 PM</span>
+    <a href="#schedule">See the whole week &rarr;</a>
+  </div>
+</div>
+
+<main>
+
+  <section id="schedule" aria-labelledby="sched-h">
+    <div class="wrap sched">
+      <div>
+        <p class="kicker">This Week</p>
+        <h2 id="sched-h">Where&rsquo;s the Truck This Week?</h2>
+        <p class="lead">No more &ldquo;Where are you tomorrow?&rdquo; in the comments. Every stop lives right here, with directions one tap away.</p>
+        <ol class="stops">
+          <li class="stop">
+            <div class="day">Wed</div>
+            <div><h3>Wednesday Lunch Specials</h3><p>Vineland &middot; 11 AM to 2 PM</p><a class="dir" href="https://www.google.com/maps/search/?api=1&amp;query=Vineland+NJ">Directions &rarr;</a></div>
+          </li>
+          <li class="stop">
+            <div class="day">Fri</div>
+            <div><h3>Sun Retreats Sea Isle</h3><p>Friday at the campground</p><a class="dir" href="https://www.google.com/maps/search/?api=1&amp;query=Sun+Retreats+Sea+Isle+NJ">Directions &rarr;</a></div>
+          </li>
+          <li class="stop">
+            <div class="day">Sat</div>
+            <div><h3>Ocean City Campground</h3><p>Saturday lunch</p><a class="dir" href="https://www.google.com/maps/search/?api=1&amp;query=Ocean+City+NJ+campground">Directions &rarr;</a></div>
+          </li>
+          <li class="stop">
+            <div class="day">Sat</div>
+            <div><h3>Lake and Shore</h3><p>Saturday dinner</p><a class="dir" href="https://www.google.com/maps/search/?api=1&amp;query=Lake+and+Shore+NJ">Directions &rarr;</a></div>
+          </li>
+          <li class="stop">
+            <div class="day">Sun</div>
+            <div><h3>Meyers Lighthouse Brewing Company &amp; Mini Golf</h3><p>Come enjoy some good food</p><a class="dir" href="https://www.google.com/maps/search/?api=1&amp;query=Meyers+Lighthouse+Brewing+Company">Directions &rarr;</a></div>
+          </li>
+        </ol>
+        <p class="note">Sample week, pulled from recent posts.</p>
+        <div class="cal-note">
+          <svg viewBox="0 0 34 34" aria-hidden="true"><rect x="3" y="6" width="28" height="25" rx="3" fill="#1D1A18" stroke="#F6F0E8" stroke-width="2"/><path d="M3 13h28" stroke="#F6F0E8" stroke-width="2"/><path d="M10 3v6M24 3v6" stroke="#F6F0E8" stroke-width="2" stroke-linecap="round"/><rect x="9" y="18" width="6" height="5" fill="#C8231F"/></svg>
+          <p><b>This list runs on your Google Calendar.</b> Add a stop from your phone (where, when and what&rsquo;s on special) and it shows up here within minutes. No logins, and no website skills needed.</p>
+        </div>
+      </div>
+      <figure class="shot">
+        <img src="truck-day.jpg" width="1600" height="1200" alt="The Latin Infusions food truck: a glossy black trailer with the flame logo, a serving window and menu boards." loading="lazy">
+        <figcaption>Look for the black trailer with the flame.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section id="menu" class="alt" aria-labelledby="menu-h">
+    <div class="wrap">
+      <p class="kicker">Made Fresh at the Window</p>
+      <h2 id="menu-h">The Menu</h2>
+      <p class="lead">Hibachi with a Latin twist, cooked to order. Good food takes a minute, and your patience is greatly appreciated.</p>
+      <div class="menu">
+        <article class="dish">
+          <div class="dish-top"><span class="num" aria-hidden="true">1</span><h3>Hibachi Rice</h3><span class="price">$20&ndash;$30</span></div>
+          <p>Jasmine fried rice with chicken, steak or shrimp. Small $20, large $30.</p>
+          <span class="best">Best Seller</span>
+        </article>
+        <article class="dish">
+          <div class="dish-top"><span class="num" aria-hidden="true">2</span><h3>Empanadas</h3><span class="price">3 for $10</span></div>
+          <p>Handmade with love. Beef and cheese, buffalo chicken or cheesesteak.</p>
+        </article>
+        <article class="dish">
+          <div class="dish-top"><span class="num" aria-hidden="true">3</span><h3>Loaded Nachos</h3><span class="price">$15</span></div>
+          <p>Your choice of cheese, carne asada or steak, beef and cheese, or chicken.</p>
+        </article>
+        <article class="dish">
+          <div class="dish-top"><span class="num" aria-hidden="true">4</span><h3>Wings</h3><span class="price">$15</span></div>
+          <p>Breaded or naked, tossed in honey hot, guava BBQ, garlic parm or BBQ sauce.</p>
+        </article>
+        <article class="dish">
+          <div class="dish-top"><span class="num" aria-hidden="true">5</span><h3>Loaded Fries or Tostones</h3><span class="price">$15</span></div>
+          <p>Topped with beef and cheese, buffalo chicken, carne asada, or Philly style.</p>
+        </article>
+      </div>
+      <div class="special">
+        <div>
+          <p class="kicker">Every Wednesday</p>
+          <h3>Wednesday Lunch Specials</h3>
+        </div>
+        <ul>
+          <li><span>Cheesesteak with fries</span><b>$12</b></li>
+          <li><span>Chicken teriyaki bowl</span><b>$15</b></li>
+          <li><span>Chicken wings with fries or tostones</span></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="sodas" aria-labelledby="sodas-h">
+    <div class="wrap">
+      <p class="kicker">Classic Soda, Bold Flavor</p>
+      <h2 id="sodas-h">Dirty Sodas</h2>
+      <p class="script tag">Your Soda. Your Way. Your Vibe.</p>
+      <div class="soda">
+        <div>
+          <h3 class="ribbon">Specialty Mixes</h3>
+          <ul class="drinks">
+            <li><b>Island Fizz</b><span>Sprite, coconut and vanilla syrup, pineapple juice, coconut cream</span></li>
+            <li><b>Southern Cola</b><span>Cola, peach syrup, lime juice, coconut cream</span></li>
+            <li><b>Vanilla Dr Pepper Crush</b><span>Dr Pepper, coconut creamer, vanilla syrup, whipped cream</span></li>
+            <li><b>Strawberry Cheesecake</b><span>Sprite, cheesecake and strawberry syrup, sweet cream</span></li>
+            <li><b>Going Bananas</b><span>Cream soda, banana syrup, vanilla syrup, half and half</span></li>
+            <li><b>Strawberry Banana</b><span>Orange soda, banana syrup, strawberry syrup, half and half</span></li>
+            <li><b>Fishbowl</b><span>Nerds, Sprite, green apple syrup, blue raspberry syrup</span></li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="ribbon">Classic Creations</h3>
+          <ul class="drinks">
+            <li><b>Northern Lights</b><span>Mountain Dew, raspberry, Red Bull</span></li>
+            <li><b>Sunrise</b><span>Red Bull, strawberry syrup, coconut syrup, sweet cream, strawberry cold foam</span></li>
+            <li><b>Caramel Cheesecake</b><span>Caramel, cream soda, cheesecake, cream</span></li>
+            <li><b>Dr Pepper &amp; Cream</b><span>Coconut, coconut cream, Dr Pepper, whipped cream</span></li>
+            <li><b>Raspberry Vanilla Coke</b><span>Coke, raspberry, vanilla cream</span></li>
+          </ul>
+        </div>
+        <div class="make">
+          <h3 class="ribbon">Make It Dirty</h3>
+          <ol class="steps">
+            <li>Choose any soda base.</li>
+            <li>Add up to two syrups.</li>
+            <li>Finish with cream or fruit.</li>
+            <li>Enjoy your custom creation.</li>
+          </ol>
+          <p class="kicker">Syrup Flavors</p>
+          <ul class="syrups">
+            <li><i style="--c:#F3E3B5"></i>Vanilla</li>
+            <li><i style="--c:#F7C531"></i>Pineapple</li>
+            <li><i style="--c:#F4F1EA"></i>Coconut</li>
+            <li><i style="--c:#E8313F"></i>Strawberry</li>
+            <li><i style="--c:#B3122E"></i>Cherry</li>
+            <li><i style="--c:#F79B6B"></i>Peach</li>
+            <li><i style="--c:#EEDCB0"></i>Cheesecake</li>
+            <li><i style="--c:#4A5FD8"></i>Blueberry</li>
+            <li><i style="--c:#D6336C"></i>Raspberry</li>
+            <li><i style="--c:#1FA3F0"></i>Blue Raspberry</li>
+            <li><i style="--c:#8BD13A"></i>Lime</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="book" class="alt" aria-labelledby="book-h">
+    <div class="wrap book">
+      <div>
+        <p class="kicker">Parties, Campgrounds and Festivals</p>
+        <h2 id="book-h">Book the Truck</h2>
+        <p class="lead">Birthday parties, block parties, breweries, campgrounds and festivals. Tell us about your event, and we&rsquo;ll get back to you with a date and a quote.</p>
+        <figure class="shot">
+          <img src="truck-night.jpg" width="1600" height="1200" alt="The Latin Infusions trailer glowing with red and blue lights at dusk, serving a crowd on the sand at a summer beach festival." loading="lazy">
+          <figcaption>Serving a summer festival on the sand.</figcaption>
+        </figure>
+      </div>
+      <form class="card" onsubmit="event.preventDefault()" aria-labelledby="req-h">
+        <h3 id="req-h">Request a Date</h3>
+        <label for="b-name">Your name<input id="b-name" type="text" autocomplete="name"></label>
+        <label for="b-contact">Phone or email<input id="b-contact" type="text" autocomplete="email"></label>
+        <div class="row">
+          <label for="b-date">Event date<input id="b-date" type="date"></label>
+          <label for="b-guests">About how many guests?<input id="b-guests" type="number" min="1" inputmode="numeric"></label>
+        </div>
+        <label for="b-type">Type of event
+          <select id="b-type"><option>Birthday or family party</option><option>Block party or community event</option><option>Campground or RV resort</option><option>Brewery or business</option><option>Festival</option><option>Something else</option></select>
+        </label>
+        <label for="b-where">Where is it?<input id="b-where" type="text"></label>
+        <label for="b-notes">Anything else we should know?<textarea id="b-notes" rows="3"></textarea></label>
+        <button class="btn" type="submit">Send My Request</button>
+        <p class="note">Mockup: this form doesn&rsquo;t send yet. On the real site, every request lands in your email instead of getting buried in Messenger.</p>
+      </form>
+    </div>
+  </section>
+
+  <section aria-labelledby="thanks-h">
+    <div class="wrap thanks">
+      <h2 id="thanks-h" class="script" lang="es">Gracias por su apoyo!</h2>
+      <p>Your support fuels our passion. Follow us and tag us.</p>
+      <div class="social">
+        <a href="https://www.facebook.com/profile.php?id=61575807167020"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M13.5 21v-7.5H16l.4-3h-2.9V8.6c0-.9.3-1.5 1.5-1.5h1.5V4.4c-.3 0-1.2-.1-2.3-.1-2.3 0-3.8 1.4-3.8 3.9v2.3H8v3h2.4V21z"/></svg>Facebook</a>
+        <a href="https://www.instagram.com/latin_infusions/"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="3.5" width="17" height="17" rx="5" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="17.3" cy="6.7" r="1.2" fill="currentColor"/></svg>@latin_infusions</a>
+      </div>
+      <p class="made" lang="es">Hecho con pasi&oacute;n para ti</p>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <span class="fname">Latin Infusions Food Truck</span>
+    <p>Hibachi style foods with a little Latin flavor. Vineland, New Jersey. Est. 2025.</p>
+    <p>Website mockup by <a href="https://www.8888media.co/#web-design">8888 Media</a>.</p>
+  </div>
+</footer>
+
+</body>
+</html>
