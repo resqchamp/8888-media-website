@@ -22,7 +22,7 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;900&family=Figtree:wght@400;500;600;700;800&family=Kaushan+Script&display=swap">
 <style>
   /* Colors pulled from the truck and its menus: the glossy black trailer, the logo's red lines and flame,
-     the gold script on the menu boards, the stainless serving window, and the red and blue string lights. */
+     the gold script on the menu boards, the stainless serving window, and red and orange string lights. */
   :root{
     --night:#0B0A0A;
     --coal:#151312;
@@ -158,16 +158,14 @@
   .dish-top{display:flex;align-items:center;gap:12px;}
   .num{flex:none;width:30px;height:30px;border-radius:50%;background:var(--red-btn);color:#fff;font-weight:800;font-size:0.9rem;display:grid;place-items:center;}
   .dish h3{flex:1;font-family:'Kaushan Script','Brush Script MT',cursive;font-weight:400;font-size:1.5rem;line-height:1.2;}
-  .price{font-weight:800;font-size:1.3rem;color:var(--gold);font-variant-numeric:tabular-nums;white-space:nowrap;}
   .dish p{color:var(--soft);font-size:0.96rem;}
   .best{align-self:flex-start;background:var(--gold);color:#1A1206;font-weight:800;font-size:0.72rem;letter-spacing:0.14em;text-transform:uppercase;padding:3px 9px;border-radius:3px;}
   .special{margin-top:22px;border-radius:8px;padding:clamp(20px,3vw,28px);background:linear-gradient(120deg,var(--red-btn),#8E1512);color:#fff;display:grid;grid-template-columns:minmax(0,0.8fr) minmax(0,1.2fr);gap:14px 32px;align-items:center;}
   .special .kicker{color:#FFE7C2;}
   .special h3{font-family:'Cinzel',Georgia,serif;font-weight:900;font-size:clamp(1.4rem,3vw,1.8rem);line-height:1.1;margin-top:4px;}
   .special ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px;}
-  .special li{display:flex;justify-content:space-between;gap:16px;border-bottom:1px dashed rgba(255,255,255,0.35);padding-bottom:8px;}
+  .special li{border-bottom:1px dashed rgba(255,255,255,0.35);padding-bottom:8px;}
   .special li:last-child{border-bottom:0;padding-bottom:0;}
-  .special li b{font-size:1.15rem;font-variant-numeric:tabular-nums;}
   @media (max-width:700px){.special{grid-template-columns:minmax(0,1fr);}}
 
   /* dirty sodas */
@@ -321,27 +319,27 @@
     <div class="wrap">
       <p class="kicker">Made Fresh at the Window</p>
       <h2 id="menu-h">The Menu</h2>
-      <p class="lead">Hibachi with a Latin twist, cooked to order. Good food takes a minute, and your patience is greatly appreciated.</p>
+      <p class="lead">Hibachi with a Latin twist, cooked to order. Good food takes a minute, and your patience is greatly appreciated. Prices are on the board at the window.</p>
       <div class="menu">
         <article class="dish">
-          <div class="dish-top"><span class="num" aria-hidden="true">1</span><h3>Hibachi Rice</h3><span class="price">$20&ndash;$30</span></div>
-          <p>Jasmine fried rice with chicken, steak or shrimp. Small $20, large $30.</p>
+          <div class="dish-top"><span class="num" aria-hidden="true">1</span><h3>Hibachi Rice</h3></div>
+          <p>Jasmine fried rice with chicken, steak or shrimp, in a small or large.</p>
           <span class="best">Best Seller</span>
         </article>
         <article class="dish">
-          <div class="dish-top"><span class="num" aria-hidden="true">2</span><h3>Empanadas</h3><span class="price">3 for $10</span></div>
+          <div class="dish-top"><span class="num" aria-hidden="true">2</span><h3>Empanadas</h3></div>
           <p>Handmade with love. Beef and cheese, buffalo chicken or cheesesteak.</p>
         </article>
         <article class="dish">
-          <div class="dish-top"><span class="num" aria-hidden="true">3</span><h3>Loaded Nachos</h3><span class="price">$15</span></div>
+          <div class="dish-top"><span class="num" aria-hidden="true">3</span><h3>Loaded Nachos</h3></div>
           <p>Your choice of cheese, carne asada or steak, beef and cheese, or chicken.</p>
         </article>
         <article class="dish">
-          <div class="dish-top"><span class="num" aria-hidden="true">4</span><h3>Wings</h3><span class="price">$15</span></div>
+          <div class="dish-top"><span class="num" aria-hidden="true">4</span><h3>Wings</h3></div>
           <p>Breaded or naked, tossed in honey hot, guava BBQ, garlic parm or BBQ sauce.</p>
         </article>
         <article class="dish">
-          <div class="dish-top"><span class="num" aria-hidden="true">5</span><h3>Loaded Fries or Tostones</h3><span class="price">$15</span></div>
+          <div class="dish-top"><span class="num" aria-hidden="true">5</span><h3>Loaded Fries or Tostones</h3></div>
           <p>Topped with beef and cheese, buffalo chicken, carne asada, or Philly style.</p>
         </article>
       </div>
@@ -351,9 +349,9 @@
           <h3>Wednesday Lunch Specials</h3>
         </div>
         <ul>
-          <li><span>Cheesesteak with fries</span><b>$12</b></li>
-          <li><span>Chicken teriyaki bowl</span><b>$15</b></li>
-          <li><span>Chicken wings with fries or tostones</span></li>
+          <li>Cheesesteak with fries</li>
+          <li>Chicken teriyaki bowl</li>
+          <li>Chicken wings with fries or tostones</li>
         </ul>
       </div>
     </div>
