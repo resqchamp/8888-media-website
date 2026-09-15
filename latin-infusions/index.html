@@ -216,6 +216,14 @@
   @media (max-width:480px){.card .row{grid-template-columns:minmax(0,1fr);}}
   .btn{display:inline-flex;align-items:center;justify-content:center;min-height:50px;padding:0 24px;background:var(--red-btn);color:#fff;border:0;border-radius:6px;font:inherit;font-weight:800;cursor:pointer;text-decoration:none;}
   .btn:hover{background:var(--red-deep);}
+  .hero-cta{display:flex;flex-wrap:wrap;align-items:center;gap:10px 18px;margin-top:4px;}
+  .hero-cta .phone{color:var(--cream);font-weight:700;font-size:1.05rem;text-decoration:none;}
+  .hero-cta .phone:hover{color:var(--gold);}
+  /* Text-ahead ordering: their real order line. */
+  .textahead{margin-top:18px;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:14px 24px;background:var(--coal-2);border:1px solid var(--line);border-left:6px solid var(--gold);border-radius:8px;padding:clamp(18px,3vw,26px);}
+  .textahead h3{font-family:'Cinzel',Georgia,serif;font-weight:900;font-size:clamp(1.3rem,3vw,1.6rem);line-height:1.15;margin-top:4px;}
+  .textahead p:not(.kicker){color:var(--soft);margin-top:6px;}
+  .textahead p a{color:var(--gold);font-weight:700;}
 
   /* thanks */
   .thanks{display:flex;flex-direction:column;align-items:center;text-align:center;gap:14px;}
@@ -263,6 +271,7 @@
           <p class="kicker">Food Truck &middot; Vineland, NJ &middot; Est. 2025</p>
           <h1 id="hero-h"><span class="sr-only">Latin Infusions: </span>Hibachi Style<span class="script">With a Little Latin Flavor</span></h1>
           <p>Not your average food truck. Jasmine fried rice, handmade empanadas and dirty sodas, all made fresh at the window.</p>
+          <div class="hero-cta"><a class="btn" href="sms:+18564572160?&amp;body=Hi!%20I%27d%20like%20to%20order%20ahead%3A%20">Text Your Order Ahead</a><a class="phone" href="tel:+18564572160">(856) 457-2160</a></div>
         </div>
         <div>
           <div class="window">
@@ -376,6 +385,14 @@
           <li>Chicken wings with fries or tostones</li>
         </ul>
       </div>
+      <div class="textahead">
+        <div>
+          <p class="kicker">Skip the Wait</p>
+          <h3>Text Your Order Ahead</h3>
+          <p>Send your order to <a href="sms:+18564572160?&amp;body=Hi!%20I%27d%20like%20to%20order%20ahead%3A%20">(856) 457-2160</a> and pick it up at the window.</p>
+        </div>
+        <a class="btn" href="sms:+18564572160?&amp;body=Hi!%20I%27d%20like%20to%20order%20ahead%3A%20">Text Your Order</a>
+      </div>
     </div>
   </section>
 
@@ -448,7 +465,7 @@
       <div>
         <p class="kicker">Parties, Campgrounds and Festivals</p>
         <h2 id="book-h">Book the Truck</h2>
-        <p class="lead">Birthday parties, block parties, breweries, campgrounds and festivals. Tell us about your event, and we&rsquo;ll get back to you with a date and a quote.</p>
+        <p class="lead">Birthday parties, block parties, breweries, campgrounds and festivals. Tell us about your event, and we&rsquo;ll get back to you with a date and a quote. Prefer to talk it through? Call or text <a href="tel:+18564572160">(856) 457-2160</a>.</p>
         <figure class="shot">
           <img src="truck-night.jpg" width="1600" height="1200" alt="The Latin Infusions trailer glowing with red and blue lights at dusk, serving a crowd on the sand at a summer beach festival." loading="lazy">
           <figcaption>Serving a summer festival on the sand.</figcaption>
@@ -491,6 +508,7 @@
   <div class="wrap">
     <span class="fname">Latin Infusions Food Truck</span>
     <p>Hibachi style foods with a little Latin flavor. Vineland, New Jersey. Est. 2025.</p>
+    <p>Call or text <a href="tel:+18564572160">(856) 457-2160</a></p>
     <p>Website mockup by <a href="https://www.8888media.co/#web-design">8888 Media</a>.</p>
   </div>
 </footer>
