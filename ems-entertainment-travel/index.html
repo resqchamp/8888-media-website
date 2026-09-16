@@ -154,20 +154,20 @@
   }
 
   /* travel */
-  .trip{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);gap:clamp(26px,5vw,54px);align-items:center;}
-  @media (max-width:900px){.trip{grid-template-columns:minmax(0,1fr);}}
-  .trip .copy{display:flex;flex-direction:column;gap:16px;align-items:flex-start;}
-  .trip .copy .kicker{color:var(--teal);}
-  .trip ul{margin:0;padding-left:1.1em;color:var(--soft);font-size:1rem;display:flex;flex-direction:column;gap:7px;}
-  .trip ul b{color:var(--ink);font-weight:600;}
+  .getaway{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);gap:clamp(26px,5vw,54px);align-items:center;}
+  @media (max-width:900px){.getaway{grid-template-columns:minmax(0,1fr);}}
+  .getaway .copy{display:flex;flex-direction:column;gap:16px;align-items:flex-start;}
+  .getaway .copy .kicker{color:var(--teal);}
+  .getaway ul{margin:0;padding-left:1.1em;color:var(--soft);font-size:1rem;display:flex;flex-direction:column;gap:7px;}
+  .getaway ul b{color:var(--ink);font-weight:600;}
   .collage{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;}
   .collage figure{margin:0;position:relative;border-radius:16px;overflow:hidden;background:var(--room-2);}
   .collage img{display:block;width:100%;max-width:100%;height:auto;aspect-ratio:4/5;object-fit:cover;}
   .collage figure.tall{grid-row:span 2;}
   .collage figure.tall img{aspect-ratio:4/5;height:100%;}
   .collage figcaption{position:absolute;left:0;right:0;bottom:0;padding:26px 13px 11px;font-size:0.85rem;background:linear-gradient(to top,rgba(8,7,12,0.94),rgba(8,7,12,0));}
-  .trip .planner{border-left:3px solid var(--teal);padding-left:14px;font-size:0.97rem;color:var(--soft);}
-  .trip .planner b{color:var(--ink);}
+  .getaway .planner{border-left:3px solid var(--teal);padding-left:14px;font-size:0.97rem;color:var(--soft);}
+  .getaway .planner b{color:var(--ink);}
 
   /* timeline */
   .runs{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:14px;margin-top:32px;}
@@ -362,7 +362,7 @@
   </section>
 
   <section id="travel" aria-labelledby="trip-h">
-    <div class="wrap trip">
+    <div class="wrap getaway">
       <div class="copy">
         <p class="kicker">Travel Planning</p>
         <h2 id="trip-h">Cruises, resorts and group getaways</h2>
