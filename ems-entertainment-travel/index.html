@@ -55,7 +55,7 @@
   .top{position:sticky;top:0;z-index:25;background:rgba(8,7,12,0.88);backdrop-filter:blur(12px);border-bottom:1px solid var(--line);}
   .top .wrap{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px 22px;padding-block:11px;}
   .brand{display:flex;align-items:center;gap:12px;text-decoration:none;color:var(--ink);}
-  .brand img{width:50px;height:50px;border-radius:50%;background:#fff;object-fit:contain;padding:3px;box-shadow:0 0 0 2px var(--magenta);}
+  .brand img{width:58px;height:58px;border-radius:14px;background:#fff;object-fit:contain;padding:6px;box-shadow:0 6px 18px rgba(0,0,0,0.45);}
   .brand b{font-family:'Bricolage Grotesque',system-ui,sans-serif;font-size:1rem;font-weight:800;line-height:1.15;display:block;letter-spacing:-0.01em;}
   .brand .sub{font-family:'IBM Plex Mono',monospace;font-size:0.66rem;letter-spacing:0.16em;text-transform:uppercase;color:var(--soft);}
   nav{display:flex;flex-wrap:wrap;align-items:center;gap:8px 20px;font-weight:500;font-size:0.95rem;}
@@ -153,6 +153,22 @@
     @keyframes print{from{transform:translateY(-230px) rotate(2deg);opacity:0}to{transform:translateY(-6px) rotate(-1.5deg);opacity:1}}
   }
 
+  /* travel */
+  .trip{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);gap:clamp(26px,5vw,54px);align-items:center;}
+  @media (max-width:900px){.trip{grid-template-columns:minmax(0,1fr);}}
+  .trip .copy{display:flex;flex-direction:column;gap:16px;align-items:flex-start;}
+  .trip .copy .kicker{color:var(--teal);}
+  .trip ul{margin:0;padding-left:1.1em;color:var(--soft);font-size:1rem;display:flex;flex-direction:column;gap:7px;}
+  .trip ul b{color:var(--ink);font-weight:600;}
+  .collage{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;}
+  .collage figure{margin:0;position:relative;border-radius:16px;overflow:hidden;background:var(--room-2);}
+  .collage img{display:block;width:100%;max-width:100%;height:auto;aspect-ratio:4/5;object-fit:cover;}
+  .collage figure.tall{grid-row:span 2;}
+  .collage figure.tall img{aspect-ratio:4/5;height:100%;}
+  .collage figcaption{position:absolute;left:0;right:0;bottom:0;padding:26px 13px 11px;font-size:0.85rem;background:linear-gradient(to top,rgba(8,7,12,0.94),rgba(8,7,12,0));}
+  .trip .planner{border-left:3px solid var(--teal);padding-left:14px;font-size:0.97rem;color:var(--soft);}
+  .trip .planner b{color:var(--ink);}
+
   /* timeline */
   .runs{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:14px;margin-top:32px;}
   @media (max-width:900px){.runs{grid-template-columns:repeat(2,minmax(0,1fr));}}
@@ -193,6 +209,10 @@
 
   footer{padding-block:38px;color:var(--soft);font-size:0.92rem;}
   footer .wrap{display:flex;flex-direction:column;gap:8px;}
+  .footlock{display:flex;flex-wrap:wrap;align-items:center;gap:22px;margin-bottom:6px;}
+  .footlock img{width:168px;height:auto;max-width:100%;background:#fff;border-radius:18px;padding:14px;box-shadow:0 10px 30px rgba(0,0,0,0.5);}
+  .footlock b{font-family:'Bricolage Grotesque',system-ui,sans-serif;font-size:1.5rem;font-weight:800;letter-spacing:-0.01em;line-height:1.1;display:block;}
+  .footlock .cap{font-family:'IBM Plex Mono',monospace;font-size:0.72rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--soft);}
   footer b{color:var(--ink);}
 
   @media (prefers-reduced-motion:reduce){
@@ -213,13 +233,13 @@
 <header class="top">
   <div class="wrap">
     <a class="brand" href="#">
-      <img src="logo.jpg" width="700" height="706" alt="">
+      <img src="logo-clean.png" width="1000" height="1008" alt="">
       <span><b>EMS Entertainment &amp; Travel</b><span class="sub">DJ &middot; Photo Booth &middot; Travel</span></span>
     </a>
     <nav aria-label="Main">
       <a href="#services">Services</a>
       <a href="#booth">Photo Booth</a>
-      <a href="#gallery">Gallery</a>
+      <a href="#travel">Travel</a>
       <a href="#request">Check Your Date</a>
       <a class="call" href="tel:+18569386792">(856) 938-6792</a>
     </nav>
@@ -341,6 +361,28 @@
     </div>
   </section>
 
+  <section id="travel" aria-labelledby="trip-h">
+    <div class="wrap trip">
+      <div class="copy">
+        <p class="kicker">Travel Planning</p>
+        <h2 id="trip-h">Destination weddings and the honeymoon after</h2>
+        <p class="lead">The same people running your reception can book the trip. Weddings on a beach, honeymoons, family vacations and groups of any size, cruises and all-inclusive resorts.</p>
+        <ul>
+          <li><b>Destination weddings</b> &mdash; the ceremony, the room block and everybody who is coming</li>
+          <li><b>Honeymoons</b> and anniversary trips</li>
+          <li><b>Families and groups</b> of any size</li>
+          <li><b>Cruises</b> and all-inclusive resorts</li>
+        </ul>
+        <p class="planner"><b>You work with us directly.</b> No call center, no chat bot &mdash; the same phone number you use to book the DJ.</p>
+      </div>
+      <div class="collage">
+        <figure class="tall"><img src="tr-pair.jpg" width="800" height="1000" alt="The EMS Entertainment and Travel owners standing in front of a cruise ship at the pier." loading="lazy"><figcaption>We travel it too</figcaption></figure>
+        <figure><img src="tr-hills.jpg" width="1000" height="667" alt="Rolling green hills under a pink sunset sky." loading="lazy"><figcaption>Bucket lists</figcaption></figure>
+        <figure><img src="tr-street.jpg" width="1000" height="667" alt="A narrow village street lined with bright painted houses and flowers." loading="lazy"><figcaption>Europe</figcaption></figure>
+      </div>
+    </div>
+  </section>
+
   <section id="runs" aria-labelledby="runs-h">
     <div class="wrap">
       <p class="kicker">How The Night Runs</p>
@@ -363,7 +405,7 @@
       <div class="gal">
         <figure><img src="g1.jpg" width="1000" height="737" alt="A crowded school dance floor lit with blue uplighting." loading="lazy"><figcaption>School dances</figcaption></figure>
         <figure><img src="g2.jpg" width="1000" height="1069" alt="Guests dancing in a line at a wedding reception." loading="lazy"><figcaption>Weddings</figcaption></figure>
-        <figure><img src="g3.jpg" width="1000" height="990" alt="Kids in a dance circle at a party." loading="lazy"><figcaption>Kids&rsquo; parties</figcaption></figure>
+        <figure><img src="g3.jpg" width="1000" height="990" alt="Guests in formal dresses crouched in a dance circle on a lit dance floor." loading="lazy"><figcaption>Dance circles</figcaption></figure>
         <figure><img src="g4.jpg" width="1000" height="1261" alt="A mother and daughter dancing together at an event." loading="lazy"><figcaption>Family milestones</figcaption></figure>
         <figure><img src="g5.jpg" width="1000" height="548" alt="Guests in the photo booth wearing novelty hats and glasses against a gold backdrop." loading="lazy"><figcaption>The photo booth</figcaption></figure>
         <figure><img src="g6.jpg" width="1000" height="1303" alt="A bride and her guests crowded into the photo booth with props." loading="lazy"><figcaption>Props and all</figcaption></figure>
@@ -443,7 +485,10 @@
 
 <footer>
   <div class="wrap">
-    <b>EMS Entertainment &amp; Travel</b>
+    <div class="footlock">
+      <img src="logo-clean.png" width="1000" height="1008" alt="The EMS Entertainment and Travel logo: a tuxedo with two round ears, lettered EMS Entertainment and Travel, with the phone number 856-938-6792.">
+      <span><b>EMS Entertainment &amp; Travel</b><span class="cap">DJ &middot; Photo Booth &middot; Travel</span></span>
+    </div>
     <p>DJ and photo booth rentals, travel planning and destination weddings. Serving South Jersey, the shore and Philadelphia.</p>
     <p><a href="tel:+18569386792">(856) 938-6792</a> &middot; <a href="mailto:emsentertainment@gmail.com">emsentertainment@gmail.com</a></p>
     <p>Website mockup by <a href="https://www.8888media.co/#web-design">8888 Media</a>.</p>
