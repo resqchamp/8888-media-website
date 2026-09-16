@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>EMS Entertainment &amp; Travel | DJs, Photo Booths and Travel Planning</title>
+<meta name="description" content="EMS Entertainment &amp; Travel: award-winning DJ and photo booth rentals for weddings, school dances and parties across South Jersey and Philadelphia, plus travel planning and destination weddings.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="8888 Media">
+<meta property="og:title" content="EMS Entertainment &amp; Travel">
+<meta property="og:description" content="A free website mockup for EMS Entertainment &amp; Travel. Made by 8888 Media.">
+<meta property="og:url" content="https://www.8888media.co/ems-entertainment-travel/">
+<meta property="og:image" content="https://www.8888media.co/ems-entertainment-travel/hero.jpg">
+<meta property="og:image:width" content="1600">
+<meta property="og:image:height" content="740">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Instrument+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap">
+<style>
+  /* Colors taken from his own event photos: a dark reception room lit with amber and magenta uplights. */
+  :root{
+    --night:#0B0A10;
+    --room:#15121C;
+    --room-2:#1D1926;
+    --line:#2C2637;
+    --ink:#F7F4F0;
+    --soft:#B8B1C4;
+    --amber:#F2A93B;
+    --magenta:#E8467C;
+    --ok:#4ED6B8;
+  }
+  *{box-sizing:border-box;}
+  @media (prefers-reduced-motion:no-preference){html{scroll-behavior:smooth;}}
+  body{margin:0;background:var(--night);color:var(--ink);font:400 17px/1.6 'Instrument Sans',system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;-webkit-font-smoothing:antialiased;}
+  h1,h2,h3{margin:0;font-family:'Bricolage Grotesque','Segoe UI',system-ui,sans-serif;font-weight:800;text-wrap:balance;letter-spacing:-0.01em;}
+  h1{font-size:clamp(2.3rem,5.6vw,4rem);line-height:1.02;}
+  h2{font-size:clamp(1.7rem,3.6vw,2.5rem);line-height:1.08;}
+  h3{font-size:1.2rem;line-height:1.3;font-weight:600;}
+  p{margin:0;}
+  a{color:var(--amber);}
+  a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:3px solid var(--amber);outline-offset:3px;}
+  .wrap{max-width:1120px;margin:0 auto;padding-inline:clamp(16px,4vw,34px);}
+  .kicker{font-family:'IBM Plex Mono',ui-monospace,monospace;font-size:0.78rem;font-weight:500;letter-spacing:0.16em;text-transform:uppercase;color:var(--amber);}
+  .lead{color:var(--soft);font-size:1.08rem;max-width:62ch;}
+
+  .sample-bar{background:var(--ink);color:#231F2B;font-size:0.84rem;line-height:1.45;padding-block:9px;}
+  .sample-bar .wrap{display:flex;flex-wrap:wrap;gap:4px 14px;justify-content:center;text-align:center;}
+  .sample-bar b,.sample-bar a{color:#0B0A10;font-weight:600;}
+
+  /* header */
+  .top{position:sticky;top:0;z-index:20;background:rgba(11,10,16,0.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);}
+  .top .wrap{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px 22px;padding-block:12px;}
+  .brand{display:flex;align-items:center;gap:12px;text-decoration:none;color:var(--ink);}
+  .brand img{width:52px;height:52px;border-radius:10px;background:#fff;object-fit:contain;padding:3px;}
+  .brand b{font-family:'Bricolage Grotesque',system-ui,sans-serif;font-size:1.02rem;font-weight:800;line-height:1.15;display:block;}
+  .brand .sub{font-family:'IBM Plex Mono',monospace;font-size:0.68rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--soft);}
+  nav{display:flex;flex-wrap:wrap;align-items:center;gap:8px 20px;font-weight:500;font-size:0.96rem;}
+  nav a{color:var(--ink);text-decoration:none;}
+  nav a:hover{color:var(--amber);}
+  .call{display:inline-flex;align-items:center;gap:8px;background:var(--magenta);color:#fff !important;padding:10px 18px;border-radius:999px;font-weight:600;text-decoration:none;}
+  .call:hover{background:#cf3168;}
+
+  /* hero */
+  .hero{position:relative;border-bottom:1px solid var(--line);}
+  .hero img.shot{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 42%;}
+  .hero .veil{position:absolute;inset:0;background:linear-gradient(105deg,rgba(11,10,16,0.96) 0%,rgba(11,10,16,0.86) 46%,rgba(11,10,16,0.45) 100%);}
+  .hero .wrap{position:relative;padding-block:clamp(52px,9vw,104px);display:grid;gap:26px;}
+  .hero-copy{max-width:44rem;display:flex;flex-direction:column;gap:16px;align-items:flex-start;}
+  .hero h1 em{font-style:normal;color:var(--amber);}
+  .proof{display:flex;flex-wrap:wrap;gap:8px 10px;}
+  .chip{display:inline-flex;align-items:center;gap:7px;background:rgba(247,244,240,0.08);border:1px solid var(--line);border-radius:999px;padding:6px 14px;font-size:0.9rem;color:var(--ink);}
+  .chip b{color:var(--amber);}
+
+  /* date checker: the question every caller asks first */
+  .datebox{background:var(--room);border:1px solid var(--line);border-radius:16px;padding:20px 22px;display:flex;flex-wrap:wrap;align-items:flex-end;gap:14px 18px;max-width:40rem;box-shadow:0 22px 50px rgba(0,0,0,0.45);}
+  .datebox .f{display:flex;flex-direction:column;gap:7px;flex:1 1 200px;min-width:0;}
+  .datebox label{font-family:'IBM Plex Mono',monospace;font-size:0.72rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--soft);}
+  input,select,textarea{font:inherit;font-size:16px;padding:12px 13px;border-radius:9px;border:1px solid #4A4257;background:#0E0C13;color:var(--ink);width:100%;}
+  input[type=date]{color-scheme:dark;}
+  .btn{display:inline-flex;align-items:center;justify-content:center;min-height:50px;padding:0 24px;border:0;border-radius:9px;background:var(--amber);color:#211502;font:inherit;font-weight:600;cursor:pointer;text-decoration:none;white-space:nowrap;}
+  .btn:hover{background:#ffc35f;}
+  .said{flex-basis:100%;font-size:0.95rem;color:var(--ok);min-height:1.4em;margin:0;}
+
+  main section{padding-block:clamp(52px,8vw,84px);border-bottom:1px solid var(--line);}
+  .alt{background:var(--room);}
+
+  /* services */
+  .svc{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;margin-top:30px;}
+  @media (max-width:860px){.svc{grid-template-columns:minmax(0,1fr);}}
+  .card{background:var(--room-2);border:1px solid var(--line);border-radius:16px;padding:24px;display:flex;flex-direction:column;gap:12px;transition:transform .2s ease,border-color .2s ease;}
+  .card:hover{transform:translateY(-3px);border-color:var(--amber);}
+  .card .num{font-family:'IBM Plex Mono',monospace;font-size:0.74rem;letter-spacing:0.16em;color:var(--magenta);}
+  .card ul{margin:0;padding-left:1.1em;color:var(--soft);font-size:0.97rem;display:flex;flex-direction:column;gap:5px;}
+  .card .from{margin-top:auto;padding-top:12px;border-top:1px solid var(--line);font-family:'IBM Plex Mono',monospace;font-size:0.92rem;color:var(--ink);}
+  .card .from span{color:var(--soft);}
+  .placeholder{margin-top:18px;font-size:0.92rem;color:var(--soft);font-style:italic;max-width:70ch;}
+
+  /* gallery */
+  .gal{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-top:28px;}
+  .gal figure{margin:0;position:relative;border-radius:14px;overflow:hidden;background:var(--room-2);}
+  .gal img{display:block;width:100%;max-width:100%;height:auto;aspect-ratio:4/5;object-fit:cover;transition:transform .35s ease;}
+  .gal figure:hover img{transform:scale(1.04);}
+  .gal figcaption{position:absolute;left:0;right:0;bottom:0;padding:26px 14px 12px;font-size:0.88rem;background:linear-gradient(to top,rgba(11,10,16,0.92),rgba(11,10,16,0));}
+  @media (max-width:860px){.gal{grid-template-columns:repeat(2,minmax(0,1fr));}}
+
+  /* where we play */
+  .areas{display:flex;flex-wrap:wrap;gap:9px;margin-top:22px;}
+  .areas span{background:var(--room-2);border:1px solid var(--line);border-radius:999px;padding:7px 15px;font-size:0.94rem;color:var(--soft);}
+
+  /* request */
+  .req{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);gap:clamp(26px,5vw,52px);align-items:start;}
+  @media (max-width:900px){.req{grid-template-columns:minmax(0,1fr);}}
+  form.card{gap:16px;}
+  form label{font-weight:500;font-size:0.95rem;display:flex;flex-direction:column;gap:7px;}
+  .row{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:14px;}
+  @media (max-width:520px){.row{grid-template-columns:minmax(0,1fr);}}
+  .note{font-size:0.87rem;color:var(--soft);}
+  .direct{display:flex;flex-direction:column;gap:14px;margin-top:24px;}
+  .direct a.big{display:flex;align-items:center;gap:14px;background:var(--room-2);border:1px solid var(--line);border-radius:14px;padding:18px 20px;text-decoration:none;color:var(--ink);}
+  .direct a.big:hover{border-color:var(--amber);}
+  .direct a.big b{display:block;font-family:'Bricolage Grotesque',system-ui,sans-serif;font-size:1.2rem;font-weight:800;}
+  .direct a.big .cap{font-size:0.88rem;color:var(--soft);}
+  .direct svg{width:34px;height:34px;flex:none;}
+
+  footer{padding-block:34px;color:var(--soft);font-size:0.92rem;}
+  footer .wrap{display:flex;flex-direction:column;gap:8px;}
+  footer b{color:var(--ink);}
+</style>
+</head>
+<body>
+
+<div class="sample-bar" role="note">
+  <div class="wrap">
+    <span><b>A free website mockup for EMS Entertainment &amp; Travel,</b> made by 8888 Media. Nothing here is live yet.</span>
+    <a href="https://www.8888media.co/#web-design">About 8888 Media &rarr;</a>
+  </div>
+</div>
+
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="#">
+      <img src="logo.jpg" width="700" height="706" alt="">
+      <span><b>EMS Entertainment &amp; Travel</b><span class="sub">DJ &middot; Photo Booth &middot; Travel</span></span>
+    </a>
+    <nav aria-label="Main">
+      <a href="#services">Services</a>
+      <a href="#gallery">Gallery</a>
+      <a href="#area">Where We Play</a>
+      <a href="#request">Check Your Date</a>
+      <a class="call" href="tel:+18569386792">(856) 938-6792</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero" aria-labelledby="hero-h">
+  <img class="shot" src="hero.jpg" width="1600" height="740" alt="A packed dance floor with hands in the air at an EMS Entertainment wedding reception.">
+  <div class="veil" aria-hidden="true"></div>
+  <div class="wrap">
+    <div class="hero-copy">
+      <p class="kicker">South Jersey &amp; Philadelphia &middot; All Occasions</p>
+      <h1 id="hero-h">We keep the dance floor <em>packed</em> all night.</h1>
+      <p class="lead">Award-winning DJ and photo booth rentals for weddings, school dances, birthdays and every kind of party &mdash; plus travel planning and destination weddings from the same people you already trust with your reception.</p>
+      <div class="proof">
+        <span class="chip"><b>19</b>&nbsp;reviews on Facebook</span>
+        <span class="chip"><b>88%</b>&nbsp;recommend</span>
+        <span class="chip"><b>2.6K</b>&nbsp;followers</span>
+      </div>
+    </div>
+    <div class="datebox">
+      <div class="f">
+        <label for="d-date">Your event date</label>
+        <input id="d-date" type="date" aria-describedby="d-said">
+      </div>
+      <div class="f">
+        <label for="d-type">Event type</label>
+        <select id="d-type">
+          <option>Wedding</option>
+          <option>School dance or prom</option>
+          <option>Birthday or anniversary</option>
+          <option>Photo booth only</option>
+          <option>Travel planning</option>
+          <option>Something else</option>
+        </select>
+      </div>
+      <button class="btn" type="button" id="d-go">Check This Date</button>
+      <p class="said" id="d-said" role="status"></p>
+    </div>
+  </div>
+</section>
+
+<main>
+
+  <section id="services" aria-labelledby="svc-h">
+    <div class="wrap">
+      <p class="kicker">What We Do</p>
+      <h2 id="svc-h">Three ways to hire us</h2>
+      <p class="lead" style="margin-top:12px">Every room is different, so tell us the date and the venue and we&rsquo;ll tell you exactly what it takes.</p>
+      <div class="svc">
+        <article class="card">
+          <p class="num">01</p>
+          <h3>DJ &amp; MC</h3>
+          <ul>
+            <li>Weddings, from the ceremony through the last dance</li>
+            <li>School dances, proms and graduations</li>
+            <li>Birthdays, anniversaries and company parties</li>
+            <li>Dance-floor lighting and uplighting</li>
+          </ul>
+          <p class="from">from $<span>___</span></p>
+        </article>
+        <article class="card">
+          <p class="num">02</p>
+          <h3>Photo Booth Rental</h3>
+          <ul>
+            <li>Open-air booth that fits the whole group</li>
+            <li>Props, prints and digital copies</li>
+            <li>An attendant on site all event</li>
+            <li>Add it to a DJ package or book it on its own</li>
+          </ul>
+          <p class="from">from $<span>___</span></p>
+        </article>
+        <article class="card">
+          <p class="num">03</p>
+          <h3>Travel Planning</h3>
+          <ul>
+            <li>Destination weddings, start to finish</li>
+            <li>Honeymoons and anniversary trips</li>
+            <li>Families and groups of any size</li>
+            <li>Cruises and all-inclusive resorts</li>
+          </ul>
+          <p class="from">planning fee: $<span>___</span></p>
+        </article>
+      </div>
+      <p class="placeholder">Mockup note: put your real package names and prices in these three cards and this section is done. People who see a starting price call more often than people who have to ask for one.</p>
+    </div>
+  </section>
+
+  <section id="gallery" class="alt" aria-labelledby="gal-h">
+    <div class="wrap">
+      <p class="kicker">Real Nights</p>
+      <h2 id="gal-h">Rooms we&rsquo;ve filled</h2>
+      <div class="gal">
+        <figure><img src="g1.jpg" width="1000" height="737" alt="A crowded school dance floor lit with blue uplighting." loading="lazy"><figcaption>School dances</figcaption></figure>
+        <figure><img src="g2.jpg" width="1000" height="1069" alt="Guests dancing in a line at a wedding reception." loading="lazy"><figcaption>Weddings</figcaption></figure>
+        <figure><img src="g3.jpg" width="1000" height="990" alt="Kids in a dance circle at a party." loading="lazy"><figcaption>Kids&rsquo; parties</figcaption></figure>
+        <figure><img src="g4.jpg" width="1000" height="1261" alt="A mother and daughter dancing together at an event." loading="lazy"><figcaption>Family milestones</figcaption></figure>
+      </div>
+    </div>
+  </section>
+
+  <section id="area" aria-labelledby="area-h">
+    <div class="wrap">
+      <p class="kicker">Where We Play</p>
+      <h2 id="area-h">South Jersey, the shore and Philadelphia</h2>
+      <p class="lead" style="margin-top:12px">If your venue is in one of these areas, we can almost certainly be there. Outside of them, ask anyway.</p>
+      <div class="areas">
+        <span>Gloucester County</span><span>Camden County</span><span>Burlington County</span><span>Atlantic County</span><span>Cape May County</span><span>Ocean City</span><span>Cape May Court House</span><span>Philadelphia</span>
+      </div>
+    </div>
+  </section>
+
+  <section id="request" class="alt" aria-labelledby="req-h">
+    <div class="wrap req">
+      <div>
+        <p class="kicker">Check Your Date</p>
+        <h2 id="req-h">Is your date open?</h2>
+        <p class="lead" style="margin-top:12px">Send the date and the basics and you&rsquo;ll get a straight answer, usually the same day. If it&rsquo;s easier, call or text instead.</p>
+        <div class="direct">
+          <a class="big" href="tel:+18569386792">
+            <svg viewBox="0 0 34 34" aria-hidden="true"><rect width="34" height="34" rx="9" fill="#E8467C"/><path d="M11 10c0-1 1-2 2-1l2 1c1 1 1 2 0 3l-1 1c1 2 3 4 5 5l1-1c1-1 2-1 3 0l1 2c1 1 0 2-1 2-6 1-13-6-12-12z" fill="#fff"/></svg>
+            <span><b>(856) 938-6792</b><span class="cap">Call or text</span></span>
+          </a>
+          <a class="big" href="mailto:emsentertainment@gmail.com">
+            <svg viewBox="0 0 34 34" aria-hidden="true"><rect width="34" height="34" rx="9" fill="#F2A93B"/><path d="M7 11h20v12H7z" fill="none" stroke="#211502" stroke-width="2.2"/><path d="M7 12l10 7 10-7" fill="none" stroke="#211502" stroke-width="2.2"/></svg>
+            <span><b>emsentertainment@gmail.com</b><span class="cap">Email us</span></span>
+          </a>
+        </div>
+      </div>
+      <form class="card" id="reqform" onsubmit="event.preventDefault()" aria-labelledby="form-h">
+        <h3 id="form-h">Request your date</h3>
+        <div class="row">
+          <label for="f-name">Your name<input id="f-name" type="text" autocomplete="name"></label>
+          <label for="f-phone">Phone<input id="f-phone" type="tel" autocomplete="tel"></label>
+        </div>
+        <label for="f-email">Email<input id="f-email" type="email" autocomplete="email"></label>
+        <div class="row">
+          <label for="f-date">Event date<input id="f-date" type="date"></label>
+          <label for="f-type">Event type
+            <select id="f-type">
+              <option>Wedding</option>
+              <option>School dance or prom</option>
+              <option>Birthday or anniversary</option>
+              <option>Photo booth only</option>
+              <option>Travel planning</option>
+              <option>Something else</option>
+            </select>
+          </label>
+        </div>
+        <div class="row">
+          <label for="f-venue">Venue or town<input id="f-venue" type="text"></label>
+          <label for="f-guests">Guest count<input id="f-guests" type="number" min="1" inputmode="numeric"></label>
+        </div>
+        <label for="f-what">What do you need?
+          <select id="f-what">
+            <option>DJ only</option>
+            <option>DJ and photo booth</option>
+            <option>Photo booth only</option>
+            <option>Travel planning</option>
+            <option>Not sure yet</option>
+          </select>
+        </label>
+        <label for="f-notes">Anything else?<textarea id="f-notes" rows="3"></textarea></label>
+        <button class="btn" type="submit">Send My Request</button>
+        <p class="note">Mockup: this form doesn&rsquo;t send yet. On the real site every request goes straight to your email <b>and</b> texts you, so nothing sits in a dashboard waiting to be noticed.</p>
+      </form>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <b>EMS Entertainment &amp; Travel</b>
+    <p>DJ and photo booth rentals, travel planning and destination weddings. Serving South Jersey, the shore and Philadelphia.</p>
+    <p><a href="tel:+18569386792">(856) 938-6792</a> &middot; <a href="mailto:emsentertainment@gmail.com">emsentertainment@gmail.com</a></p>
+    <p>Website mockup by <a href="https://www.8888media.co/#web-design">8888 Media</a>.</p>
+  </div>
+</footer>
+
+<script>
+  // The date checker carries the date and event type down into the request form.
+  (function () {
+    var go = document.getElementById("d-go");
+    if (!go) return;
+    go.addEventListener("click", function () {
+      var date = document.getElementById("d-date").value;
+      var type = document.getElementById("d-type").value;
+      var said = document.getElementById("d-said");
+      if (!date) {
+        said.textContent = "Pick a date first and we will check it.";
+        return;
+      }
+      var pretty = new Date(date + "T12:00:00").toLocaleDateString(undefined, { weekday: "long", month: "long", day: "numeric", year: "numeric" });
+      document.getElementById("f-date").value = date;
+      document.getElementById("f-type").value = type;
+      said.textContent = "Checking " + pretty + " — send the details below and we will confirm.";
+      document.getElementById("request").scrollIntoView({ behavior: "smooth", block: "start" });
+      setTimeout(function () { document.getElementById("f-name").focus({ preventScroll: true }); }, 500);
+    });
+  })();
+</script>
+
+</body>
+</html>
