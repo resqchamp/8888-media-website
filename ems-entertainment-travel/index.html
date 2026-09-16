@@ -136,9 +136,8 @@
   .machine.live .lamp{opacity:1;animation:blink .55s steps(2,end) infinite;}
   @keyframes blink{50%{opacity:.25}}
   .screen{margin-top:22px;aspect-ratio:3/4;border-radius:14px;overflow:hidden;position:relative;background:#0A0810;display:grid;place-items:center;}
-  .screen .backdrop{position:absolute;inset:0;background:
-      repeating-linear-gradient(95deg,rgba(255,255,255,0.05) 0 12px,rgba(255,255,255,0) 12px 26px),
-      radial-gradient(120% 90% at 50% 0%,#3A2440 0%,#140F1C 60%,#0A0810 100%);}
+  .screen .live-shot{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.62;transition:opacity .2s ease;}
+  .machine.live .live-shot{opacity:.95;}
   .count{position:relative;font-family:'Bricolage Grotesque',system-ui,sans-serif;font-weight:800;font-size:5.5rem;line-height:1;color:#fff;text-shadow:0 0 40px rgba(255,60,126,0.8);}
   .screen .hint{position:relative;color:var(--ink);font-size:0.95rem;padding:11px 15px;margin-inline:18px;text-align:center;background:rgba(8,7,12,0.74);border-radius:12px;backdrop-filter:blur(2px);}
   .flash{position:absolute;inset:0;background:#fff;opacity:0;pointer-events:none;}
@@ -146,11 +145,7 @@
   @keyframes pop{0%{opacity:.92}100%{opacity:0}}
   .slot{margin-top:18px;height:14px;border-radius:8px;background:#0A0810;box-shadow:inset 0 2px 6px rgba(0,0,0,0.8);}
   .strip{margin:0 auto;width:150px;background:#fff;padding:9px 9px 34px;border-radius:4px;box-shadow:0 18px 36px rgba(0,0,0,0.55);display:flex;flex-direction:column;gap:7px;transform:translateY(-6px) rotate(-1.5deg);}
-  .strip .frame{position:relative;aspect-ratio:1/1;border-radius:2px;overflow:hidden;background:#20182A;}
-  .strip .frame svg{display:block;width:100%;height:100%;}
-  .strip .frame.f1{background:linear-gradient(160deg,#3A1B2C,#1B1220);}
-  .strip .frame.f2{background:linear-gradient(160deg,#3A2A14,#1B1610);}
-  .strip .frame.f3{background:linear-gradient(160deg,#123029,#101C1A);}
+  .strip img{display:block;width:100%;max-width:100%;aspect-ratio:1/1;object-fit:cover;border-radius:2px;background:#20182A;}
   .strip .foot{font-family:'IBM Plex Mono',monospace;font-size:0.56rem;letter-spacing:0.1em;color:#6C6478;text-align:center;text-transform:uppercase;}
   .prints{margin-top:-4px;display:flex;justify-content:center;min-height:10px;}
   @media (prefers-reduced-motion:no-preference){
@@ -169,7 +164,7 @@
   .beat p{color:var(--soft);font-size:0.93rem;}
 
   /* gallery */
-  .gal{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-top:30px;}
+  .gal{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:30px;}
   .gal figure{margin:0;position:relative;border-radius:16px;overflow:hidden;background:var(--room-2);}
   .gal img{display:block;width:100%;max-width:100%;height:auto;aspect-ratio:4/5;object-fit:cover;transition:transform .5s ease;}
   .gal figure:hover img{transform:scale(1.06);}
@@ -327,15 +322,15 @@
       <div class="booth-body">
         <p class="kicker">The Photo Booth</p>
         <h2 id="booth-h">Everybody leaves with a strip</h2>
-        <p class="lead">Open-air booth, real props, prints in your hand before the song ends, and every shot sent to you digitally the next day. Give it a try &mdash; this is what your guests do with it all night.</p>
+        <p class="lead">Open-air booth, gold backdrop, a box of props, prints in your hand before the song ends, and every shot sent to you digitally the next day. Give it a try &mdash; this is what your guests do with it all night.</p>
         <button class="btn" type="button" id="booth-go">Start the Booth</button>
-        <p class="note" id="booth-note">Three shots, then it prints. <b>Mockup:</b> the poses on the strip are drawings, since there are no booth photos yet &mdash; send three or four real strips and they drop straight in.</p>
+        <p class="note" id="booth-note">Three shots, then it prints. Every photo on this page is from a real EMS event.</p>
       </div>
       <div>
         <div class="machine" id="machine">
           <span class="lamp" aria-hidden="true"></span>
           <div class="screen" id="screen">
-            <span class="backdrop" aria-hidden="true"></span>
+            <img class="live-shot" id="live-shot" src="booth-kiosk.jpg" width="800" height="1754" alt="The EMS Entertainment photo booth set up at a reception, with a ring light and a gold backdrop.">
             <p class="hint" id="hint">Tap &ldquo;Start the Booth&rdquo; and watch what happens.</p>
             <span class="flash" id="flash" aria-hidden="true"></span>
           </div>
@@ -370,6 +365,8 @@
         <figure><img src="g2.jpg" width="1000" height="1069" alt="Guests dancing in a line at a wedding reception." loading="lazy"><figcaption>Weddings</figcaption></figure>
         <figure><img src="g3.jpg" width="1000" height="990" alt="Kids in a dance circle at a party." loading="lazy"><figcaption>Kids&rsquo; parties</figcaption></figure>
         <figure><img src="g4.jpg" width="1000" height="1261" alt="A mother and daughter dancing together at an event." loading="lazy"><figcaption>Family milestones</figcaption></figure>
+        <figure><img src="g5.jpg" width="1000" height="548" alt="Guests in the photo booth wearing novelty hats and glasses against a gold backdrop." loading="lazy"><figcaption>The photo booth</figcaption></figure>
+        <figure><img src="g6.jpg" width="1000" height="1303" alt="A bride and her guests crowded into the photo booth with props." loading="lazy"><figcaption>Props and all</figcaption></figure>
       </div>
     </div>
   </section>
@@ -480,11 +477,9 @@
     var btn = document.getElementById("booth-go");
     if (!btn) return;
     var machine = document.getElementById("machine");
-    var poses = [
-      '<svg viewBox="0 0 100 100" role="img" aria-label="Two guests posing with a top hat"><circle cx="36" cy="44" r="12" fill="#FF3C7E"/><path d="M18 100c0-14 8-24 18-24s18 10 18 24z" fill="#FF3C7E"/><rect x="26" y="24" width="20" height="8" rx="2" fill="#F8F5F1"/><rect x="30" y="12" width="12" height="13" rx="2" fill="#F8F5F1"/><circle cx="68" cy="50" r="11" fill="#FFB33C"/><path d="M52 100c0-13 7-22 16-22s16 9 16 22z" fill="#FFB33C"/><path d="M78 34l14-8v12z" fill="#F8F5F1"/></svg>',
-      '<svg viewBox="0 0 100 100" role="img" aria-label="Three guests posing with novelty glasses"><circle cx="24" cy="50" r="10" fill="#FFB33C"/><path d="M10 100c0-12 6-20 14-20s14 8 14 20z" fill="#FFB33C"/><circle cx="50" cy="42" r="12" fill="#F8F5F1"/><path d="M32 100c0-14 8-24 18-24s18 10 18 24z" fill="#F8F5F1"/><rect x="38" y="38" width="10" height="7" rx="3" fill="#20182A"/><rect x="52" y="38" width="10" height="7" rx="3" fill="#20182A"/><rect x="47" y="40" width="6" height="2" fill="#20182A"/><circle cx="76" cy="52" r="10" fill="#35E0D0"/><path d="M62 100c0-12 6-20 14-20s14 8 14 20z" fill="#35E0D0"/></svg>',
-      '<svg viewBox="0 0 100 100" role="img" aria-label="A couple posing with a heart sign"><circle cx="38" cy="46" r="12" fill="#F8F5F1"/><path d="M20 100c0-14 8-24 18-24s18 10 18 24z" fill="#F8F5F1"/><circle cx="68" cy="50" r="11" fill="#FF3C7E"/><path d="M52 100c0-13 7-22 16-22s16 9 16 22z" fill="#FF3C7E"/><path d="M50 18c-3-4-9-3-9 2 0 5 6 9 9 12 3-3 9-7 9-12 0-5-6-6-9-2z" fill="#FF3C7E"/><rect x="48" y="30" width="3" height="14" rx="1.5" fill="#F8F5F1"/></svg>'
-    ];
+    var live = document.getElementById("live-shot");
+    var kiosk = "booth-kiosk.jpg";
+    var shots = ["booth1.jpg", "booth2.jpg", "booth3.jpg"];
     var hint = document.getElementById("hint");
     var flash = document.getElementById("flash");
     var prints = document.getElementById("prints");
@@ -505,7 +500,9 @@
       machine.classList.add("live");
       prints.textContent = "";
       for (var i = 0; i < 3; i++) {
+        live.src = kiosk;
         for (var n = 3; n >= 1; n--) { countdown(n); await wait(520); }
+        live.src = shots[i];
         flash.classList.remove("pop");
         void flash.offsetWidth;
         flash.classList.add("pop");
@@ -519,12 +516,12 @@
 
       var strip = document.createElement("div");
       strip.className = "strip";
-      for (var f = 0; f < 3; f++) {
-        var frame = document.createElement("div");
-        frame.className = "frame f" + (f + 1);
-        frame.innerHTML = poses[f];
-        strip.appendChild(frame);
-      }
+      shots.forEach(function (s) {
+        var img = document.createElement("img");
+        img.src = s;
+        img.alt = "A group of guests posing with props in the EMS photo booth.";
+        strip.appendChild(img);
+      });
       var foot = document.createElement("p");
       foot.className = "foot";
       foot.textContent = "EMS Entertainment";
@@ -534,7 +531,7 @@
       hint.className = "hint";
       hint.textContent = "Take your strip.";
       machine.classList.remove("live");
-      note.innerHTML = "That is the booth: three shots, one strip, every photo sent to you digitally. The poses are drawings for now &mdash; <b>send me a few real strips</b> and they take their place.";
+      note.innerHTML = "That is the booth: three shots, one strip, and every photo sent to you digitally the next day.";
       btn.textContent = "Print Another";
       btn.disabled = false;
       running = false;
