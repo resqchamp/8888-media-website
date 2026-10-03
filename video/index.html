@@ -129,6 +129,20 @@
   .frame .bars.t{top:0} .frame .bars.b{bottom:0}
   .cap{margin-top:14px; font-family:var(--mono); font-size:12px; color:var(--text-faint); letter-spacing:.04em}
 
+  /* Autoplay is only allowed while muted, so the reel runs silently and this is how someone
+     turns the sound on. It has to be obvious: the audio is the best part of the film. */
+  .frame .snd{position:absolute; right:12px; bottom:12px; z-index:4;
+       display:inline-flex; align-items:center; gap:8px; min-height:42px; padding:0 15px;
+       border:1px solid rgba(255,255,255,.4); border-radius:100px;
+       background:rgba(8,8,10,.62); -webkit-backdrop-filter:blur(6px); backdrop-filter:blur(6px);
+       color:#fff; font-family:var(--mono); font-size:11.5px; letter-spacing:.1em;
+       text-transform:uppercase; cursor:pointer; transition:background .2s ease}
+  .frame .snd:hover{background:rgba(8,8,10,.88)}
+  .frame .snd:focus-visible{outline:2px solid var(--accent); outline-offset:2px}
+  .frame .snd svg{width:16px; height:16px; flex:none}
+  .frame video{cursor:pointer}
+  @media (max-width:560px){ .frame .snd{right:8px; bottom:8px; padding:0 12px; font-size:10.5px} }
+
   /* ---- packages as editorial rows ---- */
   .pk{border-top:1px solid var(--rule-soft)}
   .p{display:grid; grid-template-columns:auto 1fr; gap:0 24px; padding-block:30px;
@@ -254,10 +268,13 @@
       <video
         src="film/jill-ronnie-trailer.mp4"
         poster="film/jill-ronnie-poster.jpg"
-        controls
-        preload="metadata"
-        playsinline
+        muted loop playsinline
+        preload="none"
         aria-label="Wedding film trailer, Jill and Ronnie"></video>
+      <button type="button" class="snd" data-snd hidden>
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3 10v4h4l5 4V6L7 10H3zm13.5 2a4.5 4.5 0 0 0-2.5-4v8a4.5 4.5 0 0 0 2.5-4z"/></svg>
+        <span>Tap for sound</span>
+      </button>
     </div>
     <p class="cap rv">Jill &amp; Ronnie &mdash; Mauricetown, New Jersey</p>
   </div>
@@ -434,6 +451,66 @@
       var fr = f % 24, s = Math.floor(f/24) % 60, m = Math.floor(f/1440) % 60, h = Math.floor(f/86400);
       el.textContent = p(h)+':'+p(m)+':'+p(s)+':'+p(fr);
     }, 1000/24);
+  })();
+
+  // Reel: plays itself when scrolled to, pauses when it isn't.
+  //
+  // Autoplay is only permitted muted, so it starts silent and the badge is how someone gets the
+  // audio. Controls are deliberately OFF while it's a silent loop -- a controls bar across the
+  // bottom is what makes a page look unfinished -- and get switched ON the moment the viewer
+  // unmutes, because at that point they want to scrub and set the volume.
+  //
+  // preload="none" means nothing downloads until it's actually on screen, and if the browser
+  // refuses to autoplay (data saver, iOS low power) the poster stays and controls appear, so it
+  // degrades to a normal tap-to-play video rather than a dead rectangle.
+  (function(){
+    var frame = document.querySelector('.frame');
+    if (!frame) return;
+    var v = frame.querySelector('video');
+    var btn = frame.querySelector('[data-snd]');
+    if (!v) return;
+
+    function fallback(){
+      v.setAttribute('controls', '');
+      if (btn) btn.hidden = true;
+    }
+
+    if (btn) {
+      btn.hidden = false;
+      btn.addEventListener('click', function(){
+        v.muted = !v.muted;
+        btn.querySelector('span').textContent = v.muted ? 'Tap for sound' : 'Sound on';
+        if (v.muted) {
+          v.removeAttribute('controls');
+        } else {
+          v.volume = 1;
+          v.setAttribute('controls', '');
+          v.play().catch(function(){});
+        }
+      });
+    }
+
+    // Clicking the picture pauses and resumes, since there is no controls bar to do it with.
+    v.addEventListener('click', function(){
+      if (v.hasAttribute('controls')) return;
+      if (v.paused) v.play().catch(function(){}); else v.pause();
+    });
+
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) { fallback(); return; }
+    if (!('IntersectionObserver' in window)) { fallback(); return; }
+
+    var tried = false;
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if (e.isIntersecting) {
+          var p = v.play();
+          if (p && p.catch) p.catch(function(){ if (!tried) { tried = true; fallback(); } });
+        } else if (!v.paused) {
+          v.pause();
+        }
+      });
+    }, { threshold: 0.45 });
+    io.observe(v);
   })();
 
   // The date enquiry. Posts to the same endpoint as the free-mockup form with kind:"video",

@@ -217,6 +217,7 @@
             <div class="nav-links" style="display:flex;gap:36px;font-size:14px;font-weight:500;color:#8A8A86">
               <a href="#what-1b" style="color:#8A8A86" style-hover="color:#F2F2F0">What We Build</a>
               <a href="#web-design" style="color:#8A8A86" style-hover="color:#F2F2F0">Web Design</a>
+              <a href="#video" style="color:#8A8A86" style-hover="color:#F2F2F0">Video</a>
               <a href="https://www.degendashboard.app" target="_blank" rel="noopener" style="color:#8A8A86" style-hover="color:#F2F2F0">Degen Dashboard</a>
               <a href="https://compvault.app" target="_blank" rel="noopener" style="color:#8A8A86" style-hover="color:#F2F2F0">CompVault</a>
               <a href="#contact-1b" style="color:#8A8A86" style-hover="color:#F2F2F0">Contact</a>
@@ -420,6 +421,54 @@
           </div>
         </div>
 
+        <!-- Video. The two posters do the selling here, so the cards are mostly image with the
+             words underneath. Each links out to its own page, which is where the reels live. -->
+        <div id="video" style="border-top:1px solid #232322;background:#0D0D0E">
+          <div class="section-pad" style="max-width:1100px;margin:0 auto;padding:88px 40px 40px">
+            <div style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:#FF2E6D;margin-bottom:20px">Video</div>
+            <h2 class="section-h2" style="font-size:40px;font-weight:600;letter-spacing:-0.02em;line-height:1.15;max-width:640px">And we make films.</h2>
+            <p style="margin-top:18px;font-size:15px;color:#8A8A86;max-width:560px">Two cameras, real microphones, and an edit built like a trailer rather than a recording. Weddings and engagement films across South Jersey and the shore &mdash; and event, sports and brand films for the organisations behind them.</p>
+
+            <style>
+              .film-card { transition: border-color .2s ease, transform .28s cubic-bezier(.2,.7,.2,1); }
+              .film-card:hover { border-color:#3A3A3E !important; transform:translateY(-3px); }
+              .film-card:hover .film-go { background:#FF2E6D; color:#0A0A0B !important; }
+              .film-go { transition: background-color .22s ease, color .22s ease; }
+              .film-shot { transition: transform .5s cubic-bezier(.2,.7,.2,1); }
+              .film-card:hover .film-shot { transform:scale(1.04); }
+              @media (max-width:760px){ .film-grid { grid-template-columns:1fr !important; } }
+            </style>
+
+            <div class="film-grid" style="margin-top:40px;display:grid;grid-template-columns:repeat(2,1fr);gap:20px;align-items:stretch">
+
+              <a class="film-card" href="/video/" style="background:#141414;border:1px solid #232322;border-radius:16px;overflow:hidden;color:#F2F2F0;display:flex;flex-direction:column;text-decoration:none">
+                <div style="position:relative;aspect-ratio:16/9;overflow:hidden;background:#0A0A0B">
+                  <img class="film-shot" src="/video/film/jill-ronnie-poster.jpg" alt="A couple dancing under string lights at a tent wedding" loading="lazy" width="1280" height="720" style="width:100%;height:100%;object-fit:cover;display:block">
+                </div>
+                <div style="padding:26px;display:flex;flex-direction:column;gap:11px;flex:1">
+                  <div style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:#FF2E6D">Weddings</div>
+                  <h3 style="font-size:21px;font-weight:600;letter-spacing:-0.02em;line-height:1.15">A short film of your day you&rsquo;ll actually rewatch</h3>
+                  <p style="font-size:14px;color:#8A8A86;line-height:1.5;flex:1">Wedding films, plus engagement and save-the-date pieces you can post the day you announce it.</p>
+                  <span class="film-go" style="align-self:flex-start;margin-top:4px;font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:500;letter-spacing:0.06em;text-transform:uppercase;padding:12px 18px;border-radius:8px;border:1px solid #FF2E6D;color:#FF2E6D">Watch the Reel &rarr;</span>
+                </div>
+              </a>
+
+              <a class="film-card" href="/events/" style="background:#141414;border:1px solid #232322;border-radius:16px;overflow:hidden;color:#F2F2F0;display:flex;flex-direction:column;text-decoration:none">
+                <div style="position:relative;aspect-ratio:16/9;overflow:hidden;background:#0A0A0B">
+                  <img class="film-shot" src="/events/film/snowbowl-poster.jpg" alt="A flag football team in red jerseys on the field at MetLife Stadium" loading="lazy" width="1280" height="720" style="width:100%;height:100%;object-fit:cover;display:block">
+                </div>
+                <div style="padding:26px;display:flex;flex-direction:column;gap:11px;flex:1">
+                  <div style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:#FF2E6D">Events &amp; Brands</div>
+                  <h3 style="font-size:21px;font-weight:600;letter-spacing:-0.02em;line-height:1.15">Make the day look like it mattered</h3>
+                  <p style="font-size:14px;color:#8A8A86;line-height:1.5;flex:1">Event films, sponsor and fundraising pieces, and highlight reels. Shot at MetLife Stadium for Special Olympics New Jersey.</p>
+                  <span class="film-go" style="align-self:flex-start;margin-top:4px;font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:500;letter-spacing:0.06em;text-transform:uppercase;padding:12px 18px;border-radius:8px;border:1px solid #FF2E6D;color:#FF2E6D">Watch the Reel &rarr;</span>
+                </div>
+              </a>
+
+            </div>
+          </div>
+        </div>
+
         <div style="border-top:1px solid #232322;margin-top:56px;background:#0A0A0B">
           <div class="cta-section" style="max-width:1100px;margin:0 auto;padding:84px 40px;display:flex;align-items:flex-end;justify-content:space-between;gap:48px;flex-wrap:wrap">
             <div>
@@ -470,6 +519,7 @@
   <button class="mm-close" aria-label="Close menu">&times;</button>
   <a href="#what-1b" data-close>What We Build</a>
   <a href="#web-design" data-close>Web Design</a>
+  <a href="#video" data-close>Video</a>
   <a href="https://www.degendashboard.app" target="_blank" rel="noopener" data-close>Degen Dashboard</a>
   <a href="https://compvault.app" target="_blank" rel="noopener" data-close>CompVault</a>
   <a href="#contact-1b" data-close>Contact</a>
