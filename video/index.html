@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Wedding Films in South Jersey &amp; at the Shore | 8888 Media</title>
+<meta name="description" content="Wedding films, engagement films and save-the-date videos across South Jersey and the shore. Two cameras, real audio on your vows, and a short film you'll actually rewatch.">
+<link rel="canonical" href="https://www.8888media.co/video/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Wedding Films in South Jersey &amp; at the Shore | 8888 Media">
+<meta property="og:description" content="A short film of your day that you'll actually rewatch. Two cameras, real audio on your vows. South Jersey, the shore, and further afield.">
+<meta property="og:url" content="https://www.8888media.co/video/">
+<meta property="og:image" content="https://www.8888media.co/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#08080A">
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+  /* This page deliberately runs dark and stays dark, unlike /mockup/, /setup/ and /start/.
+     Those sell websites to business owners; this sells film to couples, and film wants a
+     dark room. Same accent and same display face, so it still reads as one studio. */
+  :root{
+    --ground:#08080A;
+    --ground-2:#0E0E12;
+    --surface:#15151B;
+    --text:#F6F4F8;
+    --text-soft:#A8A3B0;
+    --text-faint:#6E6977;
+    --rule:#24232B;
+    --rule-soft:#1A1A20;
+    --accent:#FF4A7D;
+    --accent-deep:#CF1656;
+    --on-accent:#FFFFFF;
+    --mono:'IBM Plex Mono',ui-monospace,SFMono-Regular,Menlo,monospace;
+    --gutter:20px;
+  }
+  @media (prefers-reduced-motion:no-preference){ html{scroll-behavior:smooth} }
+
+  *{box-sizing:border-box; margin:0; padding:0}
+  html,body{overflow-x:hidden}
+  body{
+    background:var(--ground); color:var(--text);
+    font-family:Inter,-apple-system,"Segoe UI",sans-serif;
+    font-size:17px; line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+    -webkit-text-size-adjust:100%;
+  }
+  h1,h2,h3,.brand,.slate{font-family:'Archivo Black',Impact,sans-serif; font-weight:400; letter-spacing:-.015em}
+  a{color:var(--accent)}
+  .wrap{max-width:1000px; margin:0 auto; padding-left:var(--gutter); padding-right:var(--gutter)}
+  .narrow{max-width:720px}
+
+  /* ---- film grain, procedural so there is no image to load ---- */
+  .grain{
+    position:fixed; inset:-150%; z-index:2; pointer-events:none;
+    opacity:.16; mix-blend-mode:overlay;
+    background-image:url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+  @media (prefers-reduced-motion:no-preference){
+    .grain{animation:grain 1.1s steps(4) infinite}
+  }
+  @keyframes grain{
+    0%{transform:translate(0,0)} 25%{transform:translate(-3%,2%)}
+    50%{transform:translate(2%,-3%)} 75%{transform:translate(-2%,-2%)} 100%{transform:translate(3%,3%)}
+  }
+
+  /* ---- top band ---- */
+  .band{position:relative; z-index:5; padding-block:18px; border-bottom:1px solid var(--rule-soft)}
+  .band .wrap{display:flex; align-items:center; justify-content:space-between; gap:16px}
+  .brand{font-size:17px; color:var(--text); text-decoration:none; letter-spacing:.02em}
+  .band a.back{color:var(--text-faint); font-size:13px; text-decoration:none; font-family:var(--mono); letter-spacing:.04em}
+  .band a.back:hover{color:var(--text)}
+
+  /* ---- hero as a viewfinder ---- */
+  header.hero{position:relative; z-index:3; padding-block:clamp(48px,11vh,104px) clamp(56px,12vh,112px); overflow:hidden}
+  header.hero::before{ /* warm key light bleeding in from the upper left */
+    content:""; position:absolute; top:-40%; left:-15%; width:85%; height:150%;
+    background:radial-gradient(closest-side, rgba(255,138,92,.17), rgba(255,138,92,0) 70%);
+    pointer-events:none;
+  }
+  header.hero::after{ /* cool fill from the lower right */
+    content:""; position:absolute; bottom:-50%; right:-20%; width:80%; height:140%;
+    background:radial-gradient(closest-side, rgba(92,126,255,.14), rgba(92,126,255,0) 70%);
+    pointer-events:none;
+  }
+  .finder{position:relative}
+  .finder .corner{position:absolute; width:22px; height:22px; border:1.5px solid var(--text-faint); opacity:.5}
+  .finder .tl{top:-14px; left:-14px; border-right:0; border-bottom:0}
+  .finder .tr{top:-14px; right:-14px; border-left:0; border-bottom:0}
+  .finder .bl{bottom:-14px; left:-14px; border-right:0; border-top:0}
+  .finder .br{bottom:-14px; right:-14px; border-left:0; border-top:0}
+
+  .rec{display:flex; align-items:center; gap:9px; font-family:var(--mono); font-size:12px;
+       letter-spacing:.1em; color:var(--text-faint); margin-bottom:22px}
+  .rec .dot{width:8px; height:8px; border-radius:50%; background:var(--accent-deep); flex:none}
+  @media (prefers-reduced-motion:no-preference){ .rec .dot{animation:blink 1.6s ease-in-out infinite} }
+  @keyframes blink{0%,100%{opacity:1} 50%{opacity:.25}}
+  #tc{color:var(--text-soft)}
+
+  h1{font-size:clamp(36px,8.2vw,76px); line-height:1.02; text-wrap:balance; letter-spacing:-.03em}
+  h1 em{font-style:normal; color:var(--accent)}
+  .sub{margin-top:24px; font-size:clamp(17px,2.2vw,20px); color:var(--text-soft); max-width:30em; line-height:1.55}
+  .where{margin-top:26px; font-family:var(--mono); font-size:12.5px; letter-spacing:.07em;
+         color:var(--text-faint); text-transform:uppercase}
+  .where b{color:var(--accent); font-weight:500}
+
+  /* ---- sections ---- */
+  section{position:relative; z-index:3; padding-block:clamp(52px,9vh,88px); border-top:1px solid var(--rule-soft)}
+  .slug{display:flex; align-items:center; gap:12px; margin-bottom:28px}
+  .slug .n{font-family:var(--mono); font-size:11.5px; letter-spacing:.14em; color:var(--accent); flex:none}
+  .slug h2{font-size:13px; letter-spacing:.16em; text-transform:uppercase; color:var(--text-faint); font-family:Inter,sans-serif; font-weight:600}
+  .slug .line{height:1px; background:var(--rule); flex:1}
+
+  /* ---- the film frame ---- */
+  .frame{position:relative; border:1px solid var(--rule); border-radius:4px; background:var(--ground-2);
+         aspect-ratio:16/9; overflow:hidden; box-shadow:0 30px 80px -40px rgba(0,0,0,.9)}
+  .frame iframe,.frame video{position:absolute; inset:0; width:100%; height:100%; border:0; display:block}
+  .frame .empty{position:absolute; inset:0; display:flex; flex-direction:column; align-items:center;
+                justify-content:center; gap:16px; text-align:center; padding:24px}
+  .frame .empty .play{width:62px; height:62px; border-radius:50%; border:1.5px solid var(--rule);
+       display:grid; place-items:center; color:var(--text-faint)}
+  .frame .empty .play svg{width:20px; height:20px; margin-left:3px}
+  .frame .empty p{font-family:var(--mono); font-size:12px; letter-spacing:.1em; text-transform:uppercase; color:var(--text-faint)}
+  .frame .bars{position:absolute; left:0; right:0; height:7%; background:#000; opacity:.85}
+  .frame .bars.t{top:0} .frame .bars.b{bottom:0}
+  .cap{margin-top:14px; font-family:var(--mono); font-size:12px; color:var(--text-faint); letter-spacing:.04em}
+
+  /* ---- packages as editorial rows ---- */
+  .pk{border-top:1px solid var(--rule-soft)}
+  .p{display:grid; grid-template-columns:auto 1fr; gap:0 24px; padding-block:30px;
+     border-bottom:1px solid var(--rule-soft); transition:background .25s ease}
+  .p:hover{background:rgba(255,255,255,.015)}
+  .p .slate{font-family:var(--mono); font-size:12px; color:var(--accent); padding-top:7px; letter-spacing:.08em}
+  .p h3{font-size:clamp(23px,3.4vw,30px); line-height:1.1; letter-spacing:-.02em}
+  .p .what{margin-top:10px; color:var(--text-soft); font-size:16.5px; max-width:40em}
+  .p ul{margin-top:16px; list-style:none; display:flex; flex-wrap:wrap; gap:8px}
+  .p li{font-family:var(--mono); font-size:11.5px; letter-spacing:.05em; color:var(--text-soft);
+        border:1px solid var(--rule); border-radius:100px; padding:5px 11px; white-space:nowrap}
+  .note{margin-top:28px; color:var(--text-soft); font-size:16.5px; max-width:42em}
+  .note b{color:var(--text)}
+
+  /* ---- process ---- */
+  ol.steps{list-style:none; display:grid; gap:0}
+  ol.steps li{display:grid; grid-template-columns:76px 1fr; gap:20px; padding-block:20px;
+              border-bottom:1px solid var(--rule-soft); color:var(--text-soft); font-size:16.5px}
+  ol.steps .t{font-family:var(--mono); font-size:11.5px; color:var(--text-faint); padding-top:4px; letter-spacing:.04em}
+  ol.steps b{color:var(--text); font-weight:600}
+
+  /* ---- contact ---- */
+  .contact{background:var(--surface); border:1px solid var(--rule); border-radius:6px; padding:clamp(24px,4vw,40px)}
+  .contact p{color:var(--text-soft); font-size:17.5px; max-width:36em}
+  .rows{margin-top:26px; display:flex; flex-wrap:wrap; gap:12px 40px}
+  .rows div span{display:block; font-family:var(--mono); font-size:11px; letter-spacing:.12em;
+                 text-transform:uppercase; color:var(--text-faint); margin-bottom:5px}
+  .rows div a{font-size:19px; font-weight:600; text-decoration:none; color:var(--text)}
+  .rows div a:hover{color:var(--accent)}
+
+  /* ---- the date form ---- */
+  .frm{display:flex; flex-direction:column; gap:18px}
+  .fl{display:flex; flex-direction:column; gap:7px}
+  .fl label, .frm legend{font-family:var(--mono); font-size:11px; letter-spacing:.12em;
+       text-transform:uppercase; color:var(--text-faint)}
+  .fl .req{color:var(--accent)}
+  .fl .hint{font-size:13.5px; color:var(--text-faint); font-family:Inter,sans-serif;
+       letter-spacing:0; text-transform:none; margin-top:-2px}
+  .fl input, .fl textarea{width:100%; background:var(--ground); border:1px solid var(--rule);
+       border-radius:4px; padding:12px 13px; font:inherit; font-size:16px; color:var(--text); min-height:48px}
+  .fl textarea{min-height:84px; resize:vertical; line-height:1.5}
+  .fl input:focus-visible, .fl textarea:focus-visible{outline:2px solid var(--accent); outline-offset:0; border-color:transparent}
+  .two{display:grid; gap:18px; grid-template-columns:minmax(0,1fr)}
+  @media (min-width:560px){ .two{grid-template-columns:repeat(2,minmax(0,1fr))} }
+  .frm fieldset{border:0; margin:0; padding:0; display:flex; flex-direction:column; gap:9px}
+  .opts{display:flex; flex-wrap:wrap; gap:8px}
+  .opt{position:relative}
+  .opt input{position:absolute; inset:0; opacity:0; margin:0; cursor:pointer}
+  .opt span{display:flex; align-items:center; justify-content:center; min-height:44px; padding:0 18px;
+       border:1px solid var(--rule); border-radius:4px; color:var(--text-soft); font-size:15px}
+  .opt input:checked + span{border-color:var(--accent); background:var(--accent-soft); color:var(--text)}
+  .opt input:focus-visible + span{outline:2px solid var(--accent); outline-offset:2px}
+  .trap{position:absolute; left:-9999px; width:1px; height:1px; overflow:hidden}
+  .send{display:inline-flex; align-items:center; justify-content:center; min-height:52px; padding:0 26px;
+       border:1px solid var(--accent-deep); border-radius:4px; background:var(--accent-deep);
+       color:var(--on-accent); font-weight:600; font-size:16px; cursor:pointer;
+       font-family:'Archivo Black',Impact,sans-serif; letter-spacing:.01em}
+  .send:hover{filter:brightness(1.1)}
+  .send:disabled{opacity:.5; cursor:not-allowed}
+  .warn{color:var(--accent); font-size:14.5px}
+  .privacy{font-size:13.5px; color:var(--text-faint)}
+  .sent{background:var(--surface); border:1px solid var(--accent); border-radius:6px; padding:26px}
+  .sent h3{font-size:22px; margin-bottom:10px}
+  .sent p{color:var(--text-soft)}
+  .orelse{margin-top:28px; padding-top:24px; border-top:1px solid var(--rule-soft)}
+
+  footer{position:relative; z-index:3; padding-block:40px 60px; border-top:1px solid var(--rule-soft);
+         color:var(--text-faint); font-size:14px}
+  footer a{color:var(--text-faint)}
+
+  /* ---- scroll reveal ----
+     Content is visible by default on purpose. The hidden state is only applied once the
+     script has confirmed it can un-hide it again, so no reader ever lands on a blank page. */
+  html.js-rv .rv{opacity:0; transform:translateY(16px); transition:opacity .7s ease, transform .7s ease}
+  html.js-rv .rv.in{opacity:1; transform:none}
+
+  @media (max-width:640px){
+    :root{--gutter:16px}
+    .p{grid-template-columns:1fr; gap:0}
+    .p .slate{padding-top:0; margin-bottom:8px}
+    ol.steps li{grid-template-columns:1fr; gap:6px}
+    .finder .corner{width:16px; height:16px}
+    .finder .tl,.finder .tr{top:-10px} .finder .bl,.finder .br{bottom:-10px}
+    .finder .tl,.finder .bl{left:-10px} .finder .tr,.finder .br{right:-10px}
+  }
+</style>
+</head>
+<body>
+
+<div class="grain" aria-hidden="true"></div>
+
+<div class="band">
+  <div class="wrap">
+    <a class="brand" href="/">8888 MEDIA</a>
+    <a class="back" href="/">WEBSITES &rarr;</a>
+  </div>
+</div>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="finder">
+      <span class="corner tl" aria-hidden="true"></span>
+      <span class="corner tr" aria-hidden="true"></span>
+      <span class="corner bl" aria-hidden="true"></span>
+      <span class="corner br" aria-hidden="true"></span>
+
+      <div class="rec"><span class="dot" aria-hidden="true"></span> REC <span id="tc">00:00:00:00</span></div>
+
+      <h1>A short film of your day you'll&nbsp;actually <em>rewatch.</em></h1>
+      <p class="sub">Most wedding video ends up on a hard drive nobody opens. The point of a film is that you put it on five years later and it still works. Two cameras, real microphones on your vows, and an edit built like a trailer rather than a recording.</p>
+      <p class="where">South Jersey &amp; the shore &nbsp;·&nbsp; <b>and glad to travel</b></p>
+    </div>
+  </div>
+</header>
+
+<section>
+  <div class="wrap">
+    <div class="slug rv"><span class="n">SC 01</span><h2>The Work</h2><span class="line"></span></div>
+    <div class="frame rv">
+      <!-- REEL GOES HERE: replace the .empty block below with a <video> or a YouTube/Vimeo
+           <iframe> once the trailer is cut. The .bars elements give it the letterbox. -->
+      <div class="bars t" aria-hidden="true"></div>
+      <div class="bars b" aria-hidden="true"></div>
+      <div class="empty">
+        <span class="play" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+        </span>
+        <p>Reel in the edit bay</p>
+      </div>
+    </div>
+    <p class="cap rv">A trailer is coming here shortly.</p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="slug rv"><span class="n">SC 02</span><h2>What I Shoot</h2><span class="line"></span></div>
+    <div class="pk">
+
+      <div class="p rv">
+        <div class="slate">01</div>
+        <div>
+          <h3>Save The Date Film</h3>
+          <p class="what">An hour or two with you somewhere that means something, cut into a short film you can send with your invitations or post the day you announce it.</p>
+          <ul>
+            <li>1&ndash;2 hours filming</li>
+            <li>60&ndash;90 second film</li>
+            <li>Vertical + widescreen</li>
+            <li>Licensed music</li>
+            <li>Colour graded</li>
+            <li>Two weeks</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="p rv">
+        <div class="slate">02</div>
+        <div>
+          <h3>Wedding Film</h3>
+          <p class="what">Eight hours, from getting ready through the first dances. One filmmaker, two cameras, and microphones on the ceremony so you can hear what was actually said.</p>
+          <ul>
+            <li>8 hours coverage</li>
+            <li>4&ndash;6 minute film</li>
+            <li>Full ceremony audio</li>
+            <li>Vertical cut for sharing</li>
+            <li>Six weeks</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="p rv">
+        <div class="slate">03</div>
+        <div>
+          <h3>Wedding Film, Extended</h3>
+          <p class="what">Ten hours and a longer edit, for a day with more in it &mdash; a separate ceremony and reception, a large party, or speeches you want kept whole.</p>
+          <ul>
+            <li>10 hours coverage</li>
+            <li>6&ndash;8 minute film</li>
+            <li>Second edit: ceremony + toasts</li>
+            <li>Vertical cut for sharing</li>
+            <li>Six weeks</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+    <p class="note rv">A second filmmaker, or a copy of the raw footage from the whole day, can be added to any of these. <b><a href="#check" style="color:var(--accent)">Send me your date</a> and I&rsquo;ll send pricing the same day.</b></p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap narrow">
+    <div class="slug rv"><span class="n">SC 03</span><h2>How It Works</h2><span class="line"></span></div>
+    <ol class="steps">
+      <li class="rv"><span class="t">FIRST</span><span><b>We talk.</b> Fifteen minutes on the phone about the day, the venue, and what you actually want to remember.</span></li>
+      <li class="rv"><span class="t">THEN</span><span><b>I send pricing,</b> and you decide. A deposit holds the date; the balance is due the week of.</span></li>
+      <li class="rv"><span class="t">A MONTH OUT</span><span><b>We go over the timeline,</b> and I'll talk to your photographer so we aren't standing in each other's shots.</span></li>
+      <li class="rv"><span class="t">ON THE DAY</span><span><b>I'll give you a little direction.</b> Most of the day I stay out of the way, but I'll borrow the two of you for a few minutes to find better light and tell you what to do with your hands. That's usually where the shot you end up loving comes from.</span></li>
+      <li class="rv"><span class="t">AFTER</span><span><b>You get the film</b> by the date above, as a private link you can send to anyone.</span></li>
+    </ol>
+  </div>
+</section>
+
+<section id="check">
+  <div class="wrap narrow">
+    <div class="slug rv"><span class="n">SC 04</span><h2>Check Your Date</h2><span class="line"></span></div>
+    <div class="contact rv">
+      <p style="margin-bottom:26px">Send me your date and I'll tell you whether I'm free, and what it costs, the same day. I only film one wedding a day, so the answer is always a straight yes or no.</p>
+
+      <form class="frm" id="ask" novalidate>
+        <div class="two">
+          <div class="fl">
+            <label for="couple">Your names <span class="req" aria-hidden="true">*</span></label>
+            <input type="text" id="couple" name="couple" placeholder="Dana &amp; Chris" autocomplete="off" required>
+          </div>
+          <div class="fl">
+            <label for="first">Who am I writing back to? <span class="req" aria-hidden="true">*</span></label>
+            <input type="text" id="first" name="first" placeholder="Dana" autocomplete="given-name" required>
+          </div>
+        </div>
+
+        <div class="two">
+          <div class="fl">
+            <label for="date">Wedding date <span class="req" aria-hidden="true">*</span></label>
+            <p class="hint">Not set yet? Put your best guess and tell me the options below.</p>
+            <input type="date" id="date" name="date" required>
+          </div>
+          <div class="fl">
+            <label for="venue">Venue</label>
+            <p class="hint">Or just the town, if you haven't booked one.</p>
+            <input type="text" id="venue" name="venue" autocomplete="off">
+          </div>
+        </div>
+
+        <div class="fl">
+          <label for="reachme">Phone or email <span class="req" aria-hidden="true">*</span></label>
+          <input type="text" id="reachme" name="reachme" autocomplete="email" required>
+        </div>
+
+        <fieldset>
+          <legend>How should I get back to you?</legend>
+          <div class="opts">
+            <label class="opt"><input type="radio" name="reach" value="Text"><span>Text</span></label>
+            <label class="opt"><input type="radio" name="reach" value="Call"><span>Call</span></label>
+            <label class="opt"><input type="radio" name="reach" value="Email"><span>Email</span></label>
+          </div>
+        </fieldset>
+
+        <div class="fl">
+          <label for="note">Anything else?</label>
+          <p class="hint">Rough timeline, how many hours you think you want, other dates you're weighing up.</p>
+          <textarea id="note" name="note" rows="3"></textarea>
+        </div>
+
+        <div class="trap" aria-hidden="true">
+          <label for="website_url">Leave this empty</label>
+          <input type="text" id="website_url" name="website_url" tabindex="-1" autocomplete="off">
+        </div>
+
+        <p class="warn" id="ask-error" role="alert" hidden></p>
+        <button type="submit" class="send" id="ask-send">Send It</button>
+        <p class="privacy">I'll only use this to answer you about your wedding. No mailing lists, ever.</p>
+      </form>
+
+      <div class="sent" id="ask-done" role="status" hidden>
+        <h3>Got it.</h3>
+        <p id="ask-done-text"></p>
+      </div>
+
+      <div class="orelse">
+        <p style="font-size:16px; color:var(--text-soft)">Rather just write to me? That works too.</p>
+        <div class="rows">
+          <div><span>Email</span><a href="mailto:mike@8888media.co">mike@8888media.co</a></div>
+          <div><span>Text or call</span><a href="tel:+18563642991">856-364-2991</a></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">8888 Media LLC &nbsp;·&nbsp; <a href="/">Websites and digital products</a></div>
+</footer>
+
+<script>
+  // Timecode in the hero, running at 24fps like the camera would.
+  (function(){
+    var el = document.getElementById('tc');
+    if (!el) return;
+    var f = 0, p = function(n){ return String(n).padStart(2,'0'); };
+    setInterval(function(){
+      f++;
+      var fr = f % 24, s = Math.floor(f/24) % 60, m = Math.floor(f/1440) % 60, h = Math.floor(f/86400);
+      el.textContent = p(h)+':'+p(m)+':'+p(s)+':'+p(fr);
+    }, 1000/24);
+  })();
+
+  // The date enquiry. Posts to the same endpoint as the free-mockup form with kind:"video",
+  // so it lands in the same R2 bucket, sends the same instant alert, and the morning brief
+  // drops it into the CRM as an Inquiry. Spam handling matches /mockup/: a hidden trap field
+  // and a minimum fill time, both of which get a normal "thanks" and save nothing.
+  (function(){
+    var startedAt = Date.now();
+    var form = document.getElementById('ask');
+    if (!form) return;
+    var errBox = document.getElementById('ask-error');
+    var send = document.getElementById('ask-send');
+
+    function fail(msg, id){
+      errBox.textContent = msg;
+      errBox.hidden = false;
+      var el = id && document.getElementById(id);
+      if (el) el.focus();
+      return false;
+    }
+
+    form.addEventListener('submit', function(e){
+      e.preventDefault();
+      errBox.hidden = true;
+
+      var picked = form.querySelector('input[name="reach"]:checked');
+      var data = {
+        kind: 'video',
+        business: document.getElementById('couple').value.trim(),
+        name: document.getElementById('first').value.trim(),
+        eventDate: document.getElementById('date').value.trim(),
+        venue: document.getElementById('venue').value.trim(),
+        contact: document.getElementById('reachme').value.trim(),
+        reach: picked ? picked.value : '',
+        notes: document.getElementById('note').value.trim(),
+        link: '',
+        website_url: document.getElementById('website_url').value,
+        startedAt: startedAt,
+        from: document.referrer ? new URL(document.referrer).hostname : ''
+      };
+
+      if (data.business.length < 2) return fail('Add both your names.', 'couple');
+      if (data.name.length < 2) return fail('Add the name I should write back to.', 'first');
+      if (data.eventDate.length < 4) return fail("Add your wedding date, even if it isn't fixed yet.", 'date');
+      var isEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.contact);
+      if (!isEmail && data.contact.replace(/\D/g, '').length < 10) {
+        return fail('Add a phone number or email so I can reach you.', 'reachme');
+      }
+
+      send.disabled = true;
+      send.textContent = 'Sending…';
+
+      fetch('/api/mockup-request', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+      }).then(function(res){
+        return res.json().catch(function(){ return {}; }).then(function(out){
+          if (!res.ok) throw new Error(out.error || "That didn't go through. Try again in a minute.");
+          var how = { Text: 'text', Call: 'call', Email: 'email' }[data.reach] || 'get back to';
+          document.getElementById('ask-done-text').textContent =
+            'Thanks, ' + data.name.split(' ')[0] + ". I'll check " + data.eventDate +
+            " and " + how + " you today with a straight answer either way.";
+          form.hidden = true;
+          document.getElementById('ask-done').hidden = false;
+        });
+      }).catch(function(err){
+        send.disabled = false;
+        send.textContent = 'Send It';
+        fail(err.message || "That didn't go through. Try again in a minute.");
+      });
+    });
+  })();
+
+  // Reveal on scroll. Only ever hides content if it can also show it again, and a failsafe
+  // timer reveals anything the observer missed so the page can't get stuck invisible.
+  (function(){
+    if (!('IntersectionObserver' in window)) return;
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+    var els = document.querySelectorAll('.rv');
+    if (!els.length) return;
+
+    document.documentElement.classList.add('js-rv');
+
+    var showAll = function(){
+      for (var i = 0; i < els.length; i++) els[i].classList.add('in');
+    };
+
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); }
+      });
+    }, { rootMargin: '0px 0px -8% 0px' });
+
+    els.forEach(function(e, i){
+      e.style.transitionDelay = (Math.min(i, 4) * 60) + 'ms';
+      io.observe(e);
+    });
+
+    setTimeout(showAll, 1800);
+  })();
+</script>
+
+</body>
+</html>
