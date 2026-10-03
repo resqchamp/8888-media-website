@@ -340,6 +340,15 @@
       <p style="margin-bottom:26px">Send me your date and I'll tell you whether I'm free, and what it costs, the same day. I only film one wedding a day, so the answer is always a straight yes or no.</p>
 
       <form class="frm" id="ask" novalidate>
+        <fieldset>
+          <legend>What are you after? <span class="req" aria-hidden="true">*</span></legend>
+          <div class="opts">
+            <label class="opt"><input type="radio" name="want" value="Wedding"><span>A wedding film</span></label>
+            <label class="opt"><input type="radio" name="want" value="Engagement"><span>Engagement or save the date</span></label>
+            <label class="opt"><input type="radio" name="want" value="Not sure"><span>Not sure yet</span></label>
+          </div>
+        </fieldset>
+
         <div class="two">
           <div class="fl">
             <label for="couple">Your names <span class="req" aria-hidden="true">*</span></label>
@@ -353,13 +362,13 @@
 
         <div class="two">
           <div class="fl">
-            <label for="date">Wedding date <span class="req" aria-hidden="true">*</span></label>
-            <p class="hint">Not set yet? Put your best guess and tell me the options below.</p>
+            <label for="date"><span id="date-label">The date you need me</span> <span class="req" aria-hidden="true">*</span></label>
+            <p class="hint" id="date-hint">Tell me what you're after above and I'll ask for the right date.</p>
             <input type="date" id="date" name="date" required>
           </div>
           <div class="fl">
-            <label for="venue">Venue</label>
-            <p class="hint">Or just the town, if you haven't booked one.</p>
+            <label for="venue"><span id="venue-label">Where</span></label>
+            <p class="hint" id="venue-hint">A venue, or just the town.</p>
             <input type="text" id="venue" name="venue" autocomplete="off">
           </div>
         </div>
@@ -380,7 +389,7 @@
 
         <div class="fl">
           <label for="note">Anything else?</label>
-          <p class="hint">Rough timeline, how many hours you think you want, other dates you're weighing up.</p>
+          <p class="hint" id="note-hint">Rough timeline, how many hours you think you want, other dates you're weighing up.</p>
           <textarea id="note" name="note" rows="3"></textarea>
         </div>
 
@@ -438,6 +447,46 @@
     var errBox = document.getElementById('ask-error');
     var send = document.getElementById('ask-send');
 
+    // The date field always means "the day I have to be free", but which day that IS depends
+    // on what they want. A wedding is the wedding; an engagement shoot is its own date and
+    // usually has no wedding date yet. Asking for "wedding date" either way is unanswerable
+    // for a couple who just got engaged, and tells me nothing about my availability.
+    var WORDING = {
+      Wedding: {
+        date: 'Wedding date',
+        dateHint: "Not set yet? Put your best guess and tell me the options below.",
+        venue: 'Venue',
+        venueHint: "Or just the town, if you haven't booked one.",
+        note: "Rough timeline, how many hours you think you want, other dates you're weighing up."
+      },
+      Engagement: {
+        date: 'When would you like to film?',
+        dateHint: 'A rough date is fine. These are easy to move, so nothing is locked in.',
+        venue: 'Where were you thinking?',
+        venueHint: "Somewhere that means something to you, or just the town and I'll suggest places.",
+        note: "Do you have a wedding date yet? Also handy: time of day you had in mind, and what you'd want it for - announcing it, or the save the date."
+      },
+      'Not sure': {
+        date: 'A date to check',
+        dateHint: "Whichever date matters most right now - your wedding, or a day you'd want to film.",
+        venue: 'Where',
+        venueHint: 'A venue, or just the town.',
+        note: "Tell me what you're thinking and I'll work out what fits."
+      }
+    };
+
+    function reword() {
+      var picked = form.querySelector('input[name="want"]:checked');
+      var w = WORDING[picked && picked.value] || null;
+      if (!w) return;
+      document.getElementById('date-label').textContent = w.date;
+      document.getElementById('date-hint').textContent = w.dateHint;
+      document.getElementById('venue-label').textContent = w.venue;
+      document.getElementById('venue-hint').textContent = w.venueHint;
+      document.getElementById('note-hint').textContent = w.note;
+    }
+    form.addEventListener('change', function(e){ if (e.target.name === 'want') reword(); });
+
     function fail(msg, id){
       errBox.textContent = msg;
       errBox.hidden = false;
@@ -451,8 +500,10 @@
       errBox.hidden = true;
 
       var picked = form.querySelector('input[name="reach"]:checked');
+      var wants = form.querySelector('input[name="want"]:checked');
       var data = {
         kind: 'video',
+        want: wants ? wants.value : '',
         business: document.getElementById('couple').value.trim(),
         name: document.getElementById('first').value.trim(),
         eventDate: document.getElementById('date').value.trim(),
@@ -466,9 +517,14 @@
         from: document.referrer ? new URL(document.referrer).hostname : ''
       };
 
+      if (!data.want) return fail('Pick what you’re after first, so I ask you for the right date.');
       if (data.business.length < 2) return fail('Add both your names.', 'couple');
       if (data.name.length < 2) return fail('Add the name I should write back to.', 'first');
-      if (data.eventDate.length < 4) return fail("Add your wedding date, even if it isn't fixed yet.", 'date');
+      if (data.eventDate.length < 4) {
+        return fail(data.want === 'Engagement'
+          ? "Add roughly when you'd like to film, even if it's not fixed."
+          : "Add the date, even if it isn't fixed yet.", 'date');
+      }
       var isEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.contact);
       if (!isEmail && data.contact.replace(/\D/g, '').length < 10) {
         return fail('Add a phone number or email so I can reach you.', 'reachme');
