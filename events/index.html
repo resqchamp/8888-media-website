@@ -3,13 +3,13 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Wedding Films in South Jersey &amp; at the Shore | 8888 Media</title>
-<meta name="description" content="Wedding films, engagement announcement films and save-the-date videos across South Jersey and the shore. Two cameras, real audio on your vows, and a short film you'll actually rewatch.">
-<link rel="canonical" href="https://www.8888media.co/video/">
+<title>Event, Sports &amp; Brand Films in South Jersey | 8888 Media</title>
+<meta name="description" content="Event films, sports highlight reels and brand films across South Jersey, Philadelphia and the shore. Shot at MetLife Stadium for Special Olympics New Jersey.">
+<link rel="canonical" href="https://www.8888media.co/events/">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Wedding Films in South Jersey &amp; at the Shore | 8888 Media">
-<meta property="og:description" content="A short film of your day that you'll actually rewatch. Two cameras, real audio on your vows. South Jersey, the shore, and further afield.">
-<meta property="og:url" content="https://www.8888media.co/video/">
+<meta property="og:title" content="Event, Sports &amp; Brand Films in South Jersey | 8888 Media">
+<meta property="og:description" content="Films for events, teams and the organisations behind them. Shot at MetLife Stadium for Special Olympics New Jersey.">
+<meta property="og:url" content="https://www.8888media.co/events/">
 <meta property="og:image" content="https://www.8888media.co/og-image.png">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="theme-color" content="#08080A">
@@ -20,9 +20,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
 <style>
-  /* This page deliberately runs dark and stays dark, unlike /mockup/, /setup/ and /start/.
-     Those sell websites to business owners; this sells film to couples, and film wants a
-     dark room. Same accent and same display face, so it still reads as one studio. */
+  /* Same system as /video/ on purpose: these two are siblings and should feel it. */
   :root{
     --ground:#08080A;
     --ground-2:#0E0E12;
@@ -54,37 +52,33 @@
   .wrap{max-width:1000px; margin:0 auto; padding-left:var(--gutter); padding-right:var(--gutter)}
   .narrow{max-width:720px}
 
-  /* ---- film grain, procedural so there is no image to load ---- */
   .grain{
     position:fixed; inset:-150%; z-index:2; pointer-events:none;
     opacity:.16; mix-blend-mode:overlay;
     background-image:url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)'/%3E%3C/svg%3E");
   }
-  @media (prefers-reduced-motion:no-preference){
-    .grain{animation:grain 1.1s steps(4) infinite}
-  }
+  @media (prefers-reduced-motion:no-preference){ .grain{animation:grain 1.1s steps(4) infinite} }
   @keyframes grain{
     0%{transform:translate(0,0)} 25%{transform:translate(-3%,2%)}
     50%{transform:translate(2%,-3%)} 75%{transform:translate(-2%,-2%)} 100%{transform:translate(3%,3%)}
   }
 
-  /* ---- top band ---- */
   .band{position:relative; z-index:5; padding-block:18px; border-bottom:1px solid var(--rule-soft)}
   .band .wrap{display:flex; align-items:center; justify-content:space-between; gap:16px}
   .brand{font-size:17px; color:var(--text); text-decoration:none; letter-spacing:.02em}
-  .band a.back{color:var(--text-faint); font-size:13px; text-decoration:none; font-family:var(--mono); letter-spacing:.04em}
-  .band a.back:hover{color:var(--text)}
+  .band nav{display:flex; gap:18px}
+  .band a.nav{color:var(--text-faint); font-size:13px; text-decoration:none; font-family:var(--mono); letter-spacing:.04em}
+  .band a.nav:hover{color:var(--text)}
 
-  /* ---- hero as a viewfinder ---- */
   header.hero{position:relative; z-index:3; padding-block:clamp(48px,11vh,104px) clamp(56px,12vh,112px); overflow:hidden}
-  header.hero::before{ /* warm key light bleeding in from the upper left */
+  header.hero::before{
     content:""; position:absolute; top:-40%; left:-15%; width:85%; height:150%;
-    background:radial-gradient(closest-side, rgba(255,138,92,.17), rgba(255,138,92,0) 70%);
+    background:radial-gradient(closest-side, rgba(92,126,255,.16), rgba(92,126,255,0) 70%);
     pointer-events:none;
   }
-  header.hero::after{ /* cool fill from the lower right */
+  header.hero::after{
     content:""; position:absolute; bottom:-50%; right:-20%; width:80%; height:140%;
-    background:radial-gradient(closest-side, rgba(92,126,255,.14), rgba(92,126,255,0) 70%);
+    background:radial-gradient(closest-side, rgba(255,138,92,.14), rgba(255,138,92,0) 70%);
     pointer-events:none;
   }
   .finder{position:relative}
@@ -101,35 +95,30 @@
   @keyframes blink{0%,100%{opacity:1} 50%{opacity:.25}}
   #tc{color:var(--text-soft)}
 
-  h1{font-size:clamp(36px,8.2vw,76px); line-height:1.02; text-wrap:balance; letter-spacing:-.03em}
+  h1{font-size:clamp(34px,7.6vw,70px); line-height:1.03; text-wrap:balance; letter-spacing:-.03em}
   h1 em{font-style:normal; color:var(--accent)}
-  .sub{margin-top:24px; font-size:clamp(17px,2.2vw,20px); color:var(--text-soft); max-width:30em; line-height:1.55}
+  .sub{margin-top:24px; font-size:clamp(17px,2.2vw,20px); color:var(--text-soft); max-width:32em; line-height:1.55}
   .where{margin-top:26px; font-family:var(--mono); font-size:12.5px; letter-spacing:.07em;
          color:var(--text-faint); text-transform:uppercase}
   .where b{color:var(--accent); font-weight:500}
 
-  /* ---- sections ---- */
   section{position:relative; z-index:3; padding-block:clamp(52px,9vh,88px); border-top:1px solid var(--rule-soft)}
   .slug{display:flex; align-items:center; gap:12px; margin-bottom:28px}
   .slug .n{font-family:var(--mono); font-size:11.5px; letter-spacing:.14em; color:var(--accent); flex:none}
   .slug h2{font-size:13px; letter-spacing:.16em; text-transform:uppercase; color:var(--text-faint); font-family:Inter,sans-serif; font-weight:600}
   .slug .line{height:1px; background:var(--rule); flex:1}
 
-  /* ---- the film frame ---- */
   .frame{position:relative; border:1px solid var(--rule); border-radius:4px; background:var(--ground-2);
          aspect-ratio:16/9; overflow:hidden; box-shadow:0 30px 80px -40px rgba(0,0,0,.9)}
-  .frame iframe,.frame video{position:absolute; inset:0; width:100%; height:100%; border:0; display:block}
+  .frame video,.frame iframe{position:absolute; inset:0; width:100%; height:100%; border:0; display:block}
   .frame .empty{position:absolute; inset:0; display:flex; flex-direction:column; align-items:center;
                 justify-content:center; gap:16px; text-align:center; padding:24px}
   .frame .empty .play{width:62px; height:62px; border-radius:50%; border:1.5px solid var(--rule);
        display:grid; place-items:center; color:var(--text-faint)}
   .frame .empty .play svg{width:20px; height:20px; margin-left:3px}
   .frame .empty p{font-family:var(--mono); font-size:12px; letter-spacing:.1em; text-transform:uppercase; color:var(--text-faint)}
-  .frame .bars{position:absolute; left:0; right:0; height:7%; background:#000; opacity:.85}
-  .frame .bars.t{top:0} .frame .bars.b{bottom:0}
   .cap{margin-top:14px; font-family:var(--mono); font-size:12px; color:var(--text-faint); letter-spacing:.04em}
 
-  /* ---- packages as editorial rows ---- */
   .pk{border-top:1px solid var(--rule-soft)}
   .p{display:grid; grid-template-columns:auto 1fr; gap:0 24px; padding-block:30px;
      border-bottom:1px solid var(--rule-soft); transition:background .25s ease}
@@ -143,14 +132,12 @@
   .note{margin-top:28px; color:var(--text-soft); font-size:16.5px; max-width:42em}
   .note b{color:var(--text)}
 
-  /* ---- process ---- */
   ol.steps{list-style:none; display:grid; gap:0}
   ol.steps li{display:grid; grid-template-columns:76px 1fr; gap:20px; padding-block:20px;
               border-bottom:1px solid var(--rule-soft); color:var(--text-soft); font-size:16.5px}
   ol.steps .t{font-family:var(--mono); font-size:11.5px; color:var(--text-faint); padding-top:4px; letter-spacing:.04em}
   ol.steps b{color:var(--text); font-weight:600}
 
-  /* ---- contact ---- */
   .contact{background:var(--surface); border:1px solid var(--rule); border-radius:6px; padding:clamp(24px,4vw,40px)}
   .contact p{color:var(--text-soft); font-size:17.5px; max-width:36em}
   .rows{margin-top:26px; display:flex; flex-wrap:wrap; gap:12px 40px}
@@ -159,7 +146,7 @@
   .rows div a{font-size:19px; font-weight:600; text-decoration:none; color:var(--text)}
   .rows div a:hover{color:var(--accent)}
 
-  /* ---- the date form ---- */
+  /* form */
   .frm{display:flex; flex-direction:column; gap:18px}
   .fl{display:flex; flex-direction:column; gap:7px}
   .fl label, .frm legend{font-family:var(--mono); font-size:11px; letter-spacing:.12em;
@@ -179,7 +166,7 @@
   .opt input{position:absolute; inset:0; opacity:0; margin:0; cursor:pointer}
   .opt span{display:flex; align-items:center; justify-content:center; min-height:44px; padding:0 18px;
        border:1px solid var(--rule); border-radius:4px; color:var(--text-soft); font-size:15px}
-  .opt input:checked + span{border-color:var(--accent); background:var(--accent-soft); color:var(--text)}
+  .opt input:checked + span{border-color:var(--accent); background:rgba(255,74,125,.12); color:var(--text)}
   .opt input:focus-visible + span{outline:2px solid var(--accent); outline-offset:2px}
   .trap{position:absolute; left:-9999px; width:1px; height:1px; overflow:hidden}
   .send{display:inline-flex; align-items:center; justify-content:center; min-height:52px; padding:0 26px;
@@ -199,9 +186,6 @@
          color:var(--text-faint); font-size:14px}
   footer a{color:var(--text-faint)}
 
-  /* ---- scroll reveal ----
-     Content is visible by default on purpose. The hidden state is only applied once the
-     script has confirmed it can un-hide it again, so no reader ever lands on a blank page. */
   html.js-rv .rv{opacity:0; transform:translateY(16px); transition:opacity .7s ease, transform .7s ease}
   html.js-rv .rv.in{opacity:1; transform:none}
 
@@ -213,6 +197,7 @@
     .finder .corner{width:16px; height:16px}
     .finder .tl,.finder .tr{top:-10px} .finder .bl,.finder .br{bottom:-10px}
     .finder .tl,.finder .bl{left:-10px} .finder .tr,.finder .br{right:-10px}
+    .band nav{gap:14px}
   }
 </style>
 </head>
@@ -223,7 +208,10 @@
 <div class="band">
   <div class="wrap">
     <a class="brand" href="/">8888 MEDIA</a>
-    <a class="back" href="/">WEBSITES &rarr;</a>
+    <nav>
+      <a class="nav" href="/video/">WEDDINGS</a>
+      <a class="nav" href="/">WEBSITES</a>
+    </nav>
   </div>
 </div>
 
@@ -237,9 +225,9 @@
 
       <div class="rec"><span class="dot" aria-hidden="true"></span> REC <span id="tc">00:00:00:00</span></div>
 
-      <h1>A short film of your day you'll&nbsp;actually <em>rewatch.</em></h1>
-      <p class="sub">Most wedding video ends up on a hard drive nobody opens. The point of a film is that you put it on five years later and it still works. Two cameras, real microphones on your vows, and an edit built like a trailer rather than a recording.</p>
-      <p class="where">South Jersey &amp; the shore &nbsp;·&nbsp; <b>and glad to travel</b></p>
+      <h1>Make the day look like it <em>mattered.</em></h1>
+      <p class="sub">Most event video is a record that nobody watches twice. A film is what you send to a sponsor, put at the top of a fundraising page, or show the room next year to explain why they should come back. Shot properly, cut short, built to be shared.</p>
+      <p class="where">Shot at MetLife Stadium for <b>Special Olympics New Jersey</b></p>
     </div>
   </div>
 </header>
@@ -248,18 +236,18 @@
   <div class="wrap">
     <div class="slug rv"><span class="n">SC 01</span><h2>The Work</h2><span class="line"></span></div>
     <div class="frame rv">
-      <!-- 66s trailer, cut from the 4K master. Self-hosted rather than embedded: Cloudflare
-           Pages caps a file at 25 MiB, so this is a 720p copy at 11.4 MiB. The 1080p version
-           lives in 8888-video-assets/wedding/. No letterbox bars over real footage. -->
+      <!-- A straight lift of the first minute of the 2021 SnowBowl film, not a reassembly:
+           the audio is never spliced, which is what Mike asked for. 720p copy at 13.1 MiB to
+           stay under the 25 MiB Cloudflare Pages file limit; the 1080p is in 8888-video-assets. -->
       <video
-        src="film/jill-ronnie-trailer.mp4"
-        poster="film/jill-ronnie-poster.jpg"
+        src="film/snowbowl-reel.mp4"
+        poster="film/snowbowl-poster.jpg"
         controls
         preload="metadata"
         playsinline
-        aria-label="Wedding film trailer, Jill and Ronnie"></video>
+        aria-label="Event film reel, SnowBowl at MetLife Stadium"></video>
     </div>
-    <p class="cap rv">Jill &amp; Ronnie &mdash; Mauricetown, New Jersey</p>
+    <p class="cap rv">SnowBowl &mdash; MetLife Stadium, for Special Olympics New Jersey</p>
   </div>
 </section>
 
@@ -271,16 +259,14 @@
       <div class="p rv">
         <div class="slate">01</div>
         <div>
-          <h3>Engagement &amp; Save The Date Film</h3>
-          <p class="what">An hour or two with you somewhere that means something. People book this for two different moments &mdash; the day you tell everyone you're engaged, and the date card that goes out with the invitations. It's the same shoot either way; the edit is what changes.</p>
+          <h3>Event Film</h3>
+          <p class="what">The day covered properly and cut into a short film: the build-up, the thing itself, and the faces of the people it was for. The version you show the room next year.</p>
           <ul>
-            <li>1&ndash;2 hours filming</li>
-            <li>60&ndash;90 second film</li>
-            <li>Vertical + widescreen</li>
-            <li>Your date on screen, if you want it</li>
-            <li>Licensed music</li>
-            <li>Colour graded</li>
-            <li>Two weeks</li>
+            <li>Up to 6 hours on site</li>
+            <li>2&ndash;3 minute film</li>
+            <li>Interviews on real microphones</li>
+            <li>Vertical cut for sharing</li>
+            <li>Three weeks</li>
           </ul>
         </div>
       </div>
@@ -288,14 +274,14 @@
       <div class="p rv">
         <div class="slate">02</div>
         <div>
-          <h3>Wedding Film</h3>
-          <p class="what">Eight hours, from getting ready through the first dances. One filmmaker, two cameras, and microphones on the ceremony so you can hear what was actually said.</p>
+          <h3>Sponsor &amp; Fundraising Film</h3>
+          <p class="what">Built to do a job, not to commemorate. Interviews with the people who run it and the people it helps, cut to two minutes you can put in front of a sponsor or at the top of a donation page.</p>
           <ul>
-            <li>8 hours coverage</li>
-            <li>4&ndash;6 minute film</li>
-            <li>Full ceremony audio</li>
-            <li>Vertical cut for sharing</li>
-            <li>Six weeks</li>
+            <li>Interview-led</li>
+            <li>90 seconds to 2 minutes</li>
+            <li>Captions burned in</li>
+            <li>Shot across one or two days</li>
+            <li>Three weeks</li>
           </ul>
         </div>
       </div>
@@ -303,20 +289,19 @@
       <div class="p rv">
         <div class="slate">03</div>
         <div>
-          <h3>Wedding Film, Extended</h3>
-          <p class="what">Ten hours and a longer edit, for a day with more in it &mdash; a separate ceremony and reception, a large party, or speeches you want kept whole.</p>
+          <h3>Highlight Reel</h3>
+          <p class="what">Short, fast and made for a phone. For teams, leagues and brands who need something to post the same week rather than a film to keep forever.</p>
           <ul>
-            <li>10 hours coverage</li>
-            <li>6&ndash;8 minute film</li>
-            <li>Second edit: ceremony + toasts</li>
-            <li>Vertical cut for sharing</li>
-            <li>Six weeks</li>
+            <li>Half a day on site</li>
+            <li>Three 30&ndash;45 second cuts</li>
+            <li>Vertical and widescreen</li>
+            <li>One week</li>
           </ul>
         </div>
       </div>
 
     </div>
-    <p class="note rv">A second filmmaker, or a copy of the raw footage from the whole day, can be added to any of these. <b><a href="#check" style="color:var(--accent)">Send me your date</a> and I&rsquo;ll send pricing the same day.</b></p>
+    <p class="note rv">Anything here can be scaled up or down &mdash; a second camera, a longer film, extra cuts for each sponsor. <b><a href="#check" style="color:var(--accent)">Send me the date</a> and I'll send pricing the same day.</b></p>
   </div>
 </section>
 
@@ -324,11 +309,11 @@
   <div class="wrap narrow">
     <div class="slug rv"><span class="n">SC 03</span><h2>How It Works</h2><span class="line"></span></div>
     <ol class="steps">
-      <li class="rv"><span class="t">FIRST</span><span><b>We talk.</b> Fifteen minutes on the phone about the day, the venue, and what you actually want to remember.</span></li>
-      <li class="rv"><span class="t">THEN</span><span><b>I send pricing,</b> and you decide. A deposit holds the date; the balance is due the week of.</span></li>
-      <li class="rv"><span class="t">A MONTH OUT</span><span><b>We go over the timeline,</b> and I'll talk to your photographer so we aren't standing in each other's shots.</span></li>
-      <li class="rv"><span class="t">ON THE DAY</span><span><b>I'll give you a little direction.</b> Most of the day I stay out of the way, but I'll borrow the two of you for a few minutes to find better light and tell you what to do with your hands. That's usually where the shot you end up loving comes from.</span></li>
-      <li class="rv"><span class="t">AFTER</span><span><b>You get the film</b> by the date above, as a private link you can send to anyone.</span></li>
+      <li class="rv"><span class="t">FIRST</span><span><b>Tell me what the film is for.</b> Recruiting, sponsors, donations, or just a record. It changes everything about how I shoot it, so it's the first question rather than the last.</span></li>
+      <li class="rv"><span class="t">THEN</span><span><b>I send pricing,</b> and you decide. A deposit holds the date and the balance is due on delivery.</span></li>
+      <li class="rv"><span class="t">A WEEK OUT</span><span><b>We go over the run of the day</b> and work out who's worth interviewing while they're still fresh.</span></li>
+      <li class="rv"><span class="t">ON THE DAY</span><span><b>I work around you.</b> If there's a moment that can't be interrupted, tell me and I'll shoot it from a distance.</span></li>
+      <li class="rv"><span class="t">AFTER</span><span><b>You get the film</b> as a private link, plus the vertical cuts, ready to post.</span></li>
     </ol>
   </div>
 </section>
@@ -337,38 +322,29 @@
   <div class="wrap narrow">
     <div class="slug rv"><span class="n">SC 04</span><h2>Check Your Date</h2><span class="line"></span></div>
     <div class="contact rv">
-      <p style="margin-bottom:26px">Send me your date and I'll tell you whether I'm free, and what it costs, the same day. I only film one wedding a day, so the answer is always a straight yes or no.</p>
+      <p style="margin-bottom:26px">Send me the date and what the film is for, and I'll come back the same day with whether I'm free and what it costs.</p>
 
       <form class="frm" id="ask" novalidate>
-        <fieldset>
-          <legend>What are you after? <span class="req" aria-hidden="true">*</span></legend>
-          <div class="opts">
-            <label class="opt"><input type="radio" name="want" value="Wedding"><span>A wedding film</span></label>
-            <label class="opt"><input type="radio" name="want" value="Engagement"><span>Engagement or save the date</span></label>
-            <label class="opt"><input type="radio" name="want" value="Not sure"><span>Not sure yet</span></label>
-          </div>
-        </fieldset>
-
         <div class="two">
           <div class="fl">
-            <label for="couple">Your names <span class="req" aria-hidden="true">*</span></label>
-            <input type="text" id="couple" name="couple" placeholder="Dana &amp; Chris" autocomplete="off" required>
+            <label for="org">Organisation or team <span class="req" aria-hidden="true">*</span></label>
+            <input type="text" id="org" name="org" placeholder="Team Top Guns" autocomplete="organization" required>
           </div>
           <div class="fl">
-            <label for="first">Who am I writing back to? <span class="req" aria-hidden="true">*</span></label>
-            <input type="text" id="first" name="first" placeholder="Dana" autocomplete="given-name" required>
+            <label for="first">Your name <span class="req" aria-hidden="true">*</span></label>
+            <input type="text" id="first" name="first" autocomplete="given-name" required>
           </div>
         </div>
 
         <div class="two">
           <div class="fl">
-            <label for="date"><span id="date-label">The date you need me</span> <span class="req" aria-hidden="true">*</span></label>
-            <p class="hint" id="date-hint">Tell me what you're after above and I'll ask for the right date.</p>
+            <label for="date">Date of the event <span class="req" aria-hidden="true">*</span></label>
+            <p class="hint">Not fixed yet? Put your best guess and say so below.</p>
             <input type="date" id="date" name="date" required>
           </div>
           <div class="fl">
-            <label for="venue"><span id="venue-label">Where</span></label>
-            <p class="hint" id="venue-hint">A venue, or just the town.</p>
+            <label for="venue">Where</label>
+            <p class="hint">Venue, or just the town.</p>
             <input type="text" id="venue" name="venue" autocomplete="off">
           </div>
         </div>
@@ -381,15 +357,15 @@
         <fieldset>
           <legend>How should I get back to you?</legend>
           <div class="opts">
-            <label class="opt"><input type="radio" name="reach" value="Text"><span>Text</span></label>
-            <label class="opt"><input type="radio" name="reach" value="Call"><span>Call</span></label>
             <label class="opt"><input type="radio" name="reach" value="Email"><span>Email</span></label>
+            <label class="opt"><input type="radio" name="reach" value="Call"><span>Call</span></label>
+            <label class="opt"><input type="radio" name="reach" value="Text"><span>Text</span></label>
           </div>
         </fieldset>
 
         <div class="fl">
-          <label for="note">Anything else?</label>
-          <p class="hint" id="note-hint">Rough timeline, how many hours you think you want, other dates you're weighing up.</p>
+          <label for="note">What's the film for?</label>
+          <p class="hint">Sponsors, recruiting, donations, social, or a record of the day. The more honest the better &mdash; it decides how I shoot it.</p>
           <textarea id="note" name="note" rows="3"></textarea>
         </div>
 
@@ -400,7 +376,7 @@
 
         <p class="warn" id="ask-error" role="alert" hidden></p>
         <button type="submit" class="send" id="ask-send">Send It</button>
-        <p class="privacy">I'll only use this to answer you about your wedding. No mailing lists, ever.</p>
+        <p class="privacy">I'll only use this to answer you about your event. No mailing lists, ever.</p>
       </form>
 
       <div class="sent" id="ask-done" role="status" hidden>
@@ -420,7 +396,7 @@
 </section>
 
 <footer>
-  <div class="wrap">8888 Media LLC &nbsp;·&nbsp; <a href="/">Websites and digital products</a></div>
+  <div class="wrap">8888 Media LLC &nbsp;·&nbsp; <a href="/video/">Wedding films</a> &nbsp;·&nbsp; <a href="/">Websites and digital products</a></div>
 </footer>
 
 <script>
@@ -436,56 +412,14 @@
     }, 1000/24);
   })();
 
-  // The date enquiry. Posts to the same endpoint as the free-mockup form with kind:"video",
-  // so it lands in the same R2 bucket, sends the same instant alert, and the morning brief
-  // drops it into the CRM as an Inquiry. Spam handling matches /mockup/: a hidden trap field
-  // and a minimum fill time, both of which get a normal "thanks" and save nothing.
+  // The enquiry. Same endpoint as /mockup/ and /video/, with kind:"video" and want:"Event",
+  // so it lands in the same bucket, fires the same alert and reaches the CRM the same way.
   (function(){
     var startedAt = Date.now();
     var form = document.getElementById('ask');
     if (!form) return;
     var errBox = document.getElementById('ask-error');
     var send = document.getElementById('ask-send');
-
-    // The date field always means "the day I have to be free", but which day that IS depends
-    // on what they want. A wedding is the wedding; an engagement shoot is its own date and
-    // usually has no wedding date yet. Asking for "wedding date" either way is unanswerable
-    // for a couple who just got engaged, and tells me nothing about my availability.
-    var WORDING = {
-      Wedding: {
-        date: 'Wedding date',
-        dateHint: "Not set yet? Put your best guess and tell me the options below.",
-        venue: 'Venue',
-        venueHint: "Or just the town, if you haven't booked one.",
-        note: "Rough timeline, how many hours you think you want, other dates you're weighing up."
-      },
-      Engagement: {
-        date: 'When would you like to film?',
-        dateHint: 'A rough date is fine. These are easy to move, so nothing is locked in.',
-        venue: 'Where were you thinking?',
-        venueHint: "Somewhere that means something to you, or just the town and I'll suggest places.",
-        note: "Do you have a wedding date yet? Also handy: time of day you had in mind, and what you'd want it for - announcing it, or the save the date."
-      },
-      'Not sure': {
-        date: 'A date to check',
-        dateHint: "Whichever date matters most right now - your wedding, or a day you'd want to film.",
-        venue: 'Where',
-        venueHint: 'A venue, or just the town.',
-        note: "Tell me what you're thinking and I'll work out what fits."
-      }
-    };
-
-    function reword() {
-      var picked = form.querySelector('input[name="want"]:checked');
-      var w = WORDING[picked && picked.value] || null;
-      if (!w) return;
-      document.getElementById('date-label').textContent = w.date;
-      document.getElementById('date-hint').textContent = w.dateHint;
-      document.getElementById('venue-label').textContent = w.venue;
-      document.getElementById('venue-hint').textContent = w.venueHint;
-      document.getElementById('note-hint').textContent = w.note;
-    }
-    form.addEventListener('change', function(e){ if (e.target.name === 'want') reword(); });
 
     function fail(msg, id){
       errBox.textContent = msg;
@@ -500,11 +434,10 @@
       errBox.hidden = true;
 
       var picked = form.querySelector('input[name="reach"]:checked');
-      var wants = form.querySelector('input[name="want"]:checked');
       var data = {
         kind: 'video',
-        want: wants ? wants.value : '',
-        business: document.getElementById('couple').value.trim(),
+        want: 'Event',
+        business: document.getElementById('org').value.trim(),
         name: document.getElementById('first').value.trim(),
         eventDate: document.getElementById('date').value.trim(),
         venue: document.getElementById('venue').value.trim(),
@@ -517,14 +450,9 @@
         from: document.referrer ? new URL(document.referrer).hostname : ''
       };
 
-      if (!data.want) return fail('Pick what you’re after first, so I ask you for the right date.');
-      if (data.business.length < 2) return fail('Add both your names.', 'couple');
-      if (data.name.length < 2) return fail('Add the name I should write back to.', 'first');
-      if (data.eventDate.length < 4) {
-        return fail(data.want === 'Engagement'
-          ? "Add roughly when you'd like to film, even if it's not fixed."
-          : "Add the date, even if it isn't fixed yet.", 'date');
-      }
+      if (data.business.length < 2) return fail('Add the organisation or team name.', 'org');
+      if (data.name.length < 2) return fail('Add your name.', 'first');
+      if (data.eventDate.length < 4) return fail("Add the date, even if it isn't fixed yet.", 'date');
       var isEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.contact);
       if (!isEmail && data.contact.replace(/\D/g, '').length < 10) {
         return fail('Add a phone number or email so I can reach you.', 'reachme');
@@ -543,7 +471,7 @@
           var how = { Text: 'text', Call: 'call', Email: 'email' }[data.reach] || 'get back to';
           document.getElementById('ask-done-text').textContent =
             'Thanks, ' + data.name.split(' ')[0] + ". I'll check " + data.eventDate +
-            " and " + how + " you today with a straight answer either way.";
+            ' and ' + how + ' you today.';
           form.hidden = true;
           document.getElementById('ask-done').hidden = false;
         });
@@ -555,33 +483,24 @@
     });
   })();
 
-  // Reveal on scroll. Only ever hides content if it can also show it again, and a failsafe
-  // timer reveals anything the observer missed so the page can't get stuck invisible.
+  // Reveal on scroll. Only hides content if it can also show it again, and a failsafe timer
+  // reveals anything the observer missed so the page can't get stuck invisible.
   (function(){
     if (!('IntersectionObserver' in window)) return;
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-
     var els = document.querySelectorAll('.rv');
     if (!els.length) return;
-
     document.documentElement.classList.add('js-rv');
-
-    var showAll = function(){
-      for (var i = 0; i < els.length; i++) els[i].classList.add('in');
-    };
-
     var io = new IntersectionObserver(function(entries){
       entries.forEach(function(en){
         if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); }
       });
     }, { rootMargin: '0px 0px -8% 0px' });
-
     els.forEach(function(e, i){
       e.style.transitionDelay = (Math.min(i, 4) * 60) + 'ms';
       io.observe(e);
     });
-
-    setTimeout(showAll, 1800);
+    setTimeout(function(){ for (var i = 0; i < els.length; i++) els[i].classList.add('in'); }, 1800);
   })();
 </script>
 
