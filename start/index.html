@@ -245,10 +245,10 @@
 
 <header class="masthead">
   <div class="wrap">
-    <p class="eyebrow">8888 Media &middot; Your Website Project</p>
-    <h1>Let&rsquo;s Build Your Website</h1>
+    <p class="eyebrow" id="eyebrow">8888 Media &middot; Your Website Project</p>
+    <h1 id="masthead-h1">Let&rsquo;s Build Your Website</h1>
     <p class="lede" id="lede">Everything I need to build your website is on this page.</p>
-    <p class="lede lede-more">Share as much or as little as you like. A few words per answer is plenty, and anything you skip, I&rsquo;ll take care of or ask you about later. The more you tell me, the more the site will feel like yours. It saves as you go, so you can stop anytime and come back.</p>
+    <p class="lede lede-more" id="lede-more">Share as much or as little as you like. A few words per answer is plenty, and anything you skip, I&rsquo;ll take care of or ask you about later. The more you tell me, the more the site will feel like yours. It saves as you go, so you can stop anytime and come back.</p>
     <div class="chips">
       <span class="chip">About 15 minutes</span>
       <span class="chip">Saves as you go</span>
@@ -319,9 +319,9 @@
 
     <section id="testimonial" aria-labelledby="testimonial-h" hidden>
       <h2 id="testimonial-h">A Quick Favor</h2>
-      <p class="intro">Would you write two or three sentences about working together? I&rsquo;ll put it on the 8888 Media site with a link to yours, which sends a little traffic your way too.</p>
+      <p class="intro" id="t-intro">Would you write two or three sentences about working together? I&rsquo;ll put it on the 8888 Media site with a link to yours, which sends a little traffic your way too.</p>
       <div id="testimonial-form" class="panel sign-panel">
-        <p class="soft small">A few prompts, in case they help: What made you decide to get a website? What was the process like? How&rsquo;s it going so far?</p>
+        <p class="soft small" id="t-prompts">A few prompts, in case they help: What made you decide to get a website? What was the process like? How&rsquo;s it going so far?</p>
         <div class="field">
           <label for="t-text">Your testimonial</label>
           <textarea id="t-text" rows="5"></textarea>
@@ -330,7 +330,7 @@
           <label for="t-name">How should I credit you?</label>
           <input type="text" id="t-name" autocomplete="off" placeholder="Dana R., Sunrise Bakery">
         </div>
-        <label class="option"><input type="checkbox" id="t-ok"><span>It&rsquo;s OK to show this on the 8888 Media website, with a link to my site.</span></label>
+        <label class="option"><input type="checkbox" id="t-ok"><span id="t-ok-label">It&rsquo;s OK to show this on the 8888 Media website, with a link to my site.</span></label>
         <button type="button" class="btn" id="t-submit">Submit Testimonial</button>
         <p id="t-error" class="warn" hidden></p>
       </div>
@@ -340,7 +340,7 @@
         <div class="send-row"><button type="button" class="btn ghost" id="t-edit">Edit It</button></div>
       </div>
       <div class="panel refer">
-        <p><b>Know another business owner who could use a website?</b> Send them here for a free mockup:</p>
+        <p id="t-refer"><b>Know another business owner who could use a website?</b> Send them here for a free mockup:</p>
         <div id="refer-link"></div>
       </div>
     </section>
@@ -736,7 +736,7 @@
           <h3>Submitted. Thank you!</h3>
           <p id="sent-text">I&rsquo;ll look it all over and get back to you within a couple of days. If you think of something later, come back to this link, change it, and submit again.</p>
         </div>
-        <p class="privacy">Your answers and photos go only to 8888 Media and are used only to build your website.</p>
+        <p class="privacy"><span id="privacy-line">Your answers and photos go only to 8888 Media and are used only to build your website.</span></p>
       </section>
     </form>
   </div>
@@ -826,6 +826,18 @@
     const aq = $("#approve-q");
     if (aq && video) aq.textContent = "Approve this cut and have your film finished?";
     $("#video-questions").hidden = !video;
+    if (video) {
+      // Every bit of static copy on this page was written for a website.
+      $("#eyebrow").innerHTML = "8888 Media &middot; Your Wedding Film";
+      $("#masthead-h1").textContent = "Let\u2019s Make Your Film";
+      $("#lede-more").textContent = "Share as much or as little as you like. A few words per answer is plenty, and anything you skip I\u2019ll ask you about closer to the day. The more you tell me, the more the film will feel like yours. It saves as you go, so you can stop anytime and come back.";
+      $("#t-intro").textContent = "Would you write two or three sentences about working together? I\u2019ll put it on the 8888 Media site, and it helps other couples decide.";
+      $("#t-prompts").textContent = "A few prompts, in case they help: what made you decide to have your day filmed? What was it like having me there? How was it watching it back?";
+      $("#t-ok-label").innerHTML = "It\u2019s OK to show this on the 8888 Media website.";
+      $("#t-refer").innerHTML = "<b>Know anyone else getting married?</b> Send them here to check their date:";
+      const pl = $("#privacy-line");
+      if (pl) pl.textContent = "Your answers go only to 8888 Media and are used only to film and edit your day.";
+    }
     if (biz) {
       $("#lede").textContent = `${first ? `Hi ${first}! ` : ""}Everything I need ${video ? "to film your wedding" : `to build the ${biz} website`} is on this page.`;
       document.title = video ? `${biz} Wedding Film | 8888 Media` : `${biz} Website Project | 8888 Media`;
@@ -1726,7 +1738,7 @@
     }
     const ref = $("#refer-link");
     ref.textContent = "";
-    ref.append(copyable("www.8888media.co/mockup"));
+    ref.append(copyable(project.service === "video" ? "www.8888media.co/video" : "www.8888media.co/mockup"));
   }
 
   $("#t-edit").addEventListener("click", () => {
