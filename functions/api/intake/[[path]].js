@@ -73,7 +73,12 @@ async function state(env, { base, access }) {
   return json({
     business: access.business || "",
     owner: access.owner || "",
+    // "web" or "video". Absent means web, so pages made before the video line keep working.
+    service: access.service === "video" ? "video" : "web",
     package: access.package || "",
+    eventDate: access.eventDate || "",
+    eventDateLong: access.eventDateLong || "",
+    venue: access.venue || "",
     total: Number(access.total) || 0,
     payments: Array.isArray(access.payments) ? access.payments : [],
     answers: (saved && saved.answers) || {},

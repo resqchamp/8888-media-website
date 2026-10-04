@@ -150,6 +150,10 @@
   .p:hover{background:rgba(255,255,255,.015)}
   .p .slate{font-family:var(--mono); font-size:12px; color:var(--accent); padding-top:7px; letter-spacing:.08em}
   .p h3{font-size:clamp(23px,3.4vw,30px); line-height:1.1; letter-spacing:-.02em}
+  .p .head{display:flex; align-items:baseline; justify-content:space-between; gap:12px 20px; flex-wrap:wrap}
+  .p .price{font-family:var(--mono); font-size:clamp(19px,2.6vw,24px); color:var(--text); white-space:nowrap; letter-spacing:-.01em}
+  .p .price small{display:block; font-size:11.5px; letter-spacing:.06em; text-transform:uppercase; color:var(--text-faint); margin-top:4px; text-align:right}
+  @media (max-width:560px){ .p .price small{text-align:left} }
   .p .what{margin-top:10px; color:var(--text-soft); font-size:16.5px; max-width:40em}
   .p ul{margin-top:16px; list-style:none; display:flex; flex-wrap:wrap; gap:8px}
   .p li{font-family:var(--mono); font-size:11.5px; letter-spacing:.05em; color:var(--text-soft);
@@ -288,7 +292,7 @@
       <div class="p rv">
         <div class="slate">01</div>
         <div>
-          <h3>Engagement &amp; Save The Date Film</h3>
+          <div class="head"><h3>Engagement &amp; Save The Date Film</h3><span class="price">$900<small>$300 holds the date</small></span></div>
           <p class="what">An hour or two with you somewhere that means something. People book this for two different moments &mdash; the day you tell everyone you're engaged, and the date card that goes out with the invitations. It's the same shoot either way; the edit is what changes.</p>
           <ul>
             <li>1&ndash;2 hours filming</li>
@@ -305,7 +309,7 @@
       <div class="p rv">
         <div class="slate">02</div>
         <div>
-          <h3>Wedding Film</h3>
+          <div class="head"><h3>Wedding Film</h3><span class="price">$2,800<small>$900 holds the date</small></span></div>
           <p class="what">Eight hours, from getting ready through the first dances. One filmmaker, two cameras, and microphones on the ceremony so you can hear what was actually said.</p>
           <ul>
             <li>8 hours coverage</li>
@@ -320,7 +324,7 @@
       <div class="p rv">
         <div class="slate">03</div>
         <div>
-          <h3>Wedding Film, Extended</h3>
+          <div class="head"><h3>Wedding Film, Extended</h3><span class="price">$3,800<small>$1,200 holds the date</small></span></div>
           <p class="what">Ten hours and a longer edit, for a day with more in it &mdash; a separate ceremony and reception, a large party, or speeches you want kept whole.</p>
           <ul>
             <li>10 hours coverage</li>
@@ -333,7 +337,7 @@
       </div>
 
     </div>
-    <p class="note rv">A second filmmaker, or a copy of the raw footage from the whole day, can be added to any of these. <b><a href="#check" style="color:var(--accent)">Send me your date</a> and I&rsquo;ll send pricing the same day.</b></p>
+    <p class="note rv">Add a second filmmaker for <b>$500</b>, or a copy of the raw footage from the whole day for <b>$300</b>. Extra hours on the day are $150 an hour, agreed with you before I stay. Travel is included within 60 miles of Millville. The balance is due the week before your wedding. <b><a href="#check" style="color:var(--accent)">Send me your date</a> and I&rsquo;ll tell you the same day whether I&rsquo;m free.</b></p>
   </div>
 </section>
 

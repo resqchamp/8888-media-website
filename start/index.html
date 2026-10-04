@@ -271,6 +271,24 @@
       <ol class="todo" id="todo"></ol>
     </section>
 
+    <!-- Video delivery. Fed by the same launch.json as the website version below. -->
+    <section id="delivery" aria-labelledby="delivery-h" hidden>
+      <h2 id="delivery-h">Your Film</h2>
+      <div class="sent live-card">
+        <h3 id="delivery-title">Your film is ready.</h3>
+        <p class="live-url" id="film-url"></p>
+        <a id="film-link" class="btn" href="#" target="_blank" rel="noopener">Watch Your Film</a>
+      </div>
+      <p id="delivery-note" class="preview-note" hidden></p>
+      <div class="panel info-card">
+        <h3>What You Have</h3>
+        <ul class="plain" id="film-list"></ul>
+        <h3>Keeping It</h3>
+        <p>That link is yours to send to anyone and it won&rsquo;t expire. I keep your footage on two separate drives for at least twelve months after delivery &mdash; after that it&rsquo;s worth having your own copy somewhere.</p>
+        <p>Anything you need, text me or email <a href="mailto:mike@8888media.co">mike@8888media.co</a>.</p>
+      </div>
+    </section>
+
     <section id="launch" aria-labelledby="launch-h" hidden>
       <h2 id="launch-h">Your Site Is Live</h2>
       <div class="sent live-card">
@@ -397,6 +415,8 @@
     </div>
 
     <form id="intake" class="stack" novalidate>
+      <!-- Web questions. Hidden wholesale for a video client; fields() then skips them. -->
+      <div id="web-questions">
       <section id="account" data-section="Your Website Account" aria-labelledby="account-h">
         <h2 id="account-h">Your Website Account</h2>
         <p class="intro">Follow the <a href="/setup/" target="_blank" rel="noopener">setup guide</a> (about 15 minutes), then check these off. The account and your web address belong to you.</p>
@@ -575,6 +595,134 @@
           <textarea id="q_else" data-q="q_else" rows="4"></textarea>
         </div>
       </section>
+      </div>
+
+      <!-- Video questions, from sales-kit/13-video-intake.md. Hidden for a web client. -->
+      <div id="video-questions" hidden>
+      <section id="vday" data-section="Your Day" aria-labelledby="vday-h">
+        <h2 id="vday-h">Your Day</h2>
+        <div class="field">
+          <label for="q_names">Your full names, spelled the way you&rsquo;d want them on screen.</label>
+          <input type="text" id="q_names" data-q="q_names" placeholder="Dana Whitaker &amp; Chris Alvarez">
+        </div>
+        <div class="field">
+          <label for="q_date">Your wedding date.</label>
+          <p class="hint">Already filled in from what you told me &mdash; change it if it moved.</p>
+          <input type="text" id="q_date" data-q="q_date">
+        </div>
+        <div class="field">
+          <label for="q_prep">Where are you each getting ready, with addresses?</label>
+          <p class="hint">If it&rsquo;s two places, roughly how far apart are they?</p>
+          <textarea id="q_prep" data-q="q_prep" rows="3"></textarea>
+        </div>
+        <div class="field">
+          <label for="q_ceremony">Ceremony venue, address, and what time it starts.</label>
+          <textarea id="q_ceremony" data-q="q_ceremony" rows="2"></textarea>
+        </div>
+        <div class="field">
+          <label for="q_reception">Reception venue and address, if it&rsquo;s somewhere else.</label>
+          <textarea id="q_reception" data-q="q_reception" rows="2"></textarea>
+        </div>
+        <div class="field">
+          <label for="q_timeline">Your timeline, even a rough one.</label>
+          <p class="hint">Hour by hour is ideal. &ldquo;Ceremony at 4, dinner at 6&rdquo; is still useful.</p>
+          <textarea id="q_timeline" data-q="q_timeline" rows="4"></textarea>
+        </div>
+        <div class="field">
+          <label for="q_coordinator">Is there a coordinator or a venue contact, and what&rsquo;s their number?</label>
+          <input type="text" id="q_coordinator" data-q="q_coordinator">
+        </div>
+      </section>
+      <section id="vpeople" data-section="The People" aria-labelledby="vpeople-h">
+        <h2 id="vpeople-h">The People</h2>
+        <div class="field">
+          <label for="q_people">Who are the people I should make sure are in the film?</label>
+          <p class="hint">Names, and roughly who they are.</p>
+          <textarea id="q_people" data-q="q_people" rows="3"></textarea>
+        </div>
+        <div class="field">
+          <label for="q_priority">Is anyone traveling a long way, or unwell, or unlikely to be at another family event?</label>
+          <p class="hint">Those are the ones worth getting.</p>
+          <textarea id="q_priority" data-q="q_priority" rows="3"></textarea>
+        </div>
+        <div class="field">
+          <label for="q_avoid">Is there anyone you&rsquo;d rather I didn&rsquo;t film?</label>
+          <p class="hint">No explanation needed. I&rsquo;ll just keep them out of it.</p>
+          <textarea id="q_avoid" data-q="q_avoid" rows="2"></textarea>
+        </div>
+        <div class="field">
+          <label for="q_photographer">Who&rsquo;s your photographer?</label>
+          <p class="hint">Name and company, so I can introduce myself before the day rather than on it.</p>
+          <input type="text" id="q_photographer" data-q="q_photographer">
+        </div>
+      </section>
+      <section id="vdayof" data-section="The Day Itself" aria-labelledby="vdayof-h">
+        <h2 id="vdayof-h">The Day Itself</h2>
+        <div class="field">
+          <label for="q_extras">What&rsquo;s happening beyond the ceremony and the dances?</label>
+          <p class="hint">First look, private vows, speeches, a performance, a tradition, a choreographed first dance.</p>
+          <textarea id="q_extras" data-q="q_extras" rows="3"></textarea>
+        </div>
+        <div class="field">
+          <label for="q_speeches">Who&rsquo;s giving speeches, and roughly when?</label>
+          <textarea id="q_speeches" data-q="q_speeches" rows="2"></textarea>
+        </div>
+        <div class="field">
+          <label for="q_surprise">Is anything a surprise, to you or to a guest?</label>
+          <p class="hint">Tell me so I&rsquo;m pointed the right way and don&rsquo;t give it away.</p>
+          <textarea id="q_surprise" data-q="q_surprise" rows="2"></textarea>
+        </div>
+        <div class="field">
+          <label for="q_mustget">Is there one moment you&rsquo;d be genuinely upset not to see in the film?</label>
+          <textarea id="q_mustget" data-q="q_mustget" rows="2"></textarea>
+        </div>
+        <div class="field">
+          <label for="q_restrictions">Anything the venue or your officiant won&rsquo;t let a camera do, or anywhere I can&rsquo;t stand?</label>
+          <textarea id="q_restrictions" data-q="q_restrictions" rows="2"></textarea>
+        </div>
+      </section>
+      <section id="vfilm" data-section="The Film" aria-labelledby="vfilm-h">
+        <h2 id="vfilm-h">The Film</h2>
+        <div class="field">
+          <label for="q_reference">Have you watched a wedding film you loved?</label>
+          <p class="hint">A link tells me more than any adjective.</p>
+          <textarea id="q_reference" data-q="q_reference" rows="2"></textarea>
+        </div>
+        <div class="field">
+          <label for="q_mood">Any feeling you&rsquo;re after?</label>
+          <p class="hint">Warm and quiet, loud and fun, mostly the vows, mostly the party.</p>
+          <textarea id="q_mood" data-q="q_mood" rows="2"></textarea>
+        </div>
+        <div class="field">
+          <label for="q_music">Any music style or mood you&rsquo;d like?</label>
+          <p class="hint">I score your film with licensed music, so I can&rsquo;t use a commercial song unless you&rsquo;ve bought a license for it &mdash; it would get your film muted wherever you post it.</p>
+          <textarea id="q_music" data-q="q_music" rows="2"></textarea>
+        </div>
+        <fieldset>
+          <legend>Do you want the vertical version for posting?</legend>
+          <p class="hint">It&rsquo;s included either way.</p>
+          <div class="options row">
+            <label class="option"><input type="radio" name="q_vertical" data-q="q_vertical" value="Yes, please"><span>Yes, please</span></label>
+            <label class="option"><input type="radio" name="q_vertical" data-q="q_vertical" value="No, thanks"><span>No, thanks</span></label>
+          </div>
+        </fieldset>
+        <div class="field">
+          <label for="q_share">Besides you two, who should get the link?</label>
+          <textarea id="q_share" data-q="q_share" rows="2"></textarea>
+        </div>
+      </section>
+      <section id="vfavor" data-section="And One Favor" aria-labelledby="vfavor-h">
+        <h2 id="vfavor-h">And One Favor</h2>
+        <fieldset>
+          <legend>Can I show your film, and stills from it, in my portfolio and on social media?</legend>
+          <p class="hint">A no is completely fine and changes nothing else.</p>
+          <div class="options row">
+            <label class="option"><input type="radio" name="q_portfolio" data-q="q_portfolio" value="Yes, that&rsquo;s fine"><span>Yes, that&rsquo;s fine</span></label>
+            <label class="option"><input type="radio" name="q_portfolio" data-q="q_portfolio" value="No, keep it private"><span>No, keep it private</span></label>
+          </div>
+        </fieldset>
+      </section>
+      </div>
 
       <section id="send" aria-labelledby="send-h">
         <h2 id="send-h">Submit Your Answers</h2>
@@ -671,13 +819,23 @@
   function start() {
     const first = (project.owner || "").trim();
     const biz = (project.business || "").trim();
+    const video = project.service === "video";
+    // One page, two question sets. fields() skips whichever is hidden, so a video client
+    // never loads or saves a web answer, and vice versa.
+    $("#web-questions").hidden = video;
+    $("#video-questions").hidden = !video;
     if (biz) {
-      $("#lede").textContent = `${first ? `Hi ${first}! ` : ""}Everything I need to build the ${biz} website is on this page.`;
-      document.title = `${biz} Website Project | 8888 Media`;
+      $("#lede").textContent = `${first ? `Hi ${first}! ` : ""}Everything I need ${video ? "to film your wedding" : `to build the ${biz} website`} is on this page.`;
+      document.title = video ? `${biz} Wedding Film | 8888 Media` : `${biz} Website Project | 8888 Media`;
     }
     $("#pages-field").hidden = project.package !== "business";
     applyAnswers(project.answers || {});
-    if (!$("#q_name").value && biz) $("#q_name").value = biz;
+    if (!video && !$("#q_name").value && biz) $("#q_name").value = biz;
+    if (video) {
+      if (!$("#q_names").value && biz) $("#q_names").value = biz;
+      if (!$("#q_date").value) $("#q_date").value = project.eventDateLong || project.eventDate || "";
+      if (!$("#q_ceremony").value && project.venue) $("#q_ceremony").value = project.venue;
+    }
     for (const f of project.files) fileRow({ ...f, done: true });
     renderAgreement();
     renderPayments();
@@ -1219,10 +1377,13 @@
     const pays = (project.payments || []).filter((p) => p && p.amount);
     const deposit = pays.find((p) => p.id === "deposit");
     const items = [];
+    const isVideo = project.service === "video";
     if (project.agreement) items.push(["Accept your agreement", "#agreement", !!project.agreement.accepted]);
-    if (deposit) items.push(["Pay the deposit", "#pay", ["paid", "processing"].includes(deposit.status)]);
-    items.push(["Set up your website account", "#account", !!(answers.acct_created && answers.acct_domain && answers.acct_invite)]);
-    items.push(["Answer the questions and add photos", "#about", !!project.submittedAt]);
+    // Video takes a retainer that holds the date; web takes half up front.
+    if (deposit) items.push([`Pay the ${String(deposit.label || "deposit").toLowerCase()}`, "#pay", ["paid", "processing"].includes(deposit.status)]);
+    // The Cloudflare account step is a website thing -- a couple has nothing to set up.
+    if (!isVideo) items.push(["Set up your website account", "#account", !!(answers.acct_created && answers.acct_domain && answers.acct_invite)]);
+    items.push([isVideo ? "Tell me about your day" : "Answer the questions and add photos", isVideo ? "#vday" : "#about", !!project.submittedAt]);
     const lastPreview = (project.previews || []).slice(-1)[0];
     if (lastPreview) items.push([lastPreview.status === "approved" ? "Approve your preview" : "Review your preview", "#preview", lastPreview.status !== "waiting"]);
     for (const p of pays) {
@@ -1472,10 +1633,38 @@
     return Date.now() >= new Date(l.testimonialFrom || addDaysIso(l.launchedAt, 7)).getTime();
   }
 
+  // What a couple sees once their film is delivered.
+  function renderDelivery(l) {
+    const a = project.answers || {};
+    $("#delivery-title").textContent = `${project.business || "Your film"} \u2014 your film is ready.`;
+    $("#film-link").href = l.url;
+    $("#film-url").textContent = l.url.replace(/^https?:\/\//, "").replace(/\/$/, "");
+    const note = $("#delivery-note");
+    note.textContent = l.note || "";
+    note.hidden = !l.note;
+    const bits = [
+      "Your highlight film, at the link above.",
+      a.q_vertical === "No, thanks" ? "" : "A vertical version, for posting.",
+      "Your ceremony audio, recorded properly rather than off the camera.",
+      a.q_share ? `Shared with: ${a.q_share}` : "",
+    ].filter(Boolean);
+    const list = $("#film-list");
+    list.textContent = "";
+    for (const b of bits) {
+      const li = document.createElement("li");
+      li.textContent = b;
+      list.append(li);
+    }
+  }
+
   function renderLaunch() {
     const l = project.launch;
-    $("#launch").hidden = !l;
+    const isVideo = project.service === "video";
+    // One record, two very different pages: a live website vs a finished film.
+    $("#launch").hidden = !l || isVideo;
+    $("#delivery").hidden = !l || !isVideo;
     if (!l) return;
+    if (isVideo) return renderDelivery(l);
     $("#launch-title").textContent = `${project.business || "Your website"} is live!`;
     $("#live-link").href = l.url;
     $("#live-url").textContent = l.url.replace(/^https?:\/\//, "").replace(/\/$/, "");
