@@ -360,7 +360,7 @@
             <button type="button" class="btn ghost" id="changes-btn">Request Changes</button>
           </div>
           <div id="approve-confirm" class="confirm" hidden>
-            <p><b>Approve this version and get it ready to go live?</b></p>
+            <p><b><span id="approve-q">Approve this version and get it ready to go live?</span></b></p>
             <div class="send-row">
               <button type="button" class="btn" id="approve-yes">Yes, Approve</button>
               <button type="button" class="btn ghost" id="approve-cancel">Cancel</button>
@@ -823,6 +823,8 @@
     // One page, two question sets. fields() skips whichever is hidden, so a video client
     // never loads or saves a web answer, and vice versa.
     $("#web-questions").hidden = video;
+    const aq = $("#approve-q");
+    if (aq && video) aq.textContent = "Approve this cut and have your film finished?";
     $("#video-questions").hidden = !video;
     if (biz) {
       $("#lede").textContent = `${first ? `Hi ${first}! ` : ""}Everything I need ${video ? "to film your wedding" : `to build the ${biz} website`} is on this page.`;
