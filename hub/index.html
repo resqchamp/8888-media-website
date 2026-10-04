@@ -498,7 +498,7 @@
 
   function renderTabs() {
     const c = data.counts;
-    const groups = [["active", "Active", c.active], ["live", "Live", c.live], ["closed", "Closed", c.closed]];
+    const groups = [["active", "Active", c.active], ["live", "Live & Delivered", c.live], ["closed", "Closed", c.closed]];
     if (!groups.some(([g]) => g === tab)) tab = c.active || !c.live ? "active" : "live";
     $("#tabs").replaceChildren(...groups.filter(([g, , n]) => n || g !== "closed").map(([g, label, n]) =>
       el("button", { type: "button", class: "tab", role: "tab", "aria-selected": String(g === tab), onclick: () => { tab = g; store.set(TAB_STORE, g); renderTabs(); renderClients(); }, text: `${label} (${n})` })));
@@ -509,7 +509,7 @@
     if (!list.length) {
       const msg = !data.clients.length
         ? "No clients yet. When you sign one, Claude creates their project page and they show up here."
-        : tab === "active" ? "No projects in progress right now." : tab === "live" ? "No live sites yet." : "Nothing closed yet.";
+        : tab === "active" ? "No projects in progress right now." : tab === "live" ? "Nothing live or delivered yet." : "Nothing closed yet.";
       $("#client-list").replaceChildren(el("p", { class: "empty", text: msg }));
       return;
     }
@@ -522,7 +522,9 @@
 
   function clientCard(c) {
     const current = c.steps.findIndex((s) => !s.done);
-    const metaBits = [c.owner, c.package, c.rate === "new" ? "New-client rate" : c.rate === "standard" ? "Standard rate" : "", money(c.total)].filter(Boolean);
+    const metaBits = c.isVideo
+      ? [c.owner, c.package, c.eventDateLong || c.eventDate, c.venue, money(c.total)].filter(Boolean)
+      : [c.owner, c.package, c.rate === "new" ? "New-client rate" : c.rate === "standard" ? "Standard rate" : "", money(c.total)].filter(Boolean);
 
     const payRows = c.payments.map((p) => {
       let status;
@@ -538,7 +540,7 @@
     if (payRows.length) fact("Payments", ...payRows);
     if (c.agreement) fact("Agreement", c.agreement.acceptedBy ? `Accepted by ${c.agreement.acceptedBy}, ${shortDate(c.agreement.at)}` : "Not accepted yet");
     const a = c.answers;
-    fact("Answers", `${a.state}${a.files ? ` · ${a.files} file${a.files === 1 ? "" : "s"}` : ""}${a.updatedAt ? ` · last change ${ago(a.updatedAt)}` : ""}`);
+    fact(c.isVideo ? "Their Details" : "Answers", `${a.state}${a.files ? ` · ${a.files} file${a.files === 1 ? "" : "s"}` : ""}${a.updatedAt ? ` · last change ${ago(a.updatedAt)}` : ""}`);
     if (c.domain && c.domain.name) {
       fact("Web Address", `${c.domain.name}${c.domain.had ? (c.domain.ready ? " · already had it, switched over" : " · already had it, not switched yet") : ""}`);
     }

@@ -6,10 +6,17 @@
 const MAX_FAILS = 10; // wrong passcodes per visitor per hour; counters expire with the rate/ lifecycle rule
 const START = "https://www.8888media.co/start/";
 const LINKS = {
-  leadTracker: "https://claude.ai/code/artifact/f56cefe9-7035-448c-a037-01414ec6de5c",
-  quickMessages: "https://claude.ai/code/artifact/e8423c2b-63ae-41fa-974c-35741ed95117",
+  leadTracker: "https://claude.ai/artifact/XJm2dT1y4w1ATNEhCoKYks",
+  quickMessages: "https://claude.ai/artifact/VgTXMBPeu2eRbBNHkBxfKL",
 };
-const PACKAGES = { launch: "Launch Page", business: "Business Site" };
+const PACKAGES = {
+  launch: "Launch Page", business: "Business Site",
+  engagement: "Engagement & Save The Date", wedding: "Wedding Film",
+  "wedding-extended": "Wedding Film, Extended",
+};
+// A video client skips the website account step entirely, and finishes with a delivered
+// film rather than a live site.
+const VIDEO_PACKAGES = new Set(["engagement", "wedding", "wedding-extended"]);
 const CARE_MONTHLY = { monthly: 100, yearly: 1000 / 12 };
 const DAY = 864e5;
 
@@ -143,7 +150,10 @@ async function loadClient(env, slug) {
   const final = pays.find((p) => p.id === "final");
   const settled = (p) => !!p && (p.status === "paid" || p.status === "processing");
   const given = (answers && answers.answers) || {};
-  const accountDone = !!(given.acct_created && given.acct_domain && given.acct_invite);
+  const isVideo = VIDEO_PACKAGES.has(a.package) || a.service === "video";
+  // Treat the account step as done for video: there is no Cloudflare account to set up, and
+  // leaving it false strands them at "Waiting on Setup" for the life of the project.
+  const accountDone = isVideo || !!(given.acct_created && given.acct_domain && given.acct_invite);
   const submittedAt = (answers && answers.submittedAt) || null;
   const items = (previews && Array.isArray(previews.items) ? previews.items : []).filter((p) => p.status !== "replaced");
   const latest = items[items.length - 1] || null;
@@ -165,32 +175,33 @@ async function loadClient(env, slug) {
     if (latest && latest.status === "changes") needsYou.push(`Changes requested on preview ${latest.round}`);
     if (latest && latest.status === "approved" && !final) needsYou.push(`Preview ${latest.round} approved: add the final payment`);
     if (testimonial && (!collected || collected.testimonialAt !== testimonial.at)) needsYou.push("New testimonial: pull it for the portfolio");
-    if (launch && liveDays >= 30) needsYou.push("Live 30+ days: free fixes are over; close the link when ready");
-    if (submittedAt && !latest && !launch) needsYou.push("Build the first preview");
-    if (final && settled(final) && !launch) needsYou.push("Paid in full: launch the site");
-    if (given.q_domain_had === "I already had one" && given.acct_invite && !a.domainReady && !launch) needsYou.push("Existing web address: check its records, then send the last step");
+    if (launch && liveDays >= 30) needsYou.push(isVideo ? "Delivered 30+ days ago: close the link when ready" : "Live 30+ days: free fixes are over; close the link when ready");
+    if (submittedAt && !latest && !launch) needsYou.push(isVideo ? "Send the first cut for review" : "Build the first preview");
+    if (final && settled(final) && !launch) needsYou.push(isVideo ? "Paid in full: publish their film" : "Paid in full: launch the site");
+    if (!isVideo && given.q_domain_had === "I already had one" && given.acct_invite && !a.domainReady && !launch) needsYou.push("Existing web address: check its records, then send the last step");
   }
 
   // What the client still has to do, in the order their page lists it.
   const waitingOn = [];
   if (!closed) {
     if (agreement && !accepted) waitingOn.push("Accept the agreement");
-    if (deposit && deposit.status === "due") waitingOn.push("Pay the deposit");
+    if (deposit && deposit.status === "due") waitingOn.push(`Pay the ${String(deposit.label || "deposit").toLowerCase()}`);
     if (!accountDone && !launch) waitingOn.push("Set up their website account");
-    if (!submittedAt && !launch) waitingOn.push("Answer the questions");
-    if (latest && latest.status === "waiting") waitingOn.push(`Review preview ${latest.round}`);
+    if (!submittedAt && !launch) waitingOn.push(isVideo ? "Tell you about the day" : "Answer the questions");
+    if (latest && latest.status === "waiting") waitingOn.push(isVideo ? `Review cut ${latest.round}` : `Review preview ${latest.round}`);
     if (final && final.status === "due") waitingOn.push("Make the final payment");
     if (testimonialDue && !testimonial) waitingOn.push("Leave a testimonial");
   }
 
   const steps = [];
   if (agreement) steps.push({ label: "Agreement", done: !!accepted });
-  if (deposit) steps.push({ label: "Deposit", done: settled(deposit) });
-  steps.push({ label: "Account", done: accountDone || !!launch });
-  steps.push({ label: "Questions", done: !!submittedAt || !!launch });
-  steps.push({ label: "Preview", done: (latest && latest.status === "approved") || !!launch });
+  if (deposit) steps.push({ label: deposit.label || "Deposit", done: settled(deposit) });
+  // No account chip for video -- there is no account.
+  if (!isVideo) steps.push({ label: "Account", done: accountDone || !!launch });
+  steps.push({ label: isVideo ? "The Day" : "Questions", done: !!submittedAt || !!launch });
+  steps.push({ label: isVideo ? "Cut" : "Preview", done: (latest && latest.status === "approved") || !!launch });
   steps.push({ label: "Final", done: settled(final) || (!!launch && !final) });
-  steps.push({ label: "Live", done: !!launch });
+  steps.push({ label: isVideo ? "Delivered" : "Live", done: !!launch });
 
   const sum = (list) => list.reduce((n, p) => n + Number(p.amount || 0), 0);
   const paid = sum(pays.filter((p) => p.status === "paid"));
@@ -223,13 +234,18 @@ async function loadClient(env, slug) {
     owner: a.owner || "",
     package: PACKAGES[a.package] || a.package || "",
     isBusinessSite: a.package === "business",
+    isVideo,
+    // The day Mike has to be free. The single most important thing on a video row.
+    eventDate: a.eventDate || "",
+    eventDateLong: a.eventDateLong || "",
+    venue: a.venue || "",
     rate: a.rate || "",
     total: Number(a.total || 0),
     createdAt: a.createdAt || null,
     closed,
-    group: closed ? "closed" : launch ? "live" : "active",
+    group: closed ? "closed" : launch ? "live" : "active", // "live" means delivered for video
     link: a.key ? `${START}#c=${slug}&k=${a.key}` : null,
-    stage: stageOf({ closed, launch, agreement, accepted, deposit, final, submittedAt, accountDone, latest }),
+    stage: stageOf({ closed, launch, agreement, accepted, deposit, final, submittedAt, accountDone, latest, isVideo }),
     steps,
     needsYou,
     waitingOn,
@@ -248,19 +264,21 @@ async function loadClient(env, slug) {
 }
 
 // One short label for where the project is, and whose move it is.
-function stageOf({ closed, launch, agreement, accepted, deposit, final, submittedAt, accountDone, latest }) {
+function stageOf({ closed, launch, agreement, accepted, deposit, final, submittedAt, accountDone, latest, isVideo }) {
+  const money = isVideo ? "Retainer" : "Deposit";
   if (closed) return { label: "Closed", whose: "done" };
-  if (launch) return { label: "Live", whose: "done" };
+  if (launch) return { label: isVideo ? "Delivered" : "Live", whose: "done" };
   if (agreement && !accepted) return { label: "Waiting on Agreement", whose: "them" };
-  if (deposit && deposit.status === "due") return { label: "Waiting on Deposit", whose: "them" };
-  if (deposit && deposit.status === "processing") return { label: "Deposit Clearing", whose: "them" };
-  if (!submittedAt) return { label: accountDone ? "Waiting on Questions" : "Waiting on Setup and Questions", whose: "them" };
-  if (!latest) return { label: "Your Turn: Build Preview 1", whose: "you" };
-  if (latest.status === "waiting") return { label: `Waiting on Preview ${latest.round} Review`, whose: "them" };
-  if (latest.status === "changes") return { label: `Your Turn: Preview ${latest.round} Changes`, whose: "you" };
+  if (deposit && deposit.status === "due") return { label: `Waiting on ${money}`, whose: "them" };
+  if (deposit && deposit.status === "processing") return { label: `${money} Clearing`, whose: "them" };
+  // accountDone is forced true for video, so a couple is never stranded at "Waiting on Setup".
+  if (!submittedAt) return { label: accountDone ? (isVideo ? "Waiting on Their Details" : "Waiting on Questions") : "Waiting on Setup and Questions", whose: "them" };
+  if (!latest) return { label: isVideo ? "Your Turn: Cut 1" : "Your Turn: Build Preview 1", whose: "you" };
+  if (latest.status === "waiting") return { label: `Waiting on ${isVideo ? "Cut" : "Preview"} ${latest.round} Review`, whose: "them" };
+  if (latest.status === "changes") return { label: `Your Turn: ${isVideo ? "Cut" : "Preview"} ${latest.round} Changes`, whose: "you" };
   if (!final) return { label: "Your Turn: Add Final Payment", whose: "you" };
   if (final.status === "due") return { label: "Waiting on Final Payment", whose: "them" };
-  return { label: "Your Turn: Launch", whose: "you" };
+  return { label: isVideo ? "Your Turn: Deliver the Film" : "Your Turn: Launch", whose: "you" };
 }
 
 const monthOf = (d) => new Intl.DateTimeFormat("en-CA", { timeZone: "America/New_York", year: "numeric", month: "2-digit" }).format(new Date(d));
