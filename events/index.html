@@ -8,7 +8,7 @@
 <link rel="canonical" href="https://www.8888media.co/events/">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Event, Sports &amp; Brand Films in South Jersey | 8888 Media">
-<meta property="og:description" content="Films for events, teams and the organisations behind them. Shot at MetLife Stadium for Special Olympics New Jersey.">
+<meta property="og:description" content="Films for events, teams and the organizations behind them. Shot at MetLife Stadium for Special Olympics New Jersey.">
 <meta property="og:url" content="https://www.8888media.co/events/">
 <meta property="og:image" content="https://www.8888media.co/og-image.png">
 <meta name="twitter:card" content="summary_large_image">
@@ -346,7 +346,7 @@
       <form class="frm" id="ask" novalidate>
         <div class="two">
           <div class="fl">
-            <label for="org">Organisation or team <span class="req" aria-hidden="true">*</span></label>
+            <label for="org">Organization or team <span class="req" aria-hidden="true">*</span></label>
             <input type="text" id="org" name="org" placeholder="Team Top Guns" autocomplete="organization" required>
           </div>
           <div class="fl">
@@ -491,7 +491,7 @@
     io.observe(v);
   })();
 
-  // The enquiry. Same endpoint as /mockup/ and /video/, with kind:"video" and want:"Event",
+  // The inquiry. Same endpoint as /mockup/ and /video/, with kind:"video" and want:"Event",
   // so it lands in the same bucket, fires the same alert and reaches the CRM the same way.
   (function(){
     var startedAt = Date.now();
@@ -529,7 +529,7 @@
         from: document.referrer ? new URL(document.referrer).hostname : ''
       };
 
-      if (data.business.length < 2) return fail('Add the organisation or team name.', 'org');
+      if (data.business.length < 2) return fail('Add the organization or team name.', 'org');
       if (data.name.length < 2) return fail('Add your name.', 'first');
       if (data.eventDate.length < 4) return fail("Add the date, even if it isn't fixed yet.", 'date');
       var isEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.contact);
